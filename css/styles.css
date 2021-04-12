@@ -1,0 +1,585 @@
+@font-face {
+  font-family: "courier-new";
+  src: url("../fonts/cour.ttf");
+}
+@font-face {
+  font-family: "hemihead";
+  src: url("../fonts/hemihead.ttf");
+}
+@font-face {
+  font-family: "menlo";
+  src: url("../fonts/Menlo-Regular.woff");
+}
+@font-face {
+  font-family: "play";
+  src: url("../fonts/Play-Regular.ttf");
+}
+@font-face {
+  font-family: "proto";
+  src: url("../fonts/Prototype.ttf");
+}
+@font-face {
+  font-family: "monaco";
+  src: url("../fonts/Mocano.woff");
+}
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100vw;
+}
+html body {
+  background-color: #1e1e1e;
+  font-family: "hemihead";
+  min-height: calc(50px + 100vh - 30vh);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100vw;
+  grid-template-rows: 30vh 1fr max-content 4vh;
+  overflow-x: hidden;
+}
+html body .courier-new {
+  font-family: "courier-new";
+}
+html body .menlo {
+  font-family: "menlo";
+}
+html body .play {
+  font-family: "play";
+}
+html body .proto {
+  font-family: "proto";
+}
+html body .hemihead {
+  font-family: "hemihead";
+}
+html body .monaco {
+  font-family: "monaco";
+}
+html body nav {
+  position: fixed;
+  top: 0;
+  height: 50px;
+  min-height: 50px;
+  width: 100%;
+  z-index: 60;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 1s;
+}
+html body nav .flags-container {
+  height: 45px;
+  width: 155px;
+  margin-left: 2vw;
+  padding: 1vh 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+}
+html body nav .flags-container .flag {
+  height: 20px;
+  width: 45px;
+  font-family: "courier-new", sans-serif;
+  font-size: 1rem;
+  font-weight: bolder;
+  color: #fefefe;
+  transition: all 0.6s;
+  position: relative;
+  text-align: center;
+  border-right: 1px solid #ffffff;
+}
+html body nav .flags-container .flag:hover {
+  cursor: pointer;
+  color: #fefefe;
+}
+html body nav .link-wrapper {
+  height: 100%;
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-right: 2vw;
+}
+html body nav .link-wrapper .link {
+  opacity: 1;
+  text-decoration: none;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+html body nav .link-wrapper .link i {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+html body nav .link-wrapper .link i:hover {
+  color: rgba(255, 255, 255, 0.5);
+}
+html body nav .link-wrapper a:hover {
+  cursor: pointer;
+}
+html body #banner {
+  grid-row: 1;
+  color: white;
+  position: relative;
+}
+html body #banner .banner-container {
+  height: 100%;
+}
+html body #banner .banner-container .stars-container {
+  height: 100%;
+  opacity: 0;
+  background: #1e1e1e;
+  background: linear-gradient(0deg, #1e1e1e, #0037ad 100%);
+  animation: lightup 3s forwards;
+}
+@keyframes lightup {
+  to {
+    opacity: 1;
+  }
+}
+html body #banner .banner-container .rainbow-sun {
+  position: absolute;
+  top: 50px;
+  top: 0;
+  height: 30vh;
+  width: 100%;
+  transform: translateY(100%);
+  z-index: 10;
+  animation: rise 3s forwards;
+}
+html body #banner .banner-container .rainbow-sun .circle-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body #banner .banner-container .rainbow-sun .circle-container .circle {
+  height: 30vh;
+  width: 30vh;
+  border-radius: 50%;
+  background: linear-gradient(0deg, yellow 40%, #c42842 70%, red 100%);
+  transform: translateY(50%);
+}
+@keyframes rise {
+  to {
+    transform: translateY(0);
+  }
+}
+html body header {
+  position: relative;
+  height: calc(100vh - 30vh);
+  grid-row: 2;
+  min-height: 30vh;
+  width: 100%;
+  background-color: #1e1e1e;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+html body header .logo-container {
+  width: 490px;
+  height: 79px;
+}
+html body header .logo-container #logo {
+  margin: 0;
+  padding: 0;
+}
+html body header .logo-container #logo path:nth-child(1) {
+  stroke-dasharray: 234.7;
+  stroke-dashoffset: 234.7;
+  animation: logoEnter 3s forwards ease-out;
+}
+html body header .logo-container #logo path:nth-child(2) {
+  stroke-dasharray: 234.7;
+  stroke-dashoffset: 234.7;
+  animation: logoEnter 3s forwards ease-out;
+}
+html body header .logo-container #logo path:nth-child(3) {
+  stroke-dasharray: 350px;
+  stroke-dashoffset: 350px;
+  animation: logoEnter 3s forwards ease-out;
+}
+html body header .logo-container #logo path:nth-child(4) {
+  stroke-dasharray: 350px;
+  stroke-dashoffset: 350px;
+  animation: logoEnter 3s forwards ease-out;
+}
+html body header .logo-container #logo path:nth-child(5) {
+  stroke-dasharray: 350px;
+  stroke-dashoffset: 350px;
+  animation: logoEnter 3s forwards ease-out;
+}
+html body header .logo-container #logo path:nth-child(6) {
+  stroke-dasharray: 350px;
+  stroke-dashoffset: 350px;
+  animation: logoEnter 3s forwards ease-out;
+}
+html body header .logo-container #logo path:nth-child(7) {
+  stroke-dasharray: 350px;
+  stroke-dashoffset: 350px;
+  animation: logoEnter 3s forwards ease-out;
+}
+html body header .logo-container #logo path:nth-child(8) {
+  stroke-dasharray: 350px;
+  stroke-dashoffset: 350px;
+  animation: logoEnter 3s forwards ease-out;
+}
+html body header .logo-container #logo path:nth-child(9) {
+  stroke-dasharray: 350px;
+  animation: logoEnter 3s forwards ease-out;
+  stroke-dashoffset: 350px;
+}
+html body header .logo-container #logo path:nth-child(10) {
+  stroke-dasharray: 350px;
+  stroke-dashoffset: 350px;
+  animation: logoEnter 3s forwards ease-out;
+}
+html body header .logo-container #logo path:nth-child(11) {
+  stroke-dasharray: 350px;
+  stroke-dashoffset: 350px;
+  animation: logoEnter 3s forwards ease-out;
+}
+html body header .logo-container #logo path:nth-child(12) {
+  stroke-dasharray: 350px;
+  stroke-dashoffset: 350px;
+  animation: logoEnter 3s forwards ease-out;
+}
+@keyframes logoEnter {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+html body header .scroll-down {
+  display: flex;
+  flex-direction: column;
+  font-family: "play", serif;
+  justify-content: center;
+  width: 100%;
+  margin: 2vh 0 12vh;
+}
+html body header .scroll-down p {
+  line-height: 1rem;
+  font-size: 1.25rem;
+  color: #cccccc;
+  text-align: center;
+}
+html body header .scroll-down .arrow {
+  width: 100%;
+  transform: rotate(90deg);
+  font-weight: light;
+  font-size: 2.5rem;
+  margin-top: 1.5vh;
+  color: #cccccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body main {
+  width: 100%;
+  grid-row: 3;
+  display: grid;
+  grid-template-rows: 100vh 1250px 30vh 100vh;
+}
+html body main .cta {
+  grid-row: 3;
+  grid-column: 1/4;
+  height: 40px;
+  width: 250px;
+  margin: 0 auto;
+  font-family: "play";
+  font-size: 1.25rem;
+  font-weight: light;
+  color: #007acc;
+  color: turquoise;
+  background-color: #1e1e1e;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 0.15em solid turquoise;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+}
+html body main .cta:hover {
+  cursor: pointer;
+  background-color: turquoise;
+  color: #1e1e1e;
+  font-weight: bolder;
+}
+html body main #intro {
+  grid-row: 1;
+  width: 100%;
+}
+html body main #intro .intro-container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 60% 10% 30%;
+  grid-template-rows: 1fr max-content 1fr;
+}
+html body main #intro .intro-container .title {
+  grid-row: 1;
+  grid-column: 1/3;
+  font-size: 2rem;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+html body main #intro .intro-container .title .upper-title {
+  align-self: flex-start;
+  padding: 0 1.5vw 0.15vh;
+  white-space: nowrap;
+}
+html body main #intro .intro-container .title .lower-title {
+  align-self: flex-end;
+  padding: 0.15vh 1.5vw 0;
+  white-space: nowrap;
+}
+html body main #intro .intro-container .title .line {
+  height: 1px;
+  width: 100%;
+  background-color: #ffffff;
+}
+html body main #intro .intro-container .text-content {
+  grid-row: 2;
+  grid-column: 1/4;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+html body main #intro .intro-container .text-content .text {
+  width: 70%;
+  min-width: 70%;
+  height: 100%;
+  padding: 3vh 0;
+  font-size: 1.5rem;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+html body main #intro .intro-container .text-content .text .about,
+html body main #intro .intro-container .text-content .text .stack {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+html body main #intro .intro-container .text-content .text .about {
+  height: 100%;
+  font-family: "courier new", monospace, serif;
+  font-size: 1.25rem;
+  justify-self: flex-start;
+  padding: 0 5vw;
+  background-color: #3e3e42;
+  transition: all 0.2s;
+}
+html body main #intro .intro-container .text-content .text .hover-effect:hover {
+  cursor: pointer;
+  color: black;
+  background-color: #ffffff;
+}
+html body main #intro .intro-container .text-content .text .stack {
+  height: min-content;
+  width: 100%;
+  padding: 2vh 0;
+  border: 1px solid #3e3e42;
+}
+html body main #intro .intro-container .text-content .text .stack .icons-container {
+  width: 60%;
+  display: flex;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+html body main #intro .intro-container .text-content .text .stack .icons-container .icon-wrapper i {
+  font-size: 3rem;
+}
+html body main #intro .intro-container .text-content .text .stack .icons-container .hover-effect:nth-child(1) {
+  cursor: pointer;
+  color: #f06529;
+}
+html body main #intro .intro-container .text-content .text .stack .icons-container .hover-effect:nth-child(2) {
+  cursor: pointer;
+  color: #cd6799;
+}
+html body main #intro .intro-container .text-content .text .stack .icons-container .hover-effect:nth-child(3) {
+  cursor: pointer;
+  color: #f0db4f;
+  background-color: white;
+}
+html body main #intro .intro-container .text-content .text .stack .icons-container .hover-effect:nth-child(4) {
+  cursor: pointer;
+  color: #61dbfb;
+}
+html body main #intro .intro-container .text-content .text .stack .icons-container .hover-effect:nth-child(5) {
+  cursor: pointer;
+  color: #3c873a;
+}
+html body main #intro .intro-container .text-content .text .stack .icons-container .hover-effect:nth-child(6) {
+  cursor: pointer;
+  color: #f34f29;
+}
+html body main #intro .intro-container .text-content .gif-container {
+  position: absolute;
+  right: 9vw;
+  top: 5vh;
+  height: 200px;
+  width: 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+html body main #intro .intro-container .text-content .gif-container .facegif {
+  height: 200px;
+  width: 210px;
+  border-radius: 50%;
+}
+html body main section {
+  display: flex;
+  flex-direction: column;
+  margin: 4vh 0;
+}
+html body main section .tag {
+  height: 28px;
+  width: 100%;
+  text-align: left;
+  padding-left: 1vw;
+  font-family: menlo;
+  font-size: 1.15rem;
+  color: #007acc;
+}
+html body main section .tag-about-opening {
+  margin-top: 2vh;
+}
+html body main section .tag-about-closing {
+  margin-bottom: 7vh;
+}
+html body main section .section-container {
+  height: 100%;
+  width: 100%;
+}
+html body main #projects {
+  grid-row: 2;
+  margin-top: 5vh;
+}
+html body main #projects .projects-container .projects-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+html body main #projects .projects-container .projects-wrapper .project {
+  height: 200px;
+  width: 85%;
+  color: #ffffff;
+  background-color: #3e3e42;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+html body main #projects .projects-container .projects-wrapper .project .thumbnail {
+  padding: 0 1vw;
+}
+html body main #projects .projects-container .projects-wrapper .project .thumbnail img {
+  height: 170px;
+  width: 320px;
+}
+html body main #projects .projects-container .projects-wrapper .project .pitch-container {
+  height: 100%;
+  padding: 0 1vw 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links {
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links a {
+  text-decoration: none;
+  color: white;
+}
+html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links a i {
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links a .fa-github-alt {
+  font-size: 2rem;
+}
+html body main #projects .projects-container .projects-wrapper .hover-effect:hover {
+  cursor: pointer;
+  color: black;
+  background-color: #ffffff;
+}
+html body main #more {
+  grid-row: 3;
+}
+html body main #more .more-container .more-wrapper {
+  height: 100%;
+  color: white;
+  text-align: center;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+html body main #contact {
+  grid-row: 4;
+}
+html body main #contact .contact-container .contact-wrapper {
+  height: 100%;
+  width: 99%;
+  margin: 0 auto;
+  border: 2px solid #007acc;
+}
+html body footer {
+  grid-row: 4;
+  height: 100%;
+  padding: 0 2vw 0 1vw;
+  font-family: "courier new";
+  font-size: 1rem;
+  color: #3e3e42;
+  border-top: 1px solid #3e3e42;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+html body footer p:nth-child(1) {
+  width: calc(100vw / 3);
+  text-align: left;
+}
+html body footer p:nth-child(2) {
+  width: calc(100vw / 3);
+  text-align: center;
+}
+html body footer p:nth-child(3) {
+  width: calc(100vw / 3);
+  text-align: right;
+  margin-right: 1vw;
+}
+
+/*# sourceMappingURL=styles.css.map */
