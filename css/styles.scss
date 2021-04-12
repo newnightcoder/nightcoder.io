@@ -110,7 +110,7 @@ html {
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        // opacity: 0;
+        opacity: 0;
 
         .flag {
           height: 20px;
@@ -494,7 +494,7 @@ html {
                 font-size: 1.25rem;
                 justify-self: flex-start;
                 padding: 0 5vw;
-                background-color: $grey-primary;
+                // background-color: $grey-primary;
                 transition: all 0.2s;
                 // border: 1px solid deepskyblue;
               }
@@ -509,15 +509,15 @@ html {
               //////////////////////////////////
 
               .stack {
-                height: min-content;
+                height: 100%;
                 width: 100%;
                 padding: 2vh 0;
-                border: 1px solid $grey-primary;
+                // border: 1px solid $grey-primary;
 
                 .icons-container {
-                  width: 60%;
+                  width: 50%;
                   display: flex;
-                  margin: 0 auto;
+                  margin-left: 5vw;
                   flex-wrap: wrap;
                   align-items: center;
                   justify-content: space-evenly;
@@ -541,9 +541,9 @@ html {
                     //     color: red;
                     //   }
                     // }
-                    i {
-                      font-size: 3rem;
-                    }
+                  }
+                  i {
+                    font-size: 3rem;
                   }
                   .hover-effect:nth-child(1) {
                     cursor: pointer;

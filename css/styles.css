@@ -82,6 +82,7 @@ html body nav .flags-container {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  opacity: 0;
 }
 html body nav .flags-container .flag {
   height: 20px;
@@ -388,7 +389,6 @@ html body main #intro .intro-container .text-content .text .about {
   font-size: 1.25rem;
   justify-self: flex-start;
   padding: 0 5vw;
-  background-color: #3e3e42;
   transition: all 0.2s;
 }
 html body main #intro .intro-container .text-content .text .hover-effect:hover {
@@ -397,20 +397,19 @@ html body main #intro .intro-container .text-content .text .hover-effect:hover {
   background-color: #ffffff;
 }
 html body main #intro .intro-container .text-content .text .stack {
-  height: min-content;
+  height: 100%;
   width: 100%;
   padding: 2vh 0;
-  border: 1px solid #3e3e42;
 }
 html body main #intro .intro-container .text-content .text .stack .icons-container {
-  width: 60%;
+  width: 50%;
   display: flex;
-  margin: 0 auto;
+  margin-left: 5vw;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
 }
-html body main #intro .intro-container .text-content .text .stack .icons-container .icon-wrapper i {
+html body main #intro .intro-container .text-content .text .stack .icons-container i {
   font-size: 3rem;
 }
 html body main #intro .intro-container .text-content .text .stack .icons-container .hover-effect:nth-child(1) {
