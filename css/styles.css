@@ -603,16 +603,18 @@ html body main #more .more-container .more-wrapper {
 }
 html body main #contact {
   grid-row: 4;
+  height: 100%;
 }
 html body main #contact .contact-container .contact-wrapper {
   height: 100%;
-  width: 99%;
+  width: 100%;
   margin: 0 auto;
   border-top: 1px solid #007acc;
   border-bottom: 1px solid #007acc;
+  position: relative;
 }
 html body footer {
-  grid-row: 4;
+  grid-row: 5;
   height: 100%;
   padding: 0 2vw 0 1vw;
   font-family: "courier new";
