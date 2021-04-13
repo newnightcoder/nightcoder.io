@@ -388,13 +388,34 @@ html body main #intro .intro-container .text-content .text .about {
   font-family: "courier new", monospace, serif;
   font-size: 1.25rem;
   justify-self: flex-start;
-  padding: 0 5vw;
+  padding: 3vh 5vw;
   transition: all 0.2s;
 }
 html body main #intro .intro-container .text-content .text .hover-effect:hover {
   cursor: pointer;
-  color: black;
-  background-color: #ffffff;
+  background-color: #3e3e42;
+}
+html body main #intro .intro-container .text-content .text .hover-effect:hover i {
+  transition: color 0.2s;
+  background-color: #3e3e42;
+}
+html body main #intro .intro-container .text-content .text .hover-effect:hover i:nth-child(1) {
+  color: #f06529;
+}
+html body main #intro .intro-container .text-content .text .hover-effect:hover i:nth-child(2) {
+  color: #cd6799;
+}
+html body main #intro .intro-container .text-content .text .hover-effect:hover i:nth-child(3) {
+  color: #f0db4f;
+}
+html body main #intro .intro-container .text-content .text .hover-effect:hover i:nth-child(4) {
+  color: #61dbfb;
+}
+html body main #intro .intro-container .text-content .text .hover-effect:hover i:nth-child(5) {
+  color: #3c873a;
+}
+html body main #intro .intro-container .text-content .text .hover-effect:hover i:nth-child(6) {
+  color: #f34f29;
 }
 html body main #intro .intro-container .text-content .text .stack {
   height: 100%;
@@ -411,31 +432,6 @@ html body main #intro .intro-container .text-content .text .stack .icons-contain
 }
 html body main #intro .intro-container .text-content .text .stack .icons-container i {
   font-size: 3rem;
-}
-html body main #intro .intro-container .text-content .text .stack .icons-container .hover-effect:nth-child(1) {
-  cursor: pointer;
-  color: #f06529;
-}
-html body main #intro .intro-container .text-content .text .stack .icons-container .hover-effect:nth-child(2) {
-  cursor: pointer;
-  color: #cd6799;
-}
-html body main #intro .intro-container .text-content .text .stack .icons-container .hover-effect:nth-child(3) {
-  cursor: pointer;
-  color: #f0db4f;
-  background-color: white;
-}
-html body main #intro .intro-container .text-content .text .stack .icons-container .hover-effect:nth-child(4) {
-  cursor: pointer;
-  color: #61dbfb;
-}
-html body main #intro .intro-container .text-content .text .stack .icons-container .hover-effect:nth-child(5) {
-  cursor: pointer;
-  color: #3c873a;
-}
-html body main #intro .intro-container .text-content .text .stack .icons-container .hover-effect:nth-child(6) {
-  cursor: pointer;
-  color: #f34f29;
 }
 html body main #intro .intro-container .text-content .gif-container {
   position: absolute;
@@ -465,7 +461,7 @@ html body main section .tag {
   padding-left: 1vw;
   font-family: menlo;
   font-size: 1.15rem;
-  color: #007acc;
+  color: lightskyblue;
 }
 html body main section .tag-about-opening {
   margin-top: 2vh;
@@ -496,6 +492,14 @@ html body main #projects .projects-container .projects-wrapper .project {
   display: flex;
   align-items: center;
   transition: all 0.2s;
+  position: relative;
+}
+html body main #projects .projects-container .projects-wrapper .project .fa-expand-alt {
+  position: absolute;
+  right: 1.5vw;
+  top: 2vh;
+  font-size: 1.5rem;
+  color: #3e3e42;
 }
 html body main #projects .projects-container .projects-wrapper .project .thumbnail {
   padding: 0 1vw;
@@ -517,10 +521,11 @@ html body main #projects .projects-container .projects-wrapper .project .pitch-c
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: white;
 }
 html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links a {
   text-decoration: none;
-  color: white;
+  color: #ffffff;
 }
 html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links a i {
   text-decoration: none;
@@ -529,10 +534,23 @@ html body main #projects .projects-container .projects-wrapper .project .pitch-c
 html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links a .fa-github-alt {
   font-size: 2rem;
 }
+html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links .hover-effect:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+}
+html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links .hover-effect:hover a {
+  transition: color 0.2s;
+}
+html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links .hover-effect:hover a:nth-child(1) {
+  color: black;
+}
 html body main #projects .projects-container .projects-wrapper .hover-effect:hover {
   cursor: pointer;
   color: black;
   background-color: #ffffff;
+}
+html body main #projects .projects-container .projects-wrapper .hover-effect:hover a.hover-effect:hover {
+  color: black;
 }
 html body main #more {
   grid-row: 3;

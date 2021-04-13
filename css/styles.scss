@@ -493,17 +493,36 @@ html {
                 font-family: "courier new", monospace, serif;
                 font-size: 1.25rem;
                 justify-self: flex-start;
-                padding: 0 5vw;
-                // background-color: $grey-primary;
+                padding: 3vh 5vw;
                 transition: all 0.2s;
                 // border: 1px solid deepskyblue;
               }
               .hover-effect:hover {
                 cursor: pointer;
-                color: black;
-                background-color: #ffffff;
+                background-color: $grey-primary;
+                i {
+                  transition: color 0.2s;
+                  background-color: $grey-primary;
+                }
+                i:nth-child(1) {
+                  color: #f06529;
+                }
+                i:nth-child(2) {
+                  color: #cd6799;
+                }
+                i:nth-child(3) {
+                  color: #f0db4f;
+                }
+                i:nth-child(4) {
+                  color: #61dbfb;
+                }
+                i:nth-child(5) {
+                  color: #3c873a;
+                }
+                i:nth-child(6) {
+                  color: #f34f29;
+                }
               }
-
               //////////////////////////////////
               //            STACK
               //////////////////////////////////
@@ -523,72 +542,15 @@ html {
                   justify-content: space-evenly;
                   // border: 1px solid yellow;
 
-                  .icon-wrapper {
-                    // height: 60px;
-                    // width: 60px;
-                    // border: 0.1rem solid #cccccc;
-                    // border-radius: 7px;
-                    // display: flex;
-                    // align-items: center;
-                    // justify-content: center;
-                    // margin: 0;
-
-                    // &:hover {
-                    //   cursor: pointer;
-                    //   color: $tomato-primary;
-                    //   border-color: $tomato-primary;
-                    //   &:nth-child(1) {
-                    //     color: red;
-                    //   }
-                    // }
-                  }
                   i {
                     font-size: 3rem;
                   }
-                  .hover-effect:nth-child(1) {
-                    cursor: pointer;
-                    color: #f06529;
-                  }
-                  .hover-effect:nth-child(2) {
-                    cursor: pointer;
-                    color: #cd6799;
-                  }
-                  .hover-effect:nth-child(3) {
-                    cursor: pointer;
-                    color: #f0db4f;
-                    background-color: white;
-                  }
-                  .hover-effect:nth-child(4) {
-                    cursor: pointer;
-                    color: #61dbfb;
-                  }
-                  .hover-effect:nth-child(5) {
-                    cursor: pointer;
-                    color: #3c873a;
-                  }
-                  .hover-effect:nth-child(6) {
-                    cursor: pointer;
-                    color: #f34f29;
-                  }
 
-                  // &:nth-child(4) {
-                  //   .hover-effect {
-                  //     cursor: pointer;
-                  //     color: red;
-                  //   }
+                  // .hover-effect:hover:nth-child(1) {
+                  //   cursor: pointer;
+                  //   color: #f06529;
                   // }
-                  // &:nth-child(5) {
-                  //   .hover-effect {
-                  //     cursor: pointer;
-                  //     color: red;
-                  //   }
-                  // }
-                  // &:nth-child(6) {
-                  //   .hover-effect {
-                  //     cursor: pointer;
-                  //     color: red;
-                  //   }
-                  // }
+                  //
                 }
               }
             }
@@ -633,7 +595,7 @@ html {
           padding-left: 1vw;
           font-family: menlo;
           font-size: 1.15rem;
-          color: $blue-primary;
+          color: lightskyblue;
           // border: 2px solid yellow;
         }
         .tag-about-opening {
@@ -686,7 +648,16 @@ html {
               display: flex;
               align-items: center;
               transition: all 0.2s;
+              position: relative;
               // border: 0.1px solid pink;
+
+              .fa-expand-alt {
+                position: absolute;
+                right: 1.5vw;
+                top: 2vh;
+                font-size: 1.5rem;
+                color: $grey-primary;
+              }
               .thumbnail {
                 padding: 0 1vw;
                 img {
@@ -707,11 +678,13 @@ html {
                   display: flex;
                   align-items: center;
                   justify-content: space-between;
+                  color: white;
+
                   // margin: 0 auto;
                   // border: 1px solid red;
                   a {
                     text-decoration: none;
-                    color: white;
+                    color: #ffffff;
 
                     i {
                       text-decoration: none;
@@ -721,13 +694,28 @@ html {
                       font-size: 2rem;
                     }
                   }
+                  .hover-effect:hover {
+                    cursor: pointer;
+                    // color: black;
+                    background-color: #ffffff;
+                    a {
+                      transition: color 0.2s;
+                    }
+                    a:nth-child(1) {
+                      color: black;
+                    }
+                  }
                 }
               }
             }
+
             .hover-effect:hover {
               cursor: pointer;
               color: black;
               background-color: #ffffff;
+              a.hover-effect:hover {
+                color: black;
+              }
             }
           }
         }
