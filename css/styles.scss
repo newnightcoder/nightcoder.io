@@ -376,7 +376,7 @@ html {
       width: 100%;
       grid-row: 3;
       display: grid;
-      grid-template-rows: 100vh 1250px 30vh 100vh;
+      grid-template-rows: 100vh 1250px 250px 100vh;
       // border: 3px solid tomato;
       // position: relative;
 
@@ -481,7 +481,16 @@ html {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                position: relative;
                 // border: 1px solid white;
+                &::before {
+                  content: "";
+                  position: absolute;
+                  left: 3.5vw;
+                  height: 100%;
+                  width: 1px;
+                  background-color: $grey-primary;
+                }
               }
 
               //////////////////////////////////
@@ -495,7 +504,7 @@ html {
                 justify-self: flex-start;
                 padding: 3vh 5vw;
                 transition: all 0.2s;
-                // border: 1px solid deepskyblue;
+                border-left: 1px solid deepskyblue;
               }
               .hover-effect:hover {
                 cursor: pointer;
@@ -587,6 +596,20 @@ html {
         flex-direction: column;
         margin: 4vh 0;
         // border: 10px solid green;
+        .about,
+        .stack,
+        .projects-wrapper,
+        .more-wrapper,
+        .contact-wrapper {
+          &::before {
+            content: "";
+            position: absolute;
+            left: 3.5vw;
+            height: inherit;
+            width: 1px;
+            background-color: $grey-primary;
+          }
+        }
 
         .tag {
           height: 28px;
@@ -604,21 +627,6 @@ html {
         .tag-about-closing {
           margin-bottom: 7vh;
         }
-        // .tag-about {
-        //   color: $blue-primary;
-        // }
-        // .tag-stack {
-        //   color: $tomato-primary;
-        // }
-        // .tag-projects {
-        //   color: #ffffff;
-        // }
-        // .tag-more {
-        //   color: grey;
-        // }
-        // .tag-contact {
-        //   color: $blue-primary;
-        // }
         .section-container {
           height: 100%;
           width: 100%;
@@ -650,6 +658,14 @@ html {
               transition: all 0.2s;
               position: relative;
               // border: 0.1px solid pink;
+              &::before {
+                content: "";
+                position: absolute;
+                left: -4vw;
+                height: 100%;
+                width: 1px;
+                background-color: $grey-primary;
+              }
 
               .fa-expand-alt {
                 position: absolute;
@@ -679,7 +695,6 @@ html {
                   align-items: center;
                   justify-content: space-between;
                   color: white;
-
                   // margin: 0 auto;
                   // border: 1px solid red;
                   a {
@@ -708,7 +723,6 @@ html {
                 }
               }
             }
-
             .hover-effect:hover {
               cursor: pointer;
               color: black;
@@ -726,14 +740,22 @@ html {
 
       #more {
         grid-row: 3;
+
         .more-container {
-          // height: 100%;
+          height: 100%;
+
           .more-wrapper {
             height: 100%;
             color: white;
             text-align: center;
             border-top: 1px solid grey;
             border-bottom: 1px solid grey;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            // border: 1px solid red;
           }
         }
       }
@@ -749,8 +771,8 @@ html {
             height: 100%;
             width: 99%;
             margin: 0 auto;
-            border: 2px solid $blue-primary;
-            // border-bottom: 1px solid $blue-primary;
+            border-top: 1px solid $blue-primary;
+            border-bottom: 1px solid $blue-primary;
           }
         }
       }
