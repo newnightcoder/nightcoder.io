@@ -71,7 +71,7 @@ html body nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color 1s;
+  transition: background-color 0.5s;
 }
 html body nav .flags-container {
   height: 45px;
@@ -135,14 +135,18 @@ html body #banner {
   position: relative;
 }
 html body #banner .banner-container {
-  height: 100%;
+  height: 30vh;
+  width: 100%;
+  position: fixed;
+  z-index: 9;
+  background: #1e1e1e;
+  background: linear-gradient(0deg, #1e1e1e, #062a77 30%);
+  background: linear-gradient(0deg, #17338a 0%, #1e1e1e 100%);
+  opacity: 0;
+  animation: lightup 3s forwards;
 }
 html body #banner .banner-container .stars-container {
   height: 100%;
-  opacity: 0;
-  background: #1e1e1e;
-  background: linear-gradient(0deg, #1e1e1e, #0037ad 100%);
-  animation: lightup 3s forwards;
 }
 @keyframes lightup {
   to {
@@ -158,6 +162,7 @@ html body #banner .banner-container .rainbow-sun {
   transform: translateY(100%);
   z-index: 10;
   animation: rise 3s forwards;
+  opacity: 0;
 }
 html body #banner .banner-container .rainbow-sun .circle-container {
   height: 100%;
@@ -176,6 +181,7 @@ html body #banner .banner-container .rainbow-sun .circle-container .circle {
 @keyframes rise {
   to {
     transform: translateY(0);
+    opacity: 1;
   }
 }
 html body header {
@@ -190,7 +196,7 @@ html body header {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0;
+  padding: 50px 0;
 }
 html body header .logo-container {
   width: 490px;
@@ -295,6 +301,8 @@ html body main {
   grid-row: 3;
   display: grid;
   grid-template-rows: 100vh 1250px 250px 100vh;
+  z-index: 9;
+  background-color: #1e1e1e;
 }
 html body main .cta {
   grid-row: 3;
@@ -381,15 +389,17 @@ html body main #intro .intro-container .text-content .text .stack {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
   position: relative;
+  border-left: 1px solid transparent;
 }
 html body main #intro .intro-container .text-content .text .about::before,
 html body main #intro .intro-container .text-content .text .stack::before {
   content: "";
   position: absolute;
   left: 3.5vw;
-  height: 100%;
+  height: 90%;
   width: 1px;
   background-color: #3e3e42;
 }
@@ -400,11 +410,17 @@ html body main #intro .intro-container .text-content .text .about {
   justify-self: flex-start;
   padding: 3vh 5vw;
   transition: all 0.2s;
-  border-left: 1px solid deepskyblue;
 }
 html body main #intro .intro-container .text-content .text .hover-effect:hover {
   cursor: pointer;
   background-color: #3e3e42;
+  border-left: 2px solid deepskyblue;
+}
+html body main #intro .intro-container .text-content .text .hover-effect:hover .tag {
+  transition: transform;
+}
+html body main #intro .intro-container .text-content .text .hover-effect:hover .tag {
+  transform: translateX(80%);
 }
 html body main #intro .intro-container .text-content .text .hover-effect:hover i {
   transition: color 0.2s;
@@ -430,11 +446,10 @@ html body main #intro .intro-container .text-content .text .hover-effect:hover i
 }
 html body main #intro .intro-container .text-content .text .stack {
   height: 100%;
-  width: 100%;
   padding: 2vh 0;
 }
 html body main #intro .intro-container .text-content .text .stack .icons-container {
-  width: 50%;
+  width: 100%;
   display: flex;
   margin-left: 5vw;
   flex-wrap: wrap;
@@ -465,6 +480,12 @@ html body main section {
   flex-direction: column;
   margin: 4vh 0;
 }
+html body main section:hover h4:nth-child(odd) {
+  transform: translateX(20%);
+}
+html body main section:hover h4:nth-child(n+2) {
+  transform: translateX(70%);
+}
 html body main section .about::before,
 html body main section .stack::before,
 html body main section .projects-wrapper::before,
@@ -472,10 +493,14 @@ html body main section .more-wrapper::before,
 html body main section .contact-wrapper::before {
   content: "";
   position: absolute;
-  left: 3.5vw;
-  height: inherit;
+  left: 2.5vw;
+  height: 95%;
   width: 1px;
   background-color: #3e3e42;
+}
+html body main section .more-wrapper::before,
+html body main section .contact-wrapper::before {
+  left: 3.75vw;
 }
 html body main section .tag {
   height: 28px;
@@ -506,24 +531,20 @@ html body main #projects .projects-container .projects-wrapper {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  position: relative;
+}
+html body main #projects .projects-container .projects-wrapper::before {
+  left: 4vw;
 }
 html body main #projects .projects-container .projects-wrapper .project {
   height: 200px;
-  width: 85%;
+  width: 80%;
   color: #ffffff;
   background-color: #3e3e42;
   display: flex;
   align-items: center;
   transition: all 0.2s;
   position: relative;
-}
-html body main #projects .projects-container .projects-wrapper .project::before {
-  content: "";
-  position: absolute;
-  left: -4vw;
-  height: 100%;
-  width: 1px;
-  background-color: #3e3e42;
 }
 html body main #projects .projects-container .projects-wrapper .project .fa-expand-alt {
   position: absolute;
@@ -538,6 +559,7 @@ html body main #projects .projects-container .projects-wrapper .project .thumbna
 html body main #projects .projects-container .projects-wrapper .project .thumbnail img {
   height: 170px;
   width: 320px;
+  border: 1px solid #ffffff;
 }
 html body main #projects .projects-container .projects-wrapper .project .pitch-container {
   height: 100%;
@@ -608,10 +630,13 @@ html body main #contact {
 html body main #contact .contact-container .contact-wrapper {
   height: 100%;
   width: 100%;
-  margin: 0 auto;
   border-top: 1px solid #007acc;
   border-bottom: 1px solid #007acc;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 html body footer {
   grid-row: 5;

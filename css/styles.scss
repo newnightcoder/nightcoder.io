@@ -100,7 +100,7 @@ html {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: background-color 1s;
+      transition: background-color 0.5s;
       .flags-container {
         height: 45px;
         width: 155px;
@@ -177,21 +177,27 @@ html {
     //////////////////////////////////
 
     #banner {
-      // height: $banner-height;
       grid-row: 1;
       color: white;
       position: relative;
       // border: 10px solid green;
       .banner-container {
-        height: 100%;
+        height: $banner-height;
+        width: 100%;
+        position: fixed;
+        z-index: 9;
+        background: rgb(30, 30, 30);
+        background: linear-gradient(0deg, rgba(30, 30, 30, 1), #062a77 30%);
+        background: linear-gradient(
+          0deg,
+          rgba(23, 51, 138, 1) 0%,
+          rgba(30, 30, 30, 1) 100%
+        );
+        opacity: 0;
+        animation: lightup 3s forwards;
         // border: 5px solid blue;
         .stars-container {
           height: 100%;
-          opacity: 0;
-          background: rgb(30, 30, 30);
-          background: linear-gradient(0deg, #1e1e1e, #0037ad 100%);
-          animation: lightup 3s forwards;
-          // border: 10px solid deepskyblue;
         }
         @keyframes lightup {
           to {
@@ -211,6 +217,7 @@ html {
           transform: translateY(100%);
           z-index: 10;
           animation: rise 3s forwards;
+          opacity: 0;
           // border: 10px solid tomato;
           .circle-container {
             height: 100%;
@@ -236,6 +243,7 @@ html {
         @keyframes rise {
           to {
             transform: translateY(0);
+            opacity: 1;
           }
         }
       }
@@ -256,7 +264,7 @@ html {
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 0;
+      padding: 50px 0;
       // border: 1px solid yellow;
       .logo-container {
         width: 490px;
@@ -377,6 +385,9 @@ html {
       grid-row: 3;
       display: grid;
       grid-template-rows: 100vh 1250px 250px 100vh;
+      z-index: 9;
+      background-color: $editor-background;
+
       // border: 3px solid tomato;
       // position: relative;
 
@@ -480,14 +491,17 @@ html {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
+                align-items: center;
+                justify-content: space-evenly;
                 position: relative;
+                border-left: 1px solid transparent;
+
                 // border: 1px solid white;
                 &::before {
                   content: "";
                   position: absolute;
                   left: 3.5vw;
-                  height: 100%;
+                  height: 90%;
                   width: 1px;
                   background-color: $grey-primary;
                 }
@@ -504,11 +518,17 @@ html {
                 justify-self: flex-start;
                 padding: 3vh 5vw;
                 transition: all 0.2s;
-                border-left: 1px solid deepskyblue;
               }
               .hover-effect:hover {
                 cursor: pointer;
                 background-color: $grey-primary;
+                border-left: 2px solid deepskyblue;
+                .tag {
+                  transition: transform;
+                }
+                .tag {
+                  transform: translateX(80%);
+                }
                 i {
                   transition: color 0.2s;
                   background-color: $grey-primary;
@@ -538,12 +558,12 @@ html {
 
               .stack {
                 height: 100%;
-                width: 100%;
+                // width: 100%;
                 padding: 2vh 0;
                 // border: 1px solid $grey-primary;
 
                 .icons-container {
-                  width: 50%;
+                  width: 100%;
                   display: flex;
                   margin-left: 5vw;
                   flex-wrap: wrap;
@@ -596,6 +616,17 @@ html {
         flex-direction: column;
         margin: 4vh 0;
         // border: 10px solid green;
+        h4 {
+          // transition: transform 1s;
+        }
+        &:hover {
+          h4:nth-child(odd) {
+            transform: translateX(20%);
+          }
+          h4:nth-child(n + 2) {
+            transform: translateX(70%);
+          }
+        }
         .about,
         .stack,
         .projects-wrapper,
@@ -604,10 +635,16 @@ html {
           &::before {
             content: "";
             position: absolute;
-            left: 3.5vw;
-            height: inherit;
+            left: 2.5vw;
+            height: 95%;
             width: 1px;
             background-color: $grey-primary;
+          }
+        }
+        .more-wrapper,
+        .contact-wrapper {
+          &::before {
+            left: 3.75vw;
           }
         }
 
@@ -647,10 +684,14 @@ html {
             flex-direction: column;
             align-items: center;
             justify-content: space-evenly;
+            position: relative;
+            &::before {
+              left: 4vw;
+            }
 
             .project {
               height: 200px;
-              width: 85%;
+              width: 80%;
               color: #ffffff;
               background-color: $grey-primary;
               display: flex;
@@ -658,14 +699,6 @@ html {
               transition: all 0.2s;
               position: relative;
               // border: 0.1px solid pink;
-              &::before {
-                content: "";
-                position: absolute;
-                left: -4vw;
-                height: 100%;
-                width: 1px;
-                background-color: $grey-primary;
-              }
 
               .fa-expand-alt {
                 position: absolute;
@@ -679,6 +712,7 @@ html {
                 img {
                   height: 170px;
                   width: 320px;
+                  border: 1px solid #ffffff;
                 }
               }
               .pitch-container {
@@ -770,14 +804,18 @@ html {
           .contact-wrapper {
             height: 100%;
             width: 100%;
-            margin: 0 auto;
             border-top: 1px solid $blue-primary;
             border-bottom: 1px solid $blue-primary;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
           }
         }
       }
     }
+
     //////////////////////////////////
     //            FOOTER
     //////////////////////////////////
