@@ -593,7 +593,9 @@ main {
         background-color: transparent;
       }
       i:nth-child(1) {
-        color: #f06529;
+        // color: #f06529;
+        color: #e44d26;
+        // color: #f16529;
       }
       i:nth-child(2) {
         color: #cd6799;
@@ -608,7 +610,8 @@ main {
         color: #3c873a;
       }
       i:nth-child(6) {
-        color: #f34f29;
+        color: lightgrey;
+        // background-color: white;
       }
     }
   }

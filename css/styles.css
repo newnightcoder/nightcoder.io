@@ -493,7 +493,7 @@ main #stack .hover-effect:hover i {
   background-color: transparent;
 }
 main #stack .hover-effect:hover i:nth-child(1) {
-  color: #f06529;
+  color: #e44d26;
 }
 main #stack .hover-effect:hover i:nth-child(2) {
   color: #cd6799;
@@ -508,7 +508,7 @@ main #stack .hover-effect:hover i:nth-child(5) {
   color: #3c873a;
 }
 main #stack .hover-effect:hover i:nth-child(6) {
-  color: #f34f29;
+  color: lightgrey;
 }
 main #gif {
   grid-column: 2;
