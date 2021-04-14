@@ -141,8 +141,10 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color 0.5s;
+  transition: background-color 0.2s;
   .flags-container {
+    position: absolute;
+    top: 0;
     height: 45px;
     width: 155px;
     margin-left: 2vw;
@@ -151,21 +153,23 @@ nav {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    background-color: $editor-background;
     opacity: 0;
 
     .flag {
       height: 20px;
       width: 45px;
-      font-family: "courier-new", sans-serif;
+      font-family: "courier", sans-serif;
       font-size: 1rem;
-      font-weight: bolder;
-      color: #fefefe;
+      font-weight: light;
+      letter-spacing: 0.1rem;
+      color: $white-primary;
       transition: all 0.6s;
       text-align: center;
       border-right: 1px solid $white-primary;
       &:hover {
         cursor: pointer;
-        color: #fefefe;
+        color: yellow;
       }
     }
   }
@@ -543,7 +547,6 @@ main {
     border-left: 2px solid $editor-background;
     // border: 1px solid white;
     .section-container {
-      width: 100%;
       padding: 0 0 0 5vw;
       display: flex;
       flex-direction: column;

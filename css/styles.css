@@ -100,9 +100,11 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color 0.5s;
+  transition: background-color 0.2s;
 }
 nav .flags-container {
+  position: absolute;
+  top: 0;
   height: 45px;
   width: 155px;
   margin-left: 2vw;
@@ -111,22 +113,24 @@ nav .flags-container {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  background-color: #1e1e1e;
   opacity: 0;
 }
 nav .flags-container .flag {
   height: 20px;
   width: 45px;
-  font-family: "courier-new", sans-serif;
+  font-family: "courier", sans-serif;
   font-size: 1rem;
-  font-weight: bolder;
-  color: #fefefe;
+  font-weight: light;
+  letter-spacing: 0.1rem;
+  color: #ffffff;
   transition: all 0.6s;
   text-align: center;
   border-right: 1px solid #ffffff;
 }
 nav .flags-container .flag:hover {
   cursor: pointer;
-  color: #fefefe;
+  color: yellow;
 }
 nav .link-wrapper {
   height: 100%;
@@ -454,7 +458,6 @@ main #about {
   border-left: 2px solid #1e1e1e;
 }
 main #about .section-container {
-  width: 100%;
   padding: 0 0 0 5vw;
   display: flex;
   flex-direction: column;
