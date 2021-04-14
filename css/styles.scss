@@ -692,15 +692,16 @@ main {
       list-style-type: none;
 
       .project {
-        height: 200px;
+        height: 210px;
         width: 80%;
         color: $white-primary;
         background-color: $grey-primary;
         display: flex;
         align-items: center;
+        justify-content: space-evenly;
         transition: all 200ms;
         position: relative;
-        // border: 0.1px solid pink;
+        border: 10px solid pink;
         .fa-expand-alt {
           position: absolute;
           right: 1.5vw;
@@ -710,26 +711,37 @@ main {
         }
         .thumbnail {
           padding: 0 1vw;
+          display: flex;
+          flex-direction: column;
           img {
-            height: 170px;
+            height: 190px;
             width: 320px;
             border: 1px solid $white-primary;
           }
         }
         .pitch-container {
-          height: 100%;
-          padding: 0 1vw 0;
+          height: 190px;
+          width: 100%;
+          padding: 0 1vw;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           justify-content: space-evenly;
+          // border: 1px solid $white-primary;
+
+          .technologies {
+            // align-self: flex-end;
+            // padding-right: 2vw;
+            font-family: "courier new", sans-serif;
+          }
 
           .project-links {
-            width: 70px;
+            width: 80px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             color: white;
+            align-self: flex-start;
             // border: 1px solid red;
             a {
               text-decoration: none;

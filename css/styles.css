@@ -558,14 +558,16 @@ main #projects .projects-wrapper {
   list-style-type: none;
 }
 main #projects .projects-wrapper .project {
-  height: 200px;
+  height: 210px;
   width: 80%;
   color: #ffffff;
   background-color: #3e3e42;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
   transition: all 200ms;
   position: relative;
+  border: 10px solid pink;
 }
 main #projects .projects-wrapper .project .fa-expand-alt {
   position: absolute;
@@ -576,26 +578,33 @@ main #projects .projects-wrapper .project .fa-expand-alt {
 }
 main #projects .projects-wrapper .project .thumbnail {
   padding: 0 1vw;
+  display: flex;
+  flex-direction: column;
 }
 main #projects .projects-wrapper .project .thumbnail img {
-  height: 170px;
+  height: 190px;
   width: 320px;
   border: 1px solid #ffffff;
 }
 main #projects .projects-wrapper .project .pitch-container {
-  height: 100%;
-  padding: 0 1vw 0;
+  height: 190px;
+  width: 100%;
+  padding: 0 1vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
 }
+main #projects .projects-wrapper .project .pitch-container .technologies {
+  font-family: "courier new", sans-serif;
+}
 main #projects .projects-wrapper .project .pitch-container .project-links {
-  width: 70px;
+  width: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
+  align-self: flex-start;
 }
 main #projects .projects-wrapper .project .pitch-container .project-links a {
   text-decoration: none;
