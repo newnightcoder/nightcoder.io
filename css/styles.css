@@ -367,7 +367,7 @@ main {
   width: 100%;
   display: grid;
   grid-template-rows: 20vh calc(200px + 56px) calc(100px + 56px) min-content calc(200px * 6) min-content calc(150px + 56px);
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 75% 25%;
   grid-row-gap: 1rem;
   background-color: #1e1e1e;
   position: relative;
@@ -420,12 +420,14 @@ main .cta-btn:hover {
 }
 main .hover-effect {
   border-left: 2px solid transparent;
+  border-right: 2px solid grey;
   transition: all 0.2s;
 }
 main .hover-effect:hover {
   cursor: pointer;
   color: #ffffff;
   border-left: 2px solid deepskyblue;
+  border-right: 2px solid transparent;
   background-color: #3e3e42;
 }
 main #title {
@@ -462,7 +464,8 @@ main #about {
 main #about .section-container {
   padding: 0 0 0 5vw;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: space-evenly;
   transition: all 0.2s;
 }
@@ -474,9 +477,8 @@ main #stack {
   grid-column: 1;
 }
 main #stack .icons-container {
-  width: 500px;
+  width: 100%;
   height: 100%;
-  padding: 0 0 0 5vw;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

@@ -456,7 +456,7 @@ main {
   width: 100%;
   display: grid;
   grid-template-rows: $title-height $about-height $stack-height min-content $projects-height min-content $more-height;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 75% 25%;
   grid-row-gap: 1rem;
   background-color: $editor-background;
   position: relative;
@@ -497,12 +497,15 @@ main {
   //////////////////////////////////
   .hover-effect {
     border-left: 2px solid transparent;
+    border-right: 2px solid grey;
+
     transition: all 0.2s;
   }
   .hover-effect:hover {
     cursor: pointer;
     color: $white-primary;
     border-left: 2px solid deepskyblue;
+    border-right: 2px solid transparent;
     background-color: $grey-primary;
   }
   //////////////////////////////////
@@ -551,7 +554,8 @@ main {
     .section-container {
       padding: 0 0 0 5vw;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
       justify-content: space-evenly;
       transition: all 0.2s;
     }
@@ -571,14 +575,13 @@ main {
     grid-column: 1;
 
     .icons-container {
-      width: 500px;
+      width: 100%;
       height: 100%;
-      padding: 0 0 0 5vw;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-evenly;
-      // border: 1px solid white;
+
       i {
         font-size: 3rem;
         color: $white-primary;
