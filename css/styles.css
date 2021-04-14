@@ -140,7 +140,7 @@ nav .link-wrapper {
   align-items: center;
   margin-right: 2vw;
   transition: transform 350ms;
-  transform: translateY(2vh);
+  transform: translateY(1.75vh);
 }
 nav .link-wrapper .link {
   opacity: 1;
@@ -160,7 +160,6 @@ nav .link-wrapper .link i {
 nav .link-wrapper .link i:hover {
   color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  transform: translateY(-1.5vh);
 }
 
 #home {
@@ -419,6 +418,10 @@ main .cta-btn:hover {
   color: #1e1e1e;
   font-weight: bolder;
 }
+main .hover-effect {
+  border-left: 2px solid transparent;
+  transition: all 0.2s;
+}
 main .hover-effect:hover {
   cursor: pointer;
   color: #ffffff;
@@ -455,15 +458,13 @@ main #about {
   font-family: "courier new", monospace, serif;
   font-size: 1.15rem;
   color: #ffffff;
-  transition: all 0.2s;
-  border-left: 2px solid #1e1e1e;
 }
 main #about .section-container {
   padding: 0 0 0 5vw;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+  transition: all 0.2s;
 }
 main #about .hover-effect:hover::before {
   background-color: grey;
@@ -471,7 +472,6 @@ main #about .hover-effect:hover::before {
 main #stack {
   grid-row: 3;
   grid-column: 1;
-  border-left: 2px solid #1e1e1e;
 }
 main #stack .icons-container {
   width: 500px;
@@ -486,8 +486,11 @@ main #stack .icons-container i {
   font-size: 3rem;
   color: #ffffff;
 }
+main #stack .hover-effect:hover::before {
+  background-color: gray;
+}
 main #stack .hover-effect:hover i {
-  background-color: #3e3e42;
+  background-color: transparent;
 }
 main #stack .hover-effect:hover i:nth-child(1) {
   color: #f06529;
@@ -506,9 +509,6 @@ main #stack .hover-effect:hover i:nth-child(5) {
 }
 main #stack .hover-effect:hover i:nth-child(6) {
   color: #f34f29;
-}
-main #stack .hover-effect:hover::before {
-  background-color: gray;
 }
 main #gif {
   grid-column: 2;
@@ -590,10 +590,12 @@ main #projects .projects-wrapper .project .pitch-container .project-links a i {
 main #projects .projects-wrapper .project .pitch-container .project-links a .fa-github-alt {
   font-size: 2rem;
 }
+main #projects .projects-wrapper .hover-effect {
+  border: none;
+}
 main #projects .projects-wrapper .hover-effect:hover {
   color: black;
   background-color: lightgrey;
-  border-left: none;
   transform: translateY(-0.5vh);
 }
 main #projects .projects-wrapper .hover-effect:hover img {
@@ -650,7 +652,7 @@ footer {
   padding: 0 2vw 0 1vw;
   font-family: "courier new";
   font-size: 1rem;
-  color: #3e3e42;
+  color: grey;
   border-top: 1px solid #3e3e42;
   display: flex;
   flex-direction: row;

@@ -16,5 +16,5 @@ window.addEventListener("scroll", () => {
     : ((navbar.style.background = "transparent"),
       (navbar.style.borderBottom = "1px solid transparent"),
       (flags.style.opacity = "0"),
-      (navbarLinks.style.transform = "translateY(2vh)"));
+      (navbarLinks.style.transform = "translateY(1.75vh)"));
 });

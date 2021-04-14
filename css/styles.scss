@@ -182,7 +182,7 @@ nav {
     align-items: center;
     margin-right: 2vw;
     transition: transform 350ms;
-    transform: translateY(2vh);
+    transform: translateY(1.75vh);
     // border: 1px solid white;
 
     .link {
@@ -204,7 +204,6 @@ nav {
         &:hover {
           color: rgba(255, 255, 255, 0.5);
           cursor: pointer;
-          transform: translateY(-1.5vh);
         }
       }
     }
@@ -496,7 +495,10 @@ main {
   //////////////////////////////////
   //        HOVER EFFECT
   //////////////////////////////////
-
+  .hover-effect {
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+  }
   .hover-effect:hover {
     cursor: pointer;
     color: $white-primary;
@@ -544,16 +546,14 @@ main {
     font-family: "courier new", monospace, serif;
     font-size: 1.15rem;
     color: $white-primary;
-    transition: all 0.2s;
-    border-left: 2px solid $editor-background;
     // border: 1px solid white;
+
     .section-container {
       padding: 0 0 0 5vw;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      // border: 1px solid white;
+      justify-content: space-evenly;
+      transition: all 0.2s;
     }
     .hover-effect:hover {
       &::before {
@@ -569,7 +569,6 @@ main {
   #stack {
     grid-row: 3;
     grid-column: 1;
-    border-left: 2px solid $editor-background;
 
     .icons-container {
       width: 500px;
@@ -585,9 +584,13 @@ main {
         color: $white-primary;
       }
     }
+
     .hover-effect:hover {
+      &::before {
+        background-color: gray;
+      }
       i {
-        background-color: $grey-primary;
+        background-color: transparent;
       }
       i:nth-child(1) {
         color: #f06529;
@@ -606,11 +609,6 @@ main {
       }
       i:nth-child(6) {
         color: #f34f29;
-      }
-    }
-    .hover-effect:hover {
-      &::before {
-        background-color: gray;
       }
     }
   }
@@ -707,10 +705,12 @@ main {
           }
         }
       }
+      .hover-effect {
+        border: none;
+      }
       .hover-effect:hover {
         color: black;
         background-color: lightgrey;
-        border-left: none;
         transform: translateY(-0.5vh);
         img {
           border: 1px solid lightgrey;
@@ -793,7 +793,7 @@ footer {
   padding: 0 2vw 0 1vw;
   font-family: "courier new";
   font-size: 1rem;
-  color: $grey-primary;
+  color: grey;
   border-top: 1px solid $grey-primary;
   display: flex;
   flex-direction: row;
