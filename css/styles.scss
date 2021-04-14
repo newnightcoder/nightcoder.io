@@ -153,7 +153,6 @@ nav {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: $editor-background;
     opacity: 0;
 
     .flag {
@@ -182,6 +181,8 @@ nav {
     justify-content: space-evenly;
     align-items: center;
     margin-right: 2vw;
+    transition: transform 350ms;
+    transform: translateY(2vh);
     // border: 1px solid white;
 
     .link {

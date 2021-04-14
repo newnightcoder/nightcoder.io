@@ -113,7 +113,6 @@ nav .flags-container {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #1e1e1e;
   opacity: 0;
 }
 nav .flags-container .flag {
@@ -140,6 +139,8 @@ nav .link-wrapper {
   justify-content: space-evenly;
   align-items: center;
   margin-right: 2vw;
+  transition: transform 350ms;
+  transform: translateY(2vh);
 }
 nav .link-wrapper .link {
   opacity: 1;
