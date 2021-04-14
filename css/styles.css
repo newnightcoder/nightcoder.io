@@ -31,37 +31,66 @@
 }
 
 html {
-  width: 100vw;
+  font-size: 16px;
 }
-html body {
+
+body {
+  height: 100vh;
+  width: 100vw;
   background-color: #1e1e1e;
   font-family: "hemihead";
-  min-height: calc(50px + 100vh - 30vh);
-  width: 100%;
-  display: grid;
-  grid-template-columns: 100vw;
-  grid-template-rows: 30vh 1fr max-content 4vh;
   overflow-x: hidden;
 }
-html body .courier-new {
+body .courier-new {
   font-family: "courier-new";
 }
-html body .menlo {
+body .menlo {
   font-family: "menlo";
 }
-html body .play {
+body .play {
   font-family: "play";
 }
-html body .proto {
+body .proto {
   font-family: "proto";
 }
-html body .hemihead {
+body .hemihead {
   font-family: "hemihead";
 }
-html body .monaco {
+body .monaco {
   font-family: "monaco";
 }
-html body nav {
+body .body-container {
+  z-index: 5;
+  background-color: transparent;
+}
+body .body-container section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #1e1e1e;
+}
+body .body-container section .section-container {
+  height: 100%;
+  width: 100%;
+}
+body .body-container section .section-container::before {
+  content: "";
+  position: absolute;
+  left: 2.5vw;
+  top: 0;
+  height: 100%;
+  width: 0.5px;
+  background-color: #3e3e42;
+}
+@media screen and (min-width: 1300px) {
+  body .body-container {
+    padding: 0 10vw;
+  }
+}
+
+nav {
   position: fixed;
   top: 0;
   height: 50px;
@@ -73,7 +102,7 @@ html body nav {
   align-items: center;
   transition: background-color 0.5s;
 }
-html body nav .flags-container {
+nav .flags-container {
   height: 45px;
   width: 155px;
   margin-left: 2vw;
@@ -84,7 +113,7 @@ html body nav .flags-container {
   align-items: center;
   opacity: 0;
 }
-html body nav .flags-container .flag {
+nav .flags-container .flag {
   height: 20px;
   width: 45px;
   font-family: "courier-new", sans-serif;
@@ -92,15 +121,14 @@ html body nav .flags-container .flag {
   font-weight: bolder;
   color: #fefefe;
   transition: all 0.6s;
-  position: relative;
   text-align: center;
   border-right: 1px solid #ffffff;
 }
-html body nav .flags-container .flag:hover {
+nav .flags-container .flag:hover {
   cursor: pointer;
   color: #fefefe;
 }
-html body nav .link-wrapper {
+nav .link-wrapper {
   height: 100%;
   width: 200px;
   display: flex;
@@ -109,7 +137,7 @@ html body nav .link-wrapper {
   align-items: center;
   margin-right: 2vw;
 }
-html body nav .link-wrapper .link {
+nav .link-wrapper .link {
   opacity: 1;
   text-decoration: none;
   height: 100%;
@@ -119,64 +147,69 @@ html body nav .link-wrapper .link {
   align-items: center;
   justify-content: center;
 }
-html body nav .link-wrapper .link i {
+nav .link-wrapper .link i {
   font-size: 1.5rem;
   color: #ffffff;
+  transition: transform 750ms;
 }
-html body nav .link-wrapper .link i:hover {
+nav .link-wrapper .link i:hover {
   color: rgba(255, 255, 255, 0.5);
-}
-html body nav .link-wrapper a:hover {
   cursor: pointer;
+  transform: translateY(-1.5vh);
 }
-html body #banner {
-  grid-row: 1;
-  color: white;
-  position: relative;
-}
-html body #banner .banner-container {
-  height: 30vh;
+
+#home {
+  height: 100vh;
   width: 100%;
+  overflow: hidden;
+}
+#home .home-container {
+  display: grid;
+  grid-template-rows: minmax(150px, 30vh) 70vh;
+}
+@media screen and (min-width: 1300px) {
+  #home .home-container {
+    width: 80vw;
+  }
+}
+#home .home-container .stars-container {
+  grid-row: 1;
+  height: 30vh;
+  width: 100vw;
+}
+@media screen and (min-width: 1300px) {
+  #home .home-container .stars-container {
+    width: 80vw;
+  }
+}
+#home .home-container .sky-container {
+  height: 30vh;
+  width: 100vw;
   position: fixed;
-  z-index: 9;
+  top: 0;
+  z-index: 0;
   background: #1e1e1e;
   background: linear-gradient(0deg, #1e1e1e, #062a77 30%);
   background: linear-gradient(0deg, #17338a 0%, #1e1e1e 100%);
   opacity: 0;
   animation: lightup 3s forwards;
 }
-html body #banner .banner-container .stars-container {
-  height: 100%;
-}
 @keyframes lightup {
   to {
     opacity: 1;
   }
 }
-html body #banner .banner-container .rainbow-sun {
-  position: absolute;
-  top: 50px;
-  top: 0;
+#home .home-container .sky-container .circle-container {
   height: 30vh;
+  min-height: 150px;
   width: 100%;
-  transform: translateY(100%);
-  z-index: 10;
-  animation: rise 3s forwards;
-  opacity: 0;
-}
-html body #banner .banner-container .rainbow-sun .circle-container {
-  height: 100%;
-  width: 100%;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-html body #banner .banner-container .rainbow-sun .circle-container .circle {
-  height: 30vh;
-  width: 30vh;
-  border-radius: 50%;
-  background: linear-gradient(0deg, yellow 40%, #c42842 70%, red 100%);
-  transform: translateY(50%);
+  transform: translateY(70%);
+  z-index: 0;
+  animation: rise 3s forwards;
 }
 @keyframes rise {
   to {
@@ -184,84 +217,95 @@ html body #banner .banner-container .rainbow-sun .circle-container .circle {
     opacity: 1;
   }
 }
-html body header {
-  position: relative;
-  height: calc(100vh - 30vh);
+#home .home-container .sky-container .circle-container .circle {
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  background: linear-gradient(0deg, yellow 40%, #c42842 70%, red 100%);
+  transform: translateY(calc(30vh / 2));
+}
+@media screen and (min-width: 1300px) {
+  #home .home-container .sky-container {
+    width: 80vw;
+  }
+}
+#home header {
   grid-row: 2;
+  grid-column: 1/3;
+  height: calc(100vh - 30vh);
   min-height: 30vh;
-  width: 100%;
   background-color: #1e1e1e;
-  z-index: 50;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 50px 0;
 }
-html body header .logo-container {
+#home header .logo-container {
   width: 490px;
   height: 79px;
 }
-html body header .logo-container #logo {
+#home header .logo-container #logo {
   margin: 0;
   padding: 0;
 }
-html body header .logo-container #logo path:nth-child(1) {
+#home header .logo-container #logo path:nth-child(1) {
   stroke-dasharray: 234.7;
   stroke-dashoffset: 234.7;
   animation: logoEnter 3s forwards ease-out;
 }
-html body header .logo-container #logo path:nth-child(2) {
+#home header .logo-container #logo path:nth-child(2) {
   stroke-dasharray: 234.7;
   stroke-dashoffset: 234.7;
   animation: logoEnter 3s forwards ease-out;
 }
-html body header .logo-container #logo path:nth-child(3) {
+#home header .logo-container #logo path:nth-child(3) {
   stroke-dasharray: 350px;
   stroke-dashoffset: 350px;
   animation: logoEnter 3s forwards ease-out;
 }
-html body header .logo-container #logo path:nth-child(4) {
+#home header .logo-container #logo path:nth-child(4) {
   stroke-dasharray: 350px;
   stroke-dashoffset: 350px;
   animation: logoEnter 3s forwards ease-out;
 }
-html body header .logo-container #logo path:nth-child(5) {
+#home header .logo-container #logo path:nth-child(5) {
   stroke-dasharray: 350px;
   stroke-dashoffset: 350px;
   animation: logoEnter 3s forwards ease-out;
 }
-html body header .logo-container #logo path:nth-child(6) {
+#home header .logo-container #logo path:nth-child(6) {
   stroke-dasharray: 350px;
   stroke-dashoffset: 350px;
   animation: logoEnter 3s forwards ease-out;
 }
-html body header .logo-container #logo path:nth-child(7) {
+#home header .logo-container #logo path:nth-child(7) {
   stroke-dasharray: 350px;
   stroke-dashoffset: 350px;
   animation: logoEnter 3s forwards ease-out;
 }
-html body header .logo-container #logo path:nth-child(8) {
+#home header .logo-container #logo path:nth-child(8) {
   stroke-dasharray: 350px;
   stroke-dashoffset: 350px;
   animation: logoEnter 3s forwards ease-out;
 }
-html body header .logo-container #logo path:nth-child(9) {
+#home header .logo-container #logo path:nth-child(9) {
   stroke-dasharray: 350px;
   animation: logoEnter 3s forwards ease-out;
   stroke-dashoffset: 350px;
 }
-html body header .logo-container #logo path:nth-child(10) {
+#home header .logo-container #logo path:nth-child(10) {
   stroke-dasharray: 350px;
   stroke-dashoffset: 350px;
   animation: logoEnter 3s forwards ease-out;
 }
-html body header .logo-container #logo path:nth-child(11) {
+#home header .logo-container #logo path:nth-child(11) {
   stroke-dasharray: 350px;
   stroke-dashoffset: 350px;
   animation: logoEnter 3s forwards ease-out;
 }
-html body header .logo-container #logo path:nth-child(12) {
+#home header .logo-container #logo path:nth-child(12) {
   stroke-dasharray: 350px;
   stroke-dashoffset: 350px;
   animation: logoEnter 3s forwards ease-out;
@@ -271,7 +315,7 @@ html body header .logo-container #logo path:nth-child(12) {
     stroke-dashoffset: 0;
   }
 }
-html body header .scroll-down {
+#home header .scroll-down {
   display: flex;
   flex-direction: column;
   font-family: "play", serif;
@@ -279,13 +323,14 @@ html body header .scroll-down {
   width: 100%;
   margin: 2vh 0 12vh;
 }
-html body header .scroll-down p {
+#home header .scroll-down p {
   line-height: 1rem;
   font-size: 1.25rem;
   color: #cccccc;
   text-align: center;
 }
-html body header .scroll-down .arrow {
+#home header .scroll-down .arrow {
+  height: min-content;
   width: 100%;
   transform: rotate(90deg);
   font-weight: light;
@@ -296,272 +341,226 @@ html body header .scroll-down .arrow {
   align-items: center;
   justify-content: center;
 }
-html body main {
-  width: 100%;
-  grid-row: 3;
-  display: grid;
-  grid-template-rows: 100vh 1250px 250px 100vh;
-  z-index: 9;
-  background-color: #1e1e1e;
+@media screen and (min-width: 1300px) {
+  #home {
+    width: 80vw;
+  }
 }
-html body main .cta {
-  grid-row: 3;
-  grid-column: 1/4;
-  height: 40px;
-  width: 250px;
-  margin: 0 auto;
-  font-family: "play";
-  font-size: 1.25rem;
-  font-weight: light;
+
+.tag {
+  height: 28px;
+  width: 100%;
+  padding-left: 1vw;
+  font-family: menlo;
+  font-size: 1.15rem;
+  text-align: left;
   color: #007acc;
-  color: turquoise;
   background-color: #1e1e1e;
-  outline: none;
+  z-index: 2;
+}
+
+main {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 20vh calc(200px + 56px) calc(100px + 56px) min-content calc(200px * 6) min-content calc(150px + 56px);
+  grid-template-columns: 70% 30%;
+  grid-row-gap: 1rem;
+  background-color: #1e1e1e;
+  position: relative;
+  z-index: 10;
+}
+main section {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  background-color: #1e1e1e;
+}
+main section .section-container {
+  height: 100%;
+  width: 100%;
+}
+main section .section-container::before {
+  content: "";
+  position: absolute;
+  left: 2.5vw;
+  top: 0;
+  height: 100%;
+  width: 0.5px;
+  background-color: #3e3e42;
+}
+main .cta {
+  background-color: #1e1e1e;
+  margin: 0 auto;
+}
+main .cta-btn {
+  height: 30px;
+  width: 160px;
+  margin: 0 auto;
+  font-family: "play";
+  font-size: 1.1rem;
+  font-weight: light;
+  color: turquoise;
+  background-color: #1e1e1e;
+  outline: none;
   border: 0.15em solid turquoise;
   border-radius: 5px;
   transition: background-color 0.2s;
 }
-html body main .cta:hover {
+main .cta-btn:hover {
   cursor: pointer;
   background-color: turquoise;
   color: #1e1e1e;
   font-weight: bolder;
 }
-html body main #intro {
+main .hover-effect:hover {
+  cursor: pointer;
+  color: #ffffff;
+  border-left: 2px solid deepskyblue;
+  background-color: #3e3e42;
+}
+main #title {
   grid-row: 1;
   width: 100%;
-}
-html body main #intro .intro-container {
-  height: 100%;
-  display: grid;
-  grid-template-columns: 60% 10% 30%;
-  grid-template-rows: 1fr max-content 1fr;
-}
-html body main #intro .intro-container .title {
-  grid-row: 1;
-  grid-column: 1/3;
-  font-size: 2rem;
+  max-width: 900px;
+  font-size: 1.75rem;
   color: #ffffff;
   display: flex;
   flex-direction: column;
 }
-html body main #intro .intro-container .title .upper-title {
+main #title .upper-title {
   align-self: flex-start;
   padding: 0 1.5vw 0.15vh;
   white-space: nowrap;
 }
-html body main #intro .intro-container .title .lower-title {
+main #title .lower-title {
   align-self: flex-end;
   padding: 0.15vh 1.5vw 0;
   white-space: nowrap;
 }
-html body main #intro .intro-container .title .line {
+main #title .line {
   height: 1px;
   width: 100%;
-  background-color: #ffffff;
+  background-color: blueviolet;
 }
-html body main #intro .intro-container .text-content {
+main #about {
   grid-row: 2;
-  grid-column: 1/4;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  position: relative;
-}
-html body main #intro .intro-container .text-content .text {
-  width: 70%;
-  min-width: 70%;
-  height: 100%;
-  padding: 3vh 0;
-  font-size: 1.5rem;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-}
-html body main #intro .intro-container .text-content .text .about,
-html body main #intro .intro-container .text-content .text .stack {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  position: relative;
-  border-left: 1px solid transparent;
-}
-html body main #intro .intro-container .text-content .text .about::before,
-html body main #intro .intro-container .text-content .text .stack::before {
-  content: "";
-  position: absolute;
-  left: 3.5vw;
-  height: 90%;
-  width: 1px;
-  background-color: #3e3e42;
-}
-html body main #intro .intro-container .text-content .text .about {
-  height: 100%;
+  grid-column: 1;
   font-family: "courier new", monospace, serif;
-  font-size: 1.25rem;
-  justify-self: flex-start;
-  padding: 3vh 5vw;
+  font-size: 1.15rem;
+  color: #ffffff;
   transition: all 0.2s;
+  border-left: 2px solid #1e1e1e;
 }
-html body main #intro .intro-container .text-content .text .hover-effect:hover {
-  cursor: pointer;
-  background-color: #3e3e42;
-  border-left: 2px solid deepskyblue;
-}
-html body main #intro .intro-container .text-content .text .hover-effect:hover .tag {
-  transition: transform;
-}
-html body main #intro .intro-container .text-content .text .hover-effect:hover .tag {
-  transform: translateX(80%);
-}
-html body main #intro .intro-container .text-content .text .hover-effect:hover i {
-  transition: color 0.2s;
-  background-color: #3e3e42;
-}
-html body main #intro .intro-container .text-content .text .hover-effect:hover i:nth-child(1) {
-  color: #f06529;
-}
-html body main #intro .intro-container .text-content .text .hover-effect:hover i:nth-child(2) {
-  color: #cd6799;
-}
-html body main #intro .intro-container .text-content .text .hover-effect:hover i:nth-child(3) {
-  color: #f0db4f;
-}
-html body main #intro .intro-container .text-content .text .hover-effect:hover i:nth-child(4) {
-  color: #61dbfb;
-}
-html body main #intro .intro-container .text-content .text .hover-effect:hover i:nth-child(5) {
-  color: #3c873a;
-}
-html body main #intro .intro-container .text-content .text .hover-effect:hover i:nth-child(6) {
-  color: #f34f29;
-}
-html body main #intro .intro-container .text-content .text .stack {
-  height: 100%;
-  padding: 2vh 0;
-}
-html body main #intro .intro-container .text-content .text .stack .icons-container {
+main #about .section-container {
   width: 100%;
-  display: flex;
-  margin-left: 5vw;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-evenly;
-}
-html body main #intro .intro-container .text-content .text .stack .icons-container i {
-  font-size: 3rem;
-}
-html body main #intro .intro-container .text-content .gif-container {
-  position: absolute;
-  right: 9vw;
-  top: 5vh;
-  height: 200px;
-  width: 210px;
+  padding: 0 0 0 5vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-html body main #intro .intro-container .text-content .gif-container .facegif {
-  height: 200px;
-  width: 210px;
-  border-radius: 50%;
+main #about .hover-effect:hover::before {
+  background-color: grey;
 }
-html body main section {
+main #stack {
+  grid-row: 3;
+  grid-column: 1;
+  border-left: 2px solid #1e1e1e;
+}
+main #stack .icons-container {
+  width: 500px;
+  height: 100%;
+  padding: 0 0 0 5vw;
   display: flex;
-  flex-direction: column;
-  margin: 4vh 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
 }
-html body main section:hover h4:nth-child(odd) {
-  transform: translateX(20%);
+main #stack .icons-container i {
+  font-size: 3rem;
+  color: #ffffff;
 }
-html body main section:hover h4:nth-child(n+2) {
-  transform: translateX(70%);
-}
-html body main section .about::before,
-html body main section .stack::before,
-html body main section .projects-wrapper::before,
-html body main section .more-wrapper::before,
-html body main section .contact-wrapper::before {
-  content: "";
-  position: absolute;
-  left: 2.5vw;
-  height: 95%;
-  width: 1px;
+main #stack .hover-effect:hover i {
   background-color: #3e3e42;
 }
-html body main section .more-wrapper::before,
-html body main section .contact-wrapper::before {
-  left: 3.75vw;
+main #stack .hover-effect:hover i:nth-child(1) {
+  color: #f06529;
 }
-html body main section .tag {
-  height: 28px;
-  width: 100%;
-  text-align: left;
-  padding-left: 1vw;
-  font-family: menlo;
-  font-size: 1.15rem;
-  color: lightskyblue;
+main #stack .hover-effect:hover i:nth-child(2) {
+  color: #cd6799;
 }
-html body main section .tag-about-opening {
-  margin-top: 2vh;
+main #stack .hover-effect:hover i:nth-child(3) {
+  color: #ffff00;
 }
-html body main section .tag-about-closing {
-  margin-bottom: 7vh;
+main #stack .hover-effect:hover i:nth-child(4) {
+  color: #61dbfb;
 }
-html body main section .section-container {
-  height: 100%;
-  width: 100%;
+main #stack .hover-effect:hover i:nth-child(5) {
+  color: #3c873a;
 }
-html body main #projects {
-  grid-row: 2;
-  margin-top: 5vh;
+main #stack .hover-effect:hover i:nth-child(6) {
+  color: #f34f29;
 }
-html body main #projects .projects-container .projects-wrapper {
+main #stack .hover-effect:hover::before {
+  background-color: gray;
+}
+main #gif {
+  grid-column: 2;
+  grid-row: 2/4;
+  margin: 0 auto;
+  border-radius: 50%;
+  height: 200px;
+  width: 220px;
+}
+main #gif .facegif {
+  height: 195px;
+  width: 215px;
+  border-radius: 50%;
+  border: 2px solid blueviolet;
+}
+main .cta-download {
+  grid-row: 4;
+  grid-column: 1/3;
+}
+main #projects {
+  grid-row: 5;
+  grid-column: 1/3;
+}
+main #projects .projects-wrapper {
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  position: relative;
 }
-html body main #projects .projects-container .projects-wrapper::before {
-  left: 4vw;
-}
-html body main #projects .projects-container .projects-wrapper .project {
+main #projects .projects-wrapper .project {
   height: 200px;
   width: 80%;
   color: #ffffff;
   background-color: #3e3e42;
   display: flex;
   align-items: center;
-  transition: all 0.2s;
+  transition: all 200ms;
   position: relative;
 }
-html body main #projects .projects-container .projects-wrapper .project .fa-expand-alt {
+main #projects .projects-wrapper .project .fa-expand-alt {
   position: absolute;
   right: 1.5vw;
   top: 2vh;
   font-size: 1.5rem;
   color: #3e3e42;
 }
-html body main #projects .projects-container .projects-wrapper .project .thumbnail {
+main #projects .projects-wrapper .project .thumbnail {
   padding: 0 1vw;
 }
-html body main #projects .projects-container .projects-wrapper .project .thumbnail img {
+main #projects .projects-wrapper .project .thumbnail img {
   height: 170px;
   width: 320px;
   border: 1px solid #ffffff;
 }
-html body main #projects .projects-container .projects-wrapper .project .pitch-container {
+main #projects .projects-wrapper .project .pitch-container {
   height: 100%;
   padding: 0 1vw 0;
   display: flex;
@@ -569,78 +568,81 @@ html body main #projects .projects-container .projects-wrapper .project .pitch-c
   align-items: flex-start;
   justify-content: space-evenly;
 }
-html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links {
+main #projects .projects-wrapper .project .pitch-container .project-links {
   width: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
 }
-html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links a {
+main #projects .projects-wrapper .project .pitch-container .project-links a {
   text-decoration: none;
   color: #ffffff;
 }
-html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links a i {
+main #projects .projects-wrapper .project .pitch-container .project-links a i {
   text-decoration: none;
   font-size: 1.5rem;
 }
-html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links a .fa-github-alt {
+main #projects .projects-wrapper .project .pitch-container .project-links a .fa-github-alt {
   font-size: 2rem;
 }
-html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links .hover-effect:hover {
-  cursor: pointer;
-  background-color: #ffffff;
-}
-html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links .hover-effect:hover a {
-  transition: color 0.2s;
-}
-html body main #projects .projects-container .projects-wrapper .project .pitch-container .project-links .hover-effect:hover a:nth-child(1) {
+main #projects .projects-wrapper .hover-effect:hover {
   color: black;
+  background-color: lightgrey;
+  border-left: none;
+  transform: translateY(-0.5vh);
 }
-html body main #projects .projects-container .projects-wrapper .hover-effect:hover {
-  cursor: pointer;
-  color: black;
-  background-color: #ffffff;
+main #projects .projects-wrapper .hover-effect:hover img {
+  border: 1px solid lightgrey;
 }
-html body main #projects .projects-container .projects-wrapper .hover-effect:hover a.hover-effect:hover {
-  color: black;
+main #projects .projects-wrapper .hover-effect:hover:nth-child(1) .project-links a {
+  color: red;
 }
-html body main #more {
-  grid-row: 3;
+main #projects .projects-wrapper .hover-effect:hover:nth-child(2) .project-links a {
+  color: deeppink;
 }
-html body main #more .more-container {
-  height: 100%;
+main #projects .projects-wrapper .hover-effect:hover:nth-child(3) .project-links a {
+  color: #007acc;
 }
-html body main #more .more-container .more-wrapper {
+main #projects .projects-wrapper .hover-effect:hover:nth-child(4) .project-links a {
+  color: #fb4700da;
+}
+main #projects .projects-wrapper .hover-effect:hover:nth-child(5) .project-links a {
+  color: #1e1e1e;
+}
+main .cta-contact {
+  grid-row: 6;
+  grid-column: 1/3;
+}
+main #more {
+  grid-row: 7;
+  grid-column: 1/3;
+}
+main #more .more-wrapper {
   height: 100%;
   color: white;
-  text-align: center;
   border-top: 1px solid grey;
   border-bottom: 1px solid grey;
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  border: 1px solid #d4d4d4;
 }
-html body main #contact {
-  grid-row: 4;
-  height: 100%;
+
+#contact {
+  height: calc(100vh - 50px - 20px);
 }
-html body main #contact .contact-container .contact-wrapper {
+#contact .contact-wrapper {
   height: 100%;
-  width: 100%;
-  border-top: 1px solid #007acc;
-  border-bottom: 1px solid #007acc;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+  background-color: #1e1e1e;
+  border: 2px solid turquoise;
+  border-radius: 10px;
+  margin: 0 7vw;
 }
-html body footer {
-  grid-row: 5;
-  height: 100%;
+
+footer {
+  height: 20px;
   padding: 0 2vw 0 1vw;
   font-family: "courier new";
   font-size: 1rem;
@@ -651,18 +653,23 @@ html body footer {
   align-items: center;
   justify-content: space-between;
 }
-html body footer p:nth-child(1) {
+footer p:nth-child(1) {
   width: calc(100vw / 3);
   text-align: left;
 }
-html body footer p:nth-child(2) {
+footer p:nth-child(2) {
   width: calc(100vw / 3);
   text-align: center;
 }
-html body footer p:nth-child(3) {
+footer p:nth-child(3) {
   width: calc(100vw / 3);
   text-align: right;
   margin-right: 1vw;
+}
+@media screen and (min-width: 1300px) {
+  footer {
+    width: 100vw;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
