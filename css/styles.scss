@@ -55,7 +55,7 @@ $contact-height: calc(100vh - #{$navbar-height} - #{$footer-height});
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     position: relative;
     background-color: $editor-background;
     // border: 2px solid white;
@@ -552,12 +552,23 @@ main {
     // border: 1px solid white;
 
     .section-container {
-      padding: 0 0 0 5vw;
+      padding-left: 5vw;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      justify-content: space-evenly;
+      justify-content: space-around;
       transition: all 0.2s;
+      overflow: scroll;
+
+      .p-about {
+        width: 85%;
+        white-space: nowrap;
+        // border: 1px solid white;
+        margin: 0;
+        &:nth-child(2) {
+          margin-top: -2%;
+        }
+      }
     }
     .hover-effect:hover {
       &::before {
@@ -573,14 +584,21 @@ main {
   #stack {
     grid-row: 3;
     grid-column: 1;
+    overflow: scroll;
 
     .icons-container {
       width: 100%;
       height: 100%;
+      padding-left: 5vw;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-evenly;
+      // overflow: scroll;
+      // border: 1px solid white;
+      list-style-type: none;
+      li {
+        width: 30px;
+      }
 
       i {
         font-size: 3rem;
@@ -592,29 +610,39 @@ main {
       &::before {
         background-color: gray;
       }
+
       i {
         background-color: transparent;
       }
-      i:nth-child(1) {
-        // color: #f06529;
-        color: #e44d26;
-        // color: #f16529;
+      li:nth-child(1) {
+        i {
+          color: #e44d26;
+        }
       }
-      i:nth-child(2) {
-        color: #cd6799;
+      li:nth-child(2) {
+        i {
+          color: #cd6799;
+        }
       }
-      i:nth-child(3) {
-        color: #ffff00;
+      li:nth-child(3) {
+        i {
+          color: #ffff00;
+        }
       }
-      i:nth-child(4) {
-        color: #61dbfb;
+      li:nth-child(4) {
+        i {
+          color: #61dbfb;
+        }
       }
-      i:nth-child(5) {
-        color: #3c873a;
+      li:nth-child(5) {
+        i {
+          color: #3c873a;
+        }
       }
-      i:nth-child(6) {
-        color: lightgrey;
-        // background-color: white;
+      li:nth-child(6) {
+        i {
+          color: lightgrey;
+        }
       }
     }
   }
@@ -656,6 +684,7 @@ main {
       flex-direction: column;
       align-items: center;
       justify-content: space-evenly;
+      list-style-type: none;
 
       .project {
         height: 200px;
@@ -784,8 +813,8 @@ main {
   .contact-wrapper {
     height: 100%;
     background-color: $editor-background;
-    border: 2px solid turquoise;
-    border-radius: 10px;
+    // border: 1px solid turquoise;
+    // border-radius: 1px;
     margin: 0 7vw;
   }
 }

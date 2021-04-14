@@ -67,7 +67,7 @@ body .body-container section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   position: relative;
   background-color: #1e1e1e;
 }
@@ -377,7 +377,7 @@ main section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   position: relative;
   background-color: #1e1e1e;
 }
@@ -462,12 +462,21 @@ main #about {
   color: #ffffff;
 }
 main #about .section-container {
-  padding: 0 0 0 5vw;
+  padding-left: 5vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: space-around;
   transition: all 0.2s;
+  overflow: scroll;
+}
+main #about .section-container .p-about {
+  width: 85%;
+  white-space: nowrap;
+  margin: 0;
+}
+main #about .section-container .p-about:nth-child(2) {
+  margin-top: -2%;
 }
 main #about .hover-effect:hover::before {
   background-color: grey;
@@ -475,14 +484,19 @@ main #about .hover-effect:hover::before {
 main #stack {
   grid-row: 3;
   grid-column: 1;
+  overflow: scroll;
 }
 main #stack .icons-container {
   width: 100%;
   height: 100%;
+  padding-left: 5vw;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
+  list-style-type: none;
+}
+main #stack .icons-container li {
+  width: 30px;
 }
 main #stack .icons-container i {
   font-size: 3rem;
@@ -494,22 +508,22 @@ main #stack .hover-effect:hover::before {
 main #stack .hover-effect:hover i {
   background-color: transparent;
 }
-main #stack .hover-effect:hover i:nth-child(1) {
+main #stack .hover-effect:hover li:nth-child(1) i {
   color: #e44d26;
 }
-main #stack .hover-effect:hover i:nth-child(2) {
+main #stack .hover-effect:hover li:nth-child(2) i {
   color: #cd6799;
 }
-main #stack .hover-effect:hover i:nth-child(3) {
+main #stack .hover-effect:hover li:nth-child(3) i {
   color: #ffff00;
 }
-main #stack .hover-effect:hover i:nth-child(4) {
+main #stack .hover-effect:hover li:nth-child(4) i {
   color: #61dbfb;
 }
-main #stack .hover-effect:hover i:nth-child(5) {
+main #stack .hover-effect:hover li:nth-child(5) i {
   color: #3c873a;
 }
-main #stack .hover-effect:hover i:nth-child(6) {
+main #stack .hover-effect:hover li:nth-child(6) i {
   color: lightgrey;
 }
 main #gif {
@@ -540,6 +554,7 @@ main #projects .projects-wrapper {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  list-style-type: none;
 }
 main #projects .projects-wrapper .project {
   height: 200px;
@@ -644,8 +659,6 @@ main #more .more-wrapper {
 #contact .contact-wrapper {
   height: 100%;
   background-color: #1e1e1e;
-  border: 2px solid turquoise;
-  border-radius: 10px;
   margin: 0 7vw;
 }
 
