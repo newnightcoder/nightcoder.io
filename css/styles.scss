@@ -39,7 +39,7 @@ $tomato-primary: #f48771;
 $grey-primary: #3e3e42;
 $editor-foreground: #d4d4d4;
 $font-primary: "hemihead";
-$navbar-height: 50px;
+$navbar-height: 40px;
 $banner-height: 30vh;
 $border-radius: 5px;
 $title-height: 20vh;
@@ -400,7 +400,7 @@ nav {
       font-family: "play", serif;
       justify-content: center;
       width: 100%;
-      margin: 2vh 0 12vh;
+      margin: 2vh 0 7vh;
 
       p {
         line-height: 1rem;
@@ -415,7 +415,7 @@ nav {
         transform: rotate(90deg);
         font-weight: light;
         font-size: 2.5rem;
-        margin-top: 1.5vh;
+        margin-top: 2vh;
         color: #cccccc;
         display: flex;
         align-items: center;
@@ -478,15 +478,20 @@ main {
     font-family: "play";
     font-size: 1.1rem;
     font-weight: light;
-    color: turquoise;
     background-color: $editor-background;
     outline: none;
-    border: 0.15em solid turquoise;
+    // color: turquoise;
+    // border: 0.15em solid turquoise;
+    color: aqua;
+    border: 0.15em solid aqua;
     border-radius: $border-radius;
     transition: background-color 0.2s;
     &:hover {
       cursor: pointer;
-      background-color: turquoise;
+      // background-color: blueviolet;
+      // border-color: blueviolet;
+      background-color: aqua;
+      border-color: aqua;
       color: $editor-background;
       font-weight: bolder;
     }
@@ -745,7 +750,7 @@ main {
       }
       .hover-effect:hover {
         color: black;
-        background-color: lightgrey;
+        background-color: $white-primary;
         transform: translateY(-0.5vh);
         img {
           border: 1px solid lightgrey;

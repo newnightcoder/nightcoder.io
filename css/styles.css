@@ -93,8 +93,8 @@ body .body-container section .section-container::before {
 nav {
   position: fixed;
   top: 0;
-  height: 50px;
-  min-height: 50px;
+  height: 40px;
+  min-height: 40px;
   width: 100%;
   z-index: 60;
   display: flex;
@@ -325,7 +325,7 @@ nav .link-wrapper .link i:hover {
   font-family: "play", serif;
   justify-content: center;
   width: 100%;
-  margin: 2vh 0 12vh;
+  margin: 2vh 0 7vh;
 }
 #home header .scroll-down p {
   line-height: 1rem;
@@ -339,7 +339,7 @@ nav .link-wrapper .link i:hover {
   transform: rotate(90deg);
   font-weight: light;
   font-size: 2.5rem;
-  margin-top: 1.5vh;
+  margin-top: 2vh;
   color: #cccccc;
   display: flex;
   align-items: center;
@@ -405,16 +405,17 @@ main .cta-btn {
   font-family: "play";
   font-size: 1.1rem;
   font-weight: light;
-  color: turquoise;
   background-color: #1e1e1e;
   outline: none;
-  border: 0.15em solid turquoise;
+  color: aqua;
+  border: 0.15em solid aqua;
   border-radius: 5px;
   transition: background-color 0.2s;
 }
 main .cta-btn:hover {
   cursor: pointer;
-  background-color: turquoise;
+  background-color: aqua;
+  border-color: aqua;
   color: #1e1e1e;
   font-weight: bolder;
 }
@@ -612,7 +613,7 @@ main #projects .projects-wrapper .hover-effect {
 }
 main #projects .projects-wrapper .hover-effect:hover {
   color: black;
-  background-color: lightgrey;
+  background-color: #ffffff;
   transform: translateY(-0.5vh);
 }
 main #projects .projects-wrapper .hover-effect:hover img {
@@ -654,7 +655,7 @@ main #more .more-wrapper {
 }
 
 #contact {
-  height: calc(100vh - 50px - 20px);
+  height: calc(100vh - 40px - 20px);
 }
 #contact .contact-wrapper {
   height: 100%;
