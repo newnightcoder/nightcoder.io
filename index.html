@@ -8,6 +8,16 @@
     <script
       src="https://kit.fontawesome.com/9209397972.js"
       crossorigin="anonymous"
+      data-auto-a11y="true"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js"
+      defer
     ></script>
 
     <script src="index.js" defer></script>
@@ -108,7 +118,7 @@
           </div>
           <header>
             <div class="logo-container">
-              <svg
+              <!-- <svg
                 id="logo"
                 width="490"
                 height="79"
@@ -188,6 +198,87 @@
                   stroke-width="1.5"
                   mask="url(#path-1-outside-1)"
                 />
+              </svg> -->
+              <svg
+                id="logo"
+                width="705"
+                height="112"
+                viewBox="0 0 705 112"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M49.7656 85.1746L58.438 43.894C58.5921 43.1231 58.6692 42.6606 58.6692 42.5064C58.6692 41.273 57.7056 40.6563 55.7784 40.6563H31.6113C30.455 40.6563 29.607 40.8876 29.0674 41.3501C28.5278 41.7355 28.1038 42.5835 27.7955 43.894L19.1231 85.1746H2.9346L15.3072 26.6648H30.9175L29.53 33.0246C32.3051 28.7848 36.121 26.6648 40.9775 26.6648H67.226C70.3866 26.6648 72.6607 27.2045 74.0483 28.2837C75.513 29.3629 76.2453 31.1745 76.2453 33.7184C76.2453 35.1831 76.0911 36.6477 75.7828 38.1124L65.8384 85.1746H49.7656Z"
+                  stroke="#007ACC"
+                  stroke-width="4"
+                  mask="url(#path-1-outside-1)"
+                />
+                <path
+                  d="M78.6058 85.1746L90.9784 26.6648H107.167L94.7943 85.1746H78.6058ZM92.4817 19.7269L96.1819 2.15085H112.486L108.786 19.7269H92.4817Z"
+                  stroke="#007ACC"
+                  stroke-width="4"
+                  mask="url(#path-1-outside-1)"
+                />
+                <path
+                  d="M103.227 109.689L106.234 95.6971H145.317C146.628 95.6971 147.514 95.4659 147.977 95.0033C148.516 94.5408 148.94 93.6543 149.249 92.3438L160.234 40.6563H135.026C133.716 40.6563 132.791 40.8876 132.251 41.3501C131.788 41.8126 131.441 42.6606 131.21 43.894L125.891 68.8705C125.814 69.256 125.776 69.6799 125.776 70.1425C125.776 71.3759 126.662 71.9926 128.435 71.9926H147.861L145.086 85.1746H117.334C114.097 85.1746 111.746 84.635 110.281 83.5558C108.893 82.3995 108.199 80.6264 108.199 78.2367C108.199 77.1575 108.392 75.6543 108.778 73.7271L116.294 38.1124C117.142 34.1809 118.529 31.2901 120.456 29.44C122.461 27.5899 125.544 26.6648 129.707 26.6648H179.429L164.165 98.241C163.317 102.173 161.891 105.063 159.887 106.913C157.96 108.764 154.876 109.689 150.636 109.689H103.227Z"
+                  stroke="#007ACC"
+                  stroke-width="4"
+                  mask="url(#path-1-outside-1)"
+                />
+                <path
+                  d="M225.367 85.1746L234.04 43.894C234.194 43.1231 234.271 42.6606 234.271 42.5064C234.271 41.273 233.307 40.6563 231.38 40.6563H207.213C206.057 40.6563 205.209 40.8876 204.669 41.3501C204.129 41.7355 203.705 42.5835 203.397 43.894L194.725 85.1746H178.536L196.112 2.15085H212.301L205.71 33.0246C207.252 30.789 208.909 29.1702 210.682 28.1681C212.532 27.1659 214.691 26.6648 217.157 26.6648H242.828C245.988 26.6648 248.262 27.2045 249.65 28.2837C251.115 29.3629 251.847 31.1745 251.847 33.7184C251.847 35.1831 251.693 36.6477 251.384 38.1124L241.44 85.1746H225.367Z"
+                  stroke="#007ACC"
+                  stroke-width="4"
+                  mask="url(#path-1-outside-1)"
+                />
+                <path
+                  d="M264.262 85.1746C261.024 85.1746 258.673 84.635 257.208 83.5558C255.821 82.3995 255.127 80.6264 255.127 78.2367C255.127 77.1575 255.32 75.6543 255.705 73.7271L263.221 38.1124C264.069 34.1809 265.457 31.2901 267.384 29.44C269.388 27.5899 272.472 26.6648 276.635 26.6648H317.915L314.909 40.8876H281.954C280.643 40.8876 279.757 41.0803 279.294 41.4657C278.832 41.8512 278.446 42.6991 278.138 44.0096L273.166 67.3673C273.089 67.6757 273.012 67.9455 272.934 68.1767C272.934 68.408 272.934 68.6392 272.934 68.8705C272.934 70.0268 273.821 70.605 275.594 70.605H308.549L305.543 85.1746H264.262Z"
+                  stroke="#007ACC"
+                  stroke-width="4"
+                  mask="url(#path-1-outside-1)"
+                />
+                <path
+                  d="M326.934 85.1746C323.696 85.1746 321.345 84.635 319.88 83.5558C318.493 82.3995 317.799 80.6264 317.799 78.2367C317.799 77.1575 317.991 75.6543 318.377 73.7271L325.893 38.1124C326.741 34.1809 328.128 31.2901 330.056 29.44C332.06 27.5899 335.144 26.6648 339.306 26.6648H379.084C382.476 26.6648 384.865 27.243 386.253 28.3993C387.64 29.4785 388.334 31.213 388.334 33.6028C388.334 34.682 388.142 36.1852 387.756 38.1124L380.24 73.7271C379.392 77.6586 377.966 80.5493 375.962 82.3995C374.034 84.2496 370.951 85.1746 366.711 85.1746H326.934ZM370.296 43.894C370.45 43.1231 370.527 42.6606 370.527 42.5064C370.527 41.273 369.486 40.6563 367.405 40.6563H344.51C343.276 40.6563 342.39 40.8876 341.85 41.3501C341.388 41.7355 341.041 42.5835 340.809 43.894L335.837 67.7142C335.76 68.0225 335.683 68.2923 335.606 68.5236C335.606 68.7549 335.606 68.9861 335.606 69.2174C335.606 70.2966 336.454 70.8363 338.15 70.8363H361.045C362.433 70.8363 363.435 70.605 364.052 70.1425C364.668 69.6799 365.092 68.8705 365.323 67.7142L370.296 43.894Z"
+                  stroke="#007ACC"
+                  stroke-width="4"
+                  mask="url(#path-1-outside-1)"
+                />
+                <path
+                  d="M400.107 85.1746C396.869 85.1746 394.518 84.635 393.054 83.5558C391.666 82.3995 390.972 80.6264 390.972 78.2367C390.972 77.1575 391.165 75.6543 391.55 73.7271L399.066 38.1124C399.914 34.1809 401.418 31.2901 403.576 29.44C405.812 27.5899 408.779 26.6648 412.48 26.6648H440.116L437.109 40.6563H417.799C416.565 40.6563 415.679 40.8876 415.139 41.3501C414.677 41.7355 414.291 42.5835 413.983 43.894L409.011 67.5986C408.857 68.3695 408.779 68.8705 408.779 69.1018C408.779 70.2581 409.666 70.8363 411.439 70.8363H436.531L451.101 2.15085H467.405L449.829 85.1746H400.107Z"
+                  stroke="#007ACC"
+                  stroke-width="4"
+                  mask="url(#path-1-outside-1)"
+                />
+                <path
+                  d="M472.253 85.1746C468.939 85.1746 466.549 84.635 465.084 83.5558C463.697 82.3995 463.003 80.6264 463.003 78.2367C463.003 77.1575 463.195 75.6543 463.581 73.7271L471.097 38.1124C471.945 34.1809 473.333 31.2901 475.26 29.44C477.264 27.5899 480.386 26.6648 484.626 26.6648H524.172C527.101 26.6648 529.183 27.243 530.416 28.3993C531.727 29.4785 532.382 31.1359 532.382 33.3715C532.382 34.7591 532.228 36.1852 531.919 37.6499L527.063 60.6606H488.095L490.061 50.9476H513.65L515.384 43.0846C515.461 42.6991 515.5 42.1981 515.5 41.5814C515.5 40.9647 515.307 40.5407 514.922 40.3094C514.613 40.0781 513.996 39.9625 513.071 39.9625H489.829C488.519 39.9625 487.632 40.1938 487.17 40.6563C486.707 41.0417 486.322 41.8897 486.013 43.2002L480.579 68.408C480.502 68.7934 480.425 69.1403 480.348 69.4487C480.348 69.6799 480.348 69.9112 480.348 70.1425C480.348 70.8363 480.54 71.2988 480.926 71.53C481.311 71.7613 482.005 71.877 483.007 71.877H522.438L519.662 85.1746H472.253Z"
+                  stroke="#007ACC"
+                  stroke-width="4"
+                  mask="url(#path-1-outside-1)"
+                />
+                <path
+                  d="M533.442 85.1746L545.814 26.6648H561.54L560.153 33.0246C561.617 30.789 563.236 29.1702 565.009 28.1681C566.859 27.1659 569.056 26.6648 571.6 26.6648H588.598L585.592 40.6563H562.234C561.078 40.6563 560.191 40.8876 559.574 41.3501C559.035 41.7355 558.611 42.5835 558.302 43.894L549.63 85.1746H533.442Z"
+                  stroke="#007ACC"
+                  stroke-width="4"
+                  mask="url(#path-1-outside-1)"
+                />
+                <path
+                  d="M574.446 85.1746L578.146 67.7142H592.947L589.247 85.1746H574.446Z"
+                  stroke="#007ACC"
+                  stroke-width="4"
+                  mask="url(#path-1-outside-1)"
+                />
+                <path
+                  d="M602.112 85.1746L614.484 26.6648H630.673L618.3 85.1746H602.112ZM615.987 19.7269L619.688 2.15085H635.992L632.292 19.7269H615.987Z"
+                  stroke="#007ACC"
+                  stroke-width="4"
+                  mask="url(#path-1-outside-1)"
+                />
+                <path
+                  d="M641.534 85.1746C638.296 85.1746 635.945 84.635 634.48 83.5558C633.093 82.3995 632.399 80.6264 632.399 78.2367C632.399 77.1575 632.592 75.6543 632.977 73.7271L640.493 38.1124C641.341 34.1809 642.729 31.2901 644.656 29.44C646.66 27.5899 649.744 26.6648 653.907 26.6648H693.684C697.076 26.6648 699.466 27.243 700.853 28.3993C702.241 29.4785 702.935 31.213 702.935 33.6028C702.935 34.682 702.742 36.1852 702.356 38.1124L694.84 73.7271C693.992 77.6586 692.566 80.5493 690.562 82.3995C688.635 84.2496 685.551 85.1746 681.311 85.1746H641.534ZM684.896 43.894C685.05 43.1231 685.127 42.6606 685.127 42.5064C685.127 41.273 684.087 40.6563 682.005 40.6563H659.11C657.877 40.6563 656.99 40.8876 656.451 41.3501C655.988 41.7355 655.641 42.5835 655.41 43.894L650.438 67.7142C650.361 68.0225 650.283 68.2923 650.206 68.5236C650.206 68.7549 650.206 68.9861 650.206 69.2174C650.206 70.2966 651.054 70.8363 652.75 70.8363H675.645C677.033 70.8363 678.035 70.605 678.652 70.1425C679.269 69.6799 679.693 68.8705 679.924 67.7142L684.896 43.894Z"
+                  stroke="#007ACC"
+                  stroke-width="4"
+                  mask="url(#path-1-outside-1)"
+                />
               </svg>
             </div>
             <div class="scroll-down">
@@ -206,7 +297,9 @@
           <h1 class="lower-title">Front&hyphen;end&nbsp;developer&period;</h1>
         </section>
         <section id="about">
-          <h4 class="tag tag-about tag-about-opening">&lt;about&gt;</h4>
+          <h4 class="tag tag-about tag-about-opening hover-effect">
+            &lt;about&gt;
+          </h4>
           <div class="section-container hover-effect">
             <p class="p-about">
               Hello! I'm Daniel and im' a proud and happy self-taught <br />
@@ -220,31 +313,33 @@
               might be your next hire, who knows...
             </p>
           </div>
-          <h4 class="tag tag-about tag-about-closing">&lt;&sol;about&gt;</h4>
+          <h4 class="tag tag-about tag-about-closing hover-effect">
+            &lt;&sol;about&gt;
+          </h4>
         </section>
         <section id="stack">
-          <h4 class="tag tag-stack">&lt;dev&gt;</h4>
+          <h4 class="tag tag-stack hover-effect">&lt;dev&gt;</h4>
           <div class="section-container stack-container hover-effect">
-            <ul class="icons-container">
+            <ul class="stack-left">
               <li class="stack-icon"><i class="fab fa-html5"></i></li>
               <li class="stack-icon"><i class="fab fa-sass"></i></li>
               <li class="stack-icon"><i class="fab fa-js-square"></i></li>
               <li class="stack-icon"><i class="fab fa-react"></i></li>
               <li class="stack-icon"><i class="fab fa-node"></i></li>
             </ul>
-            <ul class="test-container">
+            <ul class="stack-middle">
               <li>a</li>
               <li>b</li>
               <li>c</li>
-              <li class="stack-icon"><i class="fab fa-git-square"></i></li>
+              <li><i class="fab fa-git-square"></i></li>
             </ul>
-            <ul class="test-container">
+            <ul class="stack-right">
               <li class="stack-icon"><i class="fab fa-git-square"></i></li>
               <li>b</li>
               <li>c</li>
             </ul>
           </div>
-          <h4 class="tag tag-stack">&lt;&sol;dev&gt;</h4>
+          <h4 class="hover-effect tag tag-stack">&lt;&sol;dev&gt;</h4>
         </section>
         <div class="cta cta-download">
           <button class="cta-btn">download&nbsp;my&nbsp;CV</button>
@@ -253,7 +348,7 @@
           <img class="facegif" src="img/face1.jpg" />
         </section>
         <section id="projects">
-          <h4 class="tag tag-projects">&lt;projects&gt;</h4>
+          <h4 class="hover-effect tag tag-projects">&lt;projects&gt;</h4>
           <div class="section-container projects-container">
             <ul class="projects-wrapper">
               <li class="project project-1 hover-effect">
@@ -419,26 +514,26 @@
               </li>
             </ul>
           </div>
-          <h4 class="tag tag-projects">&lt;&sol;projects&gt;</h4>
+          <h4 class="tag tag-projects hover-effect">&lt;&sol;projects&gt;</h4>
         </section>
         <div class="cta cta-contact">
           <button class="cta-btn">contact&nbsp;me</button>
         </div>
         <section id="more">
-          <h4 class="tag tag-more">&lt;more&gt;</h4>
+          <h4 class="tag tag-more hover-effect">&lt;more&gt;</h4>
           <div class="section-container more-container">
             <div class="more-wrapper">starfield.</div>
           </div>
-          <h4 class="tag tag-more">&lt;&sol;more&gt;</h4>
+          <h4 class="tag tag-more hover-effect">&lt;&sol;more&gt;</h4>
+        </section>
+        <section id="contact">
+          <h4 class="tag tag-contact hover-effect">&lt;contact&gt;</h4>
+          <div class="section-container contact-container">
+            <div class="contact-wrapper"></div>
+          </div>
+          <h4 class="tag tag-contact hover-effect">&lt;&sol;contact&gt;</h4>
         </section>
       </main>
-      <section id="contact">
-        <h4 class="tag tag-contact">&lt;contact&gt;</h4>
-        <div class="section-container contact-container">
-          <div class="contact-wrapper"></div>
-        </div>
-        <h4 class="tag tag-contact">&lt;&sol;contact&gt;</h4>
-      </section>
     </div>
     <footer>
       <p>words</p>

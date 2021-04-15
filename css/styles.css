@@ -40,7 +40,6 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: #1e1e1e;
-  font-family: "hemihead";
   overflow-x: hidden;
 }
 body .courier-new {
@@ -81,8 +80,17 @@ body .body-container section .section-container {
 body .body-container section .section-container::before {
   content: "";
   position: absolute;
-  left: 2.5vw;
   top: 0;
+  left: 2.5vw;
+  height: 100%;
+  width: 0.5px;
+  background-color: #3e3e42;
+}
+body .body-container section .section-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 98%;
   height: 100%;
   width: 0.5px;
   background-color: #3e3e42;
@@ -260,71 +268,77 @@ nav .link-wrapper .link i:hover {
   padding: 50px 0;
 }
 #home header .logo-container {
-  width: 490px;
-  height: 79px;
+  width: 705px;
+  height: 112px;
 }
 #home header .logo-container #logo {
   margin: 0;
   padding: 0;
 }
+#home header .logo-container #logo path {
+  stroke: dimgray;
+  stroke-width: 1;
+  fill: white;
+}
 #home header .logo-container #logo path:nth-child(1) {
-  stroke-dasharray: 234.7;
-  stroke-dashoffset: 234.7;
+  stroke-dasharray: 339.3;
+  stroke-dashoffset: 339.3;
   animation: logoEnter 3s forwards ease-out;
 }
 #home header .logo-container #logo path:nth-child(2) {
-  stroke-dasharray: 234.7;
-  stroke-dashoffset: 234.7;
+  stroke-dasharray: 220.5;
+  stroke-dashoffset: 220.5;
   animation: logoEnter 3s forwards ease-out;
 }
 #home header .logo-container #logo path:nth-child(3) {
-  stroke-dasharray: 350px;
-  stroke-dashoffset: 350px;
+  stroke-dasharray: 497.9;
+  stroke-dashoffset: 497.9;
   animation: logoEnter 3s forwards ease-out;
 }
 #home header .logo-container #logo path:nth-child(4) {
-  stroke-dasharray: 350px;
-  stroke-dashoffset: 350px;
+  stroke-dasharray: 389.4;
+  stroke-dashoffset: 389.4;
   animation: logoEnter 3s forwards ease-out;
 }
 #home header .logo-container #logo path:nth-child(5) {
-  stroke-dasharray: 350px;
-  stroke-dashoffset: 350px;
+  stroke-dasharray: 286.3;
+  stroke-dashoffset: 286.3;
   animation: logoEnter 3s forwards ease-out;
 }
 #home header .logo-container #logo path:nth-child(6) {
-  stroke-dasharray: 350px;
-  stroke-dashoffset: 350px;
+  stroke-dasharray: 343.8;
+  stroke-dashoffset: 343.8;
   animation: logoEnter 3s forwards ease-out;
 }
 #home header .logo-container #logo path:nth-child(7) {
-  stroke-dasharray: 350px;
-  stroke-dashoffset: 350px;
+  stroke-dasharray: 416.1px;
+  stroke-dashoffset: 416.1px;
   animation: logoEnter 3s forwards ease-out;
 }
 #home header .logo-container #logo path:nth-child(8) {
-  stroke-dasharray: 350px;
-  stroke-dashoffset: 350px;
+  stroke-dasharray: 399.5px;
+  stroke-dashoffset: 399.5px;
   animation: logoEnter 3s forwards ease-out;
+  stroke-dashoffset: 350px;
 }
 #home header .logo-container #logo path:nth-child(9) {
-  stroke-dasharray: 350px;
+  stroke-dasharray: 214.5px;
+  stroke-dashoffset: 214.5px;
   animation: logoEnter 3s forwards ease-out;
-  stroke-dashoffset: 350px;
 }
 #home header .logo-container #logo path:nth-child(10) {
-  stroke-dasharray: 350px;
-  stroke-dashoffset: 350px;
+  stroke-dasharray: 65.2px;
+  stroke-dashoffset: 65.2px;
   animation: logoEnter 3s forwards ease-out;
 }
 #home header .logo-container #logo path:nth-child(11) {
-  stroke-dasharray: 350px;
-  stroke-dashoffset: 350px;
+  stroke-dasharray: 220.5px;
+  stroke-dashoffset: 220.5px;
   animation: logoEnter 3s forwards ease-out;
 }
 #home header .logo-container #logo path:nth-child(12) {
-  stroke-dasharray: 350px;
-  stroke-dashoffset: 350px;
+  stroke-dasharray: 343.8px;
+  stroke-dashoffset: 343.8px;
   animation: logoEnter 3s forwards ease-out;
 }
 @keyframes logoEnter {
@@ -335,16 +349,9 @@ nav .link-wrapper .link i:hover {
 #home header .scroll-down {
   display: flex;
   flex-direction: column;
-  font-family: "play", serif;
   justify-content: center;
   width: 100%;
   margin: 2vh 0 7vh;
-}
-#home header .scroll-down p {
-  line-height: 1rem;
-  font-size: 1.25rem;
-  color: #cccccc;
-  text-align: center;
 }
 #home header .scroll-down .arrow {
   height: min-content;
@@ -352,8 +359,7 @@ nav .link-wrapper .link i:hover {
   transform: rotate(90deg);
   font-weight: light;
   font-size: 2.5rem;
-  margin-top: 2vh;
-  color: #cccccc;
+  color: lightgrey;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -364,23 +370,11 @@ nav .link-wrapper .link i:hover {
   }
 }
 
-.tag {
-  height: 28px;
-  width: 100%;
-  padding-left: 1vw;
-  font-family: menlo;
-  font-size: 1.15rem;
-  text-align: left;
-  color: #007acc;
-  background-color: #1e1e1e;
-  z-index: 2;
-}
-
 main {
   display: grid;
-  grid-template-rows: 20vh calc(200px + 56px) calc(100px + 56px) min-content calc(200px * 6) min-content calc(150px + 56px);
+  grid-template-rows: 20vh calc(200px + 56px) calc(100px + 56px) min-content calc(200px * 6) min-content calc(150px + 56px) calc(100vh - 40px - 20px);
   grid-template-columns: 75% 25%;
-  grid-row-gap: 1rem;
+  grid-row-gap: 1em;
   background-color: #1e1e1e;
   position: relative;
   z-index: 10;
@@ -400,11 +394,47 @@ main section .section-container {
 main section .section-container::before {
   content: "";
   position: absolute;
-  left: 2.5vw;
   top: 0;
+  left: 2.5vw;
   height: 100%;
   width: 0.5px;
   background-color: #3e3e42;
+}
+main section .section-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 98%;
+  height: 100%;
+  width: 0.5px;
+  background-color: #3e3e42;
+}
+main .hover-effect {
+  border-left: 2px solid transparent;
+  transition: all 0.2s;
+}
+main .hover-effect:hover {
+  cursor: pointer;
+  color: #fefefe;
+  border-left: 2px solid deepskyblue;
+  background-color: #3e3e42;
+}
+main .tag {
+  height: 28px;
+  width: 100%;
+  padding-left: 1vw;
+  font-family: menlo;
+  font-size: 1.15rem;
+  text-align: left;
+  color: #007acc;
+  background-color: #1e1e1e;
+  z-index: 50;
+  border: 1px solid transparent;
+}
+main .tag.hover-effect:hover {
+  cursor: default;
+  border: 1px solid pink;
+  background-color: #1e1e1e;
 }
 main .cta {
   background-color: #1e1e1e;
@@ -431,25 +461,14 @@ main .cta-btn:hover {
   color: #1e1e1e;
   font-weight: bolder;
 }
-main .hover-effect {
-  border-left: 2px solid transparent;
-  border-right: 2px solid grey;
-  transition: all 0.2s;
-}
-main .hover-effect:hover {
-  cursor: pointer;
-  color: #fefefe;
-  border-left: 2px solid deepskyblue;
-  border-right: 2px solid transparent;
-  background-color: #3e3e42;
-}
 main #title {
   grid-row: 1;
   grid-column: 1/3;
   width: 1200px;
   max-width: 1100px;
+  font-family: "hemihead";
   font-size: 1.75rem;
-  color: #fefefe;
+  color: #abaaaa;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -465,7 +484,6 @@ main #title .lower-title {
 main #title .upper-title {
   align-self: flex-start;
   transform: translateX(6vw);
-  animation: translationL 7s infinite alternate ease-in-out;
 }
 @keyframes translationL {
   to {
@@ -475,7 +493,6 @@ main #title .upper-title {
 main #title .lower-title {
   align-self: flex-end;
   transform: translateX(-6vw);
-  animation: translationR 7s infinite alternate ease-in-out;
 }
 @keyframes translationR {
   to {
@@ -495,7 +512,7 @@ main #about {
   grid-column: 1;
   font-family: "courier new", monospace, serif;
   font-size: 1.15rem;
-  color: #fefefe;
+  color: grey;
 }
 main #about .section-container {
   padding-left: 5vw;
@@ -506,8 +523,8 @@ main #about .section-container {
   transition: all 0.2s;
   overflow: scroll;
 }
-main #about .section-container -webkit-scrollbar-thumb {
-  color: red;
+main #about .section-container::after {
+  left: 99.9%;
 }
 main #about .section-container .p-about {
   width: 85%;
@@ -517,17 +534,27 @@ main #about .section-container .p-about {
 main #about .section-container .p-about:nth-child(2) {
   margin-top: -2%;
 }
+main #about .hover-effect:hover {
+  cursor: text;
+}
 main #about .hover-effect:hover::before {
   background-color: grey;
+}
+main #about .tag.hover-effect:hover {
+  cursor: default;
 }
 main #stack {
   grid-row: 3;
   grid-column: 1/3;
   overflow: scroll;
-  width: 99%;
+  width: 98%;
 }
 main #stack .stack-container {
   display: flex;
+}
+main #stack .stack-container::after {
+  left: 99.9%;
+  background-color: #3e3e42;
 }
 main #stack ul {
   list-style-type: none;
@@ -537,16 +564,17 @@ main #stack ul {
 }
 main #stack ul li i {
   font-size: 3rem;
-  color: #fefefe;
+  color: #bcb9b9;
 }
-main #stack .icons-container {
+main #stack .stack-left {
   width: 100%;
   height: 100%;
   padding-left: 5vw;
   align-items: center;
   justify-content: space-evenly;
 }
-main #stack .test-container {
+main #stack .stack-middle,
+main #stack .stack-right {
   height: 100%;
   width: 100%;
   color: white;
@@ -555,8 +583,9 @@ main #stack .test-container {
 main #stack .hover-effect:hover::before {
   background-color: gray;
 }
-main #stack .hover-effect:hover .test-container {
-  border-left: 1px solid grey;
+main #stack .hover-effect:hover .stack-middle,
+main #stack .hover-effect:hover .stack-right {
+  border-left: 1px solid #3e3e42;
 }
 main #stack .hover-effect:hover i {
   background-color: transparent;
@@ -620,7 +649,7 @@ main #projects .projects-wrapper .project {
   justify-content: space-evenly;
   transition: all 200ms;
   position: relative;
-  border: 10px solid pink;
+  z-index: 100;
 }
 main #projects .projects-wrapper .project .fa-expand-alt {
   position: absolute;
@@ -635,35 +664,11 @@ main #projects .projects-wrapper .project .thumbnail {
   flex-direction: column;
   position: relative;
 }
-main #projects .projects-wrapper .project .thumbnail::after {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: 3.1%;
-  height: 195px;
-  width: 325px;
-  opacity: 0.5;
-  border: 1px solid #fefefe;
-}
 main #projects .projects-wrapper .project .thumbnail img {
   height: 190px;
   width: 320px;
   position: relative;
-}
-main #projects .projects-wrapper .project:nth-child(1) .thumbnail::after {
-  border-color: black;
-}
-main #projects .projects-wrapper .project:nth-child(2) .thumbnail::after {
-  border-color: deeppink;
-}
-main #projects .projects-wrapper .project:nth-child(3) .thumbnail::after {
-  border-color: deepskyblue;
-}
-main #projects .projects-wrapper .project:nth-child(4) .thumbnail::after {
-  border-color: #fb4700da;
-}
-main #projects .projects-wrapper .project:nth-child(5) .thumbnail::after {
-  border-color: grey;
+  border: 1px solid #fefefe;
 }
 main #projects .projects-wrapper .project .pitch-container {
   height: 190px;
@@ -673,6 +678,12 @@ main #projects .projects-wrapper .project .pitch-container {
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
+}
+main #projects .projects-wrapper .project .pitch-container .project-title {
+  font-family: "hemihead";
+}
+main #projects .projects-wrapper .project .pitch-container .pitch {
+  font-family: play;
 }
 main #projects .projects-wrapper .project .pitch-container .technologies {
   font-family: "courier new", sans-serif;
@@ -696,12 +707,10 @@ main #projects .projects-wrapper .project .pitch-container .project-links a i {
 main #projects .projects-wrapper .project .pitch-container .project-links a .fa-github-alt {
   font-size: 2rem;
 }
-main #projects .projects-wrapper .hover-effect {
-  border: none;
-}
 main #projects .projects-wrapper .hover-effect:hover {
   color: black;
   background-color: #fefefe;
+  border-left: 2px solid transparent;
 }
 main #projects .projects-wrapper .hover-effect:hover img {
   border: 1px solid lightgrey;
@@ -732,6 +741,9 @@ main #more {
   grid-row: 7;
   grid-column: 1/3;
 }
+main #more .more-container::before, main #more .more-container::after {
+  display: none;
+}
 main #more .more-wrapper {
   height: 100%;
   color: white;
@@ -745,7 +757,8 @@ main #more .more-wrapper {
 }
 
 #contact {
-  height: calc(100vh - 40px - 20px);
+  grid-row: 8;
+  grid-column: 1/3;
 }
 #contact .contact-wrapper {
   height: 100%;
