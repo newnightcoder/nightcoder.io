@@ -240,12 +240,9 @@ nav .link-wrapper .link i:hover {
     opacity: 1;
   }
 }
-#home .home-container .sky-container .circle-container .circle {
-  height: 250px;
-  width: 250px;
-  border-radius: 50%;
-  background: linear-gradient(0deg, yellow 40%, #c42842 70%, red 100%);
-  transform: translateY(calc(30vh / 2));
+#home .home-container .sky-container .circle-container #svg-rainbow {
+  transform: translateY(35%);
+  border: 1px solid yellow;
 }
 @media screen and (min-width: 1300px) {
   #home .home-container .sky-container {

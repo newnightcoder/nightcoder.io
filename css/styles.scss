@@ -307,13 +307,9 @@ nav {
             opacity: 1;
           }
         }
-        .circle {
-          height: 250px;
-          width: 250px;
-          // margin-top: 30vh;
-          border-radius: 50%;
-          background: linear-gradient(0deg, yellow 40%, #c42842 70%, red 100%);
-          transform: translateY(calc(#{$banner-height} / 2));
+        #svg-rainbow {
+          transform: translateY(35%);
+          border: 1px solid yellow;
         }
       }
       @media screen and (min-width: 1300px) {
