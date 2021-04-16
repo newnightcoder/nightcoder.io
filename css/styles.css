@@ -270,9 +270,9 @@ nav .link-wrapper .link i:hover {
 }
 #home header .logo-container #logo {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%);
 }
 #home header .logo-container #logo path {
   stroke: lightgrey;
