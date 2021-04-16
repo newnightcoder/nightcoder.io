@@ -1,3 +1,4 @@
+//to get the path length for each svg letter
 const logo = document.querySelectorAll("#logo path");
 console.log(logo);
 logo.forEach((log, i) => console.log(`${i + 1}: ${log.getTotalLength()}`));
@@ -40,99 +41,96 @@ gsap.to(".arrow", {
 // ////////////////////////////////////////////////////////////////////////////////
 gsap.registerPlugin(ScrollTrigger);
 
+// .to(".logo-container", {
+//   scale: 50,
+// })
+//   .to(".scroll-down", {
+//     autoAlpha: 0,
+//     scale: 0,
+//   })
+
 const tl = gsap.timeline({
   scrollTrigger: {
-    trigger: ".logo-container",
-    start: "top 36%",
-    end: "bottom top",
+    trigger: "#intro",
+    start: "top 90%",
+    end: "bottom bottom",
     scrub: true,
-    // markers: true,
-    id: "logo",
+    id: "intro",
+    markers: true,
   },
 });
-tl.to(".logo-container", {
-  scale: 50,
+// const INTRO = document.querySelectorAll(".intro-div");
+
+tl.from(".upper-title", {
+  x: -800,
 })
-  .to(".scroll-down", {
-    autoAlpha: 0,
-    scale: 0,
-  })
-  .from("#title", {
-    scrollTrigger: {
-      trigger: "#title",
-      start: "top 80%",
-      end: "bottom 80%",
-      scrub: true,
-      // markers: true,
-      id: "title",
-    },
-  })
-  .from(".upper-title", {
-    x: -1000,
-  })
   .from(".lower-title", {
-    x: 1000,
+    x: 800,
   })
+
   .from(".line", {
     x: -1500,
+    scrub: 6,
   })
-  .from("#about", {
+  .from(".gif", {
     scrollTrigger: {
-      trigger: "#about",
-      start: "top 80%",
+      trigger: ".gif",
+      start: "top 90%",
       end: "bottom 80%",
-      scrub: true,
-      // markers: true,
-      id: "about",
-    },
-    x: -1500,
-  })
-  .from("#gif", {
-    scrollTrigger: {
-      trigger: "#gif",
-      start: "top 80%",
-      end: "bottom 80%",
-      delay: 3,
-      // markers: true,
       id: "gif",
+      // markers: true,
     },
     scale: 0,
-    // scrub: 3,
   })
-  .from("#stack", {
-    scrollTrigger: {
-      trigger: "#stack",
-      start: "top 80%",
-      end: "bottom 80%",
-      scrub: true,
-      // markers: true,
-      id: "stack",
-    },
-    x: -1500,
+
+  .from(".about", {
+    x: -1000,
   })
+  .from(".stack", {
+    x: -1000,
+  })
+
+  // INTRO.forEach((div, i) => {
+  //   gsap.from(div, {
+  //     scrollTrigger: {
+  //       trigger: div,
+  //       start: "top 90%",
+  //       end: "bottom 80%",
+  //       scrub: true,
+  //       stagger: 1,
+  //       id: `div${i}`,
+  //       markers: true,
+  //     },
+  //     x: -1200,
+  //   });
+  // });
+
   .from(".cta-download", {
     scrollTrigger: {
       trigger: ".cta-download",
-      start: "top 80%",
+      start: "top bottom",
       end: "bottom 70%",
       scrub: true,
-      // markers: true,
       id: "CTA",
+      // markers: true,
     },
+    // autoAlpha: 0,
+    // y: -100,
     scale: 0,
   });
-
 PROJECTS.forEach((project, i) => {
   gsap.from(project, {
     scrollTrigger: {
       trigger: project,
-      start: "top bottom",
-      end: "bottom bottom",
+      start: "top 90%",
+      end: "bottom 90%",
       scrub: true,
-      // markers: true,
+      // stagger: 0.1,
       id: `project${i}`,
+      // markers: true,
     },
-    y: 300,
+    // y: 200,
+    x: 1300,
     opacity: 0,
   });
 });
@@ -143,11 +141,11 @@ tl.from(".cta-contact", {
     start: "top 80%",
     end: "bottom 70%",
     scrub: true,
-    // markers: true,
     id: "CTA",
+    // markers: true,
   },
   scale: 0,
-  autoAlpha: 0,
+  // autoAlpha: 0,
 })
   .from(".more-container", {
     scrollTrigger: {
@@ -155,8 +153,8 @@ tl.from(".cta-contact", {
       start: "top 80%",
       end: "bottom 70%",
       scrub: true,
-      // markers: true,
       id: "more",
+      // markers: true,
     },
     scale: 0,
   })
@@ -166,8 +164,8 @@ tl.from(".cta-contact", {
       start: "top 33%",
       end: "bottom top",
       scrub: true,
-      // markers: true,
       id: "contactcontactcontact",
+      // markers: true,
     },
     y: 800,
   });
