@@ -236,10 +236,12 @@ nav .link-wrapper .link i:hover {
 #home .home-container .sky-container .circle-container #svg-rainbow {
   position: absolute;
   bottom: -2vh;
+  transform: translateY(100%);
+  animation: rise 3s forwards;
 }
 @keyframes rise {
   to {
-    transform: translateY(0);
+    transform: translateY(5%);
     opacity: 1;
   }
 }

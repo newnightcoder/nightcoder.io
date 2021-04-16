@@ -304,13 +304,13 @@ nav {
         #svg-rainbow {
           position: absolute;
           bottom: -2vh;
-          // transform: translateY(100%);
-          // animation: rise 3s forwards;
+          transform: translateY(100%);
+          animation: rise 3s forwards;
           // border: 1px solid yellow;
 
           @keyframes rise {
             to {
-              transform: translateY(0);
+              transform: translateY(5%);
               opacity: 1;
             }
           }

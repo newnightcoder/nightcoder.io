@@ -108,39 +108,74 @@
           </div>
           <div class="sky-container">
             <div class="circle-container">
-              <svg id="svg-rainbow" width="300" height="150">
+              <svg id="svg-rainbow" width="400" height="200">
                 <linearGradient id="linearColor1">
                   <stop offset="0%" stop-color="yellow"></stop>
-                  <stop offset="100%" stop-color="orangered"></stop>
+                  <stop offset="50%" stop-color="orange"></stop>
+                </linearGradient>
+                <linearGradient id="linearColor11">
+                  <stop offset="50%" stop-color="orange"></stop>
+                  <stop offset="100%" stop-color="yellow"></stop>
                 </linearGradient>
                 <linearGradient id="linearColor2">
-                  <stop offset="0%" stop-color="blueviolet "></stop>
-                  <stop offset="100%" stop-color="tomato"></stop>
+                  <stop offset="0%" stop-color="deeppink"></stop>
+                  <stop offset="50%" stop-color="orangered"></stop>
+                </linearGradient>
+                <linearGradient id="linearColor22">
+                  <stop offset="50%" stop-color="orangered"></stop>
+                  <stop offset="100%" stop-color="deeppink"></stop>
                 </linearGradient>
                 <linearGradient id="linearColor3">
-                  <stop offset="0%" stop-color="deeppink"></stop>
+                  <stop offset="0%" stop-color="orangered"></stop>
                   <stop offset="100%" stop-color="red"></stop>
+                </linearGradient>
+                <linearGradient id="linearColor33">
+                  <stop offset="0%" stop-color="red"></stop>
+                  <stop offset="100%" stop-color="orangered"></stop>
                 </linearGradient>
 
                 <path
                   id="arc"
-                  d="M88, 135 A 20 20, 0, 0 1, 218 135"
+                  d="M135, 190 A 65 65, 0, 0 1, 200 125"
                   stroke="url(#linearColor1)"
-                  stroke-width="20"
+                  stroke-width="30"
                   fill="none"
                 />
                 <path
                   id="arc"
-                  d="M63, 135 A 20 20, 0, 0 1, 243 135"
+                  d="M200, 125 A 65 65, 0, 0 1, 265 190"
+                  stroke="url(#linearColor11)"
+                  stroke-width="30"
+                  fill="none"
+                />
+
+                <path
+                  id="arc"
+                  d="M100, 190 A 100 100 0, 0 1, 200 90"
                   stroke="url(#linearColor2)"
-                  stroke-width="20"
+                  stroke-width="30"
                   fill="none"
                 />
                 <path
                   id="arc"
-                  d="M38, 135 A 20 20, 0, 0 1, 269 135"
+                  d="M200, 90 A 100 100, 0, 0 1, 300 190"
+                  stroke="url(#linearColor22)"
+                  stroke-width="30"
+                  fill="none"
+                />
+
+                <path
+                  id="arc"
+                  d="M65, 190 A 135 135, 0, 0 1, 200 55"
                   stroke="url(#linearColor3)"
-                  stroke-width="20"
+                  stroke-width="30"
+                  fill="none"
+                />
+                <path
+                  id="arc"
+                  d="M200, 55 A 135 135, 0, 0 1, 335 190"
+                  stroke="url(#linearColor33)"
+                  stroke-width="30"
                   fill="none"
                 />
               </svg>
