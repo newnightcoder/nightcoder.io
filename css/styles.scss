@@ -244,10 +244,13 @@ nav {
   height: 100vh;
   width: 100%;
   overflow: hidden;
+  position: relative;
 
   .home-container {
     display: grid;
-    grid-template-rows: minmax(150px, $banner-height) 70vh;
+    grid-template-rows: minmax(150px, $banner-height) calc(
+        100vh - #{$banner-height}
+      );
     @media screen and (min-width: 1300px) {
       width: 80vw;
     }
@@ -294,23 +297,24 @@ nav {
         height: $banner-height;
         min-height: 150px;
         width: 100%;
-        position: fixed;
+        // position: fixed;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-end;
         // transform: translateY(60%);
         // border: 2px solid tomato;
 
         #svg-rainbow {
           position: absolute;
-          bottom: -2vh;
+          // bottom: -2vh;
           transform: translateY(100%);
+          opacity: 0;
           animation: rise 3s forwards;
           // border: 1px solid yellow;
-
           @keyframes rise {
             to {
-              transform: translateY(5%);
+              transform: translateY(10%);
               opacity: 1;
             }
           }
@@ -333,24 +337,27 @@ nav {
     min-height: $banner-height;
     // width: 100%;
     background-color: $editor-background;
-    z-index: 2;
+    z-index: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 50px 0;
     // border: 1px solid yellow;
+    padding: 3vh;
     .logo-container {
-      width: 100%;
-      height: 100%;
-      position: relative;
+      width: 705px;
+      height: 112px;
+      // position: relative;
+      // margin-top: 3vh;
       // z-index: 50;
       // border: 1px solid red;
       #logo {
         position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
+        z-index: 10000;
+        // top: -1vh;
+        // left: 50%;
+        // transform: translateX(-50%) translateY(-50%);
         // border: 1px solid orange;
         path {
           stroke: lightgrey;
@@ -429,34 +436,55 @@ nav {
       }
     }
 
+    .header-text {
+      height: 10%;
+      width: 100%;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 1.5rem;
+      color: grey;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // border: 1px solid red;
+      position: relative;
+      .p-wrapper {
+        // height: auto;
+        // width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        margin: 0 auto;
+        z-index: -10;
+        padding: 12px;
+        border-top: 1px solid blueviolet;
+
+        .p-header {
+          margin-left: 1vh;
+          // border: 1px solid yellow;
+        }
+      }
+    }
+
     //////////////////////////////////
     //              ARROW
     //////////////////////////////////
-    .scroll-down {
+    .arrow-container {
       display: flex;
       flex-direction: column;
-      // font-family: play, serif;
+      align-items: center;
       justify-content: center;
-      width: 100%;
-      margin: 2vh 0 7vh;
 
-      // p {
-      //   line-height: 1rem;
-      //   font-size: 1.25rem;
-      //   color: #cccccc;
-      //   text-align: center;
-      // }
       .arrow {
-        height: min-content;
+        height: 100%;
         width: 100%;
         transform: rotate(90deg);
         font-weight: light;
         font-size: 2.5rem;
         color: dimgray;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        margin: 0 auto;
         // border: 1px solid red;
+        margin-left: 1vh;
       }
     }
   }
@@ -480,7 +508,7 @@ main {
   // padding-bottom: 1em;
   background-color: $editor-background;
   position: relative;
-  // z-index: 10;
+  z-index: 0;
   // border: 3px solid tomato;
 
   //////////////////////////////////
@@ -529,7 +557,7 @@ main {
     width: 100%;
     display: flex;
     justify-content: center;
-    border: 1px solid white;
+    // border: 1px solid white;
   }
 
   .cta-btn {
@@ -572,7 +600,7 @@ main {
     // grid-template-columns: 75% 25%;
     // grid-row-gap: 1em;
     position: relative;
-    border: 4px solid red;
+    // border: 4px solid red;
 
     // div {
     //   border: 2px solid pink;
@@ -591,7 +619,7 @@ main {
       align-items: center;
       justify-content: center;
       margin: 0 auto;
-      border: 1px solid greenyellow;
+      // border: 1px solid greenyellow;
 
       .upper-title,
       .lower-title {
@@ -646,9 +674,9 @@ main {
       font-family: "courier new", monospace, serif;
       font-size: 1.15rem;
       color: grey;
-      width: 100%;
+      width: 70%;
       // height: 100%;
-      border: 1px solid greenyellow;
+      // border: 1px solid greenyellow;
 
       .section-container {
         padding-left: 5vw;
@@ -660,7 +688,7 @@ main {
         // overflow: scroll;
         width: 99.9%;
         height: auto;
-        border: 2px solid red;
+        // border: 2px solid red;
 
         &::after {
           left: 99.9%;
@@ -701,7 +729,7 @@ main {
       grid-column: 1/3;
       // overflow: scroll;
       width: 98%;
-      border: 1px solid greenyellow;
+      // border: 1px solid greenyellow;
       .stack-container {
         height: auto;
 
@@ -792,7 +820,7 @@ main {
     .cta-download {
       grid-row: 4;
       grid-column: 1/3;
-      border: 1px solid greenyellow;
+      // border: 1px solid greenyellow;
     }
 
     //////////////////////////////////
@@ -801,9 +829,9 @@ main {
 
     .gif {
       position: absolute;
-      right: 0;
-      top: 0;
-      margin: 0 auto;
+      left: 76%;
+      top: 27vh;
+      // margin: 0 auto;
       // margin-top: vh;
       border-radius: 50%;
       height: 200px;
@@ -856,11 +884,9 @@ main {
           padding: 0 1vw;
           display: flex;
           flex-direction: column;
-          position: relative;
           img {
             height: 190px;
             width: 320px;
-            position: relative;
             border: 1px solid $white-primary;
           }
         }

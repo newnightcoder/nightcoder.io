@@ -188,10 +188,11 @@ nav .link-wrapper .link i:hover {
   height: 100vh;
   width: 100%;
   overflow: hidden;
+  position: relative;
 }
 #home .home-container {
   display: grid;
-  grid-template-rows: minmax(150px, 30vh) 70vh;
+  grid-template-rows: minmax(150px, 30vh) calc( 100vh - 30vh );
 }
 @media screen and (min-width: 1300px) {
   #home .home-container {
@@ -228,20 +229,20 @@ nav .link-wrapper .link i:hover {
   height: 30vh;
   min-height: 150px;
   width: 100%;
-  position: fixed;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 #home .home-container .sky-container .circle-container #svg-rainbow {
   position: absolute;
-  bottom: -2vh;
   transform: translateY(100%);
+  opacity: 0;
   animation: rise 3s forwards;
 }
 @keyframes rise {
   to {
-    transform: translateY(5%);
+    transform: translateY(10%);
     opacity: 1;
   }
 }
@@ -256,23 +257,21 @@ nav .link-wrapper .link i:hover {
   height: calc(100vh - 30vh);
   min-height: 30vh;
   background-color: #1e1e1e;
-  z-index: 2;
+  z-index: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 50px 0;
+  padding: 3vh;
 }
 #home header .logo-container {
-  width: 100%;
-  height: 100%;
-  position: relative;
+  width: 705px;
+  height: 112px;
 }
 #home header .logo-container #logo {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  z-index: 10000;
 }
 #home header .logo-container #logo path {
   stroke: lightgrey;
@@ -344,23 +343,45 @@ nav .link-wrapper .link i:hover {
     stroke-dashoffset: 0;
   }
 }
-#home header .scroll-down {
+#home header .header-text {
+  height: 10%;
+  width: 100%;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.5rem;
+  color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+#home header .header-text .p-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  margin: 0 auto;
+  z-index: -10;
+  padding: 12px;
+  border-top: 1px solid blueviolet;
+}
+#home header .header-text .p-wrapper .p-header {
+  margin-left: 1vh;
+}
+#home header .arrow-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  width: 100%;
-  margin: 2vh 0 7vh;
 }
-#home header .scroll-down .arrow {
-  height: min-content;
+#home header .arrow-container .arrow {
+  height: 100%;
   width: 100%;
   transform: rotate(90deg);
   font-weight: light;
   font-size: 2.5rem;
   color: dimgray;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: 0 auto;
+  margin-left: 1vh;
 }
 @media screen and (min-width: 1300px) {
   #home {
@@ -375,6 +396,7 @@ main {
   grid-row-gap: 1em;
   background-color: #1e1e1e;
   position: relative;
+  z-index: 0;
 }
 main section {
   display: flex;
@@ -438,7 +460,6 @@ main .cta {
   width: 100%;
   display: flex;
   justify-content: center;
-  border: 1px solid white;
 }
 main .cta-btn {
   height: 30px;
@@ -465,7 +486,6 @@ main #intro {
   grid-column: 1/3;
   align-items: flex-start;
   position: relative;
-  border: 4px solid red;
 }
 main #intro section {
   display: flex;
@@ -507,7 +527,6 @@ main #intro .title {
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  border: 1px solid greenyellow;
 }
 main #intro .title .upper-title,
 main #intro .title .lower-title {
@@ -545,15 +564,13 @@ main #intro .about {
   font-family: "courier new", monospace, serif;
   font-size: 1.15rem;
   color: grey;
-  width: 100%;
-  border: 1px solid greenyellow;
+  width: 70%;
 }
 main #intro .about .section-container {
   padding-left: 5vw;
   transition: all 0.2s;
   width: 99.9%;
   height: auto;
-  border: 2px solid red;
 }
 main #intro .about .section-container::after {
   left: 99.9%;
@@ -575,7 +592,6 @@ main #intro .stack {
   grid-row: 3;
   grid-column: 1/3;
   width: 98%;
-  border: 1px solid greenyellow;
 }
 main #intro .stack .stack-container {
   height: auto;
@@ -640,13 +656,11 @@ main #intro .stack .hover-effect:hover li:nth-child(6) i {
 main #intro .cta-download {
   grid-row: 4;
   grid-column: 1/3;
-  border: 1px solid greenyellow;
 }
 main #intro .gif {
   position: absolute;
-  right: 0;
-  top: 0;
-  margin: 0 auto;
+  left: 76%;
+  top: 27vh;
   border-radius: 50%;
   height: 200px;
   width: 220px;
@@ -691,12 +705,10 @@ main #projects .projects-wrapper .project .thumbnail {
   padding: 0 1vw;
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 main #projects .projects-wrapper .project .thumbnail img {
   height: 190px;
   width: 320px;
-  position: relative;
   border: 1px solid #fefefe;
 }
 main #projects .projects-wrapper .project .pitch-container {

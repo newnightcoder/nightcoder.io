@@ -27,14 +27,13 @@ window.addEventListener("scroll", () => {
   }
 });
 
-gsap.to(".arrow", {
-  duration: 0.6,
-  visibility: "visible",
-  y: 80,
-  repeat: -1,
-  yoyo: true,
-  ease: "power1(3)",
-});
+// gsap.to(".arrow", {
+//   duration: 0.6,
+//   y: 30,
+//   repeat: -1,
+//   yoyo: true,
+//   ease: "power1(3)",
+// });
 // ////////////////////////////////////////////////////////////////////////////////
 //   SCROLLTRIGGER TIMELINE
 // ////////////////////////////////////////////////////////////////////////////////
@@ -97,10 +96,10 @@ tl.from(".upper-title", {
     scale: 0,
   })
   .from(".about", {
-    x: -1000,
+    x: -1300,
   })
   .from(".stack", {
-    x: -1000,
+    x: -1300,
   })
 
   .from(".cta-download", {
@@ -138,7 +137,7 @@ tl.from(".cta-contact", {
     id: "CTA",
     // markers: true,
   },
-  scale: 0,
+  autoAlpha: 0,
 })
   .from(".more-container", {
     scrollTrigger: {
