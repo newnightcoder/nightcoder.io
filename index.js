@@ -21,14 +21,13 @@ window.addEventListener("scroll", () => {
       (navbarLinks.style.transform = "translateY(1.75vh)");
   }
   if (window.scrollY >= window.innerHeight / 0.9) {
-    brand.style.opacity = "1";
+    (brand.style.transform = "translateY(0)"), (brand.style.opacity = "1");
   } else {
-    brand.style.opacity = "0";
+    (brand.style.transform = "translateY(100%)"), (brand.style.opacity = "0");
   }
 });
 
 gsap.to(".arrow", {
-  // delay: 3.4,
   duration: 0.6,
   visibility: "visible",
   y: 80,
@@ -41,14 +40,6 @@ gsap.to(".arrow", {
 // ////////////////////////////////////////////////////////////////////////////////
 gsap.registerPlugin(ScrollTrigger);
 
-// .to(".logo-container", {
-//   scale: 50,
-// })
-//   .to(".scroll-down", {
-//     autoAlpha: 0,
-//     scale: 0,
-//   })
-
 const tl = gsap.timeline({
   scrollTrigger: {
     trigger: "#intro",
@@ -56,10 +47,33 @@ const tl = gsap.timeline({
     end: "bottom bottom",
     scrub: true,
     id: "intro",
-    markers: true,
+    // markers: true,
   },
 });
-// const INTRO = document.querySelectorAll(".intro-div");
+
+gsap.to(".logo-container", {
+  scrollTrigger: {
+    trigger: "#intro",
+    start: "top bottom",
+    // end: "bottom bottom",
+    scrub: true,
+    id: "intro",
+    // markers: true,
+  },
+  scale: 60,
+});
+
+gsap.to(".arrow", {
+  scrollTrigger: {
+    trigger: "#intro",
+    start: "top bottom",
+    end: "top 95%",
+    scrub: true,
+    id: "intro",
+    // markers: true,
+  },
+  scale: 0,
+});
 
 tl.from(".upper-title", {
   x: -800,
@@ -70,7 +84,7 @@ tl.from(".upper-title", {
 
   .from(".line", {
     x: -1500,
-    scrub: 6,
+    // scrub: 4,
   })
   .from(".gif", {
     scrollTrigger: {
@@ -82,28 +96,12 @@ tl.from(".upper-title", {
     },
     scale: 0,
   })
-
   .from(".about", {
     x: -1000,
   })
   .from(".stack", {
     x: -1000,
   })
-
-  // INTRO.forEach((div, i) => {
-  //   gsap.from(div, {
-  //     scrollTrigger: {
-  //       trigger: div,
-  //       start: "top 90%",
-  //       end: "bottom 80%",
-  //       scrub: true,
-  //       stagger: 1,
-  //       id: `div${i}`,
-  //       markers: true,
-  //     },
-  //     x: -1200,
-  //   });
-  // });
 
   .from(".cta-download", {
     scrollTrigger: {
@@ -114,8 +112,6 @@ tl.from(".upper-title", {
       id: "CTA",
       // markers: true,
     },
-    // autoAlpha: 0,
-    // y: -100,
     scale: 0,
   });
 PROJECTS.forEach((project, i) => {
@@ -125,11 +121,9 @@ PROJECTS.forEach((project, i) => {
       start: "top 90%",
       end: "bottom 90%",
       scrub: true,
-      // stagger: 0.1,
       id: `project${i}`,
       // markers: true,
     },
-    // y: 200,
     x: 1300,
     opacity: 0,
   });
@@ -145,7 +139,6 @@ tl.from(".cta-contact", {
     // markers: true,
   },
   scale: 0,
-  // autoAlpha: 0,
 })
   .from(".more-container", {
     scrollTrigger: {

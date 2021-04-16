@@ -43,9 +43,9 @@ $navbar-height: 40px;
 $banner-height: 30vh;
 $border-radius: 5px;
 $intro-height: calc(100vh - #{$navbar-height});
-$title-height: 100px;
-$about-height: 100px;
-$stack-height: 100px;
+$title-height: 300px;
+$about-height: 40vh;
+$stack-height: 30vh;
 $projects-height: calc(200px * 6);
 $more-height: calc(150px + 56px);
 $footer-height: 20px;
@@ -56,7 +56,7 @@ $contact-height: calc(100vh - #{$navbar-height} - #{$footer-height});
     display: flex;
     flex-direction: column;
     align-items: center;
-    // justify-content: space-evenly;
+    justify-content: space-evenly;
     position: relative;
     background-color: $editor-background;
     // border: 2px solid white;
@@ -131,7 +131,7 @@ body {
 
   .body-container {
     @include section;
-    z-index: 5;
+    // z-index: 5;
     background-color: transparent;
     position: relative;
     @media screen and (min-width: 1300px) {
@@ -188,13 +188,15 @@ nav {
   }
 
   .brand-name {
+    font-family: hemihead;
     color: white;
     text-align: center;
     display: flex;
     justify-content: center;
     margin-left: 200px;
     opacity: 0;
-    transition: opacity 200ms;
+    transform: translateY(150%);
+    transition: transform 200ms;
   }
 
   .link-wrapper {
@@ -242,6 +244,7 @@ nav {
   height: 100vh;
   width: 100%;
   overflow: hidden;
+
   .home-container {
     display: grid;
     grid-template-rows: minmax(150px, $banner-height) 70vh;
@@ -272,7 +275,6 @@ nav {
       width: 100vw;
       position: fixed;
       top: 0;
-      z-index: 0;
       background: rgb(30, 30, 30);
       background: linear-gradient(0deg, rgba(30, 30, 30, 1), #062a77 30%);
       background: linear-gradient(
@@ -298,7 +300,6 @@ nav {
         justify-content: center;
         transform: translateY(70%);
         // border: 10px solid tomato;
-        z-index: 0;
         animation: rise 3s forwards;
         @keyframes rise {
           to {
@@ -332,7 +333,7 @@ nav {
     min-height: $banner-height;
     // width: 100%;
     background-color: $editor-background;
-    z-index: 10;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -342,6 +343,8 @@ nav {
     .logo-container {
       width: 705px;
       height: 112px;
+      // position: absolute;
+      // z-index: 50;
       // border: 1px solid red;
       #logo {
         margin: 0;
@@ -473,7 +476,7 @@ main {
   // padding-bottom: 1em;
   background-color: $editor-background;
   position: relative;
-  z-index: 10;
+  // z-index: 10;
   // border: 3px solid tomato;
 
   //////////////////////////////////
@@ -503,7 +506,7 @@ main {
     text-align: left;
     color: $blue-primary;
     background-color: $editor-background;
-    z-index: 50;
+    // z-index: 50;
     border: 1px solid transparent;
   }
 
@@ -557,6 +560,9 @@ main {
   #intro {
     grid-row: 1;
     grid-column: 1/3;
+    @include section;
+    align-items: flex-start;
+    // justify-content: flex-end;
     // display: grid;
     // grid-template-rows: $title-height $about-height $stack-height 30px;
     // grid-template-columns: 75% 25%;
@@ -569,10 +575,10 @@ main {
     // }
 
     .title {
-      grid-row: 1;
-      grid-column: 1;
-      height: 100%;
-      width: 100%;
+      // grid-row: 1;
+      // grid-column: 1;
+      // height: auto;
+      width: 60%;
       font-family: $font-primary;
       font-size: 1.75rem;
       color: rgb(171, 170, 170);
@@ -636,7 +642,7 @@ main {
       font-family: "courier new", monospace, serif;
       font-size: 1.15rem;
       color: grey;
-      // width: 100%;
+      width: 100%;
       // height: 100%;
       border: 1px solid greenyellow;
 
@@ -649,7 +655,7 @@ main {
         transition: all 0.2s;
         // overflow: scroll;
         width: 99.9%;
-        // height: 100%;
+        height: auto;
         border: 2px solid red;
 
         &::after {
@@ -690,10 +696,11 @@ main {
       grid-row: 3;
       grid-column: 1/3;
       // overflow: scroll;
-      // width: 98%;
-      height: 100%;
+      width: 98%;
       border: 1px solid greenyellow;
       .stack-container {
+        height: auto;
+
         display: flex;
         align-self: center;
         justify-content: center;
@@ -832,7 +839,7 @@ main {
         justify-content: space-evenly;
         transition: all 200ms;
         position: relative;
-        z-index: 100;
+        // z-index: 100;
         // border: 10px solid pink;
         .fa-expand-alt {
           position: absolute;
