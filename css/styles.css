@@ -232,17 +232,16 @@ nav .link-wrapper .link i:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 10px solid tomato;
+}
+#home .home-container .sky-container .circle-container #svg-rainbow {
+  position: absolute;
+  bottom: -2vh;
 }
 @keyframes rise {
   to {
     transform: translateY(0);
     opacity: 1;
   }
-}
-#home .home-container .sky-container .circle-container #svg-rainbow {
-  transform: translateY(35%);
-  border: 1px solid yellow;
 }
 @media screen and (min-width: 1300px) {
   #home .home-container .sky-container {

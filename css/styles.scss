@@ -299,17 +299,21 @@ nav {
         align-items: center;
         justify-content: center;
         // transform: translateY(60%);
-        border: 10px solid tomato;
-        // animation: rise 3s forwards;
-        @keyframes rise {
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
+        // border: 2px solid tomato;
+
         #svg-rainbow {
-          transform: translateY(35%);
-          border: 1px solid yellow;
+          position: absolute;
+          bottom: -2vh;
+          // transform: translateY(100%);
+          // animation: rise 3s forwards;
+          // border: 1px solid yellow;
+
+          @keyframes rise {
+            to {
+              transform: translateY(0);
+              opacity: 1;
+            }
+          }
         }
       }
       @media screen and (min-width: 1300px) {
