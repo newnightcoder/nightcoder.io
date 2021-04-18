@@ -62,6 +62,7 @@ const init = async () => {
     })
     .to(".arrow", {
       opacity: 1,
+      delay: 0.5,
     })
     .to(".arrow", {
       duration: 0.5,
@@ -91,7 +92,7 @@ const init = async () => {
       start: "top bottom",
       scrub: true,
     },
-    scale: 17,
+    // scale: 17,
     autoAlpha: 0,
   })
     .to(".header-line", {
@@ -125,16 +126,16 @@ const init = async () => {
       scale: 0,
     });
 
-  tl.from(".upper-title", {
-    x: -800,
-  })
-    .from(".lower-title", {
-      x: 800,
-    })
+  // tl.from(".upper-title", {
+  //   x: -800,
+  // })
+  //   .from(".lower-title", {
+  //     x: 800,
+  //   })
 
-    .from(".line", {
-      x: -1500,
-    })
+  tl.from(".line", {
+    x: -1500,
+  })
     .from(".gif", {
       scrollTrigger: {
         trigger: ".gif",
@@ -145,12 +146,12 @@ const init = async () => {
       },
       scale: 0,
     })
-    .from(".about", {
-      x: -1300,
-    })
-    .from(".stack", {
-      x: -1300,
-    })
+    // .from(".about", {
+    //   x: -1300,
+    // })
+    // .from(".stack", {
+    //   x: -1300,
+    // })
 
     .from(".cta-download", {
       scrollTrigger: {
@@ -164,18 +165,18 @@ const init = async () => {
       autoAlpha: 0,
     });
 
-  PROJECTS.forEach((project, i) => {
-    gsap.from(project, {
-      scrollTrigger: {
-        trigger: project,
-        start: "top 90%",
-        end: "bottom 90%",
-        scrub: true,
-      },
-      x: 1300,
-      opacity: 0,
-    });
-  });
+  // PROJECTS.forEach((project, i) => {
+  //   gsap.from(project, {
+  //     scrollTrigger: {
+  //       trigger: project,
+  //       start: "top 90%",
+  //       end: "bottom 90%",
+  //       scrub: true,
+  //     },
+  //     x: 1300,
+  //     opacity: 0,
+  //   });
+  // });
 
   tl.from(".cta-contact", {
     scrollTrigger: {
@@ -345,5 +346,5 @@ const init = async () => {
       draw();
     }
   }
-  loop();
+  // loop();
 };
