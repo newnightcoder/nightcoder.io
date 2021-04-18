@@ -76,6 +76,7 @@
   </head>
   <body>
     <div class="loader-container"><div class="loader"></div></div>
+
     <nav>
       <div class="flags-container">
         <div class="flag flag-en">en</div>
@@ -424,14 +425,16 @@
                       target="_blank"
                       rel="noopener noreferrer"
                       ><i class="fab fa-github-alt"></i
-                    ></a>
+                      ><span class="project-github active">github</span></a
+                    >
                     <a
                       class="hover-effect"
                       href="#"
                       target="_blank"
                       rel="noopener noreferrer"
                       ><i class="fas fa-external-link-alt"></i
-                    ></a>
+                      ><span class="project-live active">live</span></a
+                    >
                   </div>
                 </div>
               </li>
@@ -458,14 +461,16 @@
                       target="_blank"
                       rel="noopener noreferrer"
                       ><i class="fab fa-github-alt"></i
-                    ></a>
+                      ><span class="project-github active">github</span></a
+                    >
                     <a
                       class="hover-effect"
                       href="#"
                       target="_blank"
                       rel="noopener noreferrer"
                       ><i class="fas fa-external-link-alt"></i
-                    ></a>
+                      ><span class="project-live inactive">live</span></a
+                    >
                   </div>
                 </div>
               </li>
@@ -490,14 +495,16 @@
                       target="_blank"
                       rel="noopener noreferrer"
                       ><i class="fab fa-github-alt"></i
-                    ></a>
+                      ><span class="project-github active">github</span></a
+                    >
                     <a
                       class="hover-effect"
                       href="#"
                       target="_blank"
                       rel="noopener noreferrer"
                       ><i class="fas fa-external-link-alt"></i
-                    ></a>
+                      ><span class="project-live active">live</span></a
+                    >
                   </div>
                 </div>
               </li>
@@ -528,14 +535,16 @@
                       target="_blank"
                       rel="noopener noreferrer"
                       ><i class="fab fa-github-alt"></i
-                    ></a>
+                      ><span class="project-github active">github</span></a
+                    >
                     <a
                       class="hover-effect"
                       href="#"
                       target="_blank"
                       rel="noopener noreferrer"
                       ><i class="fas fa-external-link-alt"></i
-                    ></a>
+                      ><span class="project-live inactive">live</span></a
+                    >
                   </div>
                 </div>
               </li>
@@ -559,14 +568,16 @@
                       target="_blank"
                       rel="noopener noreferrer"
                       ><i class="fab fa-github-alt"></i
-                    ></a>
+                      ><span class="project-github inactive">github</span></a
+                    >
                     <a
                       class="hover-effect"
                       href="#"
                       target="_blank"
                       rel="noopener noreferrer"
                       ><i class="fas fa-external-link-alt"></i
-                    ></a>
+                      ><span class="project-live inactive">live</span></a
+                    >
                   </div>
                 </div>
               </li>
@@ -574,13 +585,16 @@
           </div>
           <h4 class="tag tag-projects hover-effect">&lt;&sol;projects&gt;</h4>
         </section>
+
         <div class="cta cta-contact">
           <button class="cta-btn">contact&nbsp;me</button>
         </div>
         <section id="more">
           <h4 class="tag tag-more hover-effect">&lt;more&gt;</h4>
           <div class="section-container more-container">
-            <div class="more-wrapper">starfield.</div>
+            <div class="more-wrapper">
+              <canvas id="canvas" height="150" width="1250"></canvas>
+            </div>
           </div>
           <h4 class="tag tag-more hover-effect">&lt;&sol;more&gt;</h4>
         </section>
@@ -598,6 +612,9 @@
       <p>made by Daniel Julien aka nightcoder</p>
       <p>&copy; 2021&nbsp;&minus;&nbsp;all&nbsp;rights&nbsp;reserved&period;</p>
     </footer>
-    <div class="project-enlarged"></div>
+    <div class="fullpage">
+      <div class="expand-container"></div>
+      <i class="fas fa-times"></i>
+    </div>
   </body>
 </html>

@@ -6,9 +6,19 @@ const loading = () => {
 
 document.addEventListener("DOMContentLoaded", (e) => {
   loading();
-
   init();
 });
+
+//to get the path length for each svg letter
+const logo = document.querySelectorAll("#logo path");
+console.log(logo);
+logo.forEach((log, i) => console.log(`${i + 1}: ${log.getTotalLength()}`));
+
+const navbar = document.querySelector("nav");
+const navbarLinks = document.querySelector(".link-wrapper");
+const flags = document.querySelector(".flags-container");
+const brand = document.querySelector(".brand-name");
+const PROJECTS = document.querySelectorAll(".project");
 
 const init = async () => {
   await loading();
@@ -36,7 +46,6 @@ const init = async () => {
 
   gsap
     .timeline()
-
     .to(".p-stagger", {
       duration: 1,
       delay: 2,
@@ -73,35 +82,48 @@ const init = async () => {
       start: "top 90%",
       end: "bottom bottom",
       scrub: true,
-      id: "intro",
-      // markers: true,
     },
   });
 
-  gsap.to(".logo-container", {
+  tl.to(".logo-container", {
     scrollTrigger: {
       trigger: "#intro",
       start: "top bottom",
-      // end: "bottom bottom",
       scrub: true,
-      id: "intro",
-      // markers: true,
     },
-    scale: 40,
+    scale: 17,
     autoAlpha: 0,
-  });
-
-  gsap.to(".arrow", {
-    scrollTrigger: {
-      trigger: "#intro",
-      start: "top bottom",
-      end: "top 95%",
-      scrub: true,
-      id: "intro",
-      // markers: true,
-    },
-    scale: 0,
-  });
+  })
+    .to(".header-line", {
+      scrollTrigger: {
+        trigger: "#intro",
+        start: "top bottom",
+        end: "top 80%",
+        scrub: true,
+      },
+      scale: 0,
+    })
+    .to(".p-stagger", {
+      scrollTrigger: {
+        trigger: "#intro",
+        start: "top 95%",
+        end: "top 90%",
+        scrub: true,
+      },
+      scale: 0,
+      stagger: 0.2,
+    })
+    .to(".arrow", {
+      scrollTrigger: {
+        trigger: "#intro",
+        start: "top bottom",
+        end: "top 95%",
+        scrub: true,
+        id: "intro",
+        // markers: true,
+      },
+      scale: 0,
+    });
 
   tl.from(".upper-title", {
     x: -800,
@@ -112,7 +134,6 @@ const init = async () => {
 
     .from(".line", {
       x: -1500,
-      // scrub: 4,
     })
     .from(".gif", {
       scrollTrigger: {
@@ -142,7 +163,7 @@ const init = async () => {
       },
       autoAlpha: 0,
     });
-  const PROJECTS = document.querySelectorAll(".project");
+
   PROJECTS.forEach((project, i) => {
     gsap.from(project, {
       scrollTrigger: {
@@ -150,8 +171,6 @@ const init = async () => {
         start: "top 90%",
         end: "bottom 90%",
         scrub: true,
-        id: `project${i}`,
-        // markers: true,
       },
       x: 1300,
       opacity: 0,
@@ -164,8 +183,6 @@ const init = async () => {
       start: "top 80%",
       end: "bottom 70%",
       scrub: true,
-      id: "CTA",
-      // markers: true,
     },
     autoAlpha: 0,
   })
@@ -175,8 +192,6 @@ const init = async () => {
         start: "top 80%",
         end: "bottom 70%",
         scrub: true,
-        id: "more",
-        // markers: true,
       },
       scale: 0,
     })
@@ -186,57 +201,149 @@ const init = async () => {
         start: "top 33%",
         end: "bottom top",
         scrub: true,
-        id: "contactcontactcontact",
-        // markers: true,
       },
       y: 800,
     });
 
+  // ////////////////////////////////////////////////////////////////////////////////
+  //   EXPAND ANIMATION
+  // ////////////////////////////////////////////////////////////////////////////////
+  const fullpage = document.querySelector(".fullpage");
+  const expandedProject = document.querySelector(".expand-container");
+
+  PROJECTS.forEach((project) => {
+    project.children[0].addEventListener("click", () => {
+      animateTransition(project);
+      displayContent(project);
+    });
+  });
+
   const animateTransition = (project) => {
-    // console.log(project);
     let clone = project.cloneNode();
     clone.classList.add("clone");
-    project.appendChild(clone);
+    document.body.appendChild(clone);
+    console.log(clone);
 
     const finish = () => {
       gsap.set(clone, {
         opacity: 0,
       });
+      document.body.removeChild(clone);
     };
     gsap.to(clone, {
       width: "100vw",
       height: "100vh",
       onComplete: finish,
     });
+    gsap.set(fullpage, {
+      visibility: "visible",
+    });
 
     setTimeout(() => {
-      project.removeChild(clone);
-      body.style.overflow = "hidden";
-    }, 1000);
+      document.body.style.overflow = "hidden";
+    }, 100);
   };
 
-  PROJECTS.forEach((project) => {
-    project.addEventListener("click", () => {
-      animateTransition(project);
-    });
-  });
-
-  const fullpage = document.querySelector(".project-enlarged");
   fullpage.addEventListener("click", () => {
-    fullpage.style.display = "none";
+    fullpage.style.visibility = "hidden";
+    document.body.style.overflowY = "scroll";
   });
+
+  const displayContent = (project) => {
+    if (project.classList.contains("project-1")) {
+      expandedProject.innerHTML = `project 1`;
+    }
+    if (project.classList.contains("project-2")) {
+      expandedProject.innerHTML = `project 2`;
+    }
+    if (project.classList.contains("project-3")) {
+      expandedProject.innerHTML = `project 3`;
+    }
+    if (project.classList.contains("project-4")) {
+      expandedProject.innerHTML = `project 4`;
+    }
+    if (project.classList.contains("project-5")) {
+      expandedProject.innerHTML = `project 5`;
+    }
+  };
+  //------------------------------------------------------------------------------
+  //                      THE STARZ
+  //------------------------------------------------------------------------------
+  const canvas = document.querySelector("#canvas");
+  const context = canvas.getContext("2d");
+  const canvasWidth = 1250;
+  const canvasHeight = 150;
+  const focalLength = canvasWidth;
+  const centerX = canvasWidth / 2;
+  const centerY = canvasHeight / 2;
+
+  function Star() {
+    (this.x = Math.random() * canvasWidth),
+      (this.y = Math.random() * canvasHeight),
+      (this.z = Math.random() * canvasWidth),
+      (this.size = 0.75),
+      (this.speed = 3),
+      (this.display = function () {
+        let x, y, r;
+        x = (this.x - centerX) * (focalLength / this.z);
+        x += centerX;
+        y = (this.y - centerY) * (focalLength / this.z);
+        y += centerY;
+        r = this.size * (focalLength / this.z);
+
+        context.beginPath();
+        // context.arc(x, y, r, 0, 2 * Math.PI);
+        context.rect(x, y, 2, 2);
+        context.fillStyle = "white";
+        context.fill();
+      }),
+      (this.fly = function () {
+        this.z = this.z - this.speed;
+        if (this.z <= 0) {
+          this.z = canvasWidth;
+        }
+      });
+  }
+
+  const stars = new Array(1000);
+  for (let i = 0; i < stars.length; i++) {
+    stars[i] = new Star();
+  }
+
+  //DRAWING THE STARZ
+  function draw() {
+    context.fillStyle = "rgb(30 30 30)";
+    context.fillRect(0, 0, canvasWidth, canvasHeight);
+    for (let i = 0; i < stars.length; i++) {
+      stars[i].display();
+      stars[i].fly();
+    }
+  }
+
+  //PAUSE
+  let paused = false;
+
+  function pauseKey(event) {
+    if (event.keyCode === 32) {
+      paused = !paused;
+      paused === true ? draw() : loop();
+    }
+  }
+  function pauseClick() {
+    paused = !paused;
+    paused === true ? draw() : loop();
+  }
+  canvas.addEventListener("click", pauseClick);
+  window.addEventListener("keydown", pauseKey);
+
+  //LOOP
+  function loop() {
+    if (paused === true) return;
+    else {
+      requestAnimationFrame(loop);
+      context.clearRect(0, 0, canvasWidth, canvasHeight);
+      draw();
+    }
+  }
+  loop();
 };
-
-//to get the path length for each svg letter
-const logo = document.querySelectorAll("#logo path");
-console.log(logo);
-logo.forEach((log, i) => console.log(`${i + 1}: ${log.getTotalLength()}`));
-
-const navbar = document.querySelector("nav");
-const navbarLinks = document.querySelector(".link-wrapper");
-const flags = document.querySelector(".flags-container");
-const brand = document.querySelector(".brand-name");
-
-// if (document.querySelector(".project-enlarged").style.display !== "none") {
-//   document.body.style.overflow = "hidden";
-// } else null;

@@ -109,17 +109,32 @@ body .body-container section .section-container::after {
   }
 }
 
-.project-enlarged {
-  display: none;
-  height: calc(100vh - 40px);
+.fullpage {
+  background-color: rgba(128, 128, 128, 0.739);
+  position: fixed;
   height: 100vh;
   width: 100vw;
-  background-color: deepskyblue;
-  position: fixed;
   top: 0;
   left: 0;
-  z-index: 900;
-  overflow: hidden;
+  z-index: 1000;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fullpage .expand-container {
+  position: absolute;
+  height: 80%;
+  width: 70%;
+  z-index: 1001;
+  color: black;
+  background-color: #fefefe;
+}
+.fullpage .fa-times {
+  font-size: 3rem;
+  color: #fefefe;
+  position: absolute;
+  right: -30px;
 }
 
 nav {
@@ -128,7 +143,7 @@ nav {
   height: 40px;
   min-height: 40px;
   width: 100vw;
-  z-index: 60;
+  z-index: 160;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -244,7 +259,7 @@ nav .link-wrapper .link i:hover {
 }
 #home .home-container .sky-container .circle-container #svg-rainbow {
   position: absolute;
-  transform: translateY(100vh);
+  transform: translateY(100%);
   opacity: 0;
   animation: rise 3s forwards;
 }
@@ -272,6 +287,10 @@ nav .link-wrapper .link i:hover {
   justify-content: space-between;
   padding: 50px 0;
   padding: 3vh;
+}
+#home header .logo-container {
+  font-weight: bold;
+  color: grey;
 }
 #home header .logo-container #logo path {
   stroke: lightgrey;
@@ -346,7 +365,7 @@ nav .link-wrapper .link i:hover {
 #home header .header-text {
   height: 20%;
   width: 100%;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "courier new", Courier, monospace;
   font-size: 1.5rem;
   color: grey;
   display: flex;
@@ -357,8 +376,8 @@ nav .link-wrapper .link i:hover {
 }
 #home header .header-text .header-line {
   height: 1px;
-  width: 40%;
-  margin-bottom: -0.25rem;
+  width: 36%;
+  margin-bottom: -0.6rem;
   background-color: blueviolet;
   opacity: 0;
 }
@@ -374,7 +393,8 @@ nav .link-wrapper .link i:hover {
   padding: 12px;
 }
 #home header .header-text .p-wrapper .p-header {
-  margin-left: 1vh;
+  font-size: 1.3rem;
+  margin: 0 1vh;
   opacity: 0;
 }
 #home header .header-text .p-wrapper span {
@@ -416,7 +436,7 @@ main {
   grid-row-gap: 1em;
   background-color: #1e1e1e;
   position: relative;
-  z-index: 9;
+  z-index: 10;
 }
 main section {
   display: flex;
@@ -737,6 +757,10 @@ main #projects .projects-wrapper .project .fa-expand-alt {
   top: 2vh;
   font-size: 1.5rem;
   color: #3e3e42;
+  transition: transform 200ms;
+}
+main #projects .projects-wrapper .project .fa-expand-alt:hover {
+  transform: scale(1.1);
 }
 main #projects .projects-wrapper .project .thumbnail {
   padding: 0 1vw;
@@ -780,10 +804,22 @@ main #projects .projects-wrapper .project .pitch-container .project-links a {
 }
 main #projects .projects-wrapper .project .pitch-container .project-links a i {
   text-decoration: none;
-  font-size: 1.5rem;
-}
-main #projects .projects-wrapper .project .pitch-container .project-links a .fa-github-alt {
   font-size: 2rem;
+}
+main #projects .projects-wrapper .project .pitch-container .project-links a .project-live,
+main #projects .projects-wrapper .project .pitch-container .project-links a .project-github {
+  position: absolute;
+  bottom: 2px;
+  transform: translateX(-130%);
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+main #projects .projects-wrapper .project .pitch-container .project-links a .project-github {
+  transform: translateX(-85%);
+}
+main #projects .projects-wrapper .project .pitch-container .project-links a .inactive {
+  color: gray;
+  text-decoration: none;
 }
 main #projects .projects-wrapper .project .clone {
   background-color: #f48771;
@@ -830,13 +866,17 @@ main #more .more-container::before, main #more .more-container::after {
 main #more .more-wrapper {
   height: 100%;
   color: white;
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid #d4d4d4;
+}
+main #more .more-wrapper #canvas {
+  border: 1px solid grey;
+}
+main #more .more-wrapper #canvas:hover {
+  cursor: pointer;
+  border: 1px solid #fefefe;
 }
 
 #contact {
