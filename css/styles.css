@@ -32,8 +32,6 @@
 
 html {
   font-size: 16px;
-  height: 100%;
-  width: 100%;
 }
 
 body {
@@ -41,24 +39,6 @@ body {
   width: 100vw;
   background-color: #1e1e1e;
   overflow-x: hidden;
-}
-body .courier-new {
-  font-family: "courier-new";
-}
-body .menlo {
-  font-family: "menlo";
-}
-body .play {
-  font-family: "play";
-}
-body .proto {
-  font-family: "proto";
-}
-body .hemihead {
-  font-family: "hemihead";
-}
-body .monaco {
-  font-family: "monaco";
 }
 body .body-container {
   background-color: transparent;
@@ -98,6 +78,48 @@ body .body-container section .section-container::after {
   body .body-container {
     padding: 0 10vw;
   }
+}
+
+.loader-container {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loader-container .loader {
+  height: 300px;
+  width: 300px;
+  border-top: 2px solid blueviolet;
+  border-right: 2px solid #ad2ae90c;
+  border-bottom: 2px solid #ad2ae90c;
+  border-left: 2px solid blueviolet;
+  border-radius: 50%;
+  animation: border 1s infinite ease-in-out;
+}
+@keyframes border {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.project-enlarged {
+  display: none;
+  height: calc(100vh - 40px);
+  height: 100vh;
+  width: 100vw;
+  background-color: deepskyblue;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  overflow: hidden;
 }
 
 nav {
@@ -184,40 +206,25 @@ nav .link-wrapper .link i:hover {
   cursor: pointer;
 }
 
-#home {
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
 #home .home-container {
+  width: 100vw;
   display: grid;
   grid-template-rows: minmax(150px, 30vh) calc( 100vh - 30vh );
+  position: relative;
 }
 @media screen and (min-width: 1300px) {
   #home .home-container {
     width: 80vw;
   }
 }
-#home .home-container .stars-container {
-  grid-row: 1;
-  height: 30vh;
-  width: 100vw;
-}
-@media screen and (min-width: 1300px) {
-  #home .home-container .stars-container {
-    width: 80vw;
-  }
-}
 #home .home-container .sky-container {
+  position: fixed;
   height: 30vh;
   width: 100vw;
-  position: fixed;
-  top: 0;
   background: #1e1e1e;
-  background: linear-gradient(0deg, #1e1e1e, #062a77 30%);
   background: linear-gradient(0deg, #17338a 0%, #1e1e1e 100%);
   opacity: 0;
+  z-index: 5;
   animation: lightup 3s forwards;
 }
 @keyframes lightup {
@@ -228,15 +235,16 @@ nav .link-wrapper .link i:hover {
 #home .home-container .sky-container .circle-container {
   height: 30vh;
   min-height: 150px;
-  width: 100%;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  position: relative;
 }
 #home .home-container .sky-container .circle-container #svg-rainbow {
   position: absolute;
-  transform: translateY(100%);
+  transform: translateY(100vh);
   opacity: 0;
   animation: rise 3s forwards;
 }
@@ -257,21 +265,13 @@ nav .link-wrapper .link i:hover {
   height: calc(100vh - 30vh);
   min-height: 30vh;
   background-color: #1e1e1e;
-  z-index: 0;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 50px 0;
   padding: 3vh;
-}
-#home header .logo-container {
-  width: 705px;
-  height: 112px;
-}
-#home header .logo-container #logo {
-  position: absolute;
-  z-index: 10000;
 }
 #home header .logo-container #logo path {
   stroke: lightgrey;
@@ -344,44 +344,64 @@ nav .link-wrapper .link i:hover {
   }
 }
 #home header .header-text {
-  height: 10%;
+  height: 20%;
   width: 100%;
   font-family: "Courier New", Courier, monospace;
   font-size: 1.5rem;
   color: grey;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
+}
+#home header .header-text .header-line {
+  height: 1px;
+  width: 40%;
+  margin-bottom: -0.25rem;
+  background-color: blueviolet;
+  opacity: 0;
+}
+@media screen and (min-width: 1300px) {
+  #home header .header-text .header-line {
+    width: 44%;
+  }
 }
 #home header .header-text .p-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  margin: 0 auto;
-  z-index: -10;
   padding: 12px;
-  border-top: 1px solid blueviolet;
 }
 #home header .header-text .p-wrapper .p-header {
   margin-left: 1vh;
+  opacity: 0;
+}
+#home header .header-text .p-wrapper span {
+  opacity: 0;
 }
 #home header .arrow-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transform: translateY(-100%);
 }
 #home header .arrow-container .arrow {
   height: 100%;
   width: 100%;
   transform: rotate(90deg);
+  font-family: "Courier New", Courier, monospace;
   font-weight: light;
   font-size: 2.5rem;
   color: dimgray;
-  margin: 0 auto;
-  margin-left: 1vh;
+  margin: 20px 0 0 1vh;
+  opacity: 0;
+}
+@media screen and (min-width: 1300px) {
+  #home header .arrow-container .arrow {
+    font-size: 4.5rem;
+  }
 }
 @media screen and (min-width: 1300px) {
   #home {
@@ -396,7 +416,7 @@ main {
   grid-row-gap: 1em;
   background-color: #1e1e1e;
   position: relative;
-  z-index: 0;
+  z-index: 9;
 }
 main section {
   display: flex;
@@ -447,6 +467,7 @@ main .tag {
   text-align: left;
   color: #007acc;
   background-color: #1e1e1e;
+  z-index: 50;
   border: 1px solid transparent;
 }
 main .tag.hover-effect:hover {
@@ -469,23 +490,28 @@ main .cta-btn {
   font-weight: light;
   background-color: #1e1e1e;
   outline: none;
-  color: aqua;
+  background-color: aqua;
+  color: #1e1e1e;
   border: 0.15em solid aqua;
   border-radius: 5px;
   transition: background-color 0.2s;
 }
 main .cta-btn:hover {
   cursor: pointer;
-  background-color: aqua;
   border-color: aqua;
-  color: #1e1e1e;
-  font-weight: bolder;
+  color: aqua;
+  background-color: #1e1e1e;
 }
 main #intro {
   grid-row: 1;
   grid-column: 1/3;
   align-items: flex-start;
   position: relative;
+  display: grid;
+  grid-template-rows: 1fr 40vh max-content min-content;
+  grid-template-columns: 75% 25%;
+  grid-row-gap: 1em;
+  align-items: center;
 }
 main #intro section {
   display: flex;
@@ -518,7 +544,8 @@ main #intro section .section-container::after {
   background-color: #3e3e42;
 }
 main #intro .title {
-  width: 60%;
+  grid-row: 1;
+  grid-column: 1;
   font-family: "hemihead";
   font-size: 1.75rem;
   color: #abaaaa;
@@ -526,7 +553,6 @@ main #intro .title {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
 }
 main #intro .title .upper-title,
 main #intro .title .lower-title {
@@ -561,16 +587,20 @@ main #intro .title:hover .line {
   background: linear-gradient(to right, #57d5ff 0%, #0037ad 100%);
 }
 main #intro .about {
+  grid-row: 2;
+  grid-column: 1;
   font-family: "courier new", monospace, serif;
   font-size: 1.15rem;
   color: grey;
-  width: 70%;
 }
 main #intro .about .section-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   padding-left: 5vw;
   transition: all 0.2s;
   width: 99.9%;
-  height: auto;
+  height: 30vh;
 }
 main #intro .about .section-container::after {
   left: 99.9%;
@@ -594,7 +624,7 @@ main #intro .stack {
   width: 98%;
 }
 main #intro .stack .stack-container {
-  height: auto;
+  height: 15vh;
   display: flex;
   align-self: center;
   justify-content: center;
@@ -671,6 +701,12 @@ main #intro .gif .facegif {
   border-radius: 50%;
   border: 1px solid blueviolet;
 }
+@media screen and (min-width: 1300px) {
+  main #intro .gif {
+    left: 78%;
+    top: 30vh;
+  }
+}
 main #projects {
   grid-row: 2;
   grid-column: 1/3;
@@ -682,6 +718,7 @@ main #projects .projects-wrapper {
   align-items: center;
   justify-content: space-evenly;
   list-style-type: none;
+  position: relative;
 }
 main #projects .projects-wrapper .project {
   height: 210px;
@@ -747,6 +784,11 @@ main #projects .projects-wrapper .project .pitch-container .project-links a i {
 }
 main #projects .projects-wrapper .project .pitch-container .project-links a .fa-github-alt {
   font-size: 2rem;
+}
+main #projects .projects-wrapper .project .clone {
+  background-color: #f48771;
+  position: absolute;
+  z-index: 100;
 }
 main #projects .projects-wrapper .hover-effect:hover {
   color: black;

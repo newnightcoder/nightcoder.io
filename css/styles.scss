@@ -100,44 +100,65 @@ $contact-height: calc(100vh - #{$navbar-height} - #{$footer-height});
 
 html {
   font-size: 16px;
-  height: 100%;
-  width: 100%;
 }
 
 body {
   height: 100vh;
   width: 100vw;
   background-color: $editor-background;
-  // font-family: $font-primary;
   overflow-x: hidden;
-  .courier-new {
-    font-family: "courier-new";
-  }
-  .menlo {
-    font-family: "menlo";
-  }
-  .play {
-    font-family: "play";
-  }
-  .proto {
-    font-family: "proto";
-  }
-  .hemihead {
-    font-family: "hemihead";
-  }
-  .monaco {
-    font-family: "monaco";
-  }
 
   .body-container {
     @include section;
-    // z-index: 5;
     background-color: transparent;
     position: relative;
     @media screen and (min-width: 1300px) {
       padding: 0 10vw;
     }
   }
+}
+
+.loader-container {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .loader {
+    height: 300px;
+    width: 300px;
+    border-top: 2px solid blueviolet;
+    border-right: 2px solid #ad2ae90c;
+    border-bottom: 2px solid #ad2ae90c;
+    border-left: 2px solid blueviolet;
+    border-radius: 50%;
+
+    animation: border 1s infinite ease-in-out;
+    @keyframes border {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
+
+.project-enlarged {
+  display: none;
+  height: calc(100vh - #{$navbar-height});
+  height: 100vh;
+  width: 100vw;
+  background-color: deepskyblue;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  overflow: hidden;
 }
 
 //////////////////////////////////
@@ -241,51 +262,40 @@ nav {
 //////////////////////////////////
 
 #home {
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-
   .home-container {
+    width: 100vw;
     display: grid;
     grid-template-rows: minmax(150px, $banner-height) calc(
         100vh - #{$banner-height}
       );
+    position: relative;
+
     @media screen and (min-width: 1300px) {
       width: 80vw;
     }
-    // border: 10px solid green;
+    // border: 10px solid red;
 
     //////////////////////////////////
     //      STARS
     //////////////////////////////////
-    .stars-container {
-      grid-row: 1;
-      height: $banner-height;
-      width: 100vw;
-      // border: 5px solid blue;
-      @media screen and (min-width: 1300px) {
-        width: 80vw;
-      }
-    }
 
     //////////////////////////////////
     //      RAINBOW SUN
     //////////////////////////////////
 
     .sky-container {
+      position: fixed;
       height: $banner-height;
       width: 100vw;
-      position: fixed;
-      top: 0;
       background: rgb(30, 30, 30);
-      background: linear-gradient(0deg, rgba(30, 30, 30, 1), #062a77 30%);
       background: linear-gradient(
         0deg,
         rgba(23, 51, 138, 1) 0%,
         rgba(30, 30, 30, 1) 100%
       );
       opacity: 0;
+      z-index: 5;
+      // border: 5px solid blue;
       animation: lightup 3s forwards;
       @keyframes lightup {
         to {
@@ -296,19 +306,16 @@ nav {
       .circle-container {
         height: $banner-height;
         min-height: 150px;
-        width: 100%;
-        // position: fixed;
+        z-index: 5;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-end;
-        // transform: translateY(60%);
-        // border: 2px solid tomato;
+        position: relative;
 
         #svg-rainbow {
           position: absolute;
-          // bottom: -2vh;
-          transform: translateY(100%);
+          transform: translateY(100vh);
           opacity: 0;
           animation: rise 3s forwards;
           // border: 1px solid yellow;
@@ -335,35 +342,21 @@ nav {
     grid-column: 1/3;
     height: calc(100vh - #{$banner-height});
     min-height: $banner-height;
-    // width: 100%;
     background-color: $editor-background;
-    z-index: 0;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 50px 0;
-    // border: 1px solid yellow;
+    // border: 1px solid rgb(148, 148, 147);
     padding: 3vh;
     .logo-container {
-      width: 705px;
-      height: 112px;
-      // position: relative;
-      // margin-top: 3vh;
-      // z-index: 50;
-      // border: 1px solid red;
       #logo {
-        position: absolute;
-        z-index: 10000;
-        // top: -1vh;
-        // left: 50%;
-        // transform: translateX(-50%) translateY(-50%);
-        // border: 1px solid orange;
+        // display: none;
         path {
           stroke: lightgrey;
           stroke-width: 1;
-
-          // fill: white;
         }
         path:nth-child(1) {
           stroke-dasharray: 339.3;
@@ -437,31 +430,39 @@ nav {
     }
 
     .header-text {
-      height: 10%;
+      height: 20%;
       width: 100%;
       font-family: "Courier New", Courier, monospace;
       font-size: 1.5rem;
       color: grey;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       // border: 1px solid red;
       position: relative;
+      .header-line {
+        height: 1px;
+        width: 40%;
+        margin-bottom: -0.25rem;
+        background-color: blueviolet;
+        opacity: 0;
+        @media screen and (min-width: 1300px) {
+          width: 44%;
+        }
+      }
       .p-wrapper {
-        // height: auto;
-        // width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        position: absolute;
-        margin: 0 auto;
-        z-index: -10;
         padding: 12px;
-        border-top: 1px solid blueviolet;
-
+        // border: 1px solid yellow;
         .p-header {
           margin-left: 1vh;
-          // border: 1px solid yellow;
+          opacity: 0;
+        }
+        span {
+          opacity: 0;
         }
       }
     }
@@ -474,17 +475,23 @@ nav {
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      transform: translateY(-100%);
 
       .arrow {
         height: 100%;
         width: 100%;
         transform: rotate(90deg);
+        font-family: "Courier New", Courier, monospace;
         font-weight: light;
         font-size: 2.5rem;
         color: dimgray;
-        margin: 0 auto;
+        margin: 20px 0 0 1vh;
+        opacity: 0;
         // border: 1px solid red;
-        margin-left: 1vh;
+
+        @media screen and (min-width: 1300px) {
+          font-size: 4.5rem;
+        }
       }
     }
   }
@@ -498,18 +505,15 @@ nav {
 //////////////////////////////////
 
 main {
-  // height: 100vh;
-  // width: 100%;
   @include section;
   display: grid;
   grid-template-rows: $intro-height $projects-height min-content $more-height $contact-height;
   grid-template-columns: 75% 25%;
   grid-row-gap: 1em;
-  // padding-bottom: 1em;
   background-color: $editor-background;
   position: relative;
-  z-index: 0;
-  // border: 3px solid tomato;
+  z-index: 9;
+  // border: 1px solid tomato;
 
   //////////////////////////////////
   //        HOVER EFFECT
@@ -538,7 +542,7 @@ main {
     text-align: left;
     color: $blue-primary;
     background-color: $editor-background;
-    // z-index: 50;
+    z-index: 50;
     border: 1px solid transparent;
   }
 
@@ -563,26 +567,21 @@ main {
   .cta-btn {
     height: 30px;
     width: 160px;
-    // margin: 0 auto;
     font-family: "play";
     font-size: 1.1rem;
     font-weight: light;
     background-color: $editor-background;
     outline: none;
-    // color: turquoise;
-    // border: 0.15em solid turquoise;
-    color: aqua;
+    background-color: aqua;
+    color: $editor-background;
     border: 0.15em solid aqua;
     border-radius: $border-radius;
     transition: background-color 0.2s;
     &:hover {
       cursor: pointer;
-      // background-color: blueviolet;
-      // border-color: blueviolet;
-      background-color: aqua;
       border-color: aqua;
-      color: $editor-background;
-      font-weight: bolder;
+      color: aqua;
+      background-color: $editor-background;
     }
   }
 
@@ -594,23 +593,17 @@ main {
     grid-column: 1/3;
     @include section;
     align-items: flex-start;
-    // justify-content: flex-end;
-    // display: grid;
-    // grid-template-rows: $title-height $about-height $stack-height 30px;
-    // grid-template-columns: 75% 25%;
-    // grid-row-gap: 1em;
     position: relative;
-    // border: 4px solid red;
-
-    // div {
-    //   border: 2px solid pink;
-    // }
+    display: grid;
+    grid-template-rows: 1fr 40vh max-content min-content;
+    grid-template-columns: 75% 25%;
+    grid-row-gap: 1em;
+    align-items: center;
+    // border: 10px solid greenyellow;
 
     .title {
-      // grid-row: 1;
-      // grid-column: 1;
-      // height: auto;
-      width: 60%;
+      grid-row: 1;
+      grid-column: 1;
       font-family: $font-primary;
       font-size: 1.75rem;
       color: rgb(171, 170, 170);
@@ -618,8 +611,7 @@ main {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin: 0 auto;
-      // border: 1px solid greenyellow;
+      // margin: 0 auto;
 
       .upper-title,
       .lower-title {
@@ -669,48 +661,32 @@ main {
     //////////////////////////////////
 
     .about {
-      // grid-row: 2;
-      // grid-column: 1;
+      grid-row: 2;
+      grid-column: 1;
       font-family: "courier new", monospace, serif;
       font-size: 1.15rem;
       color: grey;
-      width: 70%;
-      // height: 100%;
       // border: 1px solid greenyellow;
-
       .section-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
         padding-left: 5vw;
-        // display: flex;
-        // flex-direction: column;
-        // align-items: center;
-        // justify-content: space-evenly;
         transition: all 0.2s;
-        // overflow: scroll;
         width: 99.9%;
-        height: auto;
+        height: 30vh;
         // border: 2px solid red;
-
         &::after {
           left: 99.9%;
         }
-        // -webkit-scrollbar-thumb {
-        //   color: red;
-        // }
-        // border-right: 1px solid $grey-primary;
-
         .p-about {
-          // height: 100%;
           width: 99.9%;
           white-space: nowrap;
-          // border: 1px solid pink;
-          // &:nth-child(2) {
-          //   // margin-top: -2%;
-          // }
         }
       }
+
       .hover-effect:hover {
         cursor: text;
-
         &::before {
           background-color: grey;
         }
@@ -727,15 +703,13 @@ main {
     .stack {
       grid-row: 3;
       grid-column: 1/3;
-      // overflow: scroll;
       width: 98%;
-      // border: 1px solid greenyellow;
       .stack-container {
-        height: auto;
-
+        height: 15vh;
         display: flex;
         align-self: center;
         justify-content: center;
+        // border: 1px solid greenyellow;
         &::after {
           left: 99.9%;
           background-color: $grey-primary;
@@ -757,18 +731,12 @@ main {
       }
       .stack-left {
         width: 100%;
-        // height: 100%;
         padding-left: 5vw;
         align-items: center;
         justify-content: space-evenly;
-        // overflow: scroll;
-        // li {
-        //   width: 30px;
-        // }
       }
       .stack-middle,
       .stack-right {
-        // height: 100%;
         width: 100%;
         color: white;
         border-left: 1px solid $grey-primary;
@@ -781,7 +749,6 @@ main {
         .stack-right {
           border-left: 1px solid $grey-primary;
         }
-
         i {
           background-color: transparent;
         }
@@ -831,8 +798,6 @@ main {
       position: absolute;
       left: 76%;
       top: 27vh;
-      // margin: 0 auto;
-      // margin-top: vh;
       border-radius: 50%;
       height: 200px;
       width: 220px;
@@ -841,6 +806,10 @@ main {
         width: 215px;
         border-radius: 50%;
         border: 1px solid blueviolet;
+      }
+      @media screen and (min-width: 1300px) {
+        left: 78%;
+        top: 30vh;
       }
     }
   }
@@ -852,7 +821,6 @@ main {
   #projects {
     grid-row: 2;
     grid-column: 1/3;
-
     .projects-wrapper {
       height: 100%;
       display: flex;
@@ -860,7 +828,7 @@ main {
       align-items: center;
       justify-content: space-evenly;
       list-style-type: none;
-
+      position: relative;
       .project {
         height: 210px;
         width: 80%;
@@ -871,7 +839,6 @@ main {
         justify-content: space-evenly;
         transition: all 200ms;
         position: relative;
-        // z-index: 100;
         // border: 10px solid pink;
         .fa-expand-alt {
           position: absolute;
@@ -890,34 +857,6 @@ main {
             border: 1px solid $white-primary;
           }
         }
-        // to change the thumbnail border for each project:
-
-        // &:nth-child(1) {
-        //   .thumbnail::after {
-        //     border-color: black;
-        //   }
-        // }
-        // &:nth-child(2) {
-        //   .thumbnail::after {
-        //     border-color: deeppink;
-        //   }
-        // }
-        // &:nth-child(3) {
-        //   .thumbnail::after {
-        //     border-color: deepskyblue;
-        //   }
-        // }
-        // &:nth-child(4) {
-        //   .thumbnail::after {
-        //     border-color: #fb4700da;
-        //   }
-        // }
-        // &:nth-child(5) {
-        //   .thumbnail::after {
-        //     border-color: grey;
-        //   }
-        // }
-
         .pitch-container {
           height: 190px;
           width: 100%;
@@ -957,10 +896,12 @@ main {
             }
           }
         }
+        .clone {
+          background-color: $tomato-primary;
+          position: absolute;
+          z-index: 100;
+        }
       }
-      // .hover-effect {
-      //   border: none;
-      // }
       .hover-effect:hover {
         color: black;
         background-color: #fefefe;
@@ -1041,9 +982,8 @@ main {
   .contact-wrapper {
     height: 100%;
     background-color: $editor-background;
-    // border: 1px solid turquoise;
-    // border-radius: 1px;
     margin: 0 7vw;
+    // border: 1px solid turquoise;
   }
 }
 

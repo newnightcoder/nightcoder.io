@@ -6,7 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Daniel Julien web developer website" />
 
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- <link
+      rel="preload"
+      href="/fonts/cour.ttf"
+      as="font"
+      type="font/truetype"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/hemihead.ttf"
+      as="font"
+      type="font/truetype"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Menlo-Regular.woff"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Monaco.woff"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Play-Bold.ttf"
+      as="font"
+      type="font/truetype"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Play-Regular.ttf"
+      as="font"
+      type="font/truetype"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Prototype.ttf"
+      as="font"
+      type="font/truetype"
+      crossorigin
+    /> -->
     <script
       src="https://kit.fontawesome.com/9209397972.js"
       crossorigin="anonymous"
@@ -26,6 +75,7 @@
     <title>nightcoder.io</title>
   </head>
   <body>
+    <div class="loader-container"><div class="loader"></div></div>
     <nav>
       <div class="flags-container">
         <div class="flag flag-en">en</div>
@@ -121,19 +171,19 @@
                 </linearGradient>
                 <linearGradient id="linearColor2">
                   <stop offset="0%" stop-color="deeppink"></stop>
-                  <stop offset="50%" stop-color="orangered"></stop>
+                  <stop offset="80%" stop-color="orangered"></stop>
                 </linearGradient>
                 <linearGradient id="linearColor22">
-                  <stop offset="50%" stop-color="orangered"></stop>
+                  <stop offset="20%" stop-color="orangered"></stop>
                   <stop offset="100%" stop-color="deeppink"></stop>
                 </linearGradient>
                 <linearGradient id="linearColor3">
-                  <stop offset="0%" stop-color="orangered"></stop>
-                  <stop offset="100%" stop-color="red"></stop>
+                  <stop offset="0%" stop-color="orange"></stop>
+                  <stop offset="50%" stop-color="red"></stop>
                 </linearGradient>
                 <linearGradient id="linearColor33">
-                  <stop offset="0%" stop-color="red"></stop>
-                  <stop offset="100%" stop-color="orangered"></stop>
+                  <stop offset="50%" stop-color="red"></stop>
+                  <stop offset="100%" stop-color="orange"></stop>
                 </linearGradient>
 
                 <path
@@ -268,16 +318,17 @@
               </svg>
             </div>
             <div class="header-text">
+              <div class="header-line"></div>
               <div class="p-wrapper">
-                <p class="p-header">front-end</p>
-                <span>&middot;</span>
-                <p class="p-header">development</p>
-                <span>&middot;</span>
-                <p class="p-header">UI design</p>
+                <p class="p-header p-stagger">front-end</p>
+                <span class="middot p-stagger">&middot;</span>
+                <p class="p-header p-stagger">development</p>
+                <span class="middot p-stagger">&middot;</span>
+                <p class="p-header p-stagger">UI design</p>
               </div>
             </div>
             <div class="arrow-container">
-              <span class="arrow">&ggg;</span>
+              <span class="arrow">&gt;</span>
             </div>
           </header>
         </div>
@@ -342,7 +393,7 @@
           </div>
 
           <div class="gif">
-            <img class="facegif" src="img/face1.jpg" />
+            <img class="facegif" src="img/face1.jpg" loading="lazy" />
           </div>
 
           <div class="cta cta-download">
@@ -357,7 +408,7 @@
               <li class="project project-1 hover-effect">
                 <i class="fas fa-expand-alt"></i>
                 <div class="thumbnail">
-                  <img src="img/project-1.png" alt="" />
+                  <img src="img/project-1.png" alt="" loading="lazy" />
                 </div>
                 <div class="pitch-container">
                   <h3 class="project-title">Title</h3>
@@ -369,7 +420,7 @@
                   <div class="project-links">
                     <a
                       class="hover-effect"
-                      href="http://github.com"
+                      href="https://github.com"
                       target="_blank"
                       rel="noopener noreferrer"
                       ><i class="fab fa-github-alt"></i
@@ -387,7 +438,7 @@
               <li class="project project-2 hover-effect">
                 <i class="fas fa-expand-alt"></i>
                 <div class="thumbnail">
-                  <img src="img/project-2.png" alt="" />
+                  <img src="img/project-2.png" alt="" loading="lazy" />
                 </div>
                 <div class="pitch-container">
                   <h3 class="project-title">Title</h3>
@@ -403,7 +454,7 @@
                   <div class="project-links">
                     <a
                       class="hover-effect"
-                      href="http://github.com"
+                      href="https://github.com"
                       target="_blank"
                       rel="noopener noreferrer"
                       ><i class="fab fa-github-alt"></i
@@ -421,7 +472,7 @@
               <li class="project project-3 hover-effect">
                 <i class="fas fa-expand-alt"></i>
                 <div class="thumbnail">
-                  <img src="img/todo-app-react.png" alt="" />
+                  <img src="img/todo-app-react.png" alt="" loading="lazy" />
                 </div>
                 <div class="pitch-container">
                   <h3 class="project-title">Title</h3>
@@ -435,7 +486,7 @@
                   <div class="project-links">
                     <a
                       class="hover-effect"
-                      href="http://github.com"
+                      href="https://github.com"
                       target="_blank"
                       rel="noopener noreferrer"
                       ><i class="fab fa-github-alt"></i
@@ -453,7 +504,11 @@
               <li class="project project-4 hover-effect">
                 <i class="fas fa-expand-alt"></i>
                 <div class="thumbnail">
-                  <img src="img/react-covid-dashboard.png" alt="" />
+                  <img
+                    src="img/react-covid-dashboard.png"
+                    alt=""
+                    loading="lazy"
+                  />
                 </div>
                 <div class="pitch-container">
                   <h3 class="project-title">Title</h3>
@@ -469,7 +524,7 @@
                   <div class="project-links">
                     <a
                       class="hover-effect"
-                      href="http://github.com"
+                      href="https://github.com"
                       target="_blank"
                       rel="noopener noreferrer"
                       ><i class="fab fa-github-alt"></i
@@ -487,7 +542,7 @@
               <li class="project project-5 hover-effect">
                 <i class="fas fa-expand-alt"></i>
                 <div class="thumbnail">
-                  <img alt="" />
+                  <img alt="" loading="lazy" />
                 </div>
                 <div class="pitch-container">
                   <h3 class="project-title">Title</h3>
@@ -500,7 +555,7 @@
                   <div class="project-links">
                     <a
                       class="hover-effect"
-                      href="http://github.com"
+                      href="https://github.com"
                       target="_blank"
                       rel="noopener noreferrer"
                       ><i class="fab fa-github-alt"></i
@@ -543,5 +598,6 @@
       <p>made by Daniel Julien aka nightcoder</p>
       <p>&copy; 2021&nbsp;&minus;&nbsp;all&nbsp;rights&nbsp;reserved&period;</p>
     </footer>
+    <div class="project-enlarged"></div>
   </body>
 </html>
