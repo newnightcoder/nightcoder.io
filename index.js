@@ -23,7 +23,7 @@ const PROJECTS = document.querySelectorAll(".project");
 const init = async () => {
   await loading();
   window.addEventListener("scroll", () => {
-    if (window.scrollY >= window.innerHeight / 4) {
+    if (window.scrollY >= window.innerHeight / 7) {
       (navbar.style.background =
         "linear-gradient(to left, deeppink 0%, orange 100%)"),
         (flags.style.opacity = "1"),
@@ -126,32 +126,31 @@ const init = async () => {
       scale: 0,
     });
 
-  // tl.from(".upper-title", {
-  //   x: -800,
-  // })
-  //   .from(".lower-title", {
-  //     x: 800,
-  //   })
-
-  tl.from(".line", {
-    x: -1500,
+  tl.from(".upper-title", {
+    x: -1 * window.innerWidth,
   })
-    .from(".gif", {
-      scrollTrigger: {
-        trigger: ".gif",
-        start: "top 90%",
-        end: "bottom 80%",
-        id: "gif",
-        // markers: true,
-      },
-      scale: 0,
+    .from(".lower-title", {
+      x: window.innerWidth,
     })
-    // .from(".about", {
-    //   x: -1300,
+    .from(".line", {
+      x: -1 * window.innerWidth,
+    })
+    // .from(".gif", {
+    //   scrollTrigger: {
+    //     trigger: ".gif",
+    //     start: "top 90%",
+    //     end: "bottom 80%",
+    //     id: "gif",
+    //     // markers: true,
+    //   },
+    //   scale: 0,
     // })
-    // .from(".stack", {
-    //   x: -1300,
-    // })
+    .from(".about", {
+      x: -1 * window.innerWidth,
+    })
+    .from(".stack", {
+      x: -1 * window.innerWidth,
+    })
 
     .from(".cta-download", {
       scrollTrigger: {
@@ -159,25 +158,24 @@ const init = async () => {
         start: "top bottom",
         end: "bottom 70%",
         scrub: true,
-        id: "CTA",
-        // markers: true,
       },
       autoAlpha: 0,
     });
 
-  // PROJECTS.forEach((project, i) => {
-  //   gsap.from(project, {
-  //     scrollTrigger: {
-  //       trigger: project,
-  //       start: "top 90%",
-  //       end: "bottom 90%",
-  //       scrub: true,
-  //     },
-  //     x: 1300,
-  //     opacity: 0,
-  //   });
-  // });
-
+  // tl.to(
+  PROJECTS.forEach((project, i) => {
+    tl.from(project, {
+      scrollTrigger: {
+        trigger: project,
+        start: "top 85%",
+        end: "top 80%",
+        scrub: true,
+      },
+      x: 100,
+      opacity: 0,
+    });
+  });
+  // );
   tl.from(".cta-contact", {
     scrollTrigger: {
       trigger: ".cta-contact",
@@ -203,21 +201,27 @@ const init = async () => {
         end: "bottom top",
         scrub: true,
       },
-      y: 800,
+      y: 200,
     });
+
+  // ////////////////////////////////////////////////////////////////////////////////
+  //   CARDS FLIP
+  // ////////////////////////////////////////////////////////////////////////////////
+
+  const cards = document.querySelectorAll(".project__card");
+  cards.forEach((card) => {
+    card.addEventListener("click", () => {
+      card.classList.toggle("flipped");
+    });
+  });
 
   // ////////////////////////////////////////////////////////////////////////////////
   //   EXPAND ANIMATION
   // ////////////////////////////////////////////////////////////////////////////////
   const fullpage = document.querySelector(".fullpage");
   const expandedProject = document.querySelector(".expand-container");
-
-  PROJECTS.forEach((project) => {
-    project.children[0].addEventListener("click", () => {
-      animateTransition(project);
-      displayContent(project);
-    });
-  });
+  const projectBack = document.querySelectorAll(".project__back");
+  const expandButtons = document.querySelectorAll(".fa-expand-alt");
 
   const animateTransition = (project) => {
     let clone = project.cloneNode();
@@ -267,6 +271,17 @@ const init = async () => {
       expandedProject.innerHTML = `project 5`;
     }
   };
+
+  PROJECTS.forEach((project) => {
+    project.children[0].children[1].children[0].children[0].addEventListener(
+      "click",
+      () => {
+        project.children[0].classList.remove("flipped");
+        animateTransition(project);
+        displayContent(project);
+      }
+    );
+  });
   //------------------------------------------------------------------------------
   //                      THE STARZ
   //------------------------------------------------------------------------------

@@ -33,6 +33,7 @@
 html {
   font-size: 16px;
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -40,13 +41,11 @@ body {
   width: 100%;
   background-color: #1e1e1e;
   overflow-x: hidden;
-  border: 1px solid red;
   color: #fefefe;
 }
 body .body-container {
   background-color: transparent;
   position: relative;
-  border: 1px solid yellow;
 }
 body .body-container section {
   display: flex;
@@ -86,7 +85,7 @@ body .body-container section .section-container::after {
 .loader-container {
   height: 100vh;
   width: 100vw;
-  background-color: yellow;
+  background-color: #1e1e1e;
   position: fixed;
   top: 0;
   left: 0;
@@ -160,11 +159,16 @@ nav .flags-container {
   width: 155px;
   margin-left: 2vw;
   padding: 1vh 0;
-  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   opacity: 0;
+  display: none;
+}
+@media screen and (min-width: 600px) {
+  nav .flags-container {
+    display: flex;
+  }
 }
 nav .flags-container .flag {
   height: 20px;
@@ -228,7 +232,6 @@ nav .link-wrapper .link i:hover {
   display: grid;
   grid-template-rows: minmax(150px, 30vh) calc( 100vh - 30vh );
   position: relative;
-  border: 2px solid greenyellow;
 }
 @media screen and (min-width: 1300px) {
   #home .home-container {
@@ -243,7 +246,6 @@ nav .link-wrapper .link i:hover {
   background: linear-gradient(0deg, #17338a 0%, #1e1e1e 100%);
   opacity: 0;
   z-index: 0;
-  border: 5px solid blue;
   animation: lightup 3s forwards;
 }
 @keyframes lightup {
@@ -261,7 +263,6 @@ nav .link-wrapper .link i:hover {
   align-items: center;
   justify-content: flex-end;
   position: relative;
-  border: 5px solid orange;
 }
 #home .home-container .sky-container .circle-container #svg-rainbow {
   transform: translateY(100%);
@@ -282,7 +283,7 @@ nav .link-wrapper .link i:hover {
 #home .sky-placeholder {
   grid-row: 1;
   grid-column: 1/3;
-  background-color: red;
+  background-color: transparent;
 }
 #home header {
   grid-row: 2;
@@ -295,7 +296,6 @@ nav .link-wrapper .link i:hover {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  border: 10px solid #949493;
 }
 #home header .logo-container {
   margin-top: -20%;
@@ -380,7 +380,6 @@ nav .link-wrapper .link i:hover {
   font-size: 1.5rem;
   color: #fefefe;
   justify-content: center;
-  border: 1px solid red;
 }
 #home header .header-text .header-line {
   height: 1px;
@@ -421,7 +420,7 @@ nav .link-wrapper .link i:hover {
   font-family: "Courier New", Courier, monospace;
   font-weight: light;
   font-size: 2.5rem;
-  color: dimgray;
+  color: #fefefe;
   opacity: 0;
 }
 @media screen and (min-width: 1300px) {
@@ -435,8 +434,20 @@ nav .link-wrapper .link i:hover {
   }
 }
 
+.hover-effect {
+  border-left: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.hover-effect:hover {
+  cursor: pointer;
+  color: #fefefe;
+  border-left: 2px solid deepskyblue;
+  background-color: #3e3e42;
+}
+
 .tag {
-  height: 28px;
+  height: 18px;
   width: 100%;
   padding-left: 1vw;
   font-family: menlo;
@@ -445,7 +456,12 @@ nav .link-wrapper .link i:hover {
   color: #007acc;
   background-color: #1e1e1e;
   z-index: 50;
-  border: 1px solid transparent;
+  border: 1px solid pink;
+}
+@media screen and (min-width: 600px) {
+  .tag {
+    border-color: transparent;
+  }
 }
 
 .tag.hover-effect:hover {
@@ -456,13 +472,12 @@ nav .link-wrapper .link i:hover {
 
 main {
   display: grid;
-  grid-template-rows: calc(100vh - 40px) calc(200px * 6) min-content calc(150px + 56px) calc(100vh - 40px - 40px - 1em);
+  grid-template-rows: calc(100vh - 40px) min-content calc(200px * 5) min-content calc(150px + 56px) calc(100vh - 40px - 40px);
   grid-template-columns: 75% 25%;
   grid-row-gap: 1em;
   background-color: #1e1e1e;
   position: relative;
   z-index: 10;
-  border: 10px solid tomato;
 }
 main section {
   display: flex;
@@ -499,6 +514,7 @@ main .cta {
   width: 100%;
   display: flex;
   justify-content: center;
+  border: 1px solid white;
 }
 main .cta-btn {
   height: 30px;
@@ -523,54 +539,18 @@ main .cta-btn:hover {
 main #intro {
   grid-row: 1;
   grid-column: 1/3;
-  align-items: flex-start;
   position: relative;
-  display: grid;
-  grid-template-rows: 1fr 30% max-content min-content;
-  grid-template-columns: 75% 25%;
-  grid-row-gap: 1em;
-  align-items: center;
-}
-main #intro section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  position: relative;
-  background-color: #1e1e1e;
-}
-main #intro section .section-container {
-  height: 100%;
-}
-main #intro section .section-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 2.5vw;
-  height: 100%;
-  width: 0.5px;
-  background-color: #3e3e42;
-}
-main #intro section .section-container::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 98%;
-  height: 100%;
-  width: 0.5px;
-  background-color: #3e3e42;
+  border: 15px solid tomato;
 }
 main #intro .title {
-  grid-row: 1;
-  grid-column: 1/3;
+  width: 100%;
+  height: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-family: "hemihead";
   font-size: 1rem;
-  color: #abaaaa;
-  border: 1px solid greenyellow;
 }
 main #intro .title .upper-title,
 main #intro .title .lower-title {
@@ -603,20 +583,19 @@ main #intro .title:hover .line {
   background: linear-gradient(to right, #57d5ff 0%, #0037ad 100%);
 }
 main #intro .about {
-  grid-row: 2;
-  grid-column: 1/3;
+  width: 99.9%;
+  height: 40%;
   font-family: "courier new", monospace, serif;
   font-size: 0.75rem;
-  color: grey;
-  border: 1px solid greenyellow;
 }
 main #intro .about .section-container {
+  height: calc(100% - 36px);
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-evenly;
   padding-left: 5vw;
   transition: all 0.2s;
-  width: 99.9%;
 }
 main #intro .about .section-container::after {
   left: 99.9%;
@@ -634,50 +613,52 @@ main #intro .about .tag.hover-effect:hover {
   cursor: default;
 }
 main #intro .stack {
-  grid-row: 3;
-  grid-column: 1/3;
+  height: 35%;
   width: 100%;
+  background-color: #1e1e1e;
 }
 main #intro .stack .stack-container {
-  height: 15vh;
+  height: calc(100% - 36px);
   display: flex;
-  flex-wrap: wrap;
-  align-self: center;
-  justify-content: center;
-  border: 1px solid greenyellow;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-left: 5vw;
 }
 main #intro .stack .stack-container::after {
   left: 99.9%;
   background-color: #3e3e42;
 }
+main #intro .stack .stack-container .stacklist-wrapper {
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+}
+main #intro .stack .stack-container .stacklist-wrapper p {
+  width: 100%;
+  font-family: "courier new";
+  font-size: 0.75rem;
+  text-align: center;
+}
 main #intro .stack ul {
   list-style-type: none;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  color: #fefefe;
+  width: 100%;
+  padding-left: 2vw;
+  border: 1px solid greenyellow;
 }
 main #intro .stack ul li i {
-  font-size: 1rem;
-  color: #bcb9b9;
-}
-main #intro .stack .stack-left {
-  width: 100%;
-  padding-left: 5vw;
-  align-items: center;
-  justify-content: space-evenly;
-}
-main #intro .stack .stack-middle,
-main #intro .stack .stack-right {
-  width: 100%;
-  color: white;
-  border-left: 1px solid #3e3e42;
+  font-size: 1.5rem;
 }
 main #intro .stack .hover-effect:hover::before {
   background-color: gray;
-}
-main #intro .stack .hover-effect:hover .stack-middle,
-main #intro .stack .hover-effect:hover .stack-right {
-  border-left: 1px solid #3e3e42;
 }
 main #intro .stack .hover-effect:hover i {
   background-color: transparent;
@@ -700,34 +681,14 @@ main #intro .stack .hover-effect:hover li:nth-child(5) i {
 main #intro .stack .hover-effect:hover li:nth-child(6) i {
   color: lightgrey;
 }
-main #intro .cta-download {
-  grid-row: 4;
-  grid-column: 1/3;
-}
-main #intro .gif {
-  position: absolute;
-  left: 76%;
-  top: 27vh;
-  border-radius: 50%;
-  height: 200px;
-  width: 220px;
-}
-main #intro .gif .facegif {
-  height: 195px;
-  width: 215px;
-  border-radius: 50%;
-  border: 1px solid blueviolet;
-}
-@media screen and (min-width: 1300px) {
-  main #intro .gif {
-    left: 78%;
-    top: 30vh;
-  }
-}
-main #projects {
+main .cta-download {
   grid-row: 2;
   grid-column: 1/3;
-  border: 10px solid greenyellow;
+}
+main #projects {
+  grid-row: 3;
+  grid-column: 1/3;
+  border: 5px solid greenyellow;
 }
 main #projects .projects-wrapper {
   height: 100%;
@@ -738,19 +699,76 @@ main #projects .projects-wrapper {
   list-style-type: none;
   position: relative;
 }
+@media screen and (min-width: 600px) {
+  main #projects .projects-wrapper {
+    width: 90vw;
+  }
+}
 main #projects .projects-wrapper .project {
   height: 210px;
-  width: 80%;
+  width: 90vw;
   color: #fefefe;
-  background-color: #3e3e42;
+  background-color: #1e1e1e;
   display: flex;
-  align-items: center;
   flex-direction: column;
-  justify-content: space-evenly;
+  align-items: flex-start;
+  justify-content: flex-end;
   transition: all 200ms;
   position: relative;
 }
-main #projects .projects-wrapper .project .fa-expand-alt {
+@media screen and (min-width: 600px) {
+  main #projects .projects-wrapper .project {
+    height: 220px;
+    width: 80%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+}
+main #projects .projects-wrapper .project .project__card {
+  height: 100%;
+  width: 99%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.75s;
+  perspective: 1500px;
+}
+main #projects .projects-wrapper .project .project__card .project__front {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  color: #fefefe;
+  background-color: #3e3e42;
+}
+main #projects .projects-wrapper .project .project__card .project__front:hover {
+  cursor: pointer;
+}
+main #projects .projects-wrapper .project .project__card .project__front .project__front--container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+main #projects .projects-wrapper .project .project__card .project__front img {
+  height: 150px;
+  width: 230px;
+  border: 1px solid transparent;
+}
+@media screen and (min-width: 600px) {
+  main #projects .projects-wrapper .project .project__card .project__front img {
+    height: 190px;
+    width: 320px;
+  }
+}
+main #projects .projects-wrapper .project .project__card .project__back {
+  height: 100%;
+  width: 100%;
+  transform: rotateY(180deg);
+  color: black;
+  background-color: #fefefe;
+  cursor: default;
+}
+main #projects .projects-wrapper .project .project__card .project__back .fa-expand-alt {
   position: absolute;
   right: 1.5vw;
   top: 2vh;
@@ -758,20 +776,27 @@ main #projects .projects-wrapper .project .fa-expand-alt {
   color: #3e3e42;
   transition: transform 200ms;
 }
-main #projects .projects-wrapper .project .fa-expand-alt:hover {
+main #projects .projects-wrapper .project .project__card .project__back .fa-expand-alt:hover {
+  cursor: pointer;
   transform: scale(1.1);
 }
-main #projects .projects-wrapper .project .thumbnail {
+main #projects .projects-wrapper .project .project__card .project__back .thumbnail {
   padding: 0 1vw;
   display: flex;
   flex-direction: column;
 }
-main #projects .projects-wrapper .project .thumbnail img {
-  height: 95px;
-  width: 160px;
-  border: 1px solid #fefefe;
+main #projects .projects-wrapper .project .project__card .project__back .thumbnail img {
+  height: 150px;
+  width: 230px;
+  border: 1px solid transparent;
 }
-main #projects .projects-wrapper .project .pitch-container {
+@media screen and (min-width: 600px) {
+  main #projects .projects-wrapper .project .project__card .project__back .thumbnail img {
+    height: 190px;
+    width: 320px;
+  }
+}
+main #projects .projects-wrapper .project .project__card .project__back .pitch-container {
   height: 190px;
   width: 100%;
   padding: 0 1vw;
@@ -780,17 +805,22 @@ main #projects .projects-wrapper .project .pitch-container {
   align-items: flex-start;
   justify-content: space-evenly;
 }
-main #projects .projects-wrapper .project .pitch-container .project-title {
+@media screen and (min-width: 600px) {
+  main #projects .projects-wrapper .project .project__card .project__back .pitch-container {
+    display: flex;
+  }
+}
+main #projects .projects-wrapper .project .project__card .project__back .pitch-container .project-title {
   font-family: "hemihead";
 }
-main #projects .projects-wrapper .project .pitch-container .pitch {
+main #projects .projects-wrapper .project .project__card .project__back .pitch-container .pitch {
   font-family: play;
   font-size: 0.5rem;
 }
-main #projects .projects-wrapper .project .pitch-container .technologies {
+main #projects .projects-wrapper .project .project__card .project__back .pitch-container .technologies {
   font-family: "courier new", sans-serif;
 }
-main #projects .projects-wrapper .project .pitch-container .project-links {
+main #projects .projects-wrapper .project .project__card .project__back .pitch-container .project-links {
   width: 80px;
   display: flex;
   align-items: center;
@@ -798,66 +828,70 @@ main #projects .projects-wrapper .project .pitch-container .project-links {
   color: white;
   align-self: flex-start;
 }
-main #projects .projects-wrapper .project .pitch-container .project-links a {
+main #projects .projects-wrapper .project .project__card .project__back .pitch-container .project-links a {
   text-decoration: none;
   color: #fefefe;
 }
-main #projects .projects-wrapper .project .pitch-container .project-links a i {
+main #projects .projects-wrapper .project .project__card .project__back .pitch-container .project-links a i {
   text-decoration: none;
   font-size: 2rem;
 }
-main #projects .projects-wrapper .project .pitch-container .project-links a .project-live,
-main #projects .projects-wrapper .project .pitch-container .project-links a .project-github {
+main #projects .projects-wrapper .project .project__card .project__back .pitch-container .project-links a .project-live,
+main #projects .projects-wrapper .project .project__card .project__back .pitch-container .project-links a .project-github {
   position: absolute;
   bottom: 2px;
   transform: translateX(-130%);
   font-size: 0.9rem;
   text-decoration: underline;
 }
-main #projects .projects-wrapper .project .pitch-container .project-links a .project-github {
+main #projects .projects-wrapper .project .project__card .project__back .pitch-container .project-links a .project-github {
   transform: translateX(-85%);
 }
-main #projects .projects-wrapper .project .pitch-container .project-links a .inactive {
+main #projects .projects-wrapper .project .project__card .project__back .pitch-container .project-links a .inactive {
   color: gray;
   text-decoration: none;
 }
+main #projects .projects-wrapper .project .project__card .project__back:nth-child(1) .project-links a {
+  color: red;
+}
+main #projects .projects-wrapper .project .project__card .project__back:nth-child(2) .project-links a {
+  color: deeppink;
+}
+main #projects .projects-wrapper .project .project__card .project__back:nth-child(3) .project-links a {
+  color: deepskyblue;
+}
+main #projects .projects-wrapper .project .project__card .project__back:nth-child(4) .project-links a {
+  color: #fb4700da;
+}
+main #projects .projects-wrapper .project .project__card .project__back:nth-child(5) .project-links a {
+  color: #1e1e1e;
+}
+main #projects .projects-wrapper .project .flipped {
+  transition: transform 0.75s;
+  transform: rotateY(180deg);
+}
+@media screen and (min-width: 600px) {
+  main #projects .projects-wrapper .project .flipped {
+    transform: rotateX(180deg);
+  }
+}
 main #projects .projects-wrapper .project .clone {
-  background-color: #f48771;
+  background-color: transparent;
   position: absolute;
   z-index: 100;
 }
+main #projects .projects-wrapper .hover-effect {
+  border: none;
+}
 main #projects .projects-wrapper .hover-effect:hover {
-  color: black;
-  background-color: #fefefe;
-  border-left: 2px solid transparent;
-}
-main #projects .projects-wrapper .hover-effect:hover img {
-  border: 1px solid lightgrey;
-}
-main #projects .projects-wrapper .hover-effect:hover .thumbnail::after {
-  border: 1px solid transparent;
-}
-main #projects .projects-wrapper .hover-effect:hover:nth-child(1) .project-links a {
-  color: red;
-}
-main #projects .projects-wrapper .hover-effect:hover:nth-child(2) .project-links a {
-  color: deeppink;
-}
-main #projects .projects-wrapper .hover-effect:hover:nth-child(3) .project-links a {
-  color: deepskyblue;
-}
-main #projects .projects-wrapper .hover-effect:hover:nth-child(4) .project-links a {
-  color: #fb4700da;
-}
-main #projects .projects-wrapper .hover-effect:hover:nth-child(5) .project-links a {
-  color: #1e1e1e;
+  border: none;
 }
 main .cta-contact {
-  grid-row: 3;
+  grid-row: 4;
   grid-column: 1/3;
 }
 main #more {
-  grid-row: 4;
+  grid-row: 5;
   grid-column: 1/3;
   border: 1px solid orange;
 }
@@ -880,7 +914,7 @@ main #more .more-wrapper #canvas:hover {
   border: 1px solid #fefefe;
 }
 main #contact {
-  grid-row: 5;
+  grid-row: 6;
   grid-column: 1/3;
 }
 main #contact .contact-wrapper {

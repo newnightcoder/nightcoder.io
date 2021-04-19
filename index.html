@@ -370,184 +370,231 @@
           <div class="stack intro-div">
             <h4 class="tag tag-stack hover-effect">&lt;dev&gt;</h4>
             <div class="section-container stack-container hover-effect">
-              <ul class="stack-left">
-                <li class="stack-icon"><i class="fab fa-html5"></i></li>
-                <li class="stack-icon"><i class="fab fa-sass"></i></li>
-                <li class="stack-icon"><i class="fab fa-js-square"></i></li>
-                <li class="stack-icon"><i class="fab fa-react"></i></li>
-                <li class="stack-icon"><i class="fab fa-node"></i></li>
-              </ul>
-              <ul class="stack-middle">
-                <li>a</li>
-                <li>b</li>
-                <li>c</li>
-                <li><i class="fab fa-git-square"></i></li>
-              </ul>
-              <ul class="stack-right">
-                <li class="stack-icon"><i class="fab fa-git-square"></i></li>
-                <li>b</li>
-                <li>c</li>
-              </ul>
+              <div class="stacklist-wrapper">
+                <p class="stacklist-description">my stack of choice&colon;</p>
+                <ul class="stack-left">
+                  <li class="stack-icon"><i class="fab fa-html5"></i></li>
+                  <li class="stack-icon"><i class="fab fa-sass"></i></li>
+                  <li class="stack-icon"><i class="fab fa-js-square"></i></li>
+                  <li class="stack-icon"><i class="fab fa-react"></i></li>
+                  <li class="stack-icon"><i class="fab fa-node"></i></li>
+                </ul>
+              </div>
+              <div class="stacklist-wrapper">
+                <p class="stacklist-description">
+                  my usual dev environment&colon;
+                </p>
+                <ul class="stack-middle">
+                  <li>a</li>
+                  <li>b</li>
+                  <li>c</li>
+                  <li><i class="fab fa-git-square"></i></li>
+                </ul>
+              </div>
+              <div class="stacklist-wrapper">
+                <p class="stacklist-description">
+                  i'm very excited about&colon;
+                </p>
+                <ul class="stack-right">
+                  <li class="stack-icon"><i class="fab fa-git-square"></i></li>
+                  <li>b</li>
+                  <li>c</li>
+                </ul>
+              </div>
             </div>
             <h4 class="hover-effect tag tag-stack">&lt;&sol;dev&gt;</h4>
           </div>
-
           <!-- <div class="gif">
             <img class="facegif" src="img/face1.jpg" loading="lazy" />
           </div> -->
-
-          <div class="cta cta-download">
-            <button class="cta-btn">download&nbsp;my&nbsp;CV</button>
-          </div>
         </section>
-
+        <div class="cta cta-download">
+          <button class="cta-btn">download&nbsp;my&nbsp;CV</button>
+        </div>
         <section id="projects">
           <h4 class="hover-effect tag tag-projects">&lt;projects&gt;</h4>
           <div class="section-container projects-container">
             <ul class="projects-wrapper">
               <li class="project project-1 hover-effect">
-                <i class="fas fa-expand-alt"></i>
-                <div class="thumbnail">
-                  <img src="img/project-1.png" alt="" loading="lazy" />
-                </div>
-                <div class="pitch-container">
-                  <h3 class="project-title">Title</h3>
-                  <!-- <p class="pitch">
-                    Few words description. Few words description. Few words
-                    description.Few words description. Few words description.
-                  </p> -->
-                  <div class="technologies">JavaScript &middot; Sass</div>
-                  <div class="project-links">
-                    <a
-                      class="hover-effect"
-                      href="https://github.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><i class="fab fa-github-alt"></i
-                      ><span class="project-github active">github</span></a
-                    >
-                    <a
-                      class="hover-effect"
-                      href="#"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><i class="fas fa-external-link-alt"></i
-                      ><span class="project-live active">live</span></a
-                    >
+                <div class="project__card">
+                  <div class="project__front">
+                    <div class="project__front--container">
+                      <img src="img/project-1.png" alt="" loading="lazy" />
+                      <p class="lorem">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, optio. Qui est, a necessitatibus nulla optio illo adipisci repellat exercitationem dolore ipsum ab tempora non? Dicta voluptatem soluta odio dignissimos.<10></10></p>
+                    </div>
+                  </div>
+                  <div class="project__back">
+                    <div class="project__back--container">
+                      <i class="fas fa-expand-alt"></i>
+                      <div class="thumbnail">
+                        <!-- <img src="img/project-1.png" alt="" loading="lazy" /> -->
+                      </div>
+                      <div class="pitch-container">
+                        <h3 class="project-title">Title</h3>
+                        <p class="pitch">
+                          Few words description. Few words description. Few words
+                          description.Few words description. Few words
+                          description.
+                        </p>
+                        <div class="technologies">JavaScript &middot; Sass</div>
+                        <div class="project-links">
+                          <a
+                            class="hover-effect"
+                            href="https://github.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            ><i class="fab fa-github-alt"></i
+                            ><span class="project-github active">github</span></a
+                          >
+                          <a
+                            class="hover-effect"
+                            href=""
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            ><i class="fas fa-external-link-alt"></i
+                            ><span class="project-live active">live</span></a
+                          >
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </li>
               <li class="project project-2 hover-effect">
-                <i class="fas fa-expand-alt"></i>
-                <div class="thumbnail">
-                  <img src="img/project-2.png" alt="" loading="lazy" />
-                </div>
-                <div class="pitch-container">
-                  <h3 class="project-title">Title</h3>
-                  <p class="pitch">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Totam commodi autem recusandae rem pariatur repellendus
-                    nisi, ipsam dolorum consectetur saepe quisquam! Maxime eius
-                    temporibus facere ipsum animi, amet quia culpa.
-                  </p>
-                  <div class="technologies">
-                    JavaScript &middot; Amadeus API
+                <div class="project__card">
+                  <div class="project__front">
+                    <img src="img/project-2.png" alt="" loading="lazy" />
                   </div>
-                  <div class="project-links">
-                    <a
-                      class="hover-effect"
-                      href="https://github.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><i class="fab fa-github-alt"></i
-                      ><span class="project-github active">github</span></a
-                    >
-                    <a
-                      class="hover-effect"
-                      href="#"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><i class="fas fa-external-link-alt"></i
-                      ><span class="project-live inactive">live</span></a
-                    >
+                  <div class="project__back">
+                    <div class="project__back--container">
+                      <i class="fas fa-expand-alt"></i>
+                      <div class="thumbnail">
+                        <!-- <img src="img/project-2.png" alt="" loading="lazy" /> -->
+                      </div>
+                      <div class="pitch-container">
+                        <h3 class="project-title">Title</h3>
+                        <p class="pitch">
+                          Few words description. Few words description. Few words
+                          description.Few words description. Few words
+                          description.
+                        </p>
+                        <div class="technologies">
+                          JavaScript &middot; Amadeus API
+                        </div>
+                        <div class="project-links">
+                          <a
+                            class="hover-effect"
+                            href="https://github.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            ><i class="fab fa-github-alt"></i
+                            ><span class="project-github active">github</span></a
+                          >
+                          <a
+                            class="hover-effect"
+                            href=""
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            ><i class="fas fa-external-link-alt"></i
+                            ><span class="project-live active">live</span></a
+                          >
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </li>
               <li class="project project-3 hover-effect">
-                <i class="fas fa-expand-alt"></i>
-                <div class="thumbnail">
-                  <img src="img/todo-app-react.png" alt="" loading="lazy" />
-                </div>
-                <div class="pitch-container">
-                  <h3 class="project-title">Title</h3>
-                  <p class="pitch">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Totam commodi autem recusandae rem pariatur repellendus
-                    nisi, ipsam dolorum consectetur saepe quisquam! Maxime eius
-                    temporibus facere ipsum animi, amet quia culpa.
-                  </p>
-                  <div class="technologies">React &middot; Firebase</div>
-                  <div class="project-links">
-                    <a
-                      class="hover-effect"
-                      href="https://github.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><i class="fab fa-github-alt"></i
-                      ><span class="project-github active">github</span></a
-                    >
-                    <a
-                      class="hover-effect"
-                      href="#"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><i class="fas fa-external-link-alt"></i
-                      ><span class="project-live active">live</span></a
-                    >
+                <div class="project__card">
+                  <div class="project__front">
+                    <img src="img/todo-app-react.png" alt="" loading="lazy" />
+                  </div>
+                  <div class="project__back">
+                    <div class="project__back--container">
+                      <i class="fas fa-expand-alt"></i>
+                      <div class="thumbnail">
+                        <!-- <img src="img/project-3.png" alt="" loading="lazy" /> -->
+                      </div>
+                      <div class="pitch-container">
+                        <h3 class="project-title">Title</h3>
+                        <p class="pitch">
+                          Few words description. Few words description. Few words
+                          description.Few words description. Few words
+                          description.
+                        </p>
+                        <div class="technologies">React &middot; Firebase</div>
+                        <div class="project-links">
+                          <a
+                            class="hover-effect"
+                            href="https://github.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            ><i class="fab fa-github-alt"></i
+                            ><span class="project-github active">github</span></a
+                          >
+                          <a
+                            class="hover-effect"
+                            href=""
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            ><i class="fas fa-external-link-alt"></i
+                            ><span class="project-live active">live</span></a
+                          >
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </li>
               <li class="project project-4 hover-effect">
-                <i class="fas fa-expand-alt"></i>
-                <div class="thumbnail">
-                  <img
-                    src="img/react-covid-dashboard.png"
-                    alt=""
-                    loading="lazy"
-                  />
-                </div>
-                <div class="pitch-container">
-                  <h3 class="project-title">Title</h3>
-                  <p class="pitch">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Totam commodi autem recusandae rem pariatur repellendus
-                    nisi, ipsam dolorum consectetur saepe quisquam! Maxime eius
-                    temporibus facere ipsum animi, amet quia culpa.
-                  </p>
-                  <div class="technologies">
-                    React &middot; Charts.js &middot; Covid19 API
+                <div class="project__card">
+                  <div class="project__front">
+                    <img
+                      src="img/react-covid-dashboard.png"
+                      alt=""
+                      loading="lazy"
+                    />
                   </div>
-                  <div class="project-links">
-                    <a
-                      class="hover-effect"
-                      href="https://github.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><i class="fab fa-github-alt"></i
-                      ><span class="project-github active">github</span></a
-                    >
-                    <a
-                      class="hover-effect"
-                      href="#"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><i class="fas fa-external-link-alt"></i
-                      ><span class="project-live inactive">live</span></a
-                    >
+                  <div class="project__back">
+                    <div class="project__back--container">
+                      <i class="fas fa-expand-alt"></i>
+                      <div class="thumbnail">
+                        <!-- <img src="img/project-1.png" alt="" loading="lazy" /> -->
+                      </div>
+                      <div class="pitch-container">
+                        <h3 class="project-title">Title</h3>
+                        <p class="pitch">
+                          Few words description. Few words description. Few words
+                          description.Few words description. Few words
+                          description.
+                        </p>
+                        <div class="technologies">
+                          React &middot; Charts.js &middot; COVID 19 API
+                        </div>
+                        <div class="project-links">
+                          <a
+                            class="hover-effect"
+                            href="https://github.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            ><i class="fab fa-github-alt"></i
+                            ><span class="project-github active">github</span></a
+                          >
+                          <a
+                            class="hover-effect"
+                            href=""
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            ><i class="fas fa-external-link-alt"></i
+                            ><span class="project-live active">live</span></a
+                          >
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </li>
-              <li class="project project-5 hover-effect">
+              <!-- <li class="project project-5 hover-effect">
                 <i class="fas fa-expand-alt"></i>
                 <div class="thumbnail">
                   <img alt="" loading="lazy" />
@@ -579,7 +626,7 @@
                     >
                   </div>
                 </div>
-              </li>
+              </li> -->
             </ul>
           </div>
           <h4 class="tag tag-projects hover-effect">&lt;&sol;projects&gt;</h4>
@@ -609,7 +656,7 @@
     <footer>
       <p>words</p>
       <p>made by Daniel Julien aka nightcoder</p>
-      <p>&copy; 2021&nbsp;&minus;&nbsp;all&nbsp;rights&nbsp;reserved&period;</p>
+      <p>&copy; 2021&nbsp;</p>
     </footer>
     <div class="fullpage">
       <div class="expand-container"></div>
