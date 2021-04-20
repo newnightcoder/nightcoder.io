@@ -83,6 +83,7 @@ body .body-container section .section-container::after {
 }
 
 .loader-container {
+  display: none;
   height: 100vh;
   width: 100vw;
   background-color: #1e1e1e;
@@ -301,7 +302,7 @@ nav .link-wrapper .link i:hover {
   margin-top: -20%;
 }
 #home header .logo-container #logo path {
-  stroke: red;
+  stroke: #fefefe;
   stroke-width: 1;
 }
 #home header .logo-container #logo path:nth-child(1) {
@@ -622,7 +623,6 @@ main #intro .stack .stack-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
   padding-left: 5vw;
 }
 main #intro .stack .stack-container::after {
@@ -630,19 +630,27 @@ main #intro .stack .stack-container::after {
   background-color: #3e3e42;
 }
 main #intro .stack .stack-container .stacklist-wrapper {
-  width: 100%;
+  width: 80%;
   min-height: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-direction: row;
   justify-content: space-around;
+  transform: translateY(100%);
+  border: 1px solid red;
+  display: none;
 }
 main #intro .stack .stack-container .stacklist-wrapper p {
   width: 100%;
   font-family: "courier new";
   font-size: 0.75rem;
   text-align: center;
+}
+main #intro .stack .stack-container .tab.active {
+  color: red;
+}
+main #intro .stack .stack-container .active {
+  display: flex;
 }
 main #intro .stack ul {
   list-style-type: none;

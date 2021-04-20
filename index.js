@@ -1,42 +1,40 @@
-const loading = () => {
-  setTimeout(() => {
-    document.querySelector(".loader-container").style.display = "none";
-  }, 0);
-};
+////////////////////////////////////////////////////////////////////////////////
+//  to get the path length for each svg letter:
+// const logo = document.querySelectorAll("#logo path");
+// console.log(logo);
+// logo.forEach((log, i) => console.log(`${i + 1}: ${log.getTotalLength()}`));
+/////////////////////////////////////////////////////////////////////////////////
 
-document.addEventListener("DOMContentLoaded", (e) => {
-  loading();
+window.addEventListener("load", (e) => {
   init();
 });
+const removeLoader = () => {
+  document.querySelector(".loader-container").style.display = "none";
+};
 
-//to get the path length for each svg letter
-const logo = document.querySelectorAll("#logo path");
-console.log(logo);
-logo.forEach((log, i) => console.log(`${i + 1}: ${log.getTotalLength()}`));
-
-const navbar = document.querySelector("nav");
-const navbarLinks = document.querySelector(".link-wrapper");
-const flags = document.querySelector(".flags-container");
-const brand = document.querySelector(".brand-name");
+const NAVBAR = document.querySelector("nav");
+const FLAGS = document.querySelector(".FLAGS-container");
+const NAVBARLINKS = document.querySelector(".link-wrapper");
+const BRAND = document.querySelector(".BRAND-name");
 const PROJECTS = document.querySelectorAll(".project");
 
-const init = async () => {
-  await loading();
+const init = () => {
+  removeLoader();
   window.addEventListener("scroll", () => {
     if (window.scrollY >= window.innerHeight / 7) {
-      (navbar.style.background =
+      (NAVBAR.style.background =
         "linear-gradient(to left, deeppink 0%, orange 100%)"),
-        (flags.style.opacity = "1"),
-        (navbarLinks.style.transform = "translateY(0)");
+        (FLAGS.style.opacity = "1"),
+        (NAVBARLINKS.style.transform = "translateY(0)");
     } else {
-      (navbar.style.background = "transparent"),
-        (flags.style.opacity = "0"),
-        (navbarLinks.style.transform = "translateY(1.75vh)");
+      (NAVBAR.style.background = "transparent"),
+        (FLAGS.style.opacity = "0"),
+        (NAVBARLINKS.style.transform = "translateY(1.75vh)");
     }
     if (window.scrollY >= window.innerHeight / 0.9) {
-      (brand.style.transform = "translateY(0)"), (brand.style.opacity = "1");
+      (BRAND.style.transform = "translateY(0)"), (BRAND.style.opacity = "1");
     } else {
-      (brand.style.transform = "translateY(100%)"), (brand.style.opacity = "0");
+      (BRAND.style.transform = "translateY(100%)"), (BRAND.style.opacity = "0");
     }
   });
 
@@ -56,10 +54,10 @@ const init = async () => {
       opacity: 1,
       delay: -0.5,
     })
-    .to("#logo", {
-      fill: "white",
-      delay: -0.5,
-    })
+    // .to("#logo", {
+    //   fill: "white",
+    //   delay: -0.5,
+    // })
     .to(".arrow", {
       opacity: 1,
       delay: 0.5,
@@ -204,9 +202,32 @@ const init = async () => {
       y: 200,
     });
 
-  // ////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////
+  //   ABOUT TABS
+  //////////////////////////////////////////////////////////////////////////////////
+
+  const TABS = document.querySelectorAll("[data-target]");
+  const TABCONTENTS = document.querySelectorAll(".tab__content");
+  TABS.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      TABCONTENTS.forEach((tab) => {
+        tab.classList.remove("active");
+      });
+      TABS.forEach((tab) => {
+        tab.classList.remove("active");
+      });
+      let tabTarget = document.querySelector(tab.dataset.target);
+      tabTarget.classList.add("active");
+      tab.classList.add("active");
+    });
+    // TABS.forEach((tab) => {
+    //   tab.classList.remove("active");
+    // });
+  });
+
+  //////////////////////////////////////////////////////////////////////////////////
   //   CARDS FLIP
-  // ////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////
 
   const cards = document.querySelectorAll(".project__card");
   cards.forEach((card) => {
