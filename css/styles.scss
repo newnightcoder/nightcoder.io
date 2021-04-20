@@ -623,16 +623,15 @@ main {
     font-weight: light;
     background-color: $editor-background;
     outline: none;
-    background-color: aqua;
-    color: $editor-background;
+    background-color: $editor-background;
+    color: aqua;
     border: 0.15em solid aqua;
     border-radius: $border-radius;
     transition: background-color 0.2s;
     &:hover {
       cursor: pointer;
-      border-color: aqua;
-      color: aqua;
-      background-color: $editor-background;
+      color: $editor-background;
+      background-color: aqua;
     }
   }
 
@@ -747,7 +746,7 @@ main {
       .stack-container {
         height: calc(100% - 36px);
         @include flex-column-center;
-        // justify-content: space-around;
+        justify-content: space-evenly;
         padding-left: 5vw;
         // border: 10px solid red;
 
@@ -758,25 +757,35 @@ main {
 
         .stacklist-wrapper {
           width: 80%;
-          min-height: 40px;
+          min-height: 100px;
           @include flex-column-center;
           // flex-direction: row;
           justify-content: space-around;
-          transform: translateY(100%);
-          border: 1px solid red;
+          // transform: translateY(100%);
+          border: 1px solid $grey-primary;
           display: none;
 
           p {
             width: 100%;
             font-family: "courier new";
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             // color: gray;
             text-align: center;
             // border: 1px solid greenyellow;
           }
         }
+        .tabs {
+          border-bottom: 1px solid $grey-primary;
+          padding-bottom: 5px;
+          color: gray;
+          li {
+            padding: 5px 20px;
+          }
+        }
         .tab.active {
-          color: red;
+          color: white;
+          background-color: $grey-primary;
+          padding: 5px 20px;
         }
         .active {
           display: flex;
@@ -791,7 +800,7 @@ main {
         color: $white-primary;
         width: 100%;
         padding-left: 2vw;
-        border: 1px solid greenyellow;
+        // border: 1px solid greenyellow;
 
         // .stack-left {
         //   padding-left: 5vw;
@@ -810,46 +819,46 @@ main {
             // color: rgb(188, 185, 185);
           }
         }
-      }
-      .hover-effect:hover {
-        &::before {
-          background-color: gray;
-        }
-        // .stack-middle,
-        // .stack-right {
-        //   border-left: 1px solid $grey-primary;
-        // }
-        i {
-          background-color: transparent;
-        }
-        li:nth-child(1) {
-          i {
-            color: #e44d26;
+        &:hover {
+          &::before {
+            background-color: gray;
           }
-        }
-        li:nth-child(2) {
+          // .stack-middle,
+          // .stack-right {
+          //   border-left: 1px solid $grey-primary;
+          // }
           i {
-            color: #cd6799;
+            background-color: transparent;
           }
-        }
-        li:nth-child(3) {
-          i {
-            color: #ffff00;
+          li:nth-child(1) {
+            i {
+              color: #e44d26;
+            }
           }
-        }
-        li:nth-child(4) {
-          i {
-            color: #61dbfb;
+          li:nth-child(2) {
+            i {
+              color: #cd6799;
+            }
           }
-        }
-        li:nth-child(5) {
-          i {
-            color: #3c873a;
+          li:nth-child(3) {
+            i {
+              color: #ffff00;
+            }
           }
-        }
-        li:nth-child(6) {
-          i {
-            color: lightgrey;
+          li:nth-child(4) {
+            i {
+              color: #61dbfb;
+            }
+          }
+          li:nth-child(5) {
+            i {
+              color: #3c873a;
+            }
+          }
+          li:nth-child(6) {
+            i {
+              color: lightgrey;
+            }
           }
         }
       }

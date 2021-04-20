@@ -525,17 +525,16 @@ main .cta-btn {
   font-weight: light;
   background-color: #1e1e1e;
   outline: none;
-  background-color: aqua;
-  color: #1e1e1e;
+  background-color: #1e1e1e;
+  color: aqua;
   border: 0.15em solid aqua;
   border-radius: 5px;
   transition: background-color 0.2s;
 }
 main .cta-btn:hover {
   cursor: pointer;
-  border-color: aqua;
-  color: aqua;
-  background-color: #1e1e1e;
+  color: #1e1e1e;
+  background-color: aqua;
 }
 main #intro {
   grid-row: 1;
@@ -623,6 +622,7 @@ main #intro .stack .stack-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
   padding-left: 5vw;
 }
 main #intro .stack .stack-container::after {
@@ -631,23 +631,32 @@ main #intro .stack .stack-container::after {
 }
 main #intro .stack .stack-container .stacklist-wrapper {
   width: 80%;
-  min-height: 40px;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  transform: translateY(100%);
-  border: 1px solid red;
+  border: 1px solid #3e3e42;
   display: none;
 }
 main #intro .stack .stack-container .stacklist-wrapper p {
   width: 100%;
   font-family: "courier new";
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   text-align: center;
 }
+main #intro .stack .stack-container .tabs {
+  border-bottom: 1px solid #3e3e42;
+  padding-bottom: 5px;
+  color: gray;
+}
+main #intro .stack .stack-container .tabs li {
+  padding: 5px 20px;
+}
 main #intro .stack .stack-container .tab.active {
-  color: red;
+  color: white;
+  background-color: #3e3e42;
+  padding: 5px 20px;
 }
 main #intro .stack .stack-container .active {
   display: flex;
@@ -660,33 +669,32 @@ main #intro .stack ul {
   color: #fefefe;
   width: 100%;
   padding-left: 2vw;
-  border: 1px solid greenyellow;
 }
 main #intro .stack ul li i {
   font-size: 1.5rem;
 }
-main #intro .stack .hover-effect:hover::before {
+main #intro .stack ul:hover::before {
   background-color: gray;
 }
-main #intro .stack .hover-effect:hover i {
+main #intro .stack ul:hover i {
   background-color: transparent;
 }
-main #intro .stack .hover-effect:hover li:nth-child(1) i {
+main #intro .stack ul:hover li:nth-child(1) i {
   color: #e44d26;
 }
-main #intro .stack .hover-effect:hover li:nth-child(2) i {
+main #intro .stack ul:hover li:nth-child(2) i {
   color: #cd6799;
 }
-main #intro .stack .hover-effect:hover li:nth-child(3) i {
+main #intro .stack ul:hover li:nth-child(3) i {
   color: #ffff00;
 }
-main #intro .stack .hover-effect:hover li:nth-child(4) i {
+main #intro .stack ul:hover li:nth-child(4) i {
   color: #61dbfb;
 }
-main #intro .stack .hover-effect:hover li:nth-child(5) i {
+main #intro .stack ul:hover li:nth-child(5) i {
   color: #3c873a;
 }
-main #intro .stack .hover-effect:hover li:nth-child(6) i {
+main #intro .stack ul:hover li:nth-child(6) i {
   color: lightgrey;
 }
 main .cta-download {

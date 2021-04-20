@@ -147,7 +147,7 @@ const init = () => {
       x: -1 * window.innerWidth,
     })
     .from(".stack", {
-      x: -1 * window.innerWidth,
+      opacity: 0,
     })
 
     .from(".cta-download", {
