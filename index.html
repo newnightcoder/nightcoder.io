@@ -78,15 +78,21 @@
     <div class="loader-container"><div class="loader"></div></div>
 
     <nav>
-      <div class="flags-container">
+      <!-- <div class="flags-container">
         <div class="flag flag-en">en</div>
         <div class="flag flag-fr">fr</div>
         <div class="flag flag-de">de</div>
-      </div>
-      <div class="minilogo">
+      </div> -->
+      <!-- <div class="minilogo">
         <div class="circle"></div>
-      </div>
+      </div> -->
       <div class="brand-name">daniel julien &middot; front-end developer</div>
+      <svg id="hamburger" viewbox="0 0 40 30" width="40" height="30">
+        <rect y="4" width="40" height="5"></rect>
+        <rect y="13" width="40" height="5"></rect>
+        <rect y="22" width="40" height="5"></rect>
+      </svg>
+
       <div class="link-wrapper">
         <a class="link" href="https://github.com/newnightcoder" target="blank"
           ><i class="fab fa-github"></i
@@ -162,7 +168,14 @@
           <div class="sky-placeholder">
             <div class="sky-container">
               <div class="circle-container">
-                <!-- <svg id="svg-rainbow" width="400" height="200">
+                <svg
+                  id="svg-rainbow"
+                  width="400"
+                  height="200"
+                  viewBox="0 0 400 200"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <linearGradient id="linearColor1">
                     <stop offset="0%" stop-color="yellow"></stop>
                     <stop offset="50%" stop-color="orange"></stop>
@@ -229,7 +242,7 @@
                     stroke-width="30"
                     fill="none"
                   />
-                </svg> -->
+                </svg>
               </div>
             </div>
           </div>
@@ -335,7 +348,7 @@
       </section>
       <main>
         <section id="intro">
-          <div class="title">
+          <div id="about" class="title">
             <h1 class="upper-title intro-div">
               hello&excl;&nbsp;i&apos;m Daniel Julien&comma;
             </h1>
@@ -351,8 +364,8 @@
             </h4>
             <div class="section-container hover-effect">
               <p class="p-about">
-                Hello! I'm Daniel and im' a proud and happy self-taught <br />
-                junior front-end developer. <br />
+                Hello! I'm Daniel and im' a proud and happy self-taught junior
+                front-end developer. <br />
                 I speak fluently JavaScript&period;<nbsp></nbsp> React is my
                 framework of choice but&comma;&nbsp;<br />
                 i'm always very excited to learn and adapt to new technologies!
@@ -417,196 +430,147 @@
           </div> -->
         </section>
         <div class="cta cta-download">
-          <button class="cta-btn">download&nbsp;my&nbsp;CV</button>
+          <button class="cta-btn-download">download&nbsp;my&nbsp;CV</button>
         </div>
+
         <section id="projects">
           <h4 class="hover-effect tag tag-projects">&lt;projects&gt;</h4>
           <div class="section-container projects-container">
             <ul class="projects-wrapper">
               <li class="project project-1 hover-effect">
-                <div class="project__card">
-                  <div class="project__front">
-                    <div class="project__front--container">
-                      <img src="img/project-1.png" alt="" loading="lazy" />
-                      <p class="lorem">more</p>
-                    </div>
-                  </div>
-                  <div class="project__back">
-                    <div class="project__back--container">
-                      <i class="fas fa-expand-alt"></i>
-                      <div class="thumbnail">
-                        <!-- <img src="img/project-1.png" alt="" loading="lazy" /> -->
-                      </div>
-                      <div class="pitch-container">
-                        <h3 class="project-title">Title</h3>
-                        <p class="pitch">
-                          Few words description. Few words description. Few
-                          words description.Few words description. Few words
-                          description.
-                        </p>
-                        <div class="technologies">JavaScript &middot; Sass</div>
-                        <div class="project-links">
-                          <a
-                            class="hover-effect"
-                            href="https://github.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            ><i class="fab fa-github-alt"></i
-                            ><span class="project-github active"
-                              >github</span
-                            ></a
-                          >
-                          <a
-                            class="hover-effect"
-                            href=""
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            ><i class="fas fa-external-link-alt"></i
-                            ><span class="project-live active">live</span></a
-                          >
-                        </div>
-                      </div>
-                    </div>
+                <!-- <img src="img/project-1.png" alt="" loading="lazy" /> -->
+                <i class="fas fa-expand-alt"></i>
+                <div class="thumbnail">
+                  <img src="img/project-1.png" alt="" loading="lazy" />
+                </div>
+                <div class="pitch-container">
+                  <h3 class="project-title">Title</h3>
+                  <p class="pitch">
+                    Few words description. Few words description. Few words
+                    description.Few words description. Few words description.
+                  </p>
+                  <div class="technologies">JavaScript &middot; Sass</div>
+                  <div class="project-links">
+                    <a
+                      class="hover-effect"
+                      href="https://github.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ><i class="fab fa-github-alt"></i
+                      ><span class="project-github active">github</span></a
+                    >
+                    <a
+                      class="hover-effect"
+                      href=""
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ><i class="fas fa-external-link-alt"></i
+                      ><span class="project-live active">live</span></a
+                    >
                   </div>
                 </div>
               </li>
               <li class="project project-2 hover-effect">
-                <div class="project__card">
-                  <div class="project__front">
-                    <img src="img/project-2.png" alt="" loading="lazy" />
+                <i class="fas fa-expand-alt"></i>
+                <div class="thumbnail">
+                  <img src="img/project-2.png" alt="" loading="lazy" />
+                </div>
+                <div class="pitch-container">
+                  <h3 class="project-title">Title</h3>
+                  <p class="pitch">
+                    Few words description. Few words description. Few words
+                    description.Few words description. Few words description.
+                  </p>
+                  <div class="technologies">
+                    JavaScript &middot; Amadeus API
                   </div>
-                  <div class="project__back">
-                    <div class="project__back--container">
-                      <i class="fas fa-expand-alt"></i>
-                      <div class="thumbnail">
-                        <!-- <img src="img/project-2.png" alt="" loading="lazy" /> -->
-                      </div>
-                      <div class="pitch-container">
-                        <h3 class="project-title">Title</h3>
-                        <p class="pitch">
-                          Few words description. Few words description. Few
-                          words description.Few words description. Few words
-                          description.
-                        </p>
-                        <div class="technologies">
-                          JavaScript &middot; Amadeus API
-                        </div>
-                        <div class="project-links">
-                          <a
-                            class="hover-effect"
-                            href="https://github.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            ><i class="fab fa-github-alt"></i
-                            ><span class="project-github active"
-                              >github</span
-                            ></a
-                          >
-                          <a
-                            class="hover-effect"
-                            href=""
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            ><i class="fas fa-external-link-alt"></i
-                            ><span class="project-live active">live</span></a
-                          >
-                        </div>
-                      </div>
-                    </div>
+                  <div class="project-links">
+                    <a
+                      class="hover-effect"
+                      href="https://github.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ><i class="fab fa-github-alt"></i
+                      ><span class="project-github active">github</span></a
+                    >
+                    <a
+                      class="hover-effect"
+                      href=""
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ><i class="fas fa-external-link-alt"></i
+                      ><span class="project-live active">live</span></a
+                    >
                   </div>
                 </div>
               </li>
               <li class="project project-3 hover-effect">
-                <div class="project__card">
-                  <div class="project__front">
-                    <img src="img/todo-app-react.png" alt="" loading="lazy" />
-                  </div>
-                  <div class="project__back">
-                    <div class="project__back--container">
-                      <i class="fas fa-expand-alt"></i>
-                      <div class="thumbnail">
-                        <!-- <img src="img/project-3.png" alt="" loading="lazy" /> -->
-                      </div>
-                      <div class="pitch-container">
-                        <h3 class="project-title">Title</h3>
-                        <p class="pitch">
-                          Few words description. Few words description. Few
-                          words description.Few words description. Few words
-                          description.
-                        </p>
-                        <div class="technologies">React &middot; Firebase</div>
-                        <div class="project-links">
-                          <a
-                            class="hover-effect"
-                            href="https://github.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            ><i class="fab fa-github-alt"></i
-                            ><span class="project-github active"
-                              >github</span
-                            ></a
-                          >
-                          <a
-                            class="hover-effect"
-                            href=""
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            ><i class="fas fa-external-link-alt"></i
-                            ><span class="project-live active">live</span></a
-                          >
-                        </div>
-                      </div>
-                    </div>
+                <i class="fas fa-expand-alt"></i>
+                <div class="thumbnail">
+                  <img src="img/todo-app-react.png" alt="" loading="lazy" />
+                </div>
+                <div class="pitch-container">
+                  <h3 class="project-title">Title</h3>
+                  <p class="pitch">
+                    Few words description. Few words description. Few words
+                    description.Few words description. Few words description.
+                  </p>
+                  <div class="technologies">React &middot; Firebase</div>
+                  <div class="project-links">
+                    <a
+                      class="hover-effect"
+                      href="https://github.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ><i class="fab fa-github-alt"></i
+                      ><span class="project-github active">github</span></a
+                    >
+                    <a
+                      class="hover-effect"
+                      href=""
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ><i class="fas fa-external-link-alt"></i
+                      ><span class="project-live active">live</span></a
+                    >
                   </div>
                 </div>
               </li>
               <li class="project project-4 hover-effect">
-                <div class="project__card">
-                  <div class="project__front">
-                    <img
-                      src="img/react-covid-dashboard.png"
-                      alt=""
-                      loading="lazy"
-                    />
+                <i class="fas fa-expand-alt"></i>
+                <div class="thumbnail">
+                  <img
+                    src="img/react-covid-dashboard.png"
+                    alt=""
+                    loading="lazy"
+                  />
+                </div>
+                <div class="pitch-container">
+                  <h3 class="project-title">Title</h3>
+                  <p class="pitch">
+                    Few words description. Few words description. Few words
+                    description.Few words description. Few words description.
+                  </p>
+                  <div class="technologies">
+                    React &middot; Charts.js &middot; COVID 19 API
                   </div>
-                  <div class="project__back">
-                    <div class="project__back--container">
-                      <i class="fas fa-expand-alt"></i>
-                      <div class="thumbnail">
-                        <!-- <img src="img/project-1.png" alt="" loading="lazy" /> -->
-                      </div>
-                      <div class="pitch-container">
-                        <h3 class="project-title">Title</h3>
-                        <p class="pitch">
-                          Few words description. Few words description. Few
-                          words description.Few words description. Few words
-                          description.
-                        </p>
-                        <div class="technologies">
-                          React &middot; Charts.js &middot; COVID 19 API
-                        </div>
-                        <div class="project-links">
-                          <a
-                            class="hover-effect"
-                            href="https://github.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            ><i class="fab fa-github-alt"></i
-                            ><span class="project-github active"
-                              >github</span
-                            ></a
-                          >
-                          <a
-                            class="hover-effect"
-                            href=""
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            ><i class="fas fa-external-link-alt"></i
-                            ><span class="project-live active">live</span></a
-                          >
-                        </div>
-                      </div>
-                    </div>
+                  <div class="project-links">
+                    <a
+                      class="hover-effect"
+                      href="https://github.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ><i class="fab fa-github-alt"></i
+                      ><span class="project-github active">github</span></a
+                    >
+                    <a
+                      class="hover-effect"
+                      href=""
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ><i class="fas fa-external-link-alt"></i
+                      ><span class="project-live active">live</span></a
+                    >
                   </div>
                 </div>
               </li>
@@ -649,7 +613,7 @@
         </section>
 
         <div class="cta cta-contact">
-          <button class="cta-btn">contact&nbsp;me</button>
+          <button class="cta-btn-contact">contact&nbsp;me</button>
         </div>
         <section id="more">
           <h4 class="tag tag-more hover-effect">&lt;more&gt;</h4>
@@ -668,6 +632,46 @@
           <h4 class="tag tag-contact hover-effect">&lt;&sol;contact&gt;</h4>
         </section>
       </main>
+      <div class="hamburger__content">
+        <svg id="close__hamburger" viewbox="0 0 40 30" width="40" height="40">
+          <rect class="close__rect--top" y="4" width="40" height="5"></rect>
+          <rect class="close__rect--middle" y="13" width="40" height="5"></rect>
+          <rect class="close__rect--bottom" y="22" width="40" height="5"></rect>
+        </svg>
+        <h3 class="hamburger__content--title">menu</h3>
+        <div class="hamburger__content--links">
+          <a href="#about">about</a>
+          <a href="#projects">projects</a>
+          <a href="#contact">contact me</a>
+        </div>
+        <div class="hamburger__content--socialicons">
+          you can find me there:
+
+          <div class="social__icons--container">
+            <a
+              class="link"
+              href="https://github.com/newnightcoder"
+              target="blank"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a
+              class="link"
+              href="https://twitter.com/Nightcoder2"
+              target="blank"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a class="link" href="https://dev.to/nightcoder" target="blank"
+              ><i class="fab fa-dev"></i
+            ></a>
+            <a
+              class="link"
+              href="https://www.linkedin.com/in/nightcoder-dan/"
+              target="blank"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+      </div>
     </div>
     <footer>
       <p>words</p>

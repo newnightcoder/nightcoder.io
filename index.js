@@ -5,6 +5,30 @@
 // logo.forEach((log, i) => console.log(`${i + 1}: ${log.getTotalLength()}`));
 /////////////////////////////////////////////////////////////////////////////////
 
+const NAVBAR = document.querySelector("nav");
+// const FLAGS = document.querySelector(".flags-container");
+const NAVBARLINKS = document.querySelector(".link-wrapper");
+const BRAND = document.querySelector(".brand-name");
+const hamburger = document.querySelector("#hamburger");
+const PROJECTS = document.querySelectorAll(".project");
+
+const init = () => {
+  removeLoader();
+  navbarAnim();
+  openHamburger();
+  closeHamburger();
+  heroAnim();
+  tabEffect();
+  scrollEffect();
+  PROJECTS.forEach((project) => {
+    project.children[0].addEventListener("click", () => {
+      console.log("expand!");
+      animateTransition(project);
+      displayContent(project);
+    });
+  });
+};
+
 window.addEventListener("load", (e) => {
   init();
 });
@@ -12,23 +36,20 @@ const removeLoader = () => {
   document.querySelector(".loader-container").style.display = "none";
 };
 
-const NAVBAR = document.querySelector("nav");
-const FLAGS = document.querySelector(".FLAGS-container");
-const NAVBARLINKS = document.querySelector(".link-wrapper");
-const BRAND = document.querySelector(".BRAND-name");
-const PROJECTS = document.querySelectorAll(".project");
+//////////////////////////////////////////////////////////////////////////////////
+//   NAVBAR
+//////////////////////////////////////////////////////////////////////////////////
 
-const init = () => {
-  removeLoader();
+const navbarAnim = () => {
   window.addEventListener("scroll", () => {
     if (window.scrollY >= window.innerHeight / 7) {
       (NAVBAR.style.background =
         "linear-gradient(to left, deeppink 0%, orange 100%)"),
-        (FLAGS.style.opacity = "1"),
+        // (FLAGS.style.opacity = "1"),
         (NAVBARLINKS.style.transform = "translateY(0)");
     } else {
       (NAVBAR.style.background = "transparent"),
-        (FLAGS.style.opacity = "0"),
+        // (FLAGS.style.opacity = "0"),
         (NAVBARLINKS.style.transform = "translateY(1.75vh)");
     }
     if (window.scrollY >= window.innerHeight / 0.9) {
@@ -37,11 +58,34 @@ const init = () => {
       (BRAND.style.transform = "translateY(100%)"), (BRAND.style.opacity = "0");
     }
   });
+};
 
-  // ////////////////////////////////////////////////////////////////////////////////
-  //   HERO ANIMATIONS
-  // ////////////////////////////////////////////////////////////////////////////////
+const openHamburger = () => {
+  hamburger.addEventListener("click", () => {
+    document.querySelector(".hamburger__content").style.transform =
+      "translateX(0)";
+    document.querySelector("*").style.overflow = "hidden";
+  });
+};
+const closeHamburger = () => {
+  document.querySelector("#close__hamburger").addEventListener("click", () => {
+    document.querySelector(".hamburger__content").style.transform =
+      "translateX(100%)";
+    document.querySelector("*").style.overflow = "scroll";
+  }),
+    document.querySelectorAll(".hamburger__content a").forEach((a) => {
+      a.addEventListener("click", () => {
+        document.querySelector(".hamburger__content").style.transform =
+          "translateX(100%)";
+        document.querySelector("*").style.overflow = "scroll";
+      });
+    });
+};
+// ////////////////////////////////////////////////////////////////////////////////
+//   HERO ANIMATIONS
+// ////////////////////////////////////////////////////////////////////////////////
 
+const heroAnim = () => {
   gsap
     .timeline()
     .to(".p-stagger", {
@@ -54,10 +98,10 @@ const init = () => {
       opacity: 1,
       delay: -0.5,
     })
-    // .to("#logo", {
-    //   fill: "white",
-    //   delay: -0.5,
-    // })
+    .to("#logo", {
+      fill: "white",
+      delay: -0.5,
+    })
     .to(".arrow", {
       opacity: 1,
       delay: 0.5,
@@ -69,12 +113,14 @@ const init = () => {
       yoyo: true,
       ease: "power4(3)",
     });
+};
 
-  // ////////////////////////////////////////////////////////////////////////////////
-  //   SCROLLTRIGGER TIMELINE
-  // ////////////////////////////////////////////////////////////////////////////////
-  gsap.registerPlugin(ScrollTrigger);
+// ////////////////////////////////////////////////////////////////////////////////
+//   SCROLLTRIGGER TIMELINE
+// ////////////////////////////////////////////////////////////////////////////////
+gsap.registerPlugin(ScrollTrigger);
 
+const scrollEffect = () => {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#intro",
@@ -83,14 +129,13 @@ const init = () => {
       scrub: true,
     },
   });
-
-  tl.to(".logo-container", {
+  tl.to("#logo", {
     scrollTrigger: {
       trigger: "#intro",
       start: "top bottom",
       scrub: true,
     },
-    // scale: 17,
+    scale: 30,
     autoAlpha: 0,
   })
     .to(".header-line", {
@@ -144,13 +189,13 @@ const init = () => {
     //   scale: 0,
     // })
     .from(".about", {
-      x: -1 * window.innerWidth,
+      opacity: 0,
     })
     .from(".stack", {
       opacity: 0,
     })
 
-    .from(".cta-download", {
+    .from(".cta-btn-download", {
       scrollTrigger: {
         trigger: ".cta-download",
         start: "top bottom",
@@ -160,7 +205,6 @@ const init = () => {
       autoAlpha: 0,
     });
 
-  // tl.to(
   PROJECTS.forEach((project, i) => {
     tl.from(project, {
       scrollTrigger: {
@@ -173,8 +217,7 @@ const init = () => {
       opacity: 0,
     });
   });
-  // );
-  tl.from(".cta-contact", {
+  tl.from(".cta-btn-contact", {
     scrollTrigger: {
       trigger: ".cta-contact",
       start: "top 80%",
@@ -201,13 +244,16 @@ const init = () => {
       },
       y: 200,
     });
+};
 
-  //////////////////////////////////////////////////////////////////////////////////
-  //   ABOUT TABS
-  //////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//   ABOUT TABS
+//////////////////////////////////////////////////////////////////////////////////
 
-  const TABS = document.querySelectorAll("[data-target]");
-  const TABCONTENTS = document.querySelectorAll(".tab__content");
+const TABS = document.querySelectorAll("[data-target]");
+const TABCONTENTS = document.querySelectorAll(".tab__content");
+
+const tabEffect = () => {
   TABS.forEach((tab) => {
     tab.addEventListener("click", () => {
       TABCONTENTS.forEach((tab) => {
@@ -220,167 +266,143 @@ const init = () => {
       tabTarget.classList.add("active");
       tab.classList.add("active");
     });
-    // TABS.forEach((tab) => {
-    //   tab.classList.remove("active");
-    // });
   });
+};
 
-  //////////////////////////////////////////////////////////////////////////////////
-  //   CARDS FLIP
-  //////////////////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////////////
+//   EXPAND ANIMATION
+// ////////////////////////////////////////////////////////////////////////////////
+const fullpage = document.querySelector(".fullpage");
+const expandedProject = document.querySelector(".expand-container");
+const projectBack = document.querySelectorAll(".project__back");
+const expandButtons = document.querySelectorAll(".fa-expand-alt");
 
-  const cards = document.querySelectorAll(".project__card");
-  cards.forEach((card) => {
-    card.addEventListener("click", () => {
-      card.classList.toggle("flipped");
+const animateTransition = (project) => {
+  let clone = project.cloneNode();
+  clone.classList.add("clone");
+  document.body.appendChild(clone);
+  console.log(clone);
+
+  const finish = () => {
+    gsap.set(clone, {
+      opacity: 0,
     });
-  });
-
-  // ////////////////////////////////////////////////////////////////////////////////
-  //   EXPAND ANIMATION
-  // ////////////////////////////////////////////////////////////////////////////////
-  const fullpage = document.querySelector(".fullpage");
-  const expandedProject = document.querySelector(".expand-container");
-  const projectBack = document.querySelectorAll(".project__back");
-  const expandButtons = document.querySelectorAll(".fa-expand-alt");
-
-  const animateTransition = (project) => {
-    let clone = project.cloneNode();
-    clone.classList.add("clone");
-    document.body.appendChild(clone);
-    console.log(clone);
-
-    const finish = () => {
-      gsap.set(clone, {
-        opacity: 0,
-      });
-      document.body.removeChild(clone);
-    };
-    gsap.to(clone, {
-      width: "100vw",
-      height: "100vh",
-      onComplete: finish,
-    });
-    gsap.set(fullpage, {
-      visibility: "visible",
-    });
-
-    setTimeout(() => {
-      document.body.style.overflow = "hidden";
-    }, 100);
+    document.body.removeChild(clone);
   };
-
-  fullpage.addEventListener("click", () => {
-    fullpage.style.visibility = "hidden";
-    document.body.style.overflowY = "scroll";
+  gsap.to(clone, {
+    width: "100vw",
+    height: "100vh",
+    onComplete: finish,
+  });
+  gsap.set(fullpage, {
+    visibility: "visible",
   });
 
-  const displayContent = (project) => {
-    if (project.classList.contains("project-1")) {
-      expandedProject.innerHTML = `project 1`;
-    }
-    if (project.classList.contains("project-2")) {
-      expandedProject.innerHTML = `project 2`;
-    }
-    if (project.classList.contains("project-3")) {
-      expandedProject.innerHTML = `project 3`;
-    }
-    if (project.classList.contains("project-4")) {
-      expandedProject.innerHTML = `project 4`;
-    }
-    if (project.classList.contains("project-5")) {
-      expandedProject.innerHTML = `project 5`;
-    }
-  };
+  setTimeout(() => {
+    document.body.style.overflow = "hidden";
+  }, 100);
+};
 
-  PROJECTS.forEach((project) => {
-    project.children[0].children[1].children[0].children[0].addEventListener(
-      "click",
-      () => {
-        project.children[0].classList.remove("flipped");
-        animateTransition(project);
-        displayContent(project);
+fullpage.addEventListener("click", () => {
+  fullpage.style.visibility = "hidden";
+  document.body.style.overflowY = "scroll";
+});
+
+const displayContent = (project) => {
+  if (project.classList.contains("project-1")) {
+    expandedProject.innerHTML = `project 1`;
+  }
+  if (project.classList.contains("project-2")) {
+    expandedProject.innerHTML = `project 2`;
+  }
+  if (project.classList.contains("project-3")) {
+    expandedProject.innerHTML = `project 3`;
+  }
+  if (project.classList.contains("project-4")) {
+    expandedProject.innerHTML = `project 4`;
+  }
+  if (project.classList.contains("project-5")) {
+    expandedProject.innerHTML = `project 5`;
+  }
+};
+
+//------------------------------------------------------------------------------
+//                      THE STARZ
+//------------------------------------------------------------------------------
+const canvas = document.querySelector("#canvas");
+const context = canvas.getContext("2d");
+const canvasWidth = 1250;
+const canvasHeight = 150;
+const focalLength = canvasWidth;
+const centerX = canvasWidth / 2;
+const centerY = canvasHeight / 2;
+
+function Star() {
+  (this.x = Math.random() * canvasWidth),
+    (this.y = Math.random() * canvasHeight),
+    (this.z = Math.random() * canvasWidth),
+    (this.size = 0.75),
+    (this.speed = 3),
+    (this.display = function () {
+      let x, y, r;
+      x = (this.x - centerX) * (focalLength / this.z);
+      x += centerX;
+      y = (this.y - centerY) * (focalLength / this.z);
+      y += centerY;
+      r = this.size * (focalLength / this.z);
+
+      context.beginPath();
+      // context.arc(x, y, r, 0, 2 * Math.PI);
+      context.rect(x, y, 2, 2);
+      context.fillStyle = "white";
+      context.fill();
+    }),
+    (this.fly = function () {
+      this.z = this.z - this.speed;
+      if (this.z <= 0) {
+        this.z = canvasWidth;
       }
-    );
-  });
-  //------------------------------------------------------------------------------
-  //                      THE STARZ
-  //------------------------------------------------------------------------------
-  const canvas = document.querySelector("#canvas");
-  const context = canvas.getContext("2d");
-  const canvasWidth = 1250;
-  const canvasHeight = 150;
-  const focalLength = canvasWidth;
-  const centerX = canvasWidth / 2;
-  const centerY = canvasHeight / 2;
+    });
+}
 
-  function Star() {
-    (this.x = Math.random() * canvasWidth),
-      (this.y = Math.random() * canvasHeight),
-      (this.z = Math.random() * canvasWidth),
-      (this.size = 0.75),
-      (this.speed = 3),
-      (this.display = function () {
-        let x, y, r;
-        x = (this.x - centerX) * (focalLength / this.z);
-        x += centerX;
-        y = (this.y - centerY) * (focalLength / this.z);
-        y += centerY;
-        r = this.size * (focalLength / this.z);
+const stars = new Array(1000);
+for (let i = 0; i < stars.length; i++) {
+  stars[i] = new Star();
+}
 
-        context.beginPath();
-        // context.arc(x, y, r, 0, 2 * Math.PI);
-        context.rect(x, y, 2, 2);
-        context.fillStyle = "white";
-        context.fill();
-      }),
-      (this.fly = function () {
-        this.z = this.z - this.speed;
-        if (this.z <= 0) {
-          this.z = canvasWidth;
-        }
-      });
-  }
-
-  const stars = new Array(1000);
+//DRAWING THE STARZ
+function draw() {
+  context.fillStyle = "rgb(30 30 30)";
+  context.fillRect(0, 0, canvasWidth, canvasHeight);
   for (let i = 0; i < stars.length; i++) {
-    stars[i] = new Star();
+    stars[i].display();
+    stars[i].fly();
   }
+}
 
-  //DRAWING THE STARZ
-  function draw() {
-    context.fillStyle = "rgb(30 30 30)";
-    context.fillRect(0, 0, canvasWidth, canvasHeight);
-    for (let i = 0; i < stars.length; i++) {
-      stars[i].display();
-      stars[i].fly();
-    }
-  }
+//PAUSE
+let paused = false;
 
-  //PAUSE
-  let paused = false;
-
-  function pauseKey(event) {
-    if (event.keyCode === 32) {
-      paused = !paused;
-      paused === true ? draw() : loop();
-    }
-  }
-  function pauseClick() {
+function pauseKey(event) {
+  if (event.keyCode === 32) {
     paused = !paused;
     paused === true ? draw() : loop();
   }
-  canvas.addEventListener("click", pauseClick);
-  window.addEventListener("keydown", pauseKey);
+}
+function pauseClick() {
+  paused = !paused;
+  paused === true ? draw() : loop();
+}
+canvas.addEventListener("click", pauseClick);
+window.addEventListener("keydown", pauseKey);
 
-  //LOOP
-  function loop() {
-    if (paused === true) return;
-    else {
-      requestAnimationFrame(loop);
-      context.clearRect(0, 0, canvasWidth, canvasHeight);
-      draw();
-    }
+//LOOP
+function loop() {
+  if (paused === true) return;
+  else {
+    requestAnimationFrame(loop);
+    context.clearRect(0, 0, canvasWidth, canvasHeight);
+    draw();
   }
-  // loop();
-};
+}
+// loop();
