@@ -88,9 +88,9 @@
       </div> -->
       <div class="brand-name">daniel julien &middot; front-end developer</div>
       <svg id="hamburger" viewbox="0 0 40 30" width="40" height="30">
-        <rect y="4" width="40" height="5"></rect>
-        <rect y="13" width="40" height="5"></rect>
-        <rect y="22" width="40" height="5"></rect>
+        <rect y="4" width="35" height="4"></rect>
+        <rect y="13" width="35" height="4"></rect>
+        <rect y="22" width="35" height="4"></rect>
       </svg>
 
       <div class="link-wrapper">
@@ -333,15 +333,29 @@
             <div class="header-text">
               <div class="header-line"></div>
               <div class="p-wrapper">
-                <p class="p-header p-stagger">front-end</p>
-                <span class="middot p-stagger">&middot;</span>
-                <p class="p-header p-stagger">development</p>
-                <span class="middot p-stagger">&middot;</span>
-                <p class="p-header p-stagger">UI design</p>
+                <p class="p-header p-stagger">
+                  <i class="fas fa-laptop"></i>
+
+                  <!-- <i class="fas fa-cubes"></i> -->
+                  <!-- <i class="fas fa-hand-peace"></i> -->
+                  <!-- <i class="far fa-moon"></i> -->
+                </p>
+                <!-- <span class="middot p-stagger">&middot;</span> -->
+                <p class="p-header p-stagger">
+                  <i class="far fa-file-code"></i>
+                  <!-- <i class="fas fa-code"></i> -->
+                  <!-- <i class="far fa-keyboard"></i> -->
+                </p>
+                <!-- <span class="middot p-stagger">&middot;</span> -->
+                <p class="p-header p-stagger">
+                  <i class="fas fa-coffee"></i>
+                  <!-- <i class="far fa-grin-wink"></i> -->
+                  <!-- <i class="fas fa-keyboard"></i> -->
+                </p>
               </div>
             </div>
             <div class="arrow-container">
-              <span class="arrow">&gt;</span>
+              <span class="arrow"><i class="fas fa-caret-down"></i></span>
             </div>
           </header>
         </div>
@@ -383,11 +397,14 @@
           <div class="stack intro-div">
             <h4 class="tag tag-stack hover-effect">&lt;dev&gt;</h4>
             <div class="section-container stack-container">
-              <ul class="tabs">
-                <li data-target="#stack-left" class="tab active">stack</li>
-                <li data-target="#stack-middle" class="tab">daily</li>
-                <li data-target="#stack-right" class="tab">excited</li>
-              </ul>
+              <div class="tabs__container">
+                <ul class="tabs">
+                  <li data-target="#stack-left" class="tab active">stack</li>
+                  <li data-target="#stack-middle" class="tab">env</li>
+                  <li data-target="#stack-right" class="tab">excited</li>
+                </ul>
+                <div class="line__tabs active"></div>
+              </div>
               <div
                 id="stack-left"
                 class="stacklist-wrapper tab__content active"
@@ -444,7 +461,7 @@
                   <img src="img/project-1.png" alt="" loading="lazy" />
                 </div>
                 <div class="pitch-container">
-                  <h3 class="project-title">Title</h3>
+                  <h3 class="project-title">Arkanoid mini</h3>
                   <p class="pitch">
                     Few words description. Few words description. Few words
                     description.Few words description. Few words description.
@@ -476,7 +493,7 @@
                   <img src="img/project-2.png" alt="" loading="lazy" />
                 </div>
                 <div class="pitch-container">
-                  <h3 class="project-title">Title</h3>
+                  <h3 class="project-title">Hotel Now.</h3>
                   <p class="pitch">
                     Few words description. Few words description. Few words
                     description.Few words description. Few words description.
@@ -510,7 +527,7 @@
                   <img src="img/todo-app-react.png" alt="" loading="lazy" />
                 </div>
                 <div class="pitch-container">
-                  <h3 class="project-title">Title</h3>
+                  <h3 class="project-title">Things</h3>
                   <p class="pitch">
                     Few words description. Few words description. Few words
                     description.Few words description. Few words description.
@@ -546,7 +563,7 @@
                   />
                 </div>
                 <div class="pitch-container">
-                  <h3 class="project-title">Title</h3>
+                  <h3 class="project-title">COVID-19 Dashboard</h3>
                   <p class="pitch">
                     Few words description. Few words description. Few words
                     description.Few words description. Few words description.
@@ -608,6 +625,9 @@
                 </div>
               </li> -->
             </ul>
+            <div class="fullpage">
+              <i class="fas fa-times"></i>
+            </div>
           </div>
           <h4 class="tag tag-projects hover-effect">&lt;&sol;projects&gt;</h4>
         </section>
@@ -638,37 +658,119 @@
           <rect class="close__rect--middle" y="13" width="40" height="5"></rect>
           <rect class="close__rect--bottom" y="22" width="40" height="5"></rect>
         </svg>
-        <h3 class="hamburger__content--title">menu</h3>
-        <div class="hamburger__content--links">
-          <a href="#about">about</a>
-          <a href="#projects">projects</a>
-          <a href="#contact">contact me</a>
+        <div class="sky-placeholder">
+          <div class="sky-container">
+            <div class="circle-container">
+              <svg
+                id="svg-rainbow-menu"
+                width="400"
+                height="200"
+                viewBox="0 0 400 200"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <linearGradient id="linearColor1">
+                  <stop offset="0%" stop-color="yellow"></stop>
+                  <stop offset="50%" stop-color="orange"></stop>
+                </linearGradient>
+                <linearGradient id="linearColor11">
+                  <stop offset="50%" stop-color="orange"></stop>
+                  <stop offset="100%" stop-color="yellow"></stop>
+                </linearGradient>
+                <linearGradient id="linearColor2">
+                  <stop offset="0%" stop-color="deeppink"></stop>
+                  <stop offset="80%" stop-color="orangered"></stop>
+                </linearGradient>
+                <linearGradient id="linearColor22">
+                  <stop offset="20%" stop-color="orangered"></stop>
+                  <stop offset="100%" stop-color="deeppink"></stop>
+                </linearGradient>
+                <linearGradient id="linearColor3">
+                  <stop offset="0%" stop-color="orange"></stop>
+                  <stop offset="50%" stop-color="red"></stop>
+                </linearGradient>
+                <linearGradient id="linearColor33">
+                  <stop offset="50%" stop-color="red"></stop>
+                  <stop offset="100%" stop-color="orange"></stop>
+                </linearGradient>
+                <path
+                  id="arc"
+                  d="M135, 200 A 65 65, 0, 0 1, 201 125"
+                  stroke="url(#linearColor1)"
+                  stroke-width="30"
+                  fill="none"
+                />
+                <path
+                  id="arc"
+                  d="M199, 125 A 65 65, 0, 0 1, 265 200"
+                  stroke="url(#linearColor11)"
+                  stroke-width="30"
+                  fill="none"
+                />
+                <path
+                  id="arc"
+                  d="M100, 200 A 100 100 0, 0 1, 201 90"
+                  stroke="url(#linearColor2)"
+                  stroke-width="30"
+                  fill="none"
+                />
+                <path
+                  id="arc"
+                  d="M199, 90 A 100 100, 0, 0 1, 300 200"
+                  stroke="url(#linearColor22)"
+                  stroke-width="30"
+                  fill="none"
+                />
+                <path
+                  id="arc"
+                  d="M65, 200 A 135 135, 0, 0 1, 201 55"
+                  stroke="url(#linearColor3)"
+                  stroke-width="30"
+                  fill="none"
+                />
+                <path
+                  id="arc"
+                  d="M199, 55 A 135 135, 0, 0 1, 335 200"
+                  stroke="url(#linearColor33)"
+                  stroke-width="30"
+                  fill="none"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
-        <div class="hamburger__content--socialicons">
-          you can find me there:
-
-          <div class="social__icons--container">
-            <a
-              class="link"
-              href="https://github.com/newnightcoder"
-              target="blank"
-              ><i class="fab fa-github"></i
-            ></a>
-            <a
-              class="link"
-              href="https://twitter.com/Nightcoder2"
-              target="blank"
-              ><i class="fab fa-twitter"></i
-            ></a>
-            <a class="link" href="https://dev.to/nightcoder" target="blank"
-              ><i class="fab fa-dev"></i
-            ></a>
-            <a
-              class="link"
-              href="https://www.linkedin.com/in/nightcoder-dan/"
-              target="blank"
-              ><i class="fab fa-linkedin-in"></i
-            ></a>
+        <div class="hamburger__content--menu">
+          <h3 class="hamburger__content--title">menu</h3>
+          <div class="hamburger__content--links">
+            <a href="#about">about</a>
+            <a href="#projects">projects</a>
+            <a href="#contact">contact me</a>
+          </div>
+          <div class="hamburger__content--socialicons">
+            you can find me there:
+            <div class="social__icons--container">
+              <a
+                class="link"
+                href="https://github.com/newnightcoder"
+                target="blank"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a
+                class="link"
+                href="https://twitter.com/Nightcoder2"
+                target="blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a class="link" href="https://dev.to/nightcoder" target="blank"
+                ><i class="fab fa-dev"></i
+              ></a>
+              <a
+                class="link"
+                href="https://www.linkedin.com/in/nightcoder-dan/"
+                target="blank"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
           </div>
         </div>
       </div>
@@ -678,9 +780,5 @@
       <p>made by Daniel Julien aka nightcoder</p>
       <p>&copy; 2021&nbsp;</p>
     </footer>
-    <div class="fullpage">
-      <div class="expand-container"></div>
-      <i class="fas fa-times"></i>
-    </div>
   </body>
 </html>

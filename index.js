@@ -11,6 +11,7 @@ const NAVBARLINKS = document.querySelector(".link-wrapper");
 const BRAND = document.querySelector(".brand-name");
 const hamburger = document.querySelector("#hamburger");
 const PROJECTS = document.querySelectorAll(".project");
+const fullpage = document.querySelector(".fullpage");
 
 const init = () => {
   removeLoader();
@@ -22,9 +23,9 @@ const init = () => {
   scrollEffect();
   PROJECTS.forEach((project) => {
     project.children[0].addEventListener("click", () => {
-      console.log("expand!");
-      animateTransition(project);
+      // animateTransition(project, fullpage);
       displayContent(project);
+      closeFullpage();
     });
   });
 };
@@ -46,11 +47,13 @@ const navbarAnim = () => {
       (NAVBAR.style.background =
         "linear-gradient(to left, deeppink 0%, orange 100%)"),
         // (FLAGS.style.opacity = "1"),
-        (NAVBARLINKS.style.transform = "translateY(0)");
+        (NAVBARLINKS.style.transform = "translateY(0)"),
+        (document.querySelector("#hamburger").style.opacity = "1");
     } else {
       (NAVBAR.style.background = "transparent"),
         // (FLAGS.style.opacity = "0"),
-        (NAVBARLINKS.style.transform = "translateY(1.75vh)");
+        (NAVBARLINKS.style.transform = "translateY(1.75vh)"),
+        (document.querySelector("#hamburger").style.opacity = "0");
     }
     if (window.scrollY >= window.innerHeight / 0.9) {
       (BRAND.style.transform = "translateY(0)"), (BRAND.style.opacity = "1");
@@ -64,9 +67,11 @@ const openHamburger = () => {
   hamburger.addEventListener("click", () => {
     document.querySelector(".hamburger__content").style.transform =
       "translateX(0)";
+    document.querySelector(".hamburger__content").style.zIndex = "100";
     document.querySelector("*").style.overflow = "hidden";
   });
 };
+
 const closeHamburger = () => {
   document.querySelector("#close__hamburger").addEventListener("click", () => {
     document.querySelector(".hamburger__content").style.transform =
@@ -88,19 +93,19 @@ const closeHamburger = () => {
 const heroAnim = () => {
   gsap
     .timeline()
+    .to("#logo", {
+      fill: "white",
+      delay: 1.5,
+    })
     .to(".p-stagger", {
-      duration: 1,
-      delay: 2,
+      duration: 0.5,
+      // delay: 2,
       stagger: 0.2,
       opacity: 1,
     })
     .to(".header-line", {
       opacity: 1,
-      delay: -0.5,
-    })
-    .to("#logo", {
-      fill: "white",
-      delay: -0.5,
+      delay: -0.2,
     })
     .to(".arrow", {
       opacity: 1,
@@ -252,12 +257,13 @@ const scrollEffect = () => {
 
 const TABS = document.querySelectorAll("[data-target]");
 const TABCONTENTS = document.querySelectorAll(".tab__content");
+let line = document.querySelector(".line__tabs");
 
 const tabEffect = () => {
-  TABS.forEach((tab) => {
+  TABS.forEach((tab, i) => {
     tab.addEventListener("click", () => {
-      TABCONTENTS.forEach((tab) => {
-        tab.classList.remove("active");
+      TABCONTENTS.forEach((tabContent) => {
+        tabContent.classList.remove("active");
       });
       TABS.forEach((tab) => {
         tab.classList.remove("active");
@@ -265,6 +271,24 @@ const tabEffect = () => {
       let tabTarget = document.querySelector(tab.dataset.target);
       tabTarget.classList.add("active");
       tab.classList.add("active");
+      let index = i;
+      switch (index) {
+        case 0:
+          console.log("tab left");
+          line.style.left = "0";
+          break;
+        case 1:
+          line.style.left = "100px";
+          console.log("tab middle");
+
+          break;
+        case 2:
+          line.style.left = "200px";
+          console.log("tab right");
+
+          // line.style.transform = "translateX(200px)";
+          break;
+      }
     });
   });
 };
@@ -272,58 +296,117 @@ const tabEffect = () => {
 // ////////////////////////////////////////////////////////////////////////////////
 //   EXPAND ANIMATION
 // ////////////////////////////////////////////////////////////////////////////////
-const fullpage = document.querySelector(".fullpage");
-const expandedProject = document.querySelector(".expand-container");
-const projectBack = document.querySelectorAll(".project__back");
+const expandedProject = document.querySelector(".fullpage");
 const expandButtons = document.querySelectorAll(".fa-expand-alt");
 
-const animateTransition = (project) => {
-  let clone = project.cloneNode();
+const calculatePosition = (element) => {
+  const rect = element.getBoundingClientRect();
+
+  const scrollTop =
+    window.scrollY ||
+    document.documentElement.scrollTop ||
+    document.body.scrollTop ||
+    0;
+
+  const scrollLeft =
+    window.scrollX ||
+    document.documentElement.scrollLeft ||
+    document.body.scrollLeft ||
+    0;
+
+  const clientTop =
+    document.documentElement.clientTop || document.body.clientTop || 0;
+
+  const clientLeft =
+    document.documentElement.clientLeft || document.body.clientLeft || 0;
+
+  const position = {
+    top: Math.round(rect.top + scrollTop - clientTop),
+    left: Math.round(rect.left + scrollLeft - clientLeft),
+    height: rect.height,
+    width: rect.width,
+  };
+  return position;
+};
+
+const animateTransition = (project, fullpage) => {
+  let clone = project.cloneNode(true);
   clone.classList.add("clone");
-  document.body.appendChild(clone);
-  console.log(clone);
+  project.appendChild(clone);
+
+  let from = calculatePosition(project);
+  let to = calculatePosition(fullpage);
+  console.log("to", to);
 
   const finish = () => {
-    gsap.set(clone, {
-      opacity: 0,
-    });
-    document.body.removeChild(clone);
+    // gsap.set(clone, {
+    //   opacity: 0,
+    // });
+    project.removeChild(clone);
   };
-  gsap.to(clone, {
-    width: "100vw",
+
+  const cloneEndPosition = {
+    x: from.left - to.left,
+    y: to.top - from.top,
     height: "100vh",
+    width: "100vw",
+    margin: 0,
     onComplete: finish,
-  });
-  gsap.set(fullpage, {
+    duration: 1,
+    autoRound: false,
+    ease: Power3.easeOut,
+  };
+
+  // console.log("cloneEnd position:", cloneEndPosition.x, cloneEndPosition.y);
+
+  gsap.timeline().to(clone, cloneEndPosition).set(fullpage, {
     visibility: "visible",
   });
 
-  setTimeout(() => {
-    document.body.style.overflow = "hidden";
-  }, 100);
+  // setTimeout(() => {
+  document.querySelector("html").style.overflow = "hidden";
+  //   }, 100);
 };
 
-fullpage.addEventListener("click", () => {
-  fullpage.style.visibility = "hidden";
-  document.body.style.overflowY = "scroll";
-});
+const closeFullpage = () => {
+  fullpage.addEventListener("click", () => {
+    console.log("yes fullpage");
+    fullpage.style.visibility = "hidden";
+    fullpage.innerHTML = "";
+    document.querySelector("html").style.overflowY = "scroll";
+  });
+};
 
 const displayContent = (project) => {
-  if (project.classList.contains("project-1")) {
-    expandedProject.innerHTML = `project 1`;
-  }
-  if (project.classList.contains("project-2")) {
-    expandedProject.innerHTML = `project 2`;
-  }
-  if (project.classList.contains("project-3")) {
-    expandedProject.innerHTML = `project 3`;
-  }
-  if (project.classList.contains("project-4")) {
-    expandedProject.innerHTML = `project 4`;
-  }
-  if (project.classList.contains("project-5")) {
-    expandedProject.innerHTML = `project 5`;
-  }
+  fullpage.style.visibility = "visible";
+  const title = project.children[2].children[0].textContent;
+  const pitch = project.children[2].children[1].textContent;
+  const technologies = project.children[2].children[2].textContent;
+  const fullpageContainer = `
+  <div class="fullpage__container">
+    <img
+      src=""
+      alt=""
+      class="fullpage__img"
+      height="300px"
+      width="500px"
+    />
+    <div class="fullpage__pitch--container">
+      <h3 class="fullpage__title">${title}</h3>
+      <p class="fullpage__pitch">${pitch}</p>
+      <p class="fullpage__stack">${technologies}</p>
+      <div class="fullpage__links">
+        <a href="#" class="fullpage__github"
+          ><i class="fab fa-github-alt"></i
+        ></a>
+        <a href="#" class="fullpage__live"
+          ><i class="fas fa-external-link-alt"></i
+        ></a>
+      </div>
+    </div>
+  </div>
+  `;
+  expandedProject.insertAdjacentHTML("afterbegin", fullpageContainer);
 };
 
 //------------------------------------------------------------------------------

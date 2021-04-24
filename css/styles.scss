@@ -175,8 +175,8 @@ body {
 .fullpage {
   background-color: rgba(128, 128, 128, 0.739);
   position: fixed;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   top: 0;
   left: 0;
   z-index: 1000;
@@ -185,15 +185,64 @@ body {
   align-items: center;
   justify-content: center;
 
-  .expand-container {
+  .fullpage__container {
+    @include flex-column-center;
+    justify-content: space-evenly;
     position: absolute;
-    // margin: 0 auto;
-    height: 80%;
-    width: 70%;
-    z-index: 1001;
-    // border: 1px solid black;
+    height: 90%;
+    width: 80%;
+    z-index: 1000;
     color: black;
     background-color: $white-primary;
+    // border: 1px solid black;
+
+    img {
+      height: 170px;
+      width: 280px;
+      @media screen and (min-width: 700px) {
+        height: 300px;
+        width: 500px;
+      }
+    }
+    .fullpage__pitch--container {
+      height: 65%;
+      padding: 0 10vw;
+      @include flex-column-center();
+      align-items: flex-start;
+      justify-content: space-evenly;
+      border: 1px solid black;
+      @media screen and (min-width: 700px) {
+        height: 45%;
+      }
+
+      h3 {
+        font-family: hemihead;
+        font-size: 2rem;
+      }
+      .fullpage__pitch {
+        font-family: "courier new";
+        font-size: 1rem;
+      }
+      .fullpage__stack {
+        font-family: menlo;
+        font-size: 1rem;
+      }
+
+      .fullpage__links {
+        width: 12%;
+        display: flex;
+        justify-content: space-between;
+        .fullpage__github {
+          i {
+            font-size: 2.5rem;
+          }
+        }
+        i {
+          font-size: 2rem;
+          color: $editor-background;
+        }
+      }
+    }
   }
   .fa-times {
     font-size: 3rem;
@@ -255,10 +304,6 @@ nav {
   //   }
   // }
 
-  #hamburger {
-    @include hamburger;
-  }
-
   .brand-name {
     font-family: hemihead;
     font-size: 0.8rem;
@@ -316,7 +361,15 @@ nav {
   }
 }
 
+#hamburger {
+  @include hamburger;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
 .hamburger__content {
+  transform: translateX(100%);
+  z-index: -100;
   @include flex-column-center;
   justify-content: space-evenly;
   height: 100vh;
@@ -326,11 +379,30 @@ nav {
   top: 0;
   right: 0;
   background-color: rgb(46, 45, 45);
-  border: 1px solid linear-gradient(to right, pink, red);
-  z-index: 100;
-  transform: translateX(100%);
+  background-color: $editor-background;
   transition: transform 0.3s;
   // border-left: 1px solid lime;
+  .sky-placeholder {
+    background: linear-gradient(to bottom, deepskyblue, rgb(46, 45, 45));
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 80;
+    #svg-rainbow-menu {
+      height: 100%;
+      width: 100vw;
+    }
+  }
+
+  .hamburger__content--menu {
+    height: 70vh;
+    width: 100%;
+    @include flex-column-center();
+    justify-content: space-evenly;
+    position: absolute;
+    top: 25%;
+    // border: 1px solid red;
+  }
   a {
     color: $white-primary;
   }
@@ -340,7 +412,7 @@ nav {
   }
   .hamburger__content--links {
     @include flex-column-center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     height: 30%;
     width: 60%;
     font-family: menlo;
@@ -353,17 +425,19 @@ nav {
     height: 20%;
     font-family: "courier new";
     font-size: 1rem;
+    padding-top: 3vh;
   }
   .social__icons--container {
-    width: 100%;
+    width: 100vw;
     font-family: play;
     font-size: 1rem;
     display: flex;
     justify-content: space-evenly;
+    padding-top: 3.25vh;
     // border: 1px solid tomato;
 
-    I {
-      font-size: 1.75rem;
+    i {
+      font-size: 2.5rem;
     }
   }
   @media screen and (min-width: 700px) {
@@ -372,6 +446,8 @@ nav {
 
   #close__hamburger {
     @include hamburger;
+    fill: $grey-primary;
+    z-index: 100;
     // .close__rect--top {
     //   // transform-box: fill-box;
     //   transform-origin: left;
@@ -497,6 +573,9 @@ nav {
     .logo-container {
       // border: 1px solid rgb(148, 148, 147);
       margin-top: -10%;
+      @media screen and (min-width: 700px) {
+        margin-top: 3%;
+      }
       #logo {
         margin: 0 auto;
         z-index: 200;
@@ -504,10 +583,13 @@ nav {
         @media screen and (min-height: 650px) {
           width: 350px;
           height: 80px;
-          // margin-top: -10%;
         }
         @media screen and (min-height: 750px) {
           margin-top: -10%;
+        }
+        @media screen and (min-width: 700px) {
+          width: 705px;
+          height: 112px;
         }
         path {
           stroke: $white-primary;
@@ -588,38 +670,44 @@ nav {
       height: 30%;
       width: 50%;
       @include flex-column-center;
-      font-family: "courier new", Courier, monospace;
-      font-size: 1.5rem;
+      font-family: "menlo", Courier, monospace;
+      font-size: 0.8rem;
       color: $white-primary;
       justify-content: center;
-      // border: 1px solid red;
       .header-line {
         height: 1px;
         width: 100%;
-        // margin-bottom: -0.6rem;
-        background: linear-gradient(to right, blueviolet, deeppink);
+        background: linear-gradient(
+          to right,
+          rgb(6, 38, 136),
+          rgb(0, 129, 250)
+        );
         opacity: 0;
         @media screen and (min-width: 1300px) {
           width: 44%;
         }
       }
       .p-wrapper {
-        width: 100%;
-        height: 80%;
+        width: 50%;
+        height: 50%;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
         // border: 1px solid yellow;
-        // padding: 12px;
-        .p-header {
+        i {
           font-size: 1.5rem;
-          // margin: 0 5%;
+          @media screen and (min-width: 700px) {
+            font-size: 3rem;
+          }
+        }
+        .p-header {
           opacity: 0;
           white-space: nowrap;
+          margin: 0 15px;
         }
         span {
-          display: none;
+          opacity: 0;
+          font-size: 4rem;
         }
       }
     }
@@ -634,7 +722,7 @@ nav {
       .arrow {
         // height: 100%;
         // width: 100%;
-        transform: rotate(90deg);
+        // transform: rotate(90deg);
         font-family: "Courier New", Courier, monospace;
         font-weight: light;
         font-size: 2.5rem;
@@ -758,7 +846,11 @@ main {
       font-family: $font-primary;
       font-size: 1rem;
       // color: rgb(171, 170, 170);
-      // border: 10px solid white;
+      // border: 1px solid white;
+      @media screen and (min-width: 700px) {
+        width: 60%;
+        font-size: 1.75rem;
+      }
       .upper-title,
       .lower-title {
         padding: 0 1.5vw 0.15vh;
@@ -811,8 +903,12 @@ main {
       height: 40%;
       font-family: "courier new", monospace, serif;
       font-size: 0.75rem;
-      // color: grey;
+      line-height: 1.5rem;
+
       // border: 10px solid white;
+      @media screen and (min-width: 700px) {
+        font-size: 1.1rem;
+      }
       .section-container {
         height: calc(100% - 36px);
         @include flex-column-center;
@@ -854,7 +950,6 @@ main {
         height: calc(100% - 36px);
         @include flex-column-center;
         justify-content: space-evenly;
-        padding-left: 5vw;
         // border: 10px solid red;
 
         &::after {
@@ -866,28 +961,52 @@ main {
           width: 80%;
           min-height: 100px;
           @include flex-column-center;
-          // flex-direction: row;
           justify-content: space-around;
           border: 1px solid $grey-primary;
           display: none;
+          @media screen and (min-width: 700px) {
+            font-size: 1.1rem;
+          }
 
           p {
             width: 100%;
             font-family: "courier new";
             font-size: 0.8rem;
-            // color: gray;
             text-align: center;
-            // border: 1px solid greenyellow;
+            @media screen and (min-width: 700px) {
+              font-size: 1rem;
+            }
+          }
+        }
+        .tabs__container {
+          position: relative;
+          border-bottom: 1px solid $grey-primary;
+          width: min-width;
+
+          .line__tabs {
+            position: absolute;
+            bottom: -1.5px;
+            left: 0;
+            background-color: blueviolet;
+            height: 2px;
+            width: 100px;
+            transition: left 0.4s;
           }
         }
         .tabs {
-          border-bottom: 1px solid $grey-primary;
-          padding-bottom: 5px;
+          height: 100%;
           font-family: "courier new";
           font-size: 0.9rem;
           color: gray;
+
           .tab {
-            padding: 5px 20px;
+            width: 100px;
+            padding: 5px 2px;
+            text-align: center;
+            // border: 1px solid red;
+            @media screen and (min-width: 700px) {
+              font-size: 1.1rem;
+            }
             &:hover {
               cursor: pointer;
             }
@@ -895,10 +1014,10 @@ main {
         }
         .tab.active {
           color: white;
-          background-color: $grey-primary;
-          padding: 5px 20px;
+          background-color: rgba(93, 92, 92, 0.9);
         }
-        .active {
+
+        .tab__content.active {
           display: flex;
         }
       }
@@ -910,34 +1029,23 @@ main {
         justify-content: space-around;
         color: $white-primary;
         width: 100%;
-        padding-left: 2vw;
         // border: 1px solid greenyellow;
-
-        // .stack-left {
-        //   padding-left: 5vw;
-        //   align-items: center;
-        //   justify-content: space-evenly;
-        // }
-        // .stack-middle,
-        // .stack-right {
-        //   width: 100%;
-        //   color: black;
-        //   border-left: 1px solid $grey-primary;
-        // }
+        @media screen and (min-width: 700px) {
+          justify-content: space-around;
+        }
         li {
           i {
             font-size: 1.5rem;
             // color: rgb(188, 185, 185);
+            @media screen and (min-width: 700px) {
+              font-size: 2.2rem;
+            }
           }
         }
         &:hover {
           &::before {
             background-color: gray;
           }
-          // .stack-middle,
-          // .stack-right {
-          //   border-left: 1px solid $grey-primary;
-          // }
           i {
             background-color: transparent;
           }
@@ -1131,6 +1239,9 @@ main {
 
           .project-title {
             font-family: $font-primary;
+            @media screen and (min-width: 700px) {
+              font-size: 1.5rem;
+            }
           }
           .pitch {
             font-family: play;
@@ -1216,9 +1327,9 @@ main {
         // }
 
         .clone {
-          background-color: transparent;
+          // background-color: tomato;
           position: absolute;
-          z-index: 100;
+          z-index: 5000;
         }
       }
       .hover-effect {
