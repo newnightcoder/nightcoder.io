@@ -9,36 +9,12 @@ const NAVBAR = document.querySelector("nav");
 // const FLAGS = document.querySelector(".flags-container");
 const NAVBARLINKS = document.querySelector(".link-wrapper");
 const BRAND = document.querySelector(".brand-name");
-const hamburger = document.querySelector("#hamburger");
+const hamburger = document.querySelector(".fa-bars");
 const PROJECTS = document.querySelectorAll(".project");
 const fullpage = document.querySelector(".fullpage");
 
-const init = () => {
-  removeLoader();
-  navbarAnim();
-  openHamburger();
-  closeHamburger();
-  heroAnim();
-  tabEffect();
-  scrollEffect();
-  PROJECTS.forEach((project) => {
-    project.children[0].addEventListener("click", () => {
-      // animateTransition(project, fullpage);
-      displayContent(project);
-      closeFullpage();
-    });
-  });
-};
-
-window.addEventListener("load", (e) => {
-  init();
-});
-const removeLoader = () => {
-  document.querySelector(".loader-container").style.display = "none";
-};
-
 //////////////////////////////////////////////////////////////////////////////////
-//   NAVBAR
+//                              NAVBAR
 //////////////////////////////////////////////////////////////////////////////////
 
 const navbarAnim = () => {
@@ -48,14 +24,14 @@ const navbarAnim = () => {
         "linear-gradient(to left, deeppink 0%, orange 100%)"),
         // (FLAGS.style.opacity = "1"),
         (NAVBARLINKS.style.transform = "translateY(0)"),
-        (document.querySelector("#hamburger").style.opacity = "1");
+        (document.querySelector(".fa-bars").style.opacity = "1");
     } else {
       (NAVBAR.style.background = "transparent"),
         // (FLAGS.style.opacity = "0"),
         (NAVBARLINKS.style.transform = "translateY(1.75vh)"),
-        (document.querySelector("#hamburger").style.opacity = "0");
+        (document.querySelector(".fa-bars").style.opacity = "0");
     }
-    if (window.scrollY >= window.innerHeight / 0.9) {
+    if (window.scrollY >= window.innerHeight / 1.16) {
       (BRAND.style.transform = "translateY(0)"), (BRAND.style.opacity = "1");
     } else {
       (BRAND.style.transform = "translateY(100%)"), (BRAND.style.opacity = "0");
@@ -73,22 +49,26 @@ const openHamburger = () => {
 };
 
 const closeHamburger = () => {
-  document.querySelector("#close__hamburger").addEventListener("click", () => {
+  document.querySelector(".fa-times").addEventListener("click", () => {
+    console.log("hey hey");
     document.querySelector(".hamburger__content").style.transform =
       "translateX(100%)";
     document.querySelector("*").style.overflow = "scroll";
-  }),
-    document.querySelectorAll(".hamburger__content a").forEach((a) => {
-      a.addEventListener("click", () => {
-        document.querySelector(".hamburger__content").style.transform =
-          "translateX(100%)";
-        document.querySelector("*").style.overflow = "scroll";
-      });
-    });
+  });
 };
-// ////////////////////////////////////////////////////////////////////////////////
-//   HERO ANIMATIONS
-// ////////////////////////////////////////////////////////////////////////////////
+
+const menuLinks = () => {
+  document.querySelectorAll(".hamburger__content a").forEach((a) => {
+    a.addEventListener("click", () => {
+      document.querySelector(".hamburger__content").style.transform =
+        "translateX(100%)";
+      document.querySelector("*").style.overflow = "scroll";
+    });
+  });
+};
+//////////////////////////////////////////////////////////////////////////////////
+//                            HERO ANIMATIONS
+//////////////////////////////////////////////////////////////////////////////////
 
 const heroAnim = () => {
   gsap
@@ -120,9 +100,10 @@ const heroAnim = () => {
     });
 };
 
-// ////////////////////////////////////////////////////////////////////////////////
-//   SCROLLTRIGGER TIMELINE
-// ////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+//                          SCROLLTRIGGER TIMELINE
+////////////////////////////////////////////////////////////////////////////////
+
 gsap.registerPlugin(ScrollTrigger);
 
 const scrollEffect = () => {
@@ -135,48 +116,47 @@ const scrollEffect = () => {
     },
   });
   tl.to("#logo", {
-    scrollTrigger: {
-      trigger: "#intro",
-      start: "top bottom",
-      scrub: true,
-    },
+    // scrollTrigger: {
+    //   trigger: "#intro",
+    //   start: "top bottom",
+    //   scrub: true,
+    // },
     scale: 30,
     autoAlpha: 0,
   })
     .to(".header-line", {
-      scrollTrigger: {
-        trigger: "#intro",
-        start: "top bottom",
-        end: "top 80%",
-        scrub: true,
-      },
+      // scrollTrigger: {
+      //   trigger: "#intro",
+      //   start: "top bottom",
+      //   end: "top 80%",
+      //   scrub: true,
+      // },
       scale: 0,
     })
     .to(".p-stagger", {
-      scrollTrigger: {
-        trigger: "#intro",
-        start: "top 95%",
-        end: "top 90%",
-        scrub: true,
-      },
+      // scrollTrigger: {
+      //   trigger: "#intro",
+      //   start: "top 95%",
+      //   end: "top 90%",
+      //   scrub: true,
+      // },
       scale: 0,
       stagger: 0.2,
     })
     .to(".arrow", {
-      scrollTrigger: {
-        trigger: "#intro",
-        start: "top bottom",
-        end: "top 95%",
-        scrub: true,
-        id: "intro",
-        // markers: true,
-      },
+      // scrollTrigger: {
+      //   trigger: "#intro",
+      //   start: "top bottom",
+      //   end: "top 95%",
+      //   scrub: true,
+      //   id: "intro",
+      //   // markers: true,
+      // },
       scale: 0,
-    });
-
-  tl.from(".upper-title", {
-    x: -1 * window.innerWidth,
-  })
+    })
+    .from(".upper-title", {
+      x: -1 * window.innerWidth,
+    })
     .from(".lower-title", {
       x: window.innerWidth,
     })
@@ -201,12 +181,12 @@ const scrollEffect = () => {
     })
 
     .from(".cta-btn-download", {
-      scrollTrigger: {
-        trigger: ".cta-download",
-        start: "top bottom",
-        end: "bottom 70%",
-        scrub: true,
-      },
+      // scrollTrigger: {
+      //   trigger: ".cta-download",
+      //   start: "top bottom",
+      //   end: "bottom 70%",
+      //   scrub: true,
+      // },
       autoAlpha: 0,
     });
 
@@ -252,12 +232,12 @@ const scrollEffect = () => {
 };
 
 //////////////////////////////////////////////////////////////////////////////////
-//   ABOUT TABS
+//                                ABOUT TABS
 //////////////////////////////////////////////////////////////////////////////////
 
 const TABS = document.querySelectorAll("[data-target]");
 const TABCONTENTS = document.querySelectorAll(".tab__content");
-let line = document.querySelector(".line__tabs");
+let line = document.querySelector(".tabs__line");
 
 const tabEffect = () => {
   TABS.forEach((tab, i) => {
@@ -274,28 +254,23 @@ const tabEffect = () => {
       let index = i;
       switch (index) {
         case 0:
-          console.log("tab left");
           line.style.left = "0";
           break;
         case 1:
-          line.style.left = "100px";
-          console.log("tab middle");
-
+          line.style.left = "calc(100% / 3)";
           break;
         case 2:
-          line.style.left = "200px";
-          console.log("tab right");
-
-          // line.style.transform = "translateX(200px)";
+          line.style.left = "calc(100% / 1.5)";
           break;
       }
     });
   });
 };
 
-// ////////////////////////////////////////////////////////////////////////////////
-//   EXPAND ANIMATION
-// ////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+//                            EXPAND ANIMATION
+////////////////////////////////////////////////////////////////////////////////
+
 const expandedProject = document.querySelector(".fullpage");
 const expandButtons = document.querySelectorAll(".fa-expand-alt");
 
@@ -365,6 +340,8 @@ const animateTransition = (project, fullpage) => {
 
   // setTimeout(() => {
   document.querySelector("html").style.overflow = "hidden";
+  // document.body.style.overflow = "hidden";
+
   //   }, 100);
 };
 
@@ -377,24 +354,106 @@ const closeFullpage = () => {
   });
 };
 
+////////////////////////////////////////////////////////////////////////////////
+//                              EXPAND PAGE
+////////////////////////////////////////////////////////////////////////////////
+// let ProjectPage.img;
+
+// let ProjectPage = {
+//   img: "",
+//   title: "",
+//   pitch: "",
+//   technologies: "",
+// };
+
+const carousel = () => {
+  // document.querySelector(".fullpage__img").src = imgP1[count];
+
+  document
+    .querySelector(".fa-angle-double-right")
+    .addEventListener("click", () => {
+      let imgP1 = [
+        "img/p1-1.jpg",
+        "img/p1-2.jpg",
+        "img/p1-3.jpg",
+        "img/p1-4.jpg",
+      ];
+      let imgP2 = [
+        "img/p2-1.jpg",
+        "img/p2-2.jpg",
+        "img/p2-3.jpg",
+        "img/p2-4.jpg",
+      ];
+      let imgP3 = [
+        "img/p3-1.jpg",
+        "img/p3-2.jpg",
+        "img/p3-3.jpg",
+        "img/p3-4.jpg",
+      ];
+      let imgP4 = [
+        "img/p4-1.jpg",
+        "img/p4-2.jpg",
+        "img/p4-3.jpg",
+        "img/p4-4.jpg",
+      ];
+      let count = 0;
+      let slides = 4;
+      if (count < 3) {
+        count++;
+      } else count = 0;
+      console.log(count);
+    });
+};
+
 const displayContent = (project) => {
   fullpage.style.visibility = "visible";
+  document.querySelector("html").style.overflow = "hidden";
   const title = project.children[2].children[0].textContent;
   const pitch = project.children[2].children[1].textContent;
   const technologies = project.children[2].children[2].textContent;
+  ProjectPage = {
+    img: "",
+    title,
+    pitch,
+    technologies,
+  };
+
+  let className = project.classList;
+  // const nextImgBtn = document.querySelector(".fa-angle-double-right");
+
+  switch ((className, true)) {
+    case className.contains("project-1"):
+      ProjectPage.img = "img/p1-1.jpg";
+      break;
+    case className.contains("project-2"):
+      ProjectPage.img = "img/fullpage-project2.jpg";
+      break;
+    case className.contains("project-3"):
+      ProjectPage.img = "img/fullpage-project3.jpg";
+      break;
+    case className.contains("project-4"):
+      ProjectPage.img = "img/fullpage-project4.jpg";
+      break;
+  }
+  //   <img
+  //   src="${ProjectPage.img}"
+  //   alt=""
+  //   class="fullpage__img"
+  //   height="300px"
+  //   width="500px"
+  // />
   const fullpageContainer = `
   <div class="fullpage__container">
-    <img
-      src=""
-      alt=""
-      class="fullpage__img"
-      height="300px"
-      width="500px"
-    />
+    <div class="img__container"><img src="${ProjectPage.img}" class="fullpage__img fullpage__img--active")/></div>
+    <div class="player__wrapper">
+      <i class="fas fa-angle-double-left" ></i>
+      <i class="fas fa-angle-double-right"></i>
+    </div>
+
     <div class="fullpage__pitch--container">
-      <h3 class="fullpage__title">${title}</h3>
-      <p class="fullpage__pitch">${pitch}</p>
-      <p class="fullpage__stack">${technologies}</p>
+      <h3 class="fullpage__title">${ProjectPage.title}</h3>
+      <p class="fullpage__pitch">${ProjectPage.pitch}</p>
+      <p class="fullpage__stack">${ProjectPage.technologies}</p>
       <div class="fullpage__links">
         <a href="#" class="fullpage__github"
           ><i class="fab fa-github-alt"></i
@@ -405,16 +464,18 @@ const displayContent = (project) => {
       </div>
     </div>
   </div>
+  <script>carousel()</script>
   `;
   expandedProject.insertAdjacentHTML("afterbegin", fullpageContainer);
 };
 
-//------------------------------------------------------------------------------
-//                      THE STARZ
-//------------------------------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////
+//                           THE STARZ
+//////////////////////////////////////////////////////////////////////////
+
 const canvas = document.querySelector("#canvas");
 const context = canvas.getContext("2d");
-const canvasWidth = 1250;
+const canvasWidth = 1000;
 const canvasHeight = 150;
 const focalLength = canvasWidth;
 const centerX = canvasWidth / 2;
@@ -425,7 +486,7 @@ function Star() {
     (this.y = Math.random() * canvasHeight),
     (this.z = Math.random() * canvasWidth),
     (this.size = 0.75),
-    (this.speed = 3),
+    (this.speed = 2),
     (this.display = function () {
       let x, y, r;
       x = (this.x - centerX) * (focalLength / this.z);
@@ -435,7 +496,7 @@ function Star() {
       r = this.size * (focalLength / this.z);
 
       context.beginPath();
-      // context.arc(x, y, r, 0, 2 * Math.PI);
+      context.arc(x, y, r, 0, 2 * Math.PI);
       context.rect(x, y, 2, 2);
       context.fillStyle = "white";
       context.fill();
@@ -488,4 +549,29 @@ function loop() {
     draw();
   }
 }
-// loop();
+
+const init = () => {
+  removeLoader();
+  navbarAnim();
+  openHamburger();
+  menuLinks();
+  closeHamburger();
+  heroAnim();
+  tabEffect();
+  scrollEffect();
+  PROJECTS.forEach((project) => {
+    project.children[0].addEventListener("click", () => {
+      // animateTransition(project, fullpage);
+      displayContent(project);
+      // closeFullpage();
+    });
+  });
+  // loop();
+};
+
+window.addEventListener("load", (e) => {
+  init();
+});
+const removeLoader = () => {
+  document.querySelector(".loader-container").style.display = "none";
+};
