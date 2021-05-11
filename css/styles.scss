@@ -502,88 +502,9 @@ nav {
 
 #home {
   .home-container {
+    height: 100vh;
     width: 100%;
-    padding: 0;
-    display: grid;
-    grid-template-rows: minmax(150px, $banner-height) calc(
-        100vh - #{$banner-height}
-      );
-    position: relative;
-    @media screen and (min-width: 1300px) {
-      width: 80vw;
-    }
-    // border: 2px solid greenyellow;
-
-    //////////////////////////////////////////////////
-    //                     STARS
-    /////////////////////////////////////////////////
-
-    ////////////////////////////////////////////////
-    //                  RAINBOW SUN
-    ////////////////////////////////////////////////
-
-    .sky-container {
-      position: fixed;
-      width: 100%;
-      height: $banner-height;
-      background: rgb(30, 30, 30);
-      background: linear-gradient(
-        0deg,
-        rgba(23, 51, 138, 1) 0%,
-        rgba(30, 30, 30, 1) 100%
-      );
-      opacity: 0;
-      z-index: 0;
-      // border: 5px solid blue;
-      animation: lightup 3s forwards 2s;
-      @keyframes lightup {
-        to {
-          opacity: 1;
-        }
-      }
-
-      .circle-container {
-        height: $banner-height;
-        min-width: 100%;
-        min-height: 150px;
-        // z-index: -1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-end;
-        position: relative;
-        // border: 5px solid orange;
-
-        #svg-rainbow {
-          // position: absolute;
-          transform: translateY(100%);
-          // opacity: 0;
-          animation: rise 3s forwards 1s;
-          // border: 1px solid yellow;
-          @keyframes rise {
-            to {
-              transform: translateY(10%);
-              // opacity: 1;
-            }
-          }
-          // animation: turn 1s infinite;
-          // @keyframes turn {
-          //   to {
-          //     transform: rotate(360deg);
-          //   }
-          // }
-        }
-      }
-      @media screen and (min-width: 1300px) {
-        width: 80vw;
-      }
-    }
-  }
-
-  .sky-placeholder {
-    grid-row: 1;
-    grid-column: 1/3;
-    background-color: transparent;
+    // border: 5px solid greenyellow;
   }
 
   ///////////////////////////////////////////////////
@@ -591,180 +512,27 @@ nav {
   ///////////////////////////////////////////////////
 
   header {
-    grid-row: 2;
-    grid-column: 1/3;
-    height: calc(100vh - #{$banner-height});
-    min-height: $banner-height;
-    background-color: $editor-background;
-    z-index: 10;
+    height: inherit;
+    position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    // padding: 50px 0;
-    // border: 10px solid rgb(148, 148, 147);
-    // padding: 3vh;
-    .logo-container {
-      // border: 1px solid rgb(148, 148, 147);
-      margin-top: -10%;
-      @media screen and (min-width: 700px) {
-        margin-top: 3%;
-      }
-      #logo {
-        margin: 0 auto;
-        z-index: 200;
-        // border: 1px solid rgb(148, 148, 147);
-        @media screen and (min-height: 650px) {
-          width: 350px;
-          height: 80px;
-        }
-        @media screen and (min-height: 750px) {
-          margin-top: -10%;
-        }
-        @media screen and (min-width: 700px) {
-          width: 705px;
-          height: 112px;
-        }
-        path {
-          stroke: $white-primary;
-          stroke-width: 2;
-        }
-        path:nth-child(1) {
-          stroke-dasharray: 339.3;
-          stroke-dashoffset: 339.3;
-          animation: logoEnter 3s forwards ease-out;
-        }
-        path:nth-child(2) {
-          stroke-dasharray: 220.5;
-          stroke-dashoffset: 220.5;
-          animation: logoEnter 3s forwards ease-out;
-        }
-
-        path:nth-child(3) {
-          stroke-dasharray: 497.9;
-          stroke-dashoffset: 497.9;
-          animation: logoEnter 3s forwards ease-out;
-        }
-        path:nth-child(4) {
-          stroke-dasharray: 389.4;
-          stroke-dashoffset: 389.4;
-          animation: logoEnter 3s forwards ease-out;
-        }
-        path:nth-child(5) {
-          stroke-dasharray: 286.3;
-          stroke-dashoffset: 286.3;
-          animation: logoEnter 3s forwards ease-out;
-        }
-        path:nth-child(6) {
-          stroke-dasharray: 343.8;
-          stroke-dashoffset: 343.8;
-          animation: logoEnter 3s forwards ease-out;
-        }
-        path:nth-child(7) {
-          stroke-dasharray: 416.1px;
-          stroke-dashoffset: 416.1px;
-          animation: logoEnter 3s forwards ease-out;
-        }
-        path:nth-child(8) {
-          stroke-dasharray: 399.5px;
-          stroke-dashoffset: 399.5px;
-          animation: logoEnter 3s forwards ease-out;
-          stroke-dashoffset: 350px;
-        }
-        path:nth-child(9) {
-          stroke-dasharray: 214.5px;
-          stroke-dashoffset: 214.5px;
-          animation: logoEnter 3s forwards ease-out;
-        }
-        path:nth-child(10) {
-          stroke-dasharray: 65.2px;
-          stroke-dashoffset: 65.2px;
-          animation: logoEnter 3s forwards ease-out;
-        }
-        path:nth-child(11) {
-          stroke-dasharray: 220.5px;
-          stroke-dashoffset: 220.5px;
-          animation: logoEnter 3s forwards ease-out;
-        }
-        path:nth-child(12) {
-          stroke-dasharray: 343.8px;
-          stroke-dashoffset: 343.8px;
-          animation: logoEnter 3s forwards ease-out;
-        }
-
-        @keyframes logoEnter {
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
-      }
-    }
-
-    .header-text {
-      height: 30%;
-      width: 50%;
-      @include flex-column-center;
-      font-family: "menlo", Courier, monospace;
-      font-size: 0.8rem;
-      color: $white-primary;
-      justify-content: center;
-      .header-line {
-        height: 1px;
-        width: 100%;
-        background: linear-gradient(
-          to right,
-          rgb(6, 38, 136),
-          rgb(0, 129, 250)
-        );
-        opacity: 0;
-        @media screen and (min-width: 1300px) {
-          width: 44%;
-        }
-      }
-      .p-wrapper {
-        width: 50%;
-        height: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        // border: 1px solid yellow;
-        i {
-          font-size: 1.5rem;
-          @media screen and (min-width: 700px) {
-            font-size: 3rem;
-          }
-        }
-        .p-header {
-          opacity: 0;
-          white-space: nowrap;
-          margin: 0 15px;
-        }
-        span {
-          opacity: 0;
-          font-size: 4rem;
-        }
-      }
-    }
+    justify-content: center;
+    border: 10px solid red;
 
     /////////////////////////////////////////////////
     //                     ARROW
     ////////////////////////////////////////////////
     .arrow-container {
-      @include flex-column-center;
-      justify-content: center;
-      transform: translateY(-100%);
+      width: min-content;
+      position: absolute;
+      bottom: 0;
+      margin: 0 auto;
+      border: 1px solid red;
       .arrow {
-        // height: 100%;
-        // width: 100%;
-        // transform: rotate(90deg);
         font-family: "Courier New", Courier, monospace;
         font-weight: light;
         font-size: 2.5rem;
         color: $white-primary;
-        // margin: 20px 0 0 1vh;
         opacity: 0;
-        // border: 1px solid red;
-
         @media screen and (min-width: 1300px) {
           font-size: 4.5rem;
         }

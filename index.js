@@ -90,146 +90,146 @@ const heroAnim = () => {
     .to(".arrow", {
       opacity: 1,
       delay: 0.5,
-    })
-    .to(".arrow", {
-      duration: 0.5,
-      y: 60,
-      repeat: -1,
-      yoyo: true,
-      ease: "power4(3)",
     });
+  // .to(".arrow", {
+  //   duration: 0.5,
+  //   y: 60,
+  //   repeat: -1,
+  //   yoyo: true,
+  //   ease: "power4(3)",
+  // });
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 //                          SCROLLTRIGGER TIMELINE
 ////////////////////////////////////////////////////////////////////////////////
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
-const scrollEffect = () => {
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#intro",
-      start: "top 90%",
-      end: "bottom bottom",
-      scrub: true,
-    },
-  });
-  tl.to("#logo", {
-    // scrollTrigger: {
-    //   trigger: "#intro",
-    //   start: "top bottom",
-    //   scrub: true,
-    // },
-    scale: 30,
-    autoAlpha: 0,
-  })
-    .to(".header-line", {
-      // scrollTrigger: {
-      //   trigger: "#intro",
-      //   start: "top bottom",
-      //   end: "top 80%",
-      //   scrub: true,
-      // },
-      scale: 0,
-    })
-    .to(".p-stagger", {
-      // scrollTrigger: {
-      //   trigger: "#intro",
-      //   start: "top 95%",
-      //   end: "top 90%",
-      //   scrub: true,
-      // },
-      scale: 0,
-      stagger: 0.2,
-    })
-    .to(".arrow", {
-      // scrollTrigger: {
-      //   trigger: "#intro",
-      //   start: "top bottom",
-      //   end: "top 95%",
-      //   scrub: true,
-      //   id: "intro",
-      //   // markers: true,
-      // },
-      scale: 0,
-    })
-    .from(".upper-title", {
-      x: -1 * window.innerWidth,
-    })
-    .from(".lower-title", {
-      x: window.innerWidth,
-    })
-    .from(".line", {
-      x: -1 * window.innerWidth,
-    })
-    // .from(".gif", {
-    //   scrollTrigger: {
-    //     trigger: ".gif",
-    //     start: "top 90%",
-    //     end: "bottom 80%",
-    //     id: "gif",
-    //     // markers: true,
-    //   },
-    //   scale: 0,
-    // })
-    .from(".about", {
-      opacity: 0,
-    })
-    .from(".stack", {
-      opacity: 0,
-    })
+// const scrollEffect = () => {
+//   const tl = gsap.timeline({
+//     scrollTrigger: {
+//       trigger: "#intro",
+//       start: "top 90%",
+//       end: "bottom bottom",
+//       scrub: true,
+//     },
+//   });
+//   tl.to("#logo", {
+//     scrollTrigger: {
+//       trigger: "#intro",
+//       start: "top bottom",
+//       scrub: true,
+//     },
+//     scale: 30,
+//     autoAlpha: 0,
+//   })
+//     .to(".header-line", {
+//       scrollTrigger: {
+//         trigger: "#intro",
+//         start: "top bottom",
+//         end: "top 80%",
+//         scrub: true,
+//       },
+//       scale: 0,
+//     })
+//     .to(".p-stagger", {
+//       scrollTrigger: {
+//         trigger: "#intro",
+//         start: "top 95%",
+//         end: "top 90%",
+//         scrub: true,
+//       },
+//       scale: 0,
+//       stagger: 0.2,
+//     })
+//     .to(".arrow", {
+//       scrollTrigger: {
+//         trigger: "#intro",
+//         start: "top bottom",
+//         end: "top 95%",
+//         scrub: true,
+//         id: "intro",
+//         // markers: true,
+//       },
+//       scale: 0,
+//     })
+//     .from(".upper-title", {
+//       x: -1 * window.innerWidth,
+//     })
+//     .from(".lower-title", {
+//       x: window.innerWidth,
+//     })
+//     .from(".line", {
+//       x: -1 * window.innerWidth,
+//     })
+//     .from(".gif", {
+//       scrollTrigger: {
+//         trigger: ".gif",
+//         start: "top 90%",
+//         end: "bottom 80%",
+//         id: "gif",
+//         // markers: true,
+//       },
+//       scale: 0,
+//     })
+//     .from(".about", {
+//       opacity: 0,
+//     })
+//     .from(".stack", {
+//       opacity: 0,
+//     })
 
-    .from(".cta-btn-download", {
-      // scrollTrigger: {
-      //   trigger: ".cta-download",
-      //   start: "top bottom",
-      //   end: "bottom 70%",
-      //   scrub: true,
-      // },
-      autoAlpha: 0,
-    });
+//     .from(".cta-btn-download", {
+//       scrollTrigger: {
+//         trigger: ".cta-download",
+//         start: "top bottom",
+//         end: "bottom 70%",
+//         scrub: true,
+//       },
+//       autoAlpha: 0,
+//     });
 
-  PROJECTS.forEach((project, i) => {
-    tl.from(project, {
-      scrollTrigger: {
-        trigger: project,
-        start: "top 85%",
-        end: "top 80%",
-        scrub: true,
-      },
-      x: 100,
-      opacity: 0,
-    });
-  });
-  tl.from(".cta-btn-contact", {
-    scrollTrigger: {
-      trigger: ".cta-contact",
-      start: "top 80%",
-      end: "bottom 70%",
-      scrub: true,
-    },
-    autoAlpha: 0,
-  })
-    .from(".more-container", {
-      scrollTrigger: {
-        trigger: "#more",
-        start: "top 80%",
-        end: "bottom 70%",
-        scrub: true,
-      },
-      scale: 0,
-    })
-    .from("#contact", {
-      scrollTrigger: {
-        trigger: "#more",
-        start: "top 33%",
-        end: "bottom top",
-        scrub: true,
-      },
-      y: 200,
-    });
-};
+//   PROJECTS.forEach((project, i) => {
+//     tl.from(project, {
+//       scrollTrigger: {
+//         trigger: project,
+//         start: "top 85%",
+//         end: "top 80%",
+//         scrub: true,
+//       },
+//       x: 100,
+//       opacity: 0,
+//     });
+//   });
+//   tl.from(".cta-btn-contact", {
+//     scrollTrigger: {
+//       trigger: ".cta-contact",
+//       start: "top 80%",
+//       end: "bottom 70%",
+//       scrub: true,
+//     },
+//     autoAlpha: 0,
+//   })
+//     .from(".more-container", {
+//       scrollTrigger: {
+//         trigger: "#more",
+//         start: "top 80%",
+//         end: "bottom 70%",
+//         scrub: true,
+//       },
+//       scale: 0,
+//     })
+//     .from("#contact", {
+//       scrollTrigger: {
+//         trigger: "#more",
+//         start: "top 33%",
+//         end: "bottom top",
+//         scrub: true,
+//       },
+//       y: 200,
+//     });
+// };
 
 //////////////////////////////////////////////////////////////////////////////////
 //                                ABOUT TABS
