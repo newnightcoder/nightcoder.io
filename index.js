@@ -73,31 +73,17 @@ const menuLinks = () => {
 const heroAnim = () => {
   gsap
     .timeline()
-    .to("#logo", {
-      fill: "white",
-      delay: 1.5,
-    })
-    .to(".p-stagger", {
-      duration: 0.5,
-      // delay: 2,
-      stagger: 0.2,
-      opacity: 1,
-    })
-    .to(".header-line", {
-      opacity: 1,
-      delay: -0.2,
-    })
     .to(".arrow", {
       opacity: 1,
       delay: 0.5,
+    })
+    .to(".arrow", {
+      duration: 0.5,
+      y: 60,
+      repeat: -1,
+      yoyo: true,
+      ease: "power4(3)",
     });
-  // .to(".arrow", {
-  //   duration: 0.5,
-  //   y: 60,
-  //   repeat: -1,
-  //   yoyo: true,
-  //   ease: "power4(3)",
-  // });
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -558,7 +544,7 @@ const init = () => {
   closeHamburger();
   heroAnim();
   tabEffect();
-  scrollEffect();
+  // scrollEffect();
   PROJECTS.forEach((project) => {
     project.children[0].addEventListener("click", () => {
       // animateTransition(project, fullpage);
