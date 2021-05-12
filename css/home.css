@@ -1,0 +1,36 @@
+#home .home-container {
+  height: 100vh;
+  width: 100%;
+}
+#home header {
+  height: inherit;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  border: 10px solid red;
+}
+#home header .arrow-container {
+  width: min-content;
+  position: absolute;
+  bottom: 0;
+  margin: 0 auto;
+}
+#home header .arrow-container .arrow {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: light;
+  font-size: 2.5rem;
+  color: #fefefe;
+  opacity: 0;
+}
+@media screen and (min-width: 1300px) {
+  #home header .arrow-container .arrow {
+    font-size: 4.5rem;
+  }
+}
+@media screen and (min-width: 1300px) {
+  #home {
+    width: 80vw;
+  }
+}
+
+/*# sourceMappingURL=home.css.map */

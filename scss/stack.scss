@@ -1,0 +1,183 @@
+@import "globals";
+///////////////////////////////////////////////////////////////////////////////////////////////
+//                                           STACK
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+.stack {
+  height: 250px;
+  width: 100%;
+  background-color: $editor-background;
+  // border: 3px solid white;
+  @media screen and (min-width: 700px) {
+    height: 35%;
+    max-height: 250px;
+  }
+
+  .stack-container {
+    height: calc(100% - 36px);
+    padding: 20px 0;
+    @include flex-column-center;
+    justify-content: space-between;
+    // border: 10px solid red;
+    &::after {
+      left: 99.9%;
+      background-color: $grey-primary;
+    }
+    @media screen and (min-width: 700px) {
+      padding: 0;
+    }
+
+    .stacklist-wrapper {
+      width: 80%;
+      height: 130px;
+      @include flex-column-center;
+      // display: flex;
+      display: none;
+      align-items: center;
+      justify-content: space-around;
+      border: 1px solid $grey-primary;
+      // border: 1px solid red;
+      @media screen and (min-width: 700px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        font-size: 1.1rem;
+      }
+
+      p {
+        width: 100%;
+        font-family: "courier new";
+        font-size: 0.8rem;
+        text-align: center;
+        @media screen and (min-width: 700px) {
+          font-size: 1rem;
+        }
+      }
+    }
+    .tabs__container {
+      width: 80%;
+      position: relative;
+      border-bottom: 1px solid $grey-primary;
+      @media screen and (min-width: 700px) {
+        width: 500px;
+      }
+      .tabs__line {
+        position: absolute;
+        bottom: -1.5px;
+        left: 0;
+        background-color: blueviolet;
+        height: 2px;
+        width: calc(100% / 3);
+        transition: left 0.4s;
+        @media screen and (min-width: 700px) {
+          width: calc(500px / 3);
+        }
+      }
+    }
+    .tabs__ul {
+      height: 100%;
+      width: 100%;
+      font-family: "courier new";
+      font-size: 0.9rem;
+      color: $editor-foreground;
+      // border: 1px solid yellow;
+
+      .tab {
+        width: calc(100% / 3);
+        padding: 5px 2px;
+        text-align: center;
+        // border: 1px solid red;
+        @media screen and (min-width: 700px) {
+          width: calc(500px / 3);
+          font-size: 1.1rem;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    .tab.active {
+      width: calc(100% / 3);
+      color: $white-primary;
+      background-color: rgba(93, 92, 92, 0.9);
+    }
+
+    .tab__content.active {
+      display: flex;
+    }
+  }
+
+  .stack__left,
+  .stack__middle,
+  .stack__right,
+  .tabs__ul {
+    width: 100%;
+    max-width: 500px;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: $white-primary;
+    // border: 10px solid greenyellow;
+    @media screen and (min-width: 700px) {
+      justify-content: space-around;
+    }
+  }
+  .stack__left {
+    li {
+      i {
+        font-size: 1.5rem;
+        // color: rgb(188, 185, 185);
+        @media screen and (min-width: 700px) {
+          font-size: 2.2rem;
+        }
+      }
+    }
+    &:hover {
+      &::before {
+        background-color: gray;
+      }
+      i {
+        background-color: transparent;
+      }
+      li:nth-child(1) {
+        i {
+          color: #e44d26;
+        }
+      }
+      li:nth-child(2) {
+        i {
+          color: #cd6799;
+        }
+      }
+      li:nth-child(3) {
+        i {
+          color: #ffff00;
+        }
+      }
+      li:nth-child(4) {
+        i {
+          color: #61dbfb;
+        }
+      }
+      li:nth-child(5) {
+        i {
+          color: #3c873a;
+        }
+      }
+      li:nth-child(6) {
+        i {
+          color: lightgrey;
+        }
+      }
+    }
+  }
+  .stack__middle {
+    #vscode {
+      fill: #0078d7;
+    }
+    #webpack {
+      fill: #8ed6fb;
+    }
+  }
+}

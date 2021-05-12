@@ -1,0 +1,77 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+//                                      VARIABLES
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+$editor-background: #1e1e1e;
+$white-primary: #fefefe;
+$blue-primary: #357ce7;
+$blue-navbar: #0037ad;
+$tomato-primary: #f48771;
+$grey-primary: #3e3e42;
+$editor-foreground: #d4d4d4;
+$font-primary: "hemihead";
+$navbar-height: 40px;
+$banner-height: 30vh;
+$border-radius: 5px;
+$intro-height: calc(100vh - #{$navbar-height});
+// $intro-height: 110vh;
+$title-height: 20%;
+// $about-height: 40%;
+// $stack-height: 40%;
+$projects-height: calc(200px * 5);
+$more-height: calc(150px + 56px);
+$footer-height: 40px;
+$contact-height: calc(100vh - #{$navbar-height} - #{$footer-height});
+
+@mixin hamburger {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  fill: $white-primary;
+  // border: 1px solid red;
+  @media screen and (min-width: 700px) {
+    display: none;
+  }
+}
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin section {
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+    background-color: $editor-background;
+    // border: 2px solid white;
+    .section-container {
+      height: 100%;
+
+      @media screen and (min-width: 700px) {
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 2.5vw;
+          height: 100%;
+          width: 0.5px;
+          background-color: $grey-primary;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 98%;
+          height: 100%;
+          width: 0.5px;
+          background-color: $grey-primary;
+        }
+      }
+    }
+  }
+}

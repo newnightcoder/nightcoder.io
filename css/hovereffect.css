@@ -1,0 +1,11 @@
+.hover-effect {
+  border-left: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.hover-effect:hover {
+  cursor: pointer;
+  color: #fefefe;
+  border-left: 2px solid deepskyblue;
+  background-color: #3e3e42;
+}/*# sourceMappingURL=hovereffect.css.map */

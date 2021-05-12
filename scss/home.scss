@@ -1,0 +1,46 @@
+@import "globals";
+///////////////////////////////////////////////////////////////////////////////////////////////
+//                                           HOME
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+#home {
+  .home-container {
+    height: 100vh;
+    width: 100%;
+    // border: 5px solid greenyellow;
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+  //                                    HEADER
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+
+  header {
+    height: inherit;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    border: 10px solid yellow;
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    //                                    ARROW
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    .arrow-container {
+      width: min-content;
+      position: absolute;
+      bottom: 0;
+      margin: 0 auto;
+      .arrow {
+        font-family: "Courier New", Courier, monospace;
+        font-weight: light;
+        font-size: 2.5rem;
+        color: $white-primary;
+        opacity: 0;
+        @media screen and (min-width: 1300px) {
+          font-size: 4.5rem;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 1300px) {
+    width: 80vw;
+  }
+}
