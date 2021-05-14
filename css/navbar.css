@@ -10,7 +10,7 @@ nav {
   background-color: transparent;
   transition: background-color 0.2s;
 }
-nav .brand-name {
+nav .brand {
   font-family: hemihead;
   font-size: 0.8rem;
   color: white;
@@ -19,7 +19,7 @@ nav .brand-name {
   transition: transform 200ms;
 }
 @media screen and (min-width: 700px) {
-  nav .brand-name {
+  nav .brand {
     font-size: 1rem;
   }
 }
@@ -100,14 +100,34 @@ nav .fa-bars {
 }
 .hamburger__content .sky-placeholder {
   background: linear-gradient(to bottom, deepskyblue, #2e2d2d);
+  background: #1e1e1e;
   position: absolute;
   left: 0;
   top: 0;
   z-index: 80;
+  height: 30vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.hamburger__content .sky-placeholder #svg-rainbow-menu {
-  height: 100%;
-  width: 100vw;
+.hamburger__content .sky-placeholder .circle {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #0074e4, deeppink);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hamburger__content .sky-placeholder .circle::after {
+  content: "";
+  position: absolute;
+  height: 90%;
+  width: 90%;
+  border-radius: 50%;
+  background-color: #1e1e1e;
 }
 .hamburger__content .hamburger__content--menu {
   height: 70vh;
@@ -165,4 +185,6 @@ nav .fa-bars {
   .hamburger__content {
     display: none;
   }
-}/*# sourceMappingURL=navbar.css.map */
+}
+
+/*# sourceMappingURL=navbar.css.map */

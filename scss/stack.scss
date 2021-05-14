@@ -1,63 +1,57 @@
-@import "globals";
+@use "globals";
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //                                           STACK
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-.stack {
-  height: 250px;
-  width: 100%;
-  background-color: $editor-background;
+#stack {
+  width: 95%;
+  background-color: globals.$editor-background;
   // border: 3px solid white;
   @media screen and (min-width: 700px) {
-    height: 35%;
-    max-height: 250px;
+    height: 280px;
   }
 
   .stack-container {
-    height: calc(100% - 36px);
-    padding: 20px 0;
-    @include flex-column-center;
-    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    @include globals.flex-column-center;
+    gap: 20px;
     // border: 10px solid red;
-    &::after {
-      left: 99.9%;
-      background-color: $grey-primary;
-    }
-    @media screen and (min-width: 700px) {
-      padding: 0;
-    }
 
     .stacklist-wrapper {
-      width: 80%;
-      height: 130px;
-      @include flex-column-center;
-      // display: flex;
+      width: 100%;
+      min-height: 170px;
+      @include globals.flex-column-center;
       display: none;
       align-items: center;
-      justify-content: space-around;
-      border: 1px solid $grey-primary;
+      justify-content: space-evenly;
+      border: 1px solid globals.$grey-primary;
       // border: 1px solid red;
       @media screen and (min-width: 700px) {
         flex-direction: row;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
         font-size: 1.1rem;
+        height: 280px;
       }
 
       p {
         width: 100%;
+        min-height: 75px;
         font-family: "courier new";
         font-size: 0.8rem;
-        text-align: center;
+        text-align: left;
+        // border: 1px solid red;
         @media screen and (min-width: 700px) {
           font-size: 1rem;
+          width: 50%;
         }
       }
     }
     .tabs__container {
       width: 80%;
       position: relative;
-      border-bottom: 1px solid $grey-primary;
+      border-bottom: 1px solid globals.$grey-primary;
       @media screen and (min-width: 700px) {
         width: 500px;
       }
@@ -65,7 +59,7 @@
         position: absolute;
         bottom: -1.5px;
         left: 0;
-        background-color: blueviolet;
+        background-color: globals.$blue-primary;
         height: 2px;
         width: calc(100% / 3);
         transition: left 0.4s;
@@ -79,7 +73,7 @@
       width: 100%;
       font-family: "courier new";
       font-size: 0.9rem;
-      color: $editor-foreground;
+      color: globals.$editor-foreground;
       // border: 1px solid yellow;
 
       .tab {
@@ -98,7 +92,7 @@
     }
     .tab.active {
       width: calc(100% / 3);
-      color: $white-primary;
+      color: globals.$white-primary;
       background-color: rgba(93, 92, 92, 0.9);
     }
 
@@ -113,11 +107,12 @@
   .tabs__ul {
     width: 100%;
     max-width: 500px;
+    height: 100px;
     list-style-type: none;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    color: $white-primary;
+    color: globals.$white-primary;
     // border: 10px solid greenyellow;
     @media screen and (min-width: 700px) {
       justify-content: space-around;

@@ -8,7 +8,7 @@
 const NAVBAR = document.querySelector("nav");
 // const FLAGS = document.querySelector(".flags-container");
 const NAVBARLINKS = document.querySelector(".link-wrapper");
-const BRAND = document.querySelector(".brand-name");
+const BRAND = document.querySelector(".brand");
 const hamburger = document.querySelector(".fa-bars");
 const PROJECTS = document.querySelectorAll(".project");
 const fullpage = document.querySelector(".fullpage");
@@ -159,10 +159,10 @@ const heroAnim = () => {
 //       },
 //       scale: 0,
 //     })
-//     .from(".about", {
+//     .from("#about", {
 //       opacity: 0,
 //     })
-//     .from(".stack", {
+//     .from("#stack", {
 //       opacity: 0,
 //     })
 
@@ -502,7 +502,7 @@ for (let i = 0; i < stars.length; i++) {
 
 //DRAWING THE STARZ
 function draw() {
-  context.fillStyle = "rgb(30 30 30)";
+  context.fillStyle = "rgb(0 0 0)";
   context.fillRect(0, 0, canvasWidth, canvasHeight);
   for (let i = 0; i < stars.length; i++) {
     stars[i].display();
@@ -511,7 +511,7 @@ function draw() {
 }
 
 //PAUSE
-let paused = false;
+let paused = true;
 
 function pauseKey(event) {
   if (event.keyCode === 32) {
@@ -552,12 +552,12 @@ const init = () => {
       // closeFullpage();
     });
   });
-  // loop();
+  loop();
 };
 
 window.addEventListener("load", (e) => {
   init();
 });
 const removeLoader = () => {
-  document.querySelector(".loader-container").style.display = "none";
+  document.querySelector(".loader__container").style.display = "none";
 };

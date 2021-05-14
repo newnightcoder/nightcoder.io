@@ -1,12 +1,13 @@
-@import "globals";
-@import "fonts";
-@import "navbar";
-@import "home";
-@import "stack";
+@use "globals";
+@use "fonts";
+@use "navbar";
+@use "home";
+@use "about";
+@use "stack";
+
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //                                    HTML / BODY
 ///////////////////////////////////////////////////////////////////////////////////////////////
-
 *,
 *::before,
 *::after {
@@ -27,26 +28,45 @@ html {
 body {
   min-height: 100%;
   width: 100%;
-  background-color: $editor-background;
+  background-color: globals.$editor-background;
   overflow-x: hidden;
+  color: globals.$white-primary;
   // border: 1px solid red;
-  color: $white-primary;
   .body-container {
-    @include section;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     background-color: transparent;
     position: relative;
     // border: 1px solid yellow;
-    @media screen and (min-width: 1300px) {
-      padding: 0 10vw;
+  }
+}
+
+.main__container {
+  position: relative;
+  // border: 10px solid red;
+  @media screen and (min-width: 700px) {
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 10px;
+      background-color: globals.$grey-primary;
+      z-index: 50;
+      @media screen and (min-width: 1300px) {
+        width: 100px;
+      }
     }
   }
 }
 
-.loader-container {
+.loader__container {
   display: none;
   height: 100vh;
   width: 100vw;
-  background-color: $editor-background;
+  background-color: globals.$editor-background;
   position: fixed;
   top: 0;
   left: 0;
@@ -86,14 +106,14 @@ body {
   justify-content: center;
 
   .fullpage__container {
-    @include flex-column-center;
+    @include globals.flex-column-center;
     justify-content: space-evenly;
     position: absolute;
     height: 90%;
     width: 80%;
     z-index: 1000;
     color: black;
-    background-color: $white-primary;
+    background-color: globals.$white-primary;
     // border: 1px solid black;
 
     .img__container {
@@ -142,7 +162,7 @@ body {
     .fullpage__pitch--container {
       height: 65%;
       padding: 0 10vw;
-      @include flex-column-center();
+      @include globals.flex-column-center();
       align-items: flex-start;
       justify-content: space-around;
       border-top: 1px solid rgba(0, 0, 0, 0.068);
@@ -177,14 +197,14 @@ body {
         }
         i {
           font-size: 2rem;
-          color: $editor-background;
+          color: globals.$editor-background;
         }
       }
     }
   }
   .fa-times {
     font-size: 3rem;
-    color: $white-primary;
+    color: globals.$white-primary;
     position: absolute;
     right: -30px;
   }
@@ -203,8 +223,8 @@ body {
   font-family: menlo;
   font-size: 0.75rem;
   text-align: left;
-  color: $blue-primary;
-  background-color: $editor-background;
+  color: globals.$blue-primary;
+  background-color: globals.$editor-background;
   z-index: 50;
   // border: 1px solid pink;
   @media screen and (min-width: 700px) {
@@ -212,18 +232,19 @@ body {
   }
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //                                           MAIN
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 main {
-  @include section;
+  width: 100%;
+  // @include globals.section;
   display: grid;
-  grid-template-rows: $intro-height min-content $projects-height min-content $more-height $contact-height;
+  grid-template-rows: globals.$info-height globals.$projects-height min-content globals.$more-height globals.$contact-height;
   grid-template-columns: 75% 25%;
   grid-row-gap: 1em;
-  background-color: $editor-background;
+  background-color: globals.$editor-background;
+  justify-items: center;
   position: relative;
   z-index: 10;
   // border: 5px solid tomato;
@@ -236,7 +257,7 @@ main {
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: $editor-background;
+    background-color: globals.$editor-background;
     // border: 1px solid white;
   }
 
@@ -247,36 +268,41 @@ main {
     font-family: "play";
     font-size: 1.1rem;
     font-weight: light;
-    background-color: $editor-background;
+    background-color: globals.$editor-background;
     outline: none;
-    background-color: $editor-background;
+    background-color: globals.$editor-background;
     color: aqua;
     border: 0.15em solid aqua;
-    border-radius: $border-radius;
+    border-radius: globals.$border-radius;
     transition: background-color 0.2s;
     &:hover {
       cursor: pointer;
-      color: $editor-background;
+      color: globals.$editor-background;
       background-color: aqua;
     }
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////////
-  //                                           TITLE
+  //                                          INFO - TITLE
   ///////////////////////////////////////////////////////////////////////////////////////////////
-  #intro {
+  #info {
     grid-row: 1;
     grid-column: 1/3;
+    width: 100%;
     position: relative;
-    @include flex-column-center();
-    justify-content: space-evenly;
-    // border: 1px solid tomato;
+    @include globals.flex-column-center();
+    gap: 30px;
+    padding: 30px 0;
+    // border: 1px solid blue;
+    // @media screen and (min-width: 1200px) {
+    //   gap: 3em;
+    // }
     .title {
       width: 90%;
       height: min-content;
-      @include flex-column-center;
+      @include globals.flex-column-center;
       justify-content: center;
-      font-family: $font-primary;
+      font-family: globals.$font-primary;
       font-size: 1rem;
       // color: rgb(171, 170, 170);
       // border: 1px solid white;
@@ -284,14 +310,14 @@ main {
         width: 60%;
         font-size: 1.75rem;
       }
-      .upper-title,
-      .lower-title {
+      .title__upper,
+      .title__lower {
         padding: 0 1.5vw 0.15vh;
         white-space: nowrap;
         transition: transform 500ms;
       }
 
-      .upper-title {
+      .title__upper {
         align-self: flex-start;
         // transform: translateX(6vw);
         // animation: translationL 7s infinite alternate ease-in;
@@ -301,7 +327,7 @@ main {
           }
         }
       }
-      .lower-title {
+      .title__lower {
         align-self: flex-end;
         // transform: translateX(-6vw);
         // animation: translationR 7s infinite alternate ease-in;
@@ -314,54 +340,17 @@ main {
       .line {
         height: 1px;
         width: 100%;
-        background-color: blueviolet;
+        background: linear-gradient(
+          to left,
+          rgb(87, 213, 255) 0%,
+          globals.$blue-primary 100%
+        );
       }
       &:hover {
         .line {
-          background: linear-gradient(
-            to right,
-            rgb(87, 213, 255) 0%,
-            $blue-navbar 100%
-          );
+          background: blueviolet;
         }
       }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-    //                                           ABOUT
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-
-    .about {
-      width: 99.9%;
-      height: 280px;
-      font-family: "courier new", monospace, serif;
-      font-size: 0.75rem;
-      line-height: 1.5rem;
-      // border: 10px solid white;
-      @media screen and (min-width: 700px) {
-        font-size: 1.1rem;
-      }
-      .section-container {
-        height: calc(100% - 36px);
-        @include flex-column-center;
-        justify-content: space-evenly;
-        padding-left: 5vw;
-        transition: all 0.2s;
-        background-color: $grey-primary;
-        border-left: 2px solid $blue-primary;
-        &::after {
-          left: 99.9%;
-        }
-        .p-about {
-          width: 99.9%;
-          // border: 1px solid pink;
-        }
-      }
-
-      &:hover {
-        cursor: text;
-      }
-     
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -387,40 +376,30 @@ main {
     //   }
     // }
   }
-  .cta-download {
-    grid-row: 2;
-    grid-column: 1/3;
-    // border: 1px solid greenyellow;
-  }
 
-  ///////////////////////////////////////////////////
-  //                    PROJECTS
-  ///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+  //                                     PROJECTS
+  //////////////////////////////////////////////////////////////////////////////////////////////
 
   #projects {
-    grid-row: 3;
+    grid-row: 2;
     grid-column: 1/3;
-    // border: 5px solid greenyellow;
+    width: 95%;
+    padding: 2em 0;
+    // border: 5px solid yellow;
 
     .projects-wrapper {
       height: 100%;
-      // min-width: 100%;
-      @include flex-column-center;
-      justify-content: space-evenly;
+      @include globals.flex-column-center;
+      gap: 20px;
       list-style-type: none;
       position: relative;
-      @media screen and (min-width: 700px) {
-        width: 90vw;
-        // flex-direction: row;
-        // align-items: center;
-        // justify-content: space-evenly;
-      }
 
       .project {
         height: 210px;
         width: 90vw;
-        color: $white-primary;
-        background-color: $editor-foreground;
+        color: globals.$white-primary;
+        background-color: globals.$editor-foreground;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -433,7 +412,7 @@ main {
           height: 220px;
           width: 80%;
           max-width: 1100px;
-          color: $editor-background;
+          color: globals.$editor-background;
           padding-left: 1vw;
           flex-direction: row;
           align-items: center;
@@ -450,7 +429,7 @@ main {
           right: 1.5vw;
           top: 2vh;
           font-size: 1.5rem;
-          color: $white-primary;
+          color: globals.$white-primary;
           transition: transform 200ms;
           z-index: 5;
           &:hover {
@@ -458,7 +437,7 @@ main {
             transform: scale(1.1);
           }
           @media screen and (min-width: 700px) {
-            color: $grey-primary;
+            color: globals.$grey-primary;
           }
         }
         .thumbnail {
@@ -515,7 +494,7 @@ main {
           flex-direction: column;
           align-items: flex-start;
           justify-content: space-evenly;
-          color: $white-primary;
+          color: globals.$white-primary;
           font-weight: bold;
           z-index: 4;
           // border: 1px solid $white-primary;
@@ -526,7 +505,7 @@ main {
             font-weight: normal;
           }
           .project-title {
-            font-family: $font-primary;
+            font-family: globals.$font-primary;
             @media screen and (min-width: 700px) {
               font-size: 1.5rem;
             }
@@ -549,7 +528,7 @@ main {
             // border: 1px solid red;
             a {
               // text-decoration: none;
-              color: $white-primary;
+              color: globals.$white-primary;
               transition: transform 0.2s;
               // border: 1px solid red;
               &:hover {
@@ -604,12 +583,11 @@ main {
             }
             &:nth-child(5) {
               .project-links a {
-                color: $editor-background;
+                color: globals.$editor-background;
               }
             }
           }
         }
-
         // @media screen and (min-width: 700px) {
         //   &:hover {
         //     transform: rotateX(180deg);
@@ -625,17 +603,25 @@ main {
     }
   }
 
-  .cta-contact {
-    grid-row: 4;
-    grid-column: 1/3;
+  #about,
+  #stack,
+  #projects {
+    @media screen and (min-width: 1300px) {
+      width: 80%;
+    }
   }
 
+  .cta-download {
+    grid-row: 3;
+    grid-column: 1/3;
+    // border: 1px solid greenyellow;
+  }
   ///////////////////////////////////////////////////////////////////////////////////////////////
   //                                     MORE
   ///////////////////////////////////////////////////////////////////////////////////////////////
 
   #more {
-    grid-row: 5;
+    grid-row: 4;
     grid-column: 1/3;
     // border: 1px solid orange;
     .more-container {
@@ -647,13 +633,14 @@ main {
     .more-wrapper {
       height: 100%;
       color: white;
-      @include flex-column-center;
+      @include globals.flex-column-center;
       justify-content: center;
       #canvas {
         border: 1px solid grey;
+        background-color: black;
         &:hover {
           cursor: pointer;
-          border: 1px solid $white-primary;
+          border: 1px solid globals.$white-primary;
         }
       }
       #canvas {
@@ -667,14 +654,17 @@ main {
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////////
-  //                                   CONTQCT
+  //                                   CONTACT
   ///////////////////////////////////////////////////////////////////////////////////////////////
   #contact {
-    grid-row: 6;
+    grid-row: 5;
     grid-column: 1/3;
+    height: globals.$contact-height;
+    width: 100%;
     .contact-wrapper {
-      height: 100%;
-      background-color: $editor-background;
+      width: inherit;
+      height: inherit;
+      background-color: globals.$editor-background;
       margin: 0 7vw;
       // border: 1px solid turquoise;
     }
@@ -684,9 +674,8 @@ main {
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //                                      FOOTER
 ///////////////////////////////////////////////////////////////////////////////////////////////
-
 footer {
-  height: $footer-height;
+  height: globals.$footer-height;
   font-family: "courier new";
   font-size: 0.75rem;
   // white-space: nowrap;

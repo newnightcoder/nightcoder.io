@@ -1,4 +1,4 @@
-@import "globals";
+@use "globals";
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //                                 NAVIGATION BAR
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,7 +48,7 @@ nav {
   //   }
   // }
 
-  .brand-name {
+  .brand {
     font-family: hemihead;
     font-size: 0.8rem;
     color: white;
@@ -80,14 +80,14 @@ nav {
     .link {
       height: 100%;
       width: 100%;
-      @include flex-column-center;
+      @include globals.flex-column-center;
       justify-content: center;
       opacity: 1;
       text-decoration: none;
 
       i {
         font-size: 1.25rem;
-        color: $white-primary;
+        color: globals.$white-primary;
         transition: transform 750ms;
         &:hover {
           color: rgba(255, 255, 255, 0.5);
@@ -112,16 +112,16 @@ nav {
 .hamburger__content {
   transform: translateX(100%);
   z-index: -100;
-  @include flex-column-center;
+  @include globals.flex-column-center();
   justify-content: space-evenly;
   height: 100vh;
   width: 100vw;
   position: fixed;
-  color: $white-primary;
+  color: globals.$white-primary;
   top: 0;
   right: 0;
   background-color: rgb(46, 45, 45);
-  background-color: $editor-background;
+  background-color: globals.$editor-background;
   transition: transform 0.3s;
   // border-left: 1px solid lime;
 
@@ -132,39 +132,59 @@ nav {
     position: absolute;
     top: 5px;
     right: 10px;
-    color: $white-primary;
+    color: globals.$white-primary;
     z-index: 100;
   }
   .sky-placeholder {
     background: linear-gradient(to bottom, deepskyblue, rgb(46, 45, 45));
+    background: globals.$editor-background;
     position: absolute;
     left: 0;
     top: 0;
     z-index: 80;
-    #svg-rainbow-menu {
-      height: 100%;
-      width: 100vw;
+    height: 30vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .circle {
+      height: 150px;
+      width: 150px;
+      border-radius: 50%;
+      background: linear-gradient(to right, globals.$blue-primary, deeppink);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &::after {
+        content: "";
+        position: absolute;
+        height: 90%;
+        width: 90%;
+        border-radius: 50%;
+        background-color: globals.$editor-background;
+      }
     }
   }
 
   .hamburger__content--menu {
     height: 70vh;
     width: 100%;
-    @include flex-column-center();
+    @include globals.flex-column-center();
     justify-content: space-evenly;
     position: absolute;
     top: 25%;
     // border: 1px solid red;
   }
   a {
-    color: $white-primary;
+    color: globals.$white-primary;
   }
   .hamburger__content--title {
     font-family: hemihead;
     font-size: 2.25rem;
   }
   .hamburger__content--links {
-    @include flex-column-center;
+    @include globals.flex-column-center;
     justify-content: space-between;
     height: 30%;
     width: 60%;
@@ -172,11 +192,11 @@ nav {
     font-size: 1rem;
     line-height: 1.25rem;
     a {
-      border-bottom: 1px solid $white-primary;
+      border-bottom: 1px solid globals.$white-primary;
     }
   }
   .hamburger__content--socialicons {
-    @include flex-column-center();
+    @include globals.flex-column-center();
     justify-content: space-evenly;
     height: 20%;
     font-family: "courier new";

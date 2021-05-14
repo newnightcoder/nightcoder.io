@@ -1,35 +1,48 @@
 #home .home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   height: 100vh;
   width: 100%;
+  position: relative;
 }
 #home header {
-  height: inherit;
+  transform: translateY(50%);
+}
+#home header .circle {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #0074e4, deeppink);
   position: relative;
   display: flex;
+  align-items: center;
   justify-content: center;
-  border: 10px solid red;
 }
-#home header .arrow-container {
-  width: min-content;
+#home header .circle::after {
+  content: "";
   position: absolute;
-  bottom: 0;
-  margin: 0 auto;
+  height: 90%;
+  width: 90%;
+  border-radius: 50%;
+  background-color: #1e1e1e;
 }
-#home header .arrow-container .arrow {
+@keyframes turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+#home .arrow-container .arrow {
   font-family: "Courier New", Courier, monospace;
   font-weight: light;
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: #fefefe;
   opacity: 0;
 }
 @media screen and (min-width: 1300px) {
-  #home header .arrow-container .arrow {
+  #home .arrow-container .arrow {
     font-size: 4.5rem;
-  }
-}
-@media screen and (min-width: 1300px) {
-  #home {
-    width: 80vw;
   }
 }
 
