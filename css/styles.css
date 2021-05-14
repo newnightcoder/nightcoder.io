@@ -233,14 +233,6 @@ nav .fa-bars {
   align-items: center;
   justify-content: center;
 }
-#home header .circle::after {
-  content: "";
-  position: absolute;
-  height: 90%;
-  width: 90%;
-  border-radius: 50%;
-  background-color: #1e1e1e;
-}
 @keyframes turn {
   to {
     transform: rotate(360deg);
