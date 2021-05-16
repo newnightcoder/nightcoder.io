@@ -14,11 +14,19 @@
   height: 200px;
   width: 200px;
   border-radius: 50%;
-  background: linear-gradient(to right, #0074e4, deeppink);
+  background: linear-gradient(to right, #1a8cfe, deeppink);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#home header .circle::after {
+  content: "";
+  position: absolute;
+  height: 90%;
+  width: 90%;
+  border-radius: 50%;
+  background-color: #1e1e1e;
 }
 @keyframes turn {
   to {

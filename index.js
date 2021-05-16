@@ -461,7 +461,7 @@ const displayContent = (project) => {
 
 const canvas = document.querySelector("#canvas");
 const context = canvas.getContext("2d");
-const canvasWidth = 1000;
+const canvasWidth = (window.innerWidth * 80) / 100;
 const canvasHeight = 150;
 const focalLength = canvasWidth;
 const centerX = canvasWidth / 2;

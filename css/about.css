@@ -1,13 +1,13 @@
 #about {
-  width: 95%;
+  width: 100%;
   font-family: "courier new", monospace, serif;
-  font-size: 0.75rem;
-  line-height: 1.5rem;
+  font-size: 0.8rem;
+  line-height: 1.1rem;
 }
 @media screen and (min-width: 700px) {
   #about {
-    font-size: 1.1rem;
-    height: 280px;
+    font-size: 1rem;
+    height: max-content;
   }
 }
 #about .section-container {
@@ -16,17 +16,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  padding-left: 5vw;
-  transition: all 0.2s;
-  background-color: #333333;
-  border-left: 2px solid #0074e4;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 5px 20px 0;
 }
-#about .section-container::after {
-  left: 99.9%;
-}
-#about .section-container .p-about {
-  width: 99.9%;
+@media screen and (min-width: 700px) {
+  #about .section-container {
+    padding: 0 5px 40px 0;
+  }
 }
 #about:hover {
   cursor: text;

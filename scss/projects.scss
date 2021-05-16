@@ -1,0 +1,226 @@
+@use "globals";
+///////////////////////////////////////////////////////////////////////////////////////////////
+//                                     PROJECTS
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+#projects {
+  grid-row: 2;
+  grid-column: 1/3;
+  width: 100%;
+  padding-bottom: 30px;
+
+  .projects-wrapper {
+    height: 100%;
+    @include globals.flex-column-center;
+    gap: 20px;
+    list-style-type: none;
+    position: relative;
+    padding-top: 30px;
+    // border: 1px solid white;
+
+    .project {
+      height: 210px;
+      width: 100%;
+      color: globals.$white-primary;
+      background-color: globals.$editor-foreground;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      transition: all 200ms;
+      position: relative;
+      // padding: 1vh 1vw;
+      // border: 10px solid pink;
+      @media screen and (min-width: 700px) {
+        height: 220px;
+        width: 100%;
+        max-width: 1000px;
+        color: globals.$editor-background;
+        padding-left: 1vw;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        &:hover {
+          .thumbnail:after {
+            opacity: 0;
+          }
+        }
+      }
+      .fa-expand-alt {
+        display: none;
+        position: absolute;
+        right: 1.5vw;
+        top: 2vh;
+        font-size: 1.5rem;
+        color: globals.$white-primary;
+        transition: transform 200ms;
+        z-index: 5;
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.1);
+        }
+        @media screen and (min-width: 700px) {
+          color: globals.$grey-primary;
+        }
+      }
+      .thumbnail {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        object-fit: cover;
+        z-index: 3;
+        // border: 1px solid pink;
+
+        @media screen and (min-width: 700px) {
+          height: 190px;
+          width: 320px;
+          position: relative;
+          filter: none;
+        }
+        img {
+          height: 100%;
+          object-fit: cover;
+          @media screen and (min-width: 700px) {
+            height: 190px;
+            width: 310px;
+            // border: 1px solid $white-primary;
+          }
+        }
+      }
+      .pitch-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        color: globals.$white-primary;
+        font-weight: bold;
+        z-index: 4;
+        // border: 1px solid red;
+        @media screen and (min-width: 700px) {
+          position: relative;
+          display: flex;
+          color: black;
+          font-weight: normal;
+          align-items: flex-start;
+          justify-content: space-evenly;
+          padding: 0 20px 20px 20px;
+        }
+        .project-title {
+          font-family: globals.$font-primary;
+          white-space: nowrap;
+          background-color: black;
+
+          @media screen and (min-width: 700px) {
+            font-size: 1.5rem;
+            background-color: transparent;
+          }
+        }
+        .pitch {
+          font-family: play;
+          font-size: 1rem;
+          background-color: black;
+          @media screen and (min-width: 700px) {
+            background-color: transparent;
+          }
+        }
+        .technologies {
+          font-family: "courier new", sans-serif;
+          font-weight: normal;
+          background-color: black;
+          @media screen and (min-width: 700px) {
+            background-color: transparent;
+          }
+        }
+        .project-links {
+          width: 80px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          color: white;
+          align-self: flex-end;
+          // border: 1px solid red;
+          a {
+            color: globals.$white-primary;
+            transition: transform 0.2s;
+            // border: 1px solid red;
+            &:hover {
+              cursor: pointer;
+              background-color: transparent;
+            }
+
+            i {
+              font-size: 2rem;
+            }
+            .project-live,
+            .project-github {
+              position: absolute;
+              bottom: 10px;
+              transform: translateX(-130%);
+              font-size: 0.9rem;
+              text-decoration: underline;
+            }
+            .project-github {
+              transform: translateX(-85%);
+            }
+            .inactive {
+              color: gray;
+            }
+          }
+        }
+        @media screen and (min-width: 700px) {
+          // & {
+          a :nth-child(1),
+          span {
+            color: red;
+          }
+          // }
+          &:nth-child(2) {
+            .project-links a {
+              color: deeppink;
+            }
+          }
+          &:nth-child(3) {
+            .project-links a {
+              color: deepskyblue;
+            }
+          }
+          &:nth-child(4) {
+            .project-links a {
+              color: #fb4700da;
+            }
+          }
+          &:nth-child(5) {
+            .project-links a {
+              color: globals.$editor-background;
+            }
+          }
+        }
+      }
+      // @media screen and (min-width: 700px) {
+      //   &:hover {
+      //     transform: rotateX(180deg);
+      //     perspective: 100px;
+      //   }
+      // }
+      .clone {
+        // background-color: tomato;
+        position: absolute;
+        z-index: 5000;
+      }
+    }
+  }
+}
+
+// #about,
+// #stack,
+// #projects {
+//   @media screen and (min-width: 1300px) {
+//     width: 80%;
+//   }
+// }

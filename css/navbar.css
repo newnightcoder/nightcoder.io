@@ -23,43 +23,6 @@ nav .brand {
     font-size: 1rem;
   }
 }
-nav .link-wrapper {
-  display: none;
-}
-@media screen and (min-width: 700px) {
-  nav .link-wrapper {
-    position: absolute;
-    right: 0;
-    height: 100%;
-    width: 170px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-right: 2vw;
-    transition: transform 350ms;
-    transform: translateY(1.75vh);
-  }
-}
-nav .link-wrapper .link {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  opacity: 1;
-  text-decoration: none;
-}
-nav .link-wrapper .link i {
-  font-size: 1.25rem;
-  color: #fefefe;
-  transition: transform 750ms;
-}
-nav .link-wrapper .link i:hover {
-  color: rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-}
 nav .fa-bars {
   position: absolute;
   top: -1px;
@@ -115,7 +78,7 @@ nav .fa-bars {
   height: 150px;
   width: 150px;
   border-radius: 50%;
-  background: linear-gradient(to right, #0074e4, deeppink);
+  background: linear-gradient(to right, #1a8cfe, deeppink);
   position: relative;
   display: flex;
   align-items: center;
@@ -158,7 +121,7 @@ nav .fa-bars {
   line-height: 1.25rem;
 }
 .hamburger__content .hamburger__content--links a {
-  border-bottom: 1px solid #fefefe;
+  border-bottom: 1px solid #1a8cfe;
 }
 .hamburger__content .hamburger__content--socialicons {
   display: flex;

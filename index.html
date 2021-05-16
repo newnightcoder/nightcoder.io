@@ -1,437 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Daniel Julien web developer website" />
-    <link rel="stylesheet" href="/css/styles.css" />
-    <script
-      src="https://kit.fontawesome.com/9209397972.js"
-      crossorigin="anonymous"
-      data-auto-a11y="true"
-      async
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"
-      defer
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"
-      defer
-    ></script>
 
-    <script src="index.js" defer></script>
-    <title>nightcoder.io</title>
-  </head>
-  <body>
-    <div class="loader__container"><div class="loader"></div></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Daniel Julien web developer website" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <script src="https://kit.fontawesome.com/9209397972.js" crossorigin="anonymous" data-auto-a11y="true" async></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js" defer></script>
 
-    <!----------------------------------- FLAGS FOR LANGUAGES ------------------------------------>
+  <script src="index.js" defer></script>
+  <title>nightcoder.io</title>
+</head>
 
-    <!-- <div class="flags-container">
+<body>
+  <div class="loader__container">
+    <div class="loader"></div>
+  </div>
+  <div class="margin__left">
+    <ul class="link-wrapper">
+      <li><a class="link" href="https://github.com/newnightcoder" target="blank"><i class="fab fa-github"></i></a></li>
+      <li><a class="link" href="https://twitter.com/Nightcoder2" target="blank"><i class="fab fa-twitter"></i></a></li>
+      <li><a class="link" href="https://dev.to/nightcoder" target="blank"><i class="fab fa-dev"></i></a></li>
+      <li>
+        <a class="link" href="https://www.linkedin.com/in/nightcoder-dan/" target="blank"><i
+            class="fab fa-linkedin-in"></i></a>
+      </li>
+      <li><a class="link" href="mailto:newnightcoder@gmail.com" target="blank"><i class="far fa-envelope"></i></a></li>
+    </ul>
+    <div class="margin__line"></div>
+  </div>
+  <div class="margin__right">
+    <div class="mail-link"><span>s</span><span>e</span><span>n</span><span>d</span>&nbsp;<span>m</span><span>e</span>&nbsp;<span>a</span><span>n</span>&nbsp;<span>e</span><span>m</span><span>a</span><span>i</span><span>l</span></div>
+    <div class="margin__line"></div>
+  </div>
+
+  <!----------------------------------- FLAGS FOR LANGUAGES ------------------------------------>
+
+  <!-- <div class="flags-container">
         <div class="flag flag-en">en</div>
         <div class="flag flag-fr">fr</div>
         <div class="flag flag-de">de</div>
       </div> -->
-    <!-- <div class="minilogo">
+  <!-- <div class="minilogo">
         <div class="circle"></div>
       </div> -->
 
-    <!-------------------------------------------------------------------------------------------->
+  <!-------------------------------------------------------------------------------------------->
 
-    <!-------------------------------------------- NAV ------------------------------------------->
-    <nav>
-      <div class="brand">daniel julien &middot; front-end developer</div>
-      <i class="fas fa-bars"></i>
-      <div class="link-wrapper">
-        <a class="link" href="https://github.com/newnightcoder" target="blank"
-          ><i class="fab fa-github"></i
-        ></a>
-        <a class="link" href="https://twitter.com/Nightcoder2" target="blank"
-          ><i class="fab fa-twitter"></i
-        ></a>
-        <a class="link" href="https://dev.to/nightcoder" target="blank"
-          ><i class="fab fa-dev"></i
-        ></a>
-        <a
-          class="link"
-          href="https://www.linkedin.com/in/nightcoder-dan/"
-          target="blank"
-          ><i class="fab fa-linkedin-in"></i
-        ></a>
-        <a class="link" href="mailto:newnightcoder@gmail.com" target="blank"
-          ><i class="far fa-envelope"></i
-        ></a>
-      </div>
-    </nav>
+  <!-------------------------------------------- NAV ------------------------------------------->
+  <nav>
+    <div class="brand">daniel julien &middot; front-end developer</div>
+    <i class="fas fa-bars"></i>
 
-    <div class="body-container">
-      <!-------------------------------------------- HOME ------------------------------------------->
-      <section id="home">
-        <div class="home-container">
-          <header>
-            <div class="circle"></div>
-          </header>
-          <div class="arrow-container">
-            <span class="arrow"><i class="fas fa-caret-down"></i></span>
-          </div>
+  </nav>
+
+  <div class="body-container">
+
+
+    <!-------------------------------------------- HOME ------------------------------------------->
+    <section id="home">
+      <div class="home-container">
+        <header>
+          <div class="circle"></div>
+        </header>
+        <div class="arrow-container">
+          <span class="arrow"><i class="fas fa-caret-down"></i></span>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <div class="main__container">
-        <!------------------------------------------ MAIN ------------------------------------------->
-        <main>
-          <section id="info">
-            <div class="title">
-              <h1 class="title__upper">
-                hello&excl;&nbsp;i&apos;m Daniel Julien&comma;
-              </h1>
-              <div class="line"></div>
-              <h1 class="title__lower">
-                Front&hyphen;end&nbsp;developer&period;
-              </h1>
+    <div class="main__container">
+      <!------------------------------------------ MAIN ------------------------------------------->
+      <main>
+        <section id="info">
+          <div class="title">
+            <span class="title__intro">hello&excl;&nbsp;i am </span>
+            <h1 class="title__upper">
+              Daniel Julien&comma;
+            </h1>
+            <div class="line"></div>
+            <h1 class="title__lower">
+              Front&hyphen;end&nbsp;developer
+            </h1>
+          </div>
+          <!------------------------------------------ ABOUT ------------------------------------------->
+            <h2 class="tag tag-about "><span>about me</span></h2>
+
+          <div id="about">
+            <div class="section-container">
+              <p class="p-about">
+                Hello! I'm Daniel and im' a proud and happy self-taught junior
+                front-end developer. <br />
+                I speak fluently JavaScript&period;<nbsp></nbsp> React is my
+                framework of choice but&comma;&nbsp;<br />
+                i'm always very excited to learn and adapt to new
+                technologies!
+              </p>
+              <p class="p-about">
+                I love programming, as well as web design. <br />Let's
+                connect! I might be your next hire, who knows...
+              </p>
             </div>
-            <!------------------------------------------ ABOUT ------------------------------------------->
+            <!-- <h4 class="tag tag-about hover-effect">&sol;about</h4> -->
+          </div>
+          <div class="cta cta-contact">
+            <button class="cta-btn-contact">contact&nbsp;me</button>
+          </div>
+          <!------------------------------------------ STACK ------------------------------------------->
+          <h2 class="tag tag-about "><span>my stack</span></h2>
 
-            <div id="about">
-              <!-- <h4 class="tag tag-about ">&lt;about&gt;</h4> -->
-              <div class="section-container">
-                <p class="p-about">
-                  Hello! I'm Daniel and im' a proud and happy self-taught junior
-                  front-end developer. <br />
-                  I speak fluently JavaScript&period;<nbsp></nbsp> React is my
-                  framework of choice but&comma;&nbsp;<br />
-                  i'm always very excited to learn and adapt to new
-                  technologies!
-                </p>
-                <p class="p-about">
-                  I love programming, as well as web design. <br />Let's
-                  connect! I might be your next hire, who knows...
-                </p>
+          <div id="stack">
+            <!-- <h4 class="tag tag-stack hover-effect">dev</h4> -->
+            <div class="section-container stack-container">
+              <div class="tabs__container">
+                <ul class="tabs__ul">
+                  <li data-target="#stack__left" class="tab active">stack</li>
+                  <li data-target="#stack__middle" class="tab">env</li>
+                  <li data-target="#stack__right" class="tab">excited</li>
+                </ul>
+                <div class="tabs__line active"></div>
               </div>
-              <!-- <h4 class="tag tag-about hover-effect">&lt;&sol;about&gt;</h4> -->
-            </div>
-            <div class="cta cta-contact">
-              <button class="cta-btn-contact">contact&nbsp;me</button>
-            </div>
-            <!------------------------------------------ STACK ------------------------------------------->
-
-            <div id="stack">
-              <!-- <h4 class="tag tag-stack hover-effect">&lt;dev&gt;</h4> -->
-              <div class="section-container stack-container">
-                <div class="tabs__container">
-                  <ul class="tabs__ul">
-                    <li data-target="#stack__left" class="tab active">stack</li>
-                    <li data-target="#stack__middle" class="tab">env</li>
-                    <li data-target="#stack__right" class="tab">excited</li>
-                  </ul>
-                  <div class="tabs__line active"></div>
-                </div>
-                <div
-                  id="stack__left"
-                  class="stacklist-wrapper tab__content active"
-                >
-                  <p class="stacklist-description">my stack of choice&colon; Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo, quam! Corrupti tempore magni esse voluptatum vel praesentium porro quam nemo, numquam reprehenderit! Excepturi, laudantium vero. At fugiat harum impedit incidunt?<20></20></p>
-                  <ul class="stack__left">
-                    <li class="stack-icon"><i class="fab fa-html5"></i></li>
-                    <li class="stack-icon"><i class="fab fa-sass"></i></li>
-                    <li class="stack-icon"><i class="fab fa-js-square"></i></li>
-                    <li class="stack-icon"><i class="fab fa-react"></i></li>
-                    <li class="stack-icon"><i class="fab fa-node"></i></li>
-                  </ul>
-                </div>
-                <div id="stack__middle" class="stacklist-wrapper tab__content">
-                  <p class="stacklist-description">
-                    my usual dev environment&colon; Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit accusamus, possimus culpa impedit architecto aut nisi ex fuga repellendus totam, sed veniam quasi dolorem nihil at sequi, eum corrupti esse?<20></20>
-                  </p>
-                  <ul class="stack__middle">
-                    <li>
-                      <svg
-                        id="vscode"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="32"
-                        height="32"
-                        viewBox="0 0 32 32"
-                      >
-                        <path
-                          d="M30.865 3.448l-6.583-3.167c-0.766-0.37-1.677-0.214-2.276 0.385l-12.609 11.505-5.495-4.167c-0.51-0.391-1.229-0.359-1.703 0.073l-1.76 1.604c-0.583 0.526-0.583 1.443-0.005 1.969l4.766 4.349-4.766 4.349c-0.578 0.526-0.578 1.443 0.005 1.969l1.76 1.604c0.479 0.432 1.193 0.464 1.703 0.073l5.495-4.172 12.615 11.51c0.594 0.599 1.505 0.755 2.271 0.385l6.589-3.172c0.693-0.333 1.13-1.031 1.13-1.802v-21.495c0-0.766-0.443-1.469-1.135-1.802zM24.005 23.266l-9.573-7.266 9.573-7.266z"
-                        />
-                      </svg>
-                    </li>
-                    <li>
-                      <svg
-                        id="webpack"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="32"
-                        height="32"
-                        viewBox="0 0 32 32"
-                      >
-                        <path
-                          d="M28.021 24.161l-11.552 6.505v-5.068l7.198-3.943zM28.813 23.448v-13.609l-4.229 2.432v8.745zM3.901 24.161l11.552 6.505v-5.068l-7.198-3.943zM3.109 23.448v-13.609l4.229 2.432v8.745zM3.604 8.958l11.849-6.672v4.901l-7.646 4.188zM28.318 8.958l-11.849-6.672v4.901l7.646 4.188zM15.453 24.448l-7.099-3.891v-7.703l7.099 4.083zM16.469 24.448l7.099-3.891v-7.703l-7.099 4.083zM8.833 11.964l7.13-3.901 7.13 3.901-7.13 4.099z"
-                        />
-                      </svg>
-                    </li>
-                    <li>c</li>
-                    <li><i class="fab fa-git-square"></i></li>
-                  </ul>
-                </div>
-                <div id="stack__right" class="stacklist-wrapper tab__content">
-                  <p class="stacklist-description">
-                    i'm very excited about&colon; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus, quam excepturi libero, eum temporibus architecto at velit soluta minus rem et sunt deserunt laboriosam officiis similique commodi sed doloremque? Possimus?<20></20>
-                  </p>
-                  <ul class="stack__right">
-                    <li class="stack-icon">
-                      <i class="fab fa-git-square"></i>
-                    </li>
-                    <li>b</li>
-                    <li>c</li>
-                  </ul>
-                </div>
+              <div id="stack__left" class="stacklist-wrapper tab__content active">
+                <p class="stacklist-description">my stack of choice&colon; Lorem ipsum dolor sit, amet consectetur
+                  adipisicing elit. Explicabo, quam! Corrupti tempore magni esse voluptatum vel praesentium porro quam
+                  nemo, numquam reprehenderit! Excepturi, laudantium vero. At fugiat harum impedit incidunt?<20></20>
+                </p>
+                <ul class="stack__left">
+                  <li class="stack-icon"><i class="fab fa-html5"></i></li>
+                  <li class="stack-icon"><i class="fab fa-sass"></i></li>
+                  <li class="stack-icon"><i class="fab fa-js-square"></i></li>
+                  <li class="stack-icon"><i class="fab fa-react"></i></li>
+                  <li class="stack-icon"><i class="fab fa-node"></i></li>
+                </ul>
               </div>
-              <!-- <h4 class="hover-effect tag tag-stack">&lt;&sol;dev&gt;</h4> -->
+              <div id="stack__middle" class="stacklist-wrapper tab__content">
+                <p class="stacklist-description">
+                  my usual dev environment&colon; Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit
+                  accusamus, possimus culpa impedit architecto aut nisi ex fuga repellendus totam, sed veniam quasi
+                  dolorem nihil at sequi, eum corrupti esse?<20></20>
+                </p>
+                <ul class="stack__middle">
+                  <li>
+                    <svg id="vscode" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                      <path
+                        d="M30.865 3.448l-6.583-3.167c-0.766-0.37-1.677-0.214-2.276 0.385l-12.609 11.505-5.495-4.167c-0.51-0.391-1.229-0.359-1.703 0.073l-1.76 1.604c-0.583 0.526-0.583 1.443-0.005 1.969l4.766 4.349-4.766 4.349c-0.578 0.526-0.578 1.443 0.005 1.969l1.76 1.604c0.479 0.432 1.193 0.464 1.703 0.073l5.495-4.172 12.615 11.51c0.594 0.599 1.505 0.755 2.271 0.385l6.589-3.172c0.693-0.333 1.13-1.031 1.13-1.802v-21.495c0-0.766-0.443-1.469-1.135-1.802zM24.005 23.266l-9.573-7.266 9.573-7.266z" />
+                    </svg>
+                  </li>
+                  <li>
+                    <svg id="webpack" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                      <path
+                        d="M28.021 24.161l-11.552 6.505v-5.068l7.198-3.943zM28.813 23.448v-13.609l-4.229 2.432v8.745zM3.901 24.161l11.552 6.505v-5.068l-7.198-3.943zM3.109 23.448v-13.609l4.229 2.432v8.745zM3.604 8.958l11.849-6.672v4.901l-7.646 4.188zM28.318 8.958l-11.849-6.672v4.901l7.646 4.188zM15.453 24.448l-7.099-3.891v-7.703l7.099 4.083zM16.469 24.448l7.099-3.891v-7.703l-7.099 4.083zM8.833 11.964l7.13-3.901 7.13 3.901-7.13 4.099z" />
+                    </svg>
+                  </li>
+                  <li>c</li>
+                  <li><i class="fab fa-git-square"></i></li>
+                </ul>
+              </div>
+              <div id="stack__right" class="stacklist-wrapper tab__content">
+                <p class="stacklist-description">
+                  i'm very excited about&colon; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus, quam
+                  excepturi libero, eum temporibus architecto at velit soluta minus rem et sunt deserunt laboriosam
+                  officiis similique commodi sed doloremque? Possimus?<20></20>
+                </p>
+                <ul class="stack__right">
+                  <li class="stack-icon">
+                    <i class="fab fa-git-square"></i>
+                  </li>
+                  <li>b</li>
+                  <li>c</li>
+                </ul>
+              </div>
             </div>
-            <!-- <div class="gif">
+            <!-- <h4 class="hover-effect tag tag-stack">&sol;dev</h4> -->
+          </div>
+          <!-- <div class="gif">
               <img class="facegif" src="img/face1.jpg" loading="lazy" />
             </div> -->
-          </section>
-       
-          <!------------------------------------------ PROJECTS ------------------------------------------->
+        </section>
 
-          <section id="projects">
-            <!-- <h4 class="hover-effect tag tag-projects">&lt;projects&gt;</h4> -->
-            <div class="section-container projects-container">
-              <ul class="projects-wrapper">
-                <li class="project project-1 hover-effect">
-                  <i class="fas fa-expand-alt"></i>
-                  <div class="thumbnail">
-                    <img src="img/project-1.png" alt="" loading="lazy" />
+        <!------------------------------------------ PROJECTS ------------------------------------------->
+
+        <section id="projects">
+          <h2 class="tag tag-projects "><span>projects</span></h2>
+
+          <!-- <h4 class="hover-effect tag tag-projects">projects</h4> -->
+          <div class="section-container projects-container">
+            <ul class="projects-wrapper">
+              <li class="project project-1 hover-effect">
+                <i class="fas fa-expand-alt"></i>
+                <div class="thumbnail">
+                  <img src="img/project-1.jpg" alt="" loading="lazy" />
+                </div>
+                <div class="pitch-container">
+                  <h3 class="project-title">Arkanoid mini</h3>
+                  <p class="pitch">
+                    Browser minigame.
+                    <br />a JS tribute to 1980s ballbreaker videogames.
+                  </p>
+                  <div class="technologies">JavaScript &middot; Sass</div>
+                  <div class="project-links">
+                    <a class="hover-effect" href="https://github.com" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-github-alt"></i><span class="project-github active">github</span></a>
+                    <a class="hover-effect" href="" target="_blank" rel="noopener noreferrer"><i
+                        class="fas fa-external-link-alt"></i><span class="project-live active">live</span></a>
                   </div>
-                  <div class="pitch-container">
-                    <h3 class="project-title">Arkanoid mini</h3>
-                    <p class="pitch">
-                      Browser minigame.
-                      <br />a JS tribute to 1980s ballbreaker videogames.
-                    </p>
-                    <div class="technologies">JavaScript &middot; Sass</div>
-                    <div class="project-links">
-                      <a
-                        class="hover-effect"
-                        href="https://github.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        ><i class="fab fa-github-alt"></i
-                        ><span class="project-github active">github</span></a
-                      >
-                      <a
-                        class="hover-effect"
-                        href=""
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        ><i class="fas fa-external-link-alt"></i
-                        ><span class="project-live active">live</span></a
-                      >
-                    </div>
+                </div>
+              </li>
+              <li class="project project-2 hover-effect">
+                <i class="fas fa-expand-alt"></i>
+                <div class="thumbnail">
+                  <img src="img/project-2.jpg" alt="" loading="lazy" />
+                </div>
+                <div class="pitch-container">
+                  <h3 class="project-title">Hotel Now.</h3>
+                  <p class="pitch">
+                    An app to find hotel rooms in 5 cities.<br />Hotel info
+                    from Amadeus API.
+                  </p>
+                  <div class="technologies">
+                    JavaScript &middot; Amadeus API
                   </div>
-                </li>
-                <li class="project project-2 hover-effect">
-                  <i class="fas fa-expand-alt"></i>
-                  <div class="thumbnail">
-                    <img src="img/project-2.png" alt="" loading="lazy" />
+                  <div class="project-links">
+                    <a class="hover-effect" href="https://github.com" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-github-alt"></i><span class="project-github active">github</span></a>
+                    <a class="hover-effect" href="" target="_blank" rel="noopener noreferrer"><i
+                        class="fas fa-external-link-alt"></i><span class="project-live active">live</span></a>
                   </div>
-                  <div class="pitch-container">
-                    <h3 class="project-title">Hotel Now.</h3>
-                    <p class="pitch">
-                      An app to find hotel rooms in 5 cities.<br />Hotel info
-                      from Amadeus API.
-                    </p>
-                    <div class="technologies">
-                      JavaScript &middot; Amadeus API
-                    </div>
-                    <div class="project-links">
-                      <a
-                        class="hover-effect"
-                        href="https://github.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        ><i class="fab fa-github-alt"></i
-                        ><span class="project-github active">github</span></a
-                      >
-                      <a
-                        class="hover-effect"
-                        href=""
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        ><i class="fas fa-external-link-alt"></i
-                        ><span class="project-live active">live</span></a
-                      >
-                    </div>
+                </div>
+              </li>
+              <li class="project project-3 hover-effect">
+                <i class="fas fa-expand-alt"></i>
+                <div class="thumbnail">
+                  <img src="img/todo-app-react.jpg" alt="" loading="lazy" />
+                </div>
+                <div class="pitch-container">
+                  <h3 class="project-title">Things</h3>
+                  <p class="pitch">
+                    A React to-do app.<br />
+                    Deployed on Firebase.
+                  </p>
+                  <div class="technologies">React &middot; Firebase</div>
+                  <div class="project-links">
+                    <a class="hover-effect" href="https://github.com" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-github-alt"></i><span class="project-github active">github</span></a>
+                    <a class="hover-effect" href="" target="_blank" rel="noopener noreferrer"><i
+                        class="fas fa-external-link-alt"></i><span class="project-live active">live</span></a>
                   </div>
-                </li>
-                <li class="project project-3 hover-effect">
-                  <i class="fas fa-expand-alt"></i>
-                  <div class="thumbnail">
-                    <img src="img/todo-app-react.png" alt="" loading="lazy" />
+                </div>
+              </li>
+              <li class="project project-4 hover-effect">
+                <i class="fas fa-expand-alt"></i>
+                <div class="thumbnail">
+                  <img src="img/react-covid-dashboard.jpg" alt="" loading="lazy" />
+                </div>
+                <div class="pitch-container">
+                  <h3 class="project-title">COVID-19 Dashboard</h3>
+                  <p class="pitch">
+                    A React datavisualization dashboard on the COVID-19
+                    pandemic.<br />
+                  </p>
+                  <div class="technologies">
+                    React &middot; Charts.js &middot; COVID-19 API
                   </div>
-                  <div class="pitch-container">
-                    <h3 class="project-title">Things</h3>
-                    <p class="pitch">
-                      A React to-do app.<br />
-                      Deployed on Firebase.
-                    </p>
-                    <div class="technologies">React &middot; Firebase</div>
-                    <div class="project-links">
-                      <a
-                        class="hover-effect"
-                        href="https://github.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        ><i class="fab fa-github-alt"></i
-                        ><span class="project-github active">github</span></a
-                      >
-                      <a
-                        class="hover-effect"
-                        href=""
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        ><i class="fas fa-external-link-alt"></i
-                        ><span class="project-live active">live</span></a
-                      >
-                    </div>
+                  <div class="project-links">
+                    <a class="hover-effect" href="https://github.com" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-github-alt"></i><span class="project-github active">github</span></a>
+                    <a class="hover-effect" href="" target="_blank" rel="noopener noreferrer"><i
+                        class="fas fa-external-link-alt"></i><span class="project-live active">live</span></a>
                   </div>
-                </li>
-                <li class="project project-4 hover-effect">
-                  <i class="fas fa-expand-alt"></i>
-                  <div class="thumbnail">
-                    <img
-                      src="img/react-covid-dashboard.png"
-                      alt=""
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="pitch-container">
-                    <h3 class="project-title">COVID-19 Dashboard</h3>
-                    <p class="pitch">
-                      A React datavisualization dashboard on the COVID-19
-                      pandemic.<br />
-                    </p>
-                    <div class="technologies">
-                      React &middot; Charts.js &middot; COVID-19 API
-                    </div>
-                    <div class="project-links">
-                      <a
-                        class="hover-effect"
-                        href="https://github.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        ><i class="fab fa-github-alt"></i
-                        ><span class="project-github active">github</span></a
-                      >
-                      <a
-                        class="hover-effect"
-                        href=""
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        ><i class="fas fa-external-link-alt"></i
-                        ><span class="project-live active">live</span></a
-                      >
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <div class="fullpage">
-                <!-- <i class="fas fa-times"></i> -->
-              </div>
+                </div>
+              </li>
+            </ul>
+            <div class="fullpage">
+              <!-- <i class="fas fa-times"></i> -->
             </div>
-            <!-- <h4 class="tag tag-projects hover-effect">&lt;&sol;projects&gt;</h4> -->
-          </section>
-          <div class="cta cta-download">
-            <button class="cta-btn-download">download&nbsp;my&nbsp;CV</button>
           </div>
+          <!-- <h4 class="tag tag-projects hover-effect">&sol;projects</h4> -->
+        </section>
+        <div class="cta cta-download">
+          <button class="cta-btn-download">download&nbsp;my&nbsp;CV</button>
+        </div>
 
-         
-          <!------------------------------------------ MORE  ------------------------------------------->
 
-          <section id="more">
-            <!-- <h4 class="tag tag-more hover-effect">&lt;more&gt;</h4> -->
-            <div class="section-container more-container">
-              <div class="more-wrapper">
-                <canvas id="canvas"></canvas>
-              </div>
+        <!------------------------------------------ MORE  ------------------------------------------->
+
+        <section id="more">
+          <!-- <h4 class="tag tag-more hover-effect">more</h4> -->
+          <div class="section-container more-container">
+            <div class="more-wrapper">
+              <canvas id="canvas"></canvas>
             </div>
-            <!-- <h4 class="tag tag-more hover-effect">&lt;&sol;more&gt;</h4> -->
-          </section>
+          </div>
+          <!-- <h4 class="tag tag-more hover-effect">&sol;more</h4> -->
+        </section>
 
-          <!----------------------------------------  CONTACT ------------------------------------------->
+        <!----------------------------------------  CONTACT ------------------------------------------->
 
-          <section id="contact">
-            <!-- <h4 class="tag tag-contact hover-effect">&lt;contact&gt;</h4> -->
-            <div class="section-container contact-container">
-              <div class="contact-wrapper"></div>
-            </div>
-            <!-- <h4 class="tag tag-contact hover-effect">&lt;&sol;contact&gt;</h4> -->
-          </section>
-        </main>
+        <section id="contact">
+          <!-- <h4 class="tag tag-contact hover-effect">contact</h4> -->
+          <div class="section-container contact-container">
+            <div class="contact-wrapper"></div>
+          </div>
+          <!-- <h4 class="tag tag-contact hover-effect">&sol;contact</h4> -->
+        </section>
+      </main>
 
-        <!------------------------------------------ FOOTER ------------------------------------------->
+      <!------------------------------------------ FOOTER ------------------------------------------->
 
-        <footer>
-          <p>made by Daniel Julien aka nightcoder</p>
-          <span>&middot;</span>
-          <p>&copy;2021</p>
-        </footer>
-      </div>
-      <!------------------------------------------ MOBILE MENU ------------------------------------------->
+      <footer>
+        <p>made by Daniel Julien aka nightcoder</p>
+        <span>&middot;</span>
+        <p>&copy;&nbsp;2021</p>
+      </footer>
+    </div>
+    <!------------------------------------------ MOBILE MENU ------------------------------------------->
 
-      <div class="hamburger__content">
-        <!-- <svg id="close__hamburger" viewbox="0 0 40 30" width="40" height="40">
+    <div class="hamburger__content">
+      <!-- <svg id="close__hamburger" viewbox="0 0 40 30" width="40" height="40">
               <rect class="close__rect--top" y="4" width="40" height="5"></rect>
               <rect class="close__rect--middle" y="13" width="40" height="5"></rect>
               <rect class="close__rect--bottom" y="22" width="40" height="5"></rect>
               </svg> -->
-        <i class="fas fa-times"></i>
-        <div class="sky-placeholder">
-          <div class="sky-container">
-            <div class="circle-container">
-         <div class="circle"></div>
-            </div>
+      <i class="fas fa-times"></i>
+      <div class="sky-placeholder">
+        <div class="sky-container">
+          <div class="circle-container">
+            <div class="circle"></div>
           </div>
         </div>
-        <div class="hamburger__content--menu">
-          <h3 class="hamburger__content--title">menu</h3>
-          <div class="hamburger__content--links">
-            <a href="#about">about</a>
-            <a href="#projects">projects</a>
-            <a href="#contact">contact me</a>
-          </div>
-          <div class="hamburger__content--socialicons">
-            you can find me there:
-            <div class="social__icons--container">
-              <a
-                class="link"
-                href="https://github.com/newnightcoder"
-                target="blank"
-                ><i class="fab fa-github"></i
-              ></a>
-              <a
-                class="link"
-                href="https://twitter.com/Nightcoder2"
-                target="blank"
-                ><i class="fab fa-twitter"></i
-              ></a>
-              <a class="link" href="https://dev.to/nightcoder" target="blank"
-                ><i class="fab fa-dev"></i
-              ></a>
-              <a
-                class="link"
-                href="https://www.linkedin.com/in/nightcoder-dan/"
-                target="blank"
-                ><i class="fab fa-linkedin-in"></i
-              ></a>
-            </div>
+      </div>
+      <div class="hamburger__content--menu">
+        <h3 class="hamburger__content--title">menu</h3>
+        <div class="hamburger__content--links">
+          <a href="#about">about</a>
+          <a href="#projects">projects</a>
+          <a href="#contact">contact me</a>
+        </div>
+        <div class="hamburger__content--socialicons">
+          you can find me there:
+          <div class="social__icons--container">
+            <a class="link" href="https://github.com/newnightcoder" target="blank"><i class="fab fa-github"></i></a>
+            <a class="link" href="https://twitter.com/Nightcoder2" target="blank"><i class="fab fa-twitter"></i></a>
+            <a class="link" href="https://dev.to/nightcoder" target="blank"><i class="fab fa-dev"></i></a>
+            <a class="link" href="https://www.linkedin.com/in/nightcoder-dan/" target="blank"><i
+                class="fab fa-linkedin-in"></i></a>
           </div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
