@@ -4,12 +4,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 #stack {
+  // height: 50vh;
   width: 100%;
   // line-height: 1.5rem;
   font-size: 0.8rem;
   // border: 1px solid white;
   @media screen and (min-width: 700px) {
     min-height: 280px;
+    height: 40vh;
     font-size: 1rem;
   }
 
@@ -20,6 +22,9 @@
     align-items: flex-start;
     gap: 20px;
     // border: 10px solid red;
+    @media screen and (min-width: 700px) {
+      height: 80vh;
+    }
     ul {
       width: 100%;
       list-style-type: none;

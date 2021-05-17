@@ -4,12 +4,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 #home {
+  height: 100vh;
+  width: 100%;
   .home-container {
     @include globals.flex-column-center;
     justify-content: space-between;
-    height: 100vh;
-    width: 100%;
+    height: inherit;
+    width: inherit;
     position: relative;
+    border: 1px solid red;
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,8 +50,78 @@
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////////
+  //                                    TITLE
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+
+  .title {
+    width: 100%;
+    height: min-content;
+    @include globals.flex-column-center;
+    justify-content: center;
+    font-family: globals.$font-primary;
+    z-index: 55;
+    // color: rgb(171, 170, 170);
+    // border: 1px solid white;
+    // @media screen and (min-width: 700px) {
+    //   width: 60%;
+    // }
+    .title__intro {
+      font-size: 0.9rem;
+      font-family: "Courier New";
+      font-weight: bolder;
+      color: globals.$blue-primary;
+      align-self: flex-start;
+      @media screen and (min-width: 700px) {
+        font-size: 1.5rem;
+      }
+    }
+    .title__upper,
+    .title__lower {
+      font-size: 2rem;
+      white-space: nowrap;
+      transition: transform 500ms;
+      @media screen and (min-width: 700px) {
+        font-size: 4rem;
+      }
+    }
+
+    .title__upper {
+      align-self: flex-start;
+      // transform: translateX(6vw);
+      // animation: translationL 7s infinite alternate ease-in;
+      @keyframes translationL {
+        to {
+          transform: translateX(110%);
+        }
+      }
+    }
+    .title__lower {
+      align-self: flex-start;
+      // align-self: flex-end;
+      // transform: translateX(-6vw);
+      // animation: translationR 7s infinite alternate ease-in;
+      @keyframes translationR {
+        to {
+          transform: translateX(-110%);
+        }
+      }
+    }
+    .line {
+      height: 1px;
+      width: 100%;
+      background: globals.$blue-primary;
+    }
+    &:hover {
+      .line {
+        background: linear-gradient(to right, tomato 0%, deeppink 100%);
+      }
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////
   //                                    ARROW
   ///////////////////////////////////////////////////////////////////////////////////////////////
+
   .arrow-container {
     .arrow {
       font-family: "Courier New", Courier, monospace;

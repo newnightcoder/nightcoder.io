@@ -5,6 +5,7 @@
 @media screen and (min-width: 700px) {
   #stack {
     min-height: 280px;
+    height: 40vh;
     font-size: 1rem;
   }
 }
@@ -16,6 +17,11 @@
   align-items: center;
   align-items: flex-start;
   gap: 20px;
+}
+@media screen and (min-width: 700px) {
+  #stack .stack-container {
+    height: 80vh;
+  }
 }
 #stack .stack-container ul {
   width: 100%;

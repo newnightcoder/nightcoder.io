@@ -5,7 +5,7 @@ nav {
   width: 100%;
   z-index: 100;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   background-color: transparent;
   transition: background-color 0.2s;
@@ -22,6 +22,25 @@ nav .brand {
   nav .brand {
     font-size: 1rem;
   }
+}
+nav .nav__menu {
+  display: none;
+}
+@media screen and (min-width: 700px) {
+  nav .nav__menu {
+    list-style-type: none;
+    width: 300px;
+    font-size: 1rem;
+    font-family: "Courier new";
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+nav .nav__menu a {
+  text-decoration: none;
+  color: #fefefe;
 }
 nav .fa-bars {
   position: absolute;
