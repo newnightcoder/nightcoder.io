@@ -7,12 +7,13 @@
   height: 100vh;
   width: 100%;
   .home-container {
-    @include globals.flex-column-center;
-    justify-content: space-between;
     height: inherit;
     width: inherit;
+    @include globals.flex-column-center;
+    justify-content: space-around;
     position: relative;
-    border: 1px solid red;
+    padding-top: 30px;
+    // border: 1px solid red;
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -20,8 +21,9 @@
   ///////////////////////////////////////////////////////////////////////////////////////////////
 
   header {
-    transform: translateY(50%);
+    // transform: translateY(50%);
     // border: 1px solid red;
+    // border: 1px solid white;
 
     .circle {
       height: 200px;
@@ -32,6 +34,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
       // animation: turn 300ms linear infinite;
       &::after {
         content: "";
@@ -40,6 +43,18 @@
         width: 90%;
         border-radius: 50%;
         background-color: globals.$editor-background;
+      }
+      @media screen and (min-width: 768px) {
+        height: 250px;
+        width: 250px;
+      }
+      @media screen and (min-width: 1024px) {
+        height: 280px;
+        width: 280px;
+      }
+      @media screen and (min-width: 1300px) {
+        height: 350px;
+        width: 350px;
       }
     }
     @keyframes turn {
@@ -55,14 +70,16 @@
 
   .title {
     width: 100%;
+    max-width: 1000px;
     height: min-content;
     @include globals.flex-column-center;
+    align-items: flex-start;
     justify-content: center;
     font-family: globals.$font-primary;
     z-index: 55;
     // color: rgb(171, 170, 170);
     // border: 1px solid white;
-    // @media screen and (min-width: 700px) {
+    // @media screen and (min-width: 768px) {
     //   width: 60%;
     // }
     .title__intro {
@@ -70,8 +87,8 @@
       font-family: "Courier New";
       font-weight: bolder;
       color: globals.$blue-primary;
-      align-self: flex-start;
-      @media screen and (min-width: 700px) {
+      // align-self: flex-start;
+      @media screen and (min-width: 768px) {
         font-size: 1.5rem;
       }
     }
@@ -80,13 +97,14 @@
       font-size: 2rem;
       white-space: nowrap;
       transition: transform 500ms;
-      @media screen and (min-width: 700px) {
+      // padding: 0 10px;
+      @media screen and (min-width: 768px) {
         font-size: 4rem;
       }
     }
 
     .title__upper {
-      align-self: flex-start;
+      // align-self: flex-start;
       // transform: translateX(6vw);
       // animation: translationL 7s infinite alternate ease-in;
       @keyframes translationL {
@@ -96,15 +114,17 @@
       }
     }
     .title__lower {
-      align-self: flex-start;
       // align-self: flex-end;
-      // transform: translateX(-6vw);
+      // transform: translateX(50%);
       // animation: translationR 7s infinite alternate ease-in;
       @keyframes translationR {
         to {
           transform: translateX(-110%);
         }
       }
+      // @media screen and (min-width: 768px) {
+      //   align-self: flex-end;
+      // }
     }
     .line {
       height: 1px;
@@ -123,6 +143,7 @@
   ///////////////////////////////////////////////////////////////////////////////////////////////
 
   .arrow-container {
+    // transform: translateY(100%);
     .arrow {
       font-family: "Courier New", Courier, monospace;
       font-weight: light;

@@ -2,26 +2,19 @@
   width: 100%;
   font-size: 0.8rem;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   #stack {
     min-height: 280px;
-    height: 40vh;
     font-size: 1rem;
   }
 }
 #stack .stack-container {
-  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   align-items: flex-start;
   gap: 20px;
-}
-@media screen and (min-width: 700px) {
-  #stack .stack-container {
-    height: 80vh;
-  }
 }
 #stack .stack-container ul {
   width: 100%;
@@ -31,7 +24,7 @@
   justify-content: space-evenly;
   color: #fefefe;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   #stack .stack-container ul {
     justify-content: space-around;
   }
@@ -46,7 +39,7 @@
   align-items: flex-start;
   justify-content: space-evenly;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   #stack .stack-container .stacklist-wrapper {
     justify-content: flex-start;
     gap: 30px;
@@ -63,12 +56,12 @@
   min-height: 75px;
   font-family: "courier new";
   text-align: left;
-  padding: 20px 5px 20px 0;
+  padding: 20px 5px 0 0;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   #stack .stack-container .stacklist-wrapper p {
     width: 70%;
-    padding: 40px 5px 40px 0;
+    padding: 40px 5px 0 0;
   }
 }
 #stack .stack-container .tabs__container {
@@ -76,7 +69,7 @@
   position: relative;
   border-bottom: 1px solid #333333;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   #stack .stack-container .tabs__container {
     width: 60%;
   }
@@ -101,7 +94,7 @@
   padding: 5px 2px;
   text-align: center;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   #stack .stack-container .tabs__container .tabs__ul .tab {
     font-size: 1.1rem;
   }
@@ -128,7 +121,7 @@
 #stack .stack__left li i {
   font-size: 1.5rem;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   #stack .stack__left li i {
     font-size: 2.2rem;
   }

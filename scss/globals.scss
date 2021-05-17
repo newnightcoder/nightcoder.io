@@ -14,7 +14,7 @@ $font-primary: "hemihead";
 $navbar-height: 40px;
 $banner-height: 30vh;
 $border-radius: 5px;
-$info-height: calc(100vh - #{$navbar-height});
+$info-height: max-content;
 $title-height: 20%;
 // $about-height: 40%;
 // $stack-height: 40%;
