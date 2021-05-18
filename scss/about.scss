@@ -5,16 +5,22 @@
 
 #about {
   height: 50vh;
+  //   min-height: 200px;
   width: 100%;
   font-family: "courier new", monospace, serif;
   font-size: 0.8rem;
-  line-height: 1.1rem;
-  //   border: 5px solid white;
+  line-height: 1.2rem;
+  //   border: 1px solid red;
   @media screen and (min-width: 768px) {
     font-size: 1rem;
-    height: max-content;
+    // height: max-content;
+  }
+  @media screen and (min-width: 1400px) {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
   }
   .section-container {
+    height: 100%;
     width: 100%;
     @include globals.flex-column-center;
     align-items: flex-start;
@@ -23,9 +29,9 @@
     // transition: all 0.2s;
     // background-color: globals.$grey-primary;
     // border: 1px solid white;
-    padding: 0 5px 20px 0;
+    // padding: 0 5px 20px 0;
     @media screen and (min-width: 768px) {
-      padding: 0 5px 40px 0;
+      //   padding: 0 5px 40px 0;
       //   border-left: 2px solid transparent;
     }
   }

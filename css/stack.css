@@ -1,20 +1,29 @@
 #stack {
+  height: 55vh;
   width: 100%;
+  line-height: 1.2rem;
   font-size: 0.8rem;
 }
 @media screen and (min-width: 768px) {
   #stack {
-    min-height: 280px;
+    min-height: 450px;
     font-size: 1rem;
   }
 }
+@media screen and (min-width: 1400px) {
+  #stack {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+}
 #stack .stack-container {
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  align-items: flex-start;
-  gap: 20px;
+  align-items: center;
+  justify-content: space-evenly;
 }
 #stack .stack-container ul {
   width: 100%;
@@ -31,13 +40,14 @@
 }
 #stack .stack-container .stacklist-wrapper {
   width: 100%;
-  min-height: 170px;
+  min-height: 190px;
   display: flex;
   flex-direction: column;
   align-items: center;
   display: none;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-evenly;
+  gap: 20px;
 }
 @media screen and (min-width: 768px) {
   #stack .stack-container .stacklist-wrapper {
@@ -53,15 +63,13 @@
 }
 #stack .stack-container .stacklist-wrapper p {
   width: 100%;
-  min-height: 75px;
+  min-height: 6ch;
   font-family: "courier new";
   text-align: left;
-  padding: 20px 5px 0 0;
 }
 @media screen and (min-width: 768px) {
   #stack .stack-container .stacklist-wrapper p {
     width: 70%;
-    padding: 40px 5px 0 0;
   }
 }
 #stack .stack-container .tabs__container {
@@ -71,7 +79,7 @@
 }
 @media screen and (min-width: 768px) {
   #stack .stack-container .tabs__container {
-    width: 60%;
+    width: 70%;
   }
 }
 #stack .stack-container .tabs__container .tabs__line {
@@ -99,13 +107,17 @@
     font-size: 1.1rem;
   }
 }
+@media screen and (min-width: 1300px) {
+  #stack .stack-container .tabs__container .tabs__ul .tab {
+    font-size: 1.2rem;
+  }
+}
 #stack .stack-container .tabs__container .tabs__ul .tab:hover {
   cursor: pointer;
 }
 #stack .stack-container .tab.active {
   width: calc(100% / 3);
-  color: #fefefe;
-  background-color: rgba(93, 92, 92, 0.9);
+  color: #1a8cfe;
 }
 #stack .stack-container .tab__content.active {
   display: flex;

@@ -7,7 +7,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 0 40px;
   background-color: transparent;
   transition: background-color 0.2s;
 }
@@ -37,7 +37,7 @@ nav .nav__menu {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 5px;
+    transform: translateY(20px);
   }
 }
 nav .nav__menu a {

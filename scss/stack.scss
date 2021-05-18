@@ -4,22 +4,28 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 #stack {
-  // height: 50vh;
+  height: 55vh;
   width: 100%;
-  // line-height: 1.5rem;
+  line-height: 1.2rem;
   font-size: 0.8rem;
-  // border: 1px solid white;
+  // border: 1px solid red;
   @media screen and (min-width: 768px) {
-    min-height: 280px;
+    min-height: 450px;
     font-size: 1rem;
+  }
+  @media screen and (min-width: 1400px) {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
   }
 
   .stack-container {
+    height: 100%;
     width: 100%;
     @include globals.flex-column-center;
-    align-items: flex-start;
-    gap: 20px;
-    // border: 10px solid red;
+    align-items: center;
+    justify-content: space-evenly;
+    // gap: 50px;
+    // border: 10px solid white;
 
     ul {
       width: 100%;
@@ -34,12 +40,13 @@
     }
     .stacklist-wrapper {
       width: 100%;
-      min-height: 170px;
+      min-height: 190px;
       @include globals.flex-column-center;
       display: none;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-evenly;
-      // border: 1px solid red;
+      gap: 20px;
+      // border: 1px solid yellow;
       @media screen and (min-width: 768px) {
         justify-content: flex-start;
         gap: 30px;
@@ -51,14 +58,14 @@
 
       p {
         width: 100%;
-        min-height: 75px;
+        min-height: 6ch;
         font-family: "courier new";
         text-align: left;
-        padding: 20px 5px 0 0;
+        // padding: 20px 5px 0 0;
         // border: 1px solid red;
         @media screen and (min-width: 768px) {
           width: 70%;
-          padding: 40px 5px 0 0;
+          // padding: 40px 5px 0 0;
         }
       }
     }
@@ -66,8 +73,9 @@
       width: 100%;
       position: relative;
       border-bottom: 1px solid globals.$grey-primary;
+      // border: 1px solid red;
       @media screen and (min-width: 768px) {
-        width: 60%;
+        width: 70%;
       }
       .tabs__line {
         position: absolute;
@@ -83,6 +91,7 @@
         font-family: "courier new";
         font-size: 0.9rem;
         color: globals.$editor-foreground;
+        // border: 1px solid red;
 
         .tab {
           width: calc(100% / 3);
@@ -91,6 +100,9 @@
           // border: 1px solid red;
           @media screen and (min-width: 768px) {
             font-size: 1.1rem;
+          }
+          @media screen and (min-width: 1300px) {
+            font-size: 1.2rem;
           }
           &:hover {
             cursor: pointer;
@@ -101,8 +113,8 @@
 
     .tab.active {
       width: calc(100% / 3);
-      color: globals.$white-primary;
-      background-color: rgba(93, 92, 92, 0.9);
+      color: globals.$blue-primary;
+      // background-color: globals.$grey-primary;
     }
 
     .tab__content.active {

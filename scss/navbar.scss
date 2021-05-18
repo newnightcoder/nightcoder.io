@@ -12,7 +12,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 0 40px;
   background-color: transparent;
   transition: background-color 0.2s;
   // .flags-container {
@@ -74,7 +74,7 @@ nav {
       align-items: center;
       justify-content: space-between;
       // border: 1px solid black;
-      padding-top: 5px;
+      transform: translateY(20px);
     }
     a {
       text-decoration: none;

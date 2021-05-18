@@ -47,7 +47,7 @@ body {
       justify-content: center;
       gap: 20px;
       position: fixed;
-      top: calc(100vh - 400px);
+      bottom: 0;
       left: 5%;
       transform: translateX(-50%);
       border-top: 1px solid transparent;
@@ -139,16 +139,6 @@ body {
   // border: 2px solid red;
   @media screen and (min-width: 768px) {
     width: 80%;
-    // &::before {
-    //   content: "";
-    //   position: absolute;
-    //   top: 0;
-    //   left: 0;
-    //   height: 100%;
-    //   width: 10px;
-    //   background-color: globals.$blue-primary;
-    //   z-index: 20;
-    // }
   }
 }
 
@@ -305,47 +295,39 @@ body {
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 .tag {
-  height: 18px;
-  width: 100%;
+  width: inherit;
   font-family: menlo;
-  font-size: 0.75rem;
+  font-size: 1rem;
+  font-weight: normal;
   text-transform: capitalize;
-  color: globals.$white-primary;
-  position: relative;
+  color: globals.$blue-primary;
+  color: globals.$editor-foreground;
   white-space: nowrap;
-  // text-align: left;
-  // border: 1px solid pink;
-  // &::before {
-  //   content: "";
-  //   height: 1px;
-  //   width: 30px;
-  //   position: absolute;
-  //   left: 0;
-  //   top: 50%;
-  //   background-color: globals.$white-primary;
-  // }
-  &::after {
-    content: "";
-    height: 1px;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background-color: globals.$white-primary;
+  position: relative;
+  background-color: globals.$grey-primary;
+  border-radius: globals.$border-radius;
+  padding: 5px 10px;
+  @media screen and (min-width: 768px) {
+    font-size: 1.1rem;
   }
-  span {
-    font-size: 1rem;
-    z-index: 100;
-    background-color: globals.$editor-background;
-    position: absolute;
+  // .tag-after {
+  //   height: 2px;
+  //   width: 100%;
+  //   // background-color: #929595;
+  //   background: globals.$grey-primary;
+  //   position: absolute;
+  //   right: 0;
+  //   bottom: 0;
+  //   // border: dashed 1px globals.$white-primary;
+  // }
+}
+.tag-stack {
+  text-align: center;
+  .tag-after {
+    right: auto;
     left: 0;
-    padding: 0 10px;
-    @media screen and (min-width: 768px) {
-      font-size: 2rem;
-    }
   }
 }
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //                                           MAIN
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -358,9 +340,9 @@ main {
   // grid-template-columns: 75% 25%;
   // grid-row-gap: 1em;
   background-color: globals.$editor-background;
-  justify-items: center;
+  // justify-items: center;
   position: relative;
-  z-index: 10;
+  // z-index: 10;
   // border: 5px solid tomato;
 
   ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -381,7 +363,6 @@ main {
     font-size: 1rem;
     color: globals.$blue-primary;
     padding: 5px 10px;
-    background-color: globals.$editor-background;
     outline: none;
     background-color: globals.$editor-background;
     border: 1px solid globals.$blue-primary;
@@ -392,22 +373,25 @@ main {
       color: globals.$editor-background;
       background-color: globals.$blue-primary;
     }
+    @media screen and (min-width: 1400px) {
+      font-size: 1.1rem;
+    }
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////////
   //                                          INFO - TITLE
   ///////////////////////////////////////////////////////////////////////////////////////////////
   #info {
+    height: 100%;
+    min-height: 500px;
     width: 100%;
     position: relative;
     @include globals.flex-column-center();
     align-items: flex-start;
-    gap: 30px;
+    font-size: 1rem;
+    // gap: 30px;
     // padding: 30px 0;
-    border: 1px solid blue;
-    // @media screen and (min-width: 768px) {
-    //   align-content: flex-start;
-    // }
+    // border: 1px solid blue;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //                                     GIF
@@ -433,11 +417,6 @@ main {
     // }
   }
 
-  .cta-download {
-    grid-row: 3;
-    grid-column: 1/3;
-    // border: 1px solid greenyellow;
-  }
   ///////////////////////////////////////////////////////////////////////////////////////////////
   //                                     MORE
   ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -466,6 +445,7 @@ main {
       #canvas {
         height: 100px;
         width: 95vw;
+        margin-top: 30px;
         @media screen and (min-width: 768px) {
           height: 150px;
           width: calc(80vw - 100px);
@@ -480,12 +460,13 @@ main {
   #contact {
     height: globals.$contact-height;
     width: 100%;
-    .contact-wrapper {
+    .contact-container {
       width: inherit;
       height: inherit;
       background-color: globals.$editor-background;
-      margin: 0 7vw;
       // border: 1px solid turquoise;
+      @include globals.flex-column-center();
+      justify-content: center;
     }
   }
 }
