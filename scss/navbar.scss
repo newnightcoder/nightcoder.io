@@ -64,7 +64,7 @@ nav {
 
   .nav__menu {
     display: none;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1024px) {
       list-style-type: none;
       width: 300px;
       font-size: 1rem;
@@ -90,11 +90,12 @@ nav {
 
   .fa-bars {
     position: absolute;
-    top: -1px;
-    right: 10px;
+    // top: -1px;
+    top: 20px;
+    right: 20px;
     font-size: 2rem;
-    opacity: 0;
-    @media screen and (min-width: 768px) {
+    opacity: 1;
+    @media screen and (min-width: 1024px) {
       display: none;
     }
     // border: 1px solid white;

@@ -27,7 +27,7 @@ nav .brand {
 nav .nav__menu {
   display: none;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
   nav .nav__menu {
     list-style-type: none;
     width: 300px;
@@ -52,12 +52,12 @@ nav .nav__menu span:hover {
 }
 nav .fa-bars {
   position: absolute;
-  top: -1px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
   font-size: 2rem;
-  opacity: 0;
+  opacity: 1;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
   nav .fa-bars {
     display: none;
   }

@@ -62,10 +62,16 @@ body {
         cursor: pointer;
         color: globals.$white-primary;
         border-color: globals.$blue-primary;
+        .link-wrapper i {
+          color: globals.$white-primary;
+        }
       }
     }
     .margin__left {
       justify-content: space-evenly;
+      &:hover {
+        cursor: default;
+      }
     }
     .margin__right {
       left: 95%;
@@ -106,10 +112,9 @@ body {
         }
         &:hover {
           cursor: pointer;
-          transform: scaleX(1.1);
           transform-origin: center;
           i {
-            color: globals.$white-primary;
+            color: globals.$blue-primary;
           }
         }
       }
@@ -463,10 +468,73 @@ main {
     .contact-container {
       width: inherit;
       height: inherit;
+      @include globals.flex-column-center();
       background-color: globals.$editor-background;
       // border: 1px solid turquoise;
-      @include globals.flex-column-center();
       justify-content: center;
+
+      .form-container {
+        @include globals.flex-column-center();
+        display: none;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 40px;
+        height: 80%;
+        width: 70%;
+        font-family: "Courier new";
+        // border: 1px solid turquoise;
+        outline: none;
+        label {
+          height: 30px;
+          padding: 0 10px;
+          @include globals.flex-column-center();
+          justify-content: center;
+          white-space: nowrap;
+          color: globals.$editor-foreground;
+          background-color: globals.$grey-primary;
+          border-radius: globals.$border-radius;
+        }
+        input {
+          outline: none;
+          font-family: "Courier new";
+          background-color: globals.$editor-foreground;
+          border: 1px solid transparent;
+          transition: all 200ms;
+          &:hover {
+            border-color: globals.$blue-primary;
+          }
+        }
+        .email-container {
+          @include globals.flex-column-center();
+          align-items: flex-start;
+          gap: 10px;
+
+          #contact__email {
+            width: 250px;
+            height: 30px;
+            border-radius: globals.$border-radius;
+          }
+        }
+        .msg-container {
+          height: 100%;
+          width: 100%;
+          @include globals.flex-column-center();
+          align-items: flex-start;
+          gap: 10px;
+          #contact__msg {
+            width: 100%;
+            height: 100%;
+            border-radius: globals.$border-radius;
+          }
+        }
+
+        button {
+          padding: 5px 20px;
+          font-size: 1rem;
+          font-family: "Courier new";
+          align-self: center;
+        }
+      }
     }
   }
 }
