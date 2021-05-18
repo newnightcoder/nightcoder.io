@@ -1,0 +1,156 @@
+@font-face {
+  font-family: "courier-new";
+  src: url("../../fonts/cour.ttf");
+}
+@font-face {
+  font-family: "hemihead";
+  src: url("../../fonts/hemihead.ttf");
+}
+@font-face {
+  font-family: "menlo";
+  src: url("../../fonts/Menlo-Regular.woff");
+}
+@font-face {
+  font-family: "play";
+  src: url("../../fonts/Play-Regular.ttf");
+}
+@font-face {
+  font-family: "proto";
+  src: url("../../fonts/Prototype.ttf");
+}
+@font-face {
+  font-family: "monaco";
+  src: url("../../fonts/Mocano.woff");
+}
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  height: 100%;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background-color: #1e1e1e;
+  font-family: hemihead;
+  color: #fefefe;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+h1 {
+  font-size: 5rem;
+  text-transform: uppercase;
+}
+
+.circle {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #1a8cfe, deeppink);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: turn 250ms linear infinite;
+}
+.circle::after {
+  content: "";
+  position: absolute;
+  height: 90%;
+  width: 90%;
+  border-radius: 50%;
+  background-color: #1e1e1e;
+}
+.circle span {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: linear-gradient(to right, #1a8cfe, deeppink);
+  border-radius: 50%;
+  filter: blur(5px);
+}
+.circle span:nth-child(2) {
+  filter: blur(10px);
+}
+.circle span:nth-child(3) {
+  filter: blur(15px);
+}
+.circle span:nth-child(4) {
+  filter: blur(20px);
+}
+@media screen and (min-width: 768px) {
+  .circle {
+    height: 250px;
+    width: 250px;
+  }
+}
+@media screen and (min-width: 768px) and (orientation: portrait) {
+  .circle {
+    height: 350px;
+    width: 350px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .circle {
+    height: 280px;
+    width: 280px;
+  }
+}
+@media screen and (min-width: 1024px) and (orientation: portrait) {
+  .circle {
+    height: 450px;
+    width: 450px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .circle {
+    height: 360px;
+    width: 360px;
+  }
+}
+@media screen and (orientation: landscape) and (max-height: 400px) {
+  .circle {
+    height: 150px;
+    width: 150px;
+    gap: 20px;
+  }
+}
+
+@keyframes turn {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+p {
+  font-family: play;
+  font-size: 1.5rem;
+  text-align: left;
+}
+p a {
+  color: #1a8cfe;
+  transition: color 500ms;
+}
+p a:hover {
+  cursor: pointer;
+  color: deeppink;
+}
+
+/*# sourceMappingURL=404.css.map */

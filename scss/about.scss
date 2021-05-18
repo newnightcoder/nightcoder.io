@@ -25,18 +25,39 @@
     @include globals.flex-column-center;
     align-items: flex-start;
     justify-content: center;
-    gap: 10px;
-    // transition: all 0.2s;
-    // background-color: globals.$grey-primary;
-    // border: 1px solid white;
-    // padding: 0 5px 20px 0;
     @media screen and (min-width: 768px) {
-      //   padding: 0 5px 40px 0;
-      //   border-left: 2px solid transparent;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+    @media screen and (min-width: 1400px) {
+      padding: 0 75px;
+    }
+    p {
+      width: 55ch;
+    }
+    .gif {
+      border-radius: globals.$border-radius;
+      height: 200px;
+      width: 220px;
+      display: none;
+      .facegif {
+        height: 200px;
+        width: 220px;
+        border-radius: globals.$border-radius;
+        border: 1px solid globals.$blue-primary;
+      }
+      @media screen and (min-width: 768px) {
+        display: block;
+        // transform: translateX(-75%);
+      }
     }
   }
 
   &:hover {
     cursor: text;
   }
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+  //                                     GIF
+  ///////////////////////////////////////////////////////////////////////////////////////////////
 }

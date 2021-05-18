@@ -401,7 +401,38 @@ nav .fa-bars {
   align-items: center;
   align-items: flex-start;
   justify-content: center;
-  gap: 10px;
+}
+@media screen and (min-width: 768px) {
+  #about .section-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+@media screen and (min-width: 1400px) {
+  #about .section-container {
+    padding: 0 75px;
+  }
+}
+#about .section-container p {
+  width: 55ch;
+}
+#about .section-container .gif {
+  border-radius: 5px;
+  height: 200px;
+  width: 220px;
+  display: none;
+}
+#about .section-container .gif .facegif {
+  height: 200px;
+  width: 220px;
+  border-radius: 5px;
+  border: 1px solid #1a8cfe;
+}
+@media screen and (min-width: 768px) {
+  #about .section-container .gif {
+    display: block;
+  }
 }
 #about:hover {
   cursor: text;
@@ -1115,12 +1146,8 @@ body .body-container {
   }
 }
 
-.tag-stack {
+.tag-projects {
   text-align: center;
-}
-.tag-stack .tag-after {
-  right: auto;
-  left: 0;
 }
 
 main {
@@ -1220,11 +1247,19 @@ main #contact .contact-container .form-container {
   display: none;
   align-items: flex-start;
   justify-content: center;
+  position: relative;
+  bottom: -5%;
   gap: 40px;
   height: 80%;
-  width: 70%;
+  width: 90%;
   font-family: "Courier new";
   outline: none;
+}
+@media screen and (min-width: 768px) {
+  main #contact .contact-container .form-container {
+    height: 80%;
+    width: 70%;
+  }
 }
 main #contact .contact-container .form-container label {
   height: 30px;
