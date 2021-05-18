@@ -43,7 +43,7 @@ nav .brand {
   transform: translateY(150%);
   transition: transform 200ms;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   nav .brand {
     font-size: 1rem;
   }
@@ -51,7 +51,7 @@ nav .brand {
 nav .nav__menu {
   display: none;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   nav .nav__menu {
     list-style-type: none;
     width: 300px;
@@ -81,7 +81,7 @@ nav .fa-bars {
   font-size: 2rem;
   opacity: 0;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   nav .fa-bars {
     display: none;
   }
@@ -195,7 +195,7 @@ nav .fa-bars {
 .hamburger__content .social__icons--container i {
   font-size: 2.5rem;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   .hamburger__content {
     display: none;
   }
@@ -266,16 +266,16 @@ nav .fa-bars {
     width: 250px;
   }
 }
-@media screen and (min-width: 1024px) {
-  #home header .circle {
-    height: 280px;
-    width: 280px;
-  }
-}
 @media screen and (min-width: 768px) and (orientation: portrait) {
   #home header .circle {
     height: 350px;
     width: 350px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  #home header .circle {
+    height: 280px;
+    width: 280px;
   }
 }
 @media screen and (min-width: 1024px) and (orientation: portrait) {
@@ -284,7 +284,7 @@ nav .fa-bars {
     width: 450px;
   }
 }
-@media screen and (min-width: 1300px) {
+@media screen and (min-width: 1400px) {
   #home header .circle {
     height: 360px;
     width: 360px;
@@ -352,14 +352,15 @@ nav .fa-bars {
     transform: translateX(-110%);
   }
 }
+@media screen and (min-width: 1024px) {
+  #home .title .title__lower {
+    align-self: flex-end;
+  }
+}
 #home .title .line {
   height: 1px;
   width: 100%;
   background: #1a8cfe;
-}
-#home .title:hover .line {
-  background: linear-gradient(to right, tomato 0%, deeppink 100%);
-  background: tomato;
 }
 #home .arrow-container .arrow {
   font-family: "Courier New", Courier, monospace;

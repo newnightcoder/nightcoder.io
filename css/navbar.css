@@ -19,7 +19,7 @@ nav .brand {
   transform: translateY(150%);
   transition: transform 200ms;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   nav .brand {
     font-size: 1rem;
   }
@@ -27,7 +27,7 @@ nav .brand {
 nav .nav__menu {
   display: none;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   nav .nav__menu {
     list-style-type: none;
     width: 300px;
@@ -57,7 +57,7 @@ nav .fa-bars {
   font-size: 2rem;
   opacity: 0;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   nav .fa-bars {
     display: none;
   }
@@ -171,7 +171,7 @@ nav .fa-bars {
 .hamburger__content .social__icons--container i {
   font-size: 2.5rem;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   .hamburger__content {
     display: none;
   }

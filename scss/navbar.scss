@@ -28,7 +28,7 @@ nav {
   //   align-items: center;
   //   opacity: 0;
   //   display: none;
-  //   @media screen and (min-width: 700px) {
+  //   @media screen and (min-width: 768px) {
   //     display: flex;
   //   }
   //   .flag {
@@ -57,14 +57,14 @@ nav {
     transform: translateY(150%);
     transition: transform 200ms;
     // border: 1px solid pink;
-    @media screen and (min-width: 700px) {
+    @media screen and (min-width: 768px) {
       font-size: 1rem;
     }
   }
 
   .nav__menu {
     display: none;
-    @media screen and (min-width: 700px) {
+    @media screen and (min-width: 768px) {
       list-style-type: none;
       width: 300px;
       font-size: 1rem;
@@ -94,7 +94,7 @@ nav {
     right: 10px;
     font-size: 2rem;
     opacity: 0;
-    @media screen and (min-width: 700px) {
+    @media screen and (min-width: 768px) {
       display: none;
     }
     // border: 1px solid white;
@@ -208,7 +208,7 @@ nav {
       font-size: 2.5rem;
     }
   }
-  @media screen and (min-width: 700px) {
+  @media screen and (min-width: 768px) {
     display: none;
   }
 }
