@@ -378,9 +378,11 @@ nav .fa-bars {
 #about {
   height: 50vh;
   width: 100%;
-  font-family: "courier new", monospace, serif;
+  font-family: play;
   font-size: 0.8rem;
   line-height: 1.2rem;
+  letter-spacing: 1px;
+  color: #d4d4d4;
 }
 @media screen and (min-width: 768px) {
   #about {
@@ -415,7 +417,12 @@ nav .fa-bars {
   }
 }
 #about .section-container p {
-  width: 55ch;
+  width: 45ch;
+}
+@media screen and (min-width: 768px) {
+  #about .section-container p {
+    width: 58ch;
+  }
 }
 #about .section-container .gif {
   border-radius: 5px;
@@ -426,8 +433,7 @@ nav .fa-bars {
 #about .section-container .gif .facegif {
   height: 200px;
   width: 220px;
-  border-radius: 5px;
-  border: 1px solid #1a8cfe;
+  border-radius: 50px;
 }
 @media screen and (min-width: 768px) {
   #about .section-container .gif {
@@ -441,8 +447,11 @@ nav .fa-bars {
 #stack {
   height: 55vh;
   width: 100%;
-  line-height: 1.2rem;
+  font-family: play;
   font-size: 0.8rem;
+  line-height: 1.2rem;
+  letter-spacing: 1px;
+  color: #d4d4d4;
 }
 @media screen and (min-width: 768px) {
   #stack {
@@ -480,7 +489,7 @@ nav .fa-bars {
 }
 #stack .stack-container .stacklist-wrapper {
   width: 100%;
-  min-height: 190px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -503,8 +512,7 @@ nav .fa-bars {
 }
 #stack .stack-container .stacklist-wrapper p {
   width: 100%;
-  min-height: 6ch;
-  font-family: "courier new";
+  min-height: 120px;
   text-align: left;
 }
 @media screen and (min-width: 768px) {
@@ -533,13 +541,12 @@ nav .fa-bars {
 }
 #stack .stack-container .tabs__container .tabs__ul {
   width: 100%;
-  font-family: "courier new";
   font-size: 0.9rem;
-  color: #d4d4d4;
 }
 #stack .stack-container .tabs__container .tabs__ul .tab {
   width: calc(100% / 3);
   padding: 5px 2px;
+  color: #d4d4d4;
   text-align: center;
 }
 @media screen and (min-width: 768px) {
@@ -565,7 +572,7 @@ nav .fa-bars {
 #stack .stack__left,
 #stack .stack__middle,
 #stack .stack__right {
-  height: 70px;
+  height: 50px;
   width: min-content;
   max-width: 500px;
   justify-content: center;
@@ -710,7 +717,7 @@ nav .fa-bars {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  color: #fefefe;
+  color: #d4d4d4;
   font-weight: bold;
   z-index: 4;
 }
@@ -718,7 +725,7 @@ nav .fa-bars {
   #projects .projects-wrapper .project .pitch-container {
     position: relative;
     display: flex;
-    color: black;
+    color: #1e1e1e;
     font-weight: normal;
     align-items: flex-start;
     justify-content: space-evenly;
@@ -768,54 +775,63 @@ nav .fa-bars {
     background-color: transparent;
   }
 }
-#projects .projects-wrapper .project .pitch-container .project-links {
-  width: 80px;
+#projects .projects-wrapper .project .project-links {
+  width: 110px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
-  align-self: flex-end;
+  padding: 0 10px 10px;
+  z-index: 50;
 }
-#projects .projects-wrapper .project .pitch-container .project-links a {
+@media screen and (min-width: 768px) {
+  #projects .projects-wrapper .project .project-links {
+    left: auto;
+    right: 0;
+    padding: 0 20px 10px 10px;
+  }
+}
+#projects .projects-wrapper .project .project-links a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: #fefefe;
-  transition: transform 0.2s;
 }
-#projects .projects-wrapper .project .pitch-container .project-links a:hover {
+#projects .projects-wrapper .project .project-links a:hover {
   cursor: pointer;
   background-color: transparent;
 }
-#projects .projects-wrapper .project .pitch-container .project-links a i {
+#projects .projects-wrapper .project .project-links a i {
   font-size: 2rem;
 }
-#projects .projects-wrapper .project .pitch-container .project-links a .project-live,
-#projects .projects-wrapper .project .pitch-container .project-links a .project-github {
-  position: absolute;
-  bottom: 10px;
-  transform: translateX(-130%);
+#projects .projects-wrapper .project .project-links a .project-live,
+#projects .projects-wrapper .project .project-links a .project-github {
   font-size: 0.9rem;
+  align-self: center;
   text-decoration: underline;
 }
-#projects .projects-wrapper .project .pitch-container .project-links a .project-github {
-  transform: translateX(-85%);
-}
-#projects .projects-wrapper .project .pitch-container .project-links a .inactive {
+#projects .projects-wrapper .project .project-links a .inactive {
   color: gray;
+  text-decoration: none;
 }
 @media screen and (min-width: 768px) {
-  #projects .projects-wrapper .project .pitch-container a :nth-child(1),
-#projects .projects-wrapper .project .pitch-container span {
+  #projects .projects-wrapper .project a :nth-child(1),
+#projects .projects-wrapper .project span {
     color: red;
   }
-  #projects .projects-wrapper .project .pitch-container:nth-child(2) .project-links a {
+  #projects .projects-wrapper .project:nth-child(2) .project-links a {
     color: deeppink;
   }
-  #projects .projects-wrapper .project .pitch-container:nth-child(3) .project-links a {
+  #projects .projects-wrapper .project:nth-child(3) .project-links a {
     color: deepskyblue;
   }
-  #projects .projects-wrapper .project .pitch-container:nth-child(4) .project-links a {
+  #projects .projects-wrapper .project:nth-child(4) .project-links a {
     color: #fb4768da;
   }
-  #projects .projects-wrapper .project .pitch-container:nth-child(5) .project-links a {
+  #projects .projects-wrapper .project:nth-child(5) .project-links a {
     color: #1e1e1e;
   }
 }
@@ -857,7 +873,7 @@ body .margin__right {
 @media screen and (min-width: 1024px) {
   body .margin__left,
 body .margin__right {
-    height: 400px;
+    height: 310px;
     width: 30px;
     display: flex;
     flex-direction: column;
@@ -897,7 +913,7 @@ body .margin__right:hover .link-wrapper i {
     left: 95%;
     text-transform: uppercase;
     font-size: 0.8rem;
-    font-family: "Courier new";
+    font-family: play;
     color: rgba(255, 255, 255, 0.5);
   }
   body .margin__right .mail-link {
@@ -912,7 +928,7 @@ body .margin__right:hover .link-wrapper i {
 }
 @media screen and (min-width: 1024px) and (min-width: 768px) {
   body .link-wrapper {
-    height: inherit;
+    height: 95%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -1128,17 +1144,17 @@ body .body-container {
 
 .tag {
   width: inherit;
-  font-family: menlo;
+  font-family: play;
   font-size: 1rem;
   font-weight: normal;
-  text-transform: capitalize;
-  color: #1a8cfe;
-  color: #d4d4d4;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fefefe;
   white-space: nowrap;
   position: relative;
   background-color: #333333;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 5px 20px;
 }
 @media screen and (min-width: 768px) {
   .tag {
@@ -1164,7 +1180,7 @@ main .cta {
 }
 main .cta-btn-download,
 main .cta-btn-contact {
-  font-family: "Courier New";
+  font-family: play;
   font-size: 1rem;
   color: #1a8cfe;
   padding: 5px 10px;

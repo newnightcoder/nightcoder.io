@@ -1,9 +1,11 @@
 #about {
   height: 50vh;
   width: 100%;
-  font-family: "courier new", monospace, serif;
+  font-family: play;
   font-size: 0.8rem;
   line-height: 1.2rem;
+  letter-spacing: 1px;
+  color: #d4d4d4;
 }
 @media screen and (min-width: 768px) {
   #about {
@@ -38,7 +40,12 @@
   }
 }
 #about .section-container p {
-  width: 55ch;
+  width: 45ch;
+}
+@media screen and (min-width: 768px) {
+  #about .section-container p {
+    width: 58ch;
+  }
 }
 #about .section-container .gif {
   border-radius: 5px;
@@ -49,8 +56,7 @@
 #about .section-container .gif .facegif {
   height: 200px;
   width: 220px;
-  border-radius: 5px;
-  border: 1px solid #1a8cfe;
+  border-radius: 50px;
 }
 @media screen and (min-width: 768px) {
   #about .section-container .gif {

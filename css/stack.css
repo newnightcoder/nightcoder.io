@@ -1,8 +1,11 @@
 #stack {
   height: 55vh;
   width: 100%;
-  line-height: 1.2rem;
+  font-family: play;
   font-size: 0.8rem;
+  line-height: 1.2rem;
+  letter-spacing: 1px;
+  color: #d4d4d4;
 }
 @media screen and (min-width: 768px) {
   #stack {
@@ -40,7 +43,7 @@
 }
 #stack .stack-container .stacklist-wrapper {
   width: 100%;
-  min-height: 190px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -63,8 +66,7 @@
 }
 #stack .stack-container .stacklist-wrapper p {
   width: 100%;
-  min-height: 6ch;
-  font-family: "courier new";
+  min-height: 120px;
   text-align: left;
 }
 @media screen and (min-width: 768px) {
@@ -93,13 +95,12 @@
 }
 #stack .stack-container .tabs__container .tabs__ul {
   width: 100%;
-  font-family: "courier new";
   font-size: 0.9rem;
-  color: #d4d4d4;
 }
 #stack .stack-container .tabs__container .tabs__ul .tab {
   width: calc(100% / 3);
   padding: 5px 2px;
+  color: #d4d4d4;
   text-align: center;
 }
 @media screen and (min-width: 768px) {
@@ -125,7 +126,7 @@
 #stack .stack__left,
 #stack .stack__middle,
 #stack .stack__right {
-  height: 70px;
+  height: 50px;
   width: min-content;
   max-width: 500px;
   justify-content: center;

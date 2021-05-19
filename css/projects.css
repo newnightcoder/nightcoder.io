@@ -99,7 +99,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  color: #fefefe;
+  color: #d4d4d4;
   font-weight: bold;
   z-index: 4;
 }
@@ -107,7 +107,7 @@
   #projects .projects-wrapper .project .pitch-container {
     position: relative;
     display: flex;
-    color: black;
+    color: #1e1e1e;
     font-weight: normal;
     align-items: flex-start;
     justify-content: space-evenly;
@@ -157,54 +157,63 @@
     background-color: transparent;
   }
 }
-#projects .projects-wrapper .project .pitch-container .project-links {
-  width: 80px;
+#projects .projects-wrapper .project .project-links {
+  width: 110px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
-  align-self: flex-end;
+  padding: 0 10px 10px;
+  z-index: 50;
 }
-#projects .projects-wrapper .project .pitch-container .project-links a {
+@media screen and (min-width: 768px) {
+  #projects .projects-wrapper .project .project-links {
+    left: auto;
+    right: 0;
+    padding: 0 20px 10px 10px;
+  }
+}
+#projects .projects-wrapper .project .project-links a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: #fefefe;
-  transition: transform 0.2s;
 }
-#projects .projects-wrapper .project .pitch-container .project-links a:hover {
+#projects .projects-wrapper .project .project-links a:hover {
   cursor: pointer;
   background-color: transparent;
 }
-#projects .projects-wrapper .project .pitch-container .project-links a i {
+#projects .projects-wrapper .project .project-links a i {
   font-size: 2rem;
 }
-#projects .projects-wrapper .project .pitch-container .project-links a .project-live,
-#projects .projects-wrapper .project .pitch-container .project-links a .project-github {
-  position: absolute;
-  bottom: 10px;
-  transform: translateX(-130%);
+#projects .projects-wrapper .project .project-links a .project-live,
+#projects .projects-wrapper .project .project-links a .project-github {
   font-size: 0.9rem;
+  align-self: center;
   text-decoration: underline;
 }
-#projects .projects-wrapper .project .pitch-container .project-links a .project-github {
-  transform: translateX(-85%);
-}
-#projects .projects-wrapper .project .pitch-container .project-links a .inactive {
+#projects .projects-wrapper .project .project-links a .inactive {
   color: gray;
+  text-decoration: none;
 }
 @media screen and (min-width: 768px) {
-  #projects .projects-wrapper .project .pitch-container a :nth-child(1),
-#projects .projects-wrapper .project .pitch-container span {
+  #projects .projects-wrapper .project a :nth-child(1),
+#projects .projects-wrapper .project span {
     color: red;
   }
-  #projects .projects-wrapper .project .pitch-container:nth-child(2) .project-links a {
+  #projects .projects-wrapper .project:nth-child(2) .project-links a {
     color: deeppink;
   }
-  #projects .projects-wrapper .project .pitch-container:nth-child(3) .project-links a {
+  #projects .projects-wrapper .project:nth-child(3) .project-links a {
     color: deepskyblue;
   }
-  #projects .projects-wrapper .project .pitch-container:nth-child(4) .project-links a {
+  #projects .projects-wrapper .project:nth-child(4) .project-links a {
     color: #fb4768da;
   }
-  #projects .projects-wrapper .project .pitch-container:nth-child(5) .project-links a {
+  #projects .projects-wrapper .project:nth-child(5) .project-links a {
     color: #1e1e1e;
   }
 }

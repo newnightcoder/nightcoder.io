@@ -47,12 +47,100 @@ body {
   align-items: center;
   justify-content: space-evenly;
 }
-
-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 50px;
+body .margin__left,
+body .margin__right {
+  display: none;
+}
+@media screen and (min-width: 1024px) {
+  body .margin__left,
+body .margin__right {
+    height: 310px;
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 5%;
+    transform: translateX(-50%);
+    border-top: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #333333;
+    transition: all 200ms;
+  }
+  body .margin__left:hover,
+body .margin__right:hover {
+    cursor: pointer;
+    color: #fefefe;
+    border-color: #1a8cfe;
+  }
+  body .margin__left:hover .link-wrapper i,
+body .margin__right:hover .link-wrapper i {
+    color: #fefefe;
+  }
+  body .margin__left {
+    justify-content: space-evenly;
+  }
+  body .margin__left:hover {
+    cursor: default;
+  }
+  body .margin__right {
+    left: 95%;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-family: "Courier new";
+    color: rgba(255, 255, 255, 0.5);
+  }
+  body .margin__right .mail-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  body .link-wrapper {
+    display: none;
+    list-style-type: none;
+  }
+}
+@media screen and (min-width: 1024px) and (min-width: 768px) {
+  body .link-wrapper {
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
+@media screen and (min-width: 1024px) {
+  body .link-wrapper .link {
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    opacity: 1;
+    text-decoration: none;
+    transition: all 200ms;
+  }
+  body .link-wrapper .link i {
+    font-size: 1rem;
+    transition: all 200ms;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  body .link-wrapper .link:hover {
+    cursor: pointer;
+    transform-origin: center;
+  }
+  body .link-wrapper .link:hover i {
+    color: #1a8cfe;
+  }
 }
 
 h1 {
@@ -142,7 +230,7 @@ h1 {
 p {
   font-family: play;
   font-size: 1.5rem;
-  text-align: left;
+  text-align: center;
 }
 p a {
   color: #1a8cfe;

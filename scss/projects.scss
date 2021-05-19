@@ -30,7 +30,6 @@
       justify-content: flex-end;
       transition: all 200ms;
       position: relative;
-      // padding: 1vh 1vw;
       // border: 10px solid pink;
       @media screen and (min-width: 768px) {
         height: 220px;
@@ -99,14 +98,14 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
-        color: globals.$white-primary;
+        color: globals.$editor-foreground;
         font-weight: bold;
         z-index: 4;
         // border: 1px solid red;
         @media screen and (min-width: 768px) {
           position: relative;
           display: flex;
-          color: black;
+          color: globals.$editor-background;
           font-weight: normal;
           align-items: flex-start;
           justify-content: space-evenly;
@@ -145,90 +144,78 @@
             background-color: transparent;
           }
         }
-        .project-links {
-          width: 80px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          color: white;
-          align-self: flex-end;
-          // border: 1px solid red;
-          a {
-            color: globals.$white-primary;
-            transition: transform 0.2s;
-            // border: 1px solid red;
-            &:hover {
-              cursor: pointer;
-              background-color: transparent;
-            }
-
-            i {
-              font-size: 2rem;
-            }
-            .project-live,
-            .project-github {
-              position: absolute;
-              bottom: 10px;
-              transform: translateX(-130%);
-              font-size: 0.9rem;
-              text-decoration: underline;
-            }
-            .project-github {
-              transform: translateX(-85%);
-            }
-            .inactive {
-              color: gray;
-            }
-          }
-        }
+      }
+      .project-links {
+        width: 110px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: white;
+        padding: 0 10px 10px;
+        z-index: 50;
+        // border: 1px solid red;
         @media screen and (min-width: 768px) {
-          // & {
-          a :nth-child(1),
-          span {
-            color: red;
+          left: auto;
+          right: 0;
+          padding: 0 20px 10px 10px;
+        }
+        a {
+          @include globals.flex-column-center();
+          color: globals.$white-primary;
+          // transition: transform 0.2s;
+          // border: 1px solid red;
+          &:hover {
+            cursor: pointer;
+            background-color: transparent;
           }
-          // }
-          &:nth-child(2) {
-            .project-links a {
-              color: deeppink;
-            }
+          i {
+            font-size: 2rem;
           }
-          &:nth-child(3) {
-            .project-links a {
-              color: deepskyblue;
-            }
+          .project-live,
+          .project-github {
+            font-size: 0.9rem;
+            align-self: center;
+            text-decoration: underline;
           }
-          &:nth-child(4) {
-            .project-links a {
-              color: #fb4768da;
-            }
-          }
-          &:nth-child(5) {
-            .project-links a {
-              color: globals.$editor-background;
-            }
+          .inactive {
+            color: gray;
+            text-decoration: none;
           }
         }
       }
-      // @media screen and (min-width: 768px) {
-      //   &:hover {
-      //     transform: rotateX(180deg);
-      //     perspective: 100px;
-      //   }
-      // }
+      @media screen and (min-width: 768px) {
+        a :nth-child(1),
+        span {
+          color: red;
+        }
+        &:nth-child(2) {
+          .project-links a {
+            color: deeppink;
+          }
+        }
+        &:nth-child(3) {
+          .project-links a {
+            color: deepskyblue;
+          }
+        }
+        &:nth-child(4) {
+          .project-links a {
+            color: #fb4768da;
+          }
+        }
+        &:nth-child(5) {
+          .project-links a {
+            color: globals.$editor-background;
+          }
+        }
+      }
       .clone {
-        // background-color: tomato;
         position: absolute;
         z-index: 5000;
       }
     }
   }
 }
-
-// #about,
-// #stack,
-// #projects {
-//   @media screen and (min-width: 1300px) {
-//     width: 80%;
-//   }
-// }

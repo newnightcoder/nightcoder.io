@@ -6,8 +6,11 @@
 #stack {
   height: 55vh;
   width: 100%;
-  line-height: 1.2rem;
+  font-family: play;
   font-size: 0.8rem;
+  line-height: 1.2rem;
+  letter-spacing: 1px;
+  color: globals.$editor-foreground;
   // border: 1px solid red;
   @media screen and (min-width: 768px) {
     min-height: 450px;
@@ -40,7 +43,7 @@
     }
     .stacklist-wrapper {
       width: 100%;
-      min-height: 190px;
+      min-height: 200px;
       @include globals.flex-column-center;
       display: none;
       align-items: center;
@@ -58,8 +61,7 @@
 
       p {
         width: 100%;
-        min-height: 6ch;
-        font-family: "courier new";
+        min-height: 120px;
         text-align: left;
         // padding: 20px 5px 0 0;
         // border: 1px solid red;
@@ -88,14 +90,13 @@
       }
       .tabs__ul {
         width: 100%;
-        font-family: "courier new";
         font-size: 0.9rem;
-        color: globals.$editor-foreground;
         // border: 1px solid red;
 
         .tab {
           width: calc(100% / 3);
           padding: 5px 2px;
+          color: globals.$editor-foreground;
           text-align: center;
           // border: 1px solid red;
           @media screen and (min-width: 768px) {
@@ -125,10 +126,11 @@
   .stack__left,
   .stack__middle,
   .stack__right {
-    height: 70px;
+    height: 50px;
     width: min-content;
     max-width: 500px;
     justify-content: center;
+    // border: 1px solid red;
     // border: 1px solid globals.$blue-primary;
     // border-radius: globals.$border-radius;
   }
@@ -136,7 +138,6 @@
     li {
       i {
         font-size: 1.5rem;
-        // color: rgb(188, 185, 185);
         @media screen and (min-width: 768px) {
           font-size: 2.2rem;
         }

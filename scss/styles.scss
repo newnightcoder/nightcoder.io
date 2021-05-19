@@ -41,7 +41,7 @@ body {
   @media screen and (min-width: 1024px) {
     .margin__left,
     .margin__right {
-      height: 400px;
+      height: 310px;
       width: 30px;
       @include globals.flex-column-center();
       justify-content: center;
@@ -77,7 +77,7 @@ body {
       left: 95%;
       text-transform: uppercase;
       font-size: 0.8rem;
-      font-family: "Courier new";
+      font-family: play;
       color: rgba(255, 255, 255, 0.5);
       .mail-link {
         @include globals.flex-column-center();
@@ -88,7 +88,7 @@ body {
       display: none;
       list-style-type: none;
       @media screen and (min-width: 768px) {
-        height: inherit;
+        height: 95%;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -301,17 +301,19 @@ body {
 
 .tag {
   width: inherit;
-  font-family: menlo;
+  font-family: play;
   font-size: 1rem;
   font-weight: normal;
-  text-transform: capitalize;
-  color: globals.$blue-primary;
-  color: globals.$editor-foreground;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  // color: globals.$blue-primary;
+  // color: globals.$editor-foreground;
+  color: globals.$white-primary;
   white-space: nowrap;
   position: relative;
   background-color: globals.$grey-primary;
   border-radius: globals.$border-radius;
-  padding: 5px 10px;
+  padding: 5px 20px;
   @media screen and (min-width: 768px) {
     font-size: 1.1rem;
   }
@@ -360,7 +362,7 @@ main {
 
   .cta-btn-download,
   .cta-btn-contact {
-    font-family: "Courier New";
+    font-family: play;
     font-size: 1rem;
     color: globals.$blue-primary;
     padding: 5px 10px;
