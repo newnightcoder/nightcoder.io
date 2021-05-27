@@ -26,18 +26,19 @@ nav .brand {
 }
 nav .nav__menu {
   display: none;
+  list-style-type: none;
+  width: 300px;
+  font-size: 1rem;
+  font-family: "Courier new";
+  font-weight: bold;
 }
 @media screen and (min-width: 1024px) {
   nav .nav__menu {
-    list-style-type: none;
-    width: 300px;
-    font-size: 1rem;
-    font-family: "Courier new";
-    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: space-between;
     transform: translateY(20px);
+    transition: all 200ms;
   }
 }
 nav .nav__menu a {

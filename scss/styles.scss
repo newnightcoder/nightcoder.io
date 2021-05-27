@@ -34,6 +34,11 @@ body {
   color: globals.$white-primary;
   position: relative;
   // border: 1px solid red;
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+  //                                           LINK BARS LEFT & RIGHT
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+
   .margin__left,
   .margin__right {
     display: none;
@@ -56,7 +61,7 @@ body {
       border-radius: globals.$border-radius;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
-      background-color: globals.$grey-primary;
+      background: globals.$grey-primary;
       transition: all 200ms;
       &:hover {
         cursor: pointer;
@@ -66,11 +71,58 @@ body {
           color: globals.$white-primary;
         }
       }
+      &::after {
+        content: "";
+        height: 100%;
+        width: 100%;
+        background: globals.$gradient;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+      }
     }
     .margin__left {
       justify-content: space-evenly;
       &:hover {
         cursor: default;
+      }
+      .link-wrapper {
+        display: none;
+        list-style-type: none;
+        background: globals.$grey-primary;
+        @media screen and (min-width: 768px) {
+          height: 99%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+          align-items: center;
+        }
+        .link {
+          height: 100%;
+          width: 100%;
+          padding: 5px;
+          // border: 1px solid yellow;
+          @include globals.flex-column-center;
+          justify-content: flex-end;
+          opacity: 1;
+          text-decoration: none;
+          transition: all 200ms;
+          i {
+            font-size: 1rem;
+            transition: all 200ms;
+            color: rgba(255, 255, 255, 0.5);
+          }
+          &:hover {
+            cursor: pointer;
+            transform-origin: center;
+            i {
+              color: globals.$blue-primary;
+            }
+          }
+        }
       }
     }
     .margin__right {
@@ -80,43 +132,15 @@ body {
       font-family: play;
       color: rgba(255, 255, 255, 0.5);
       .mail-link {
+        height: 99%;
+        width: 98%;
         @include globals.flex-column-center();
+        background: globals.$grey-primary;
+        margin: 0 auto;
         // border: 1px solid yellow;
-      }
-    }
-    .link-wrapper {
-      display: none;
-      list-style-type: none;
-      @media screen and (min-width: 768px) {
-        height: 95%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-      }
-
-      .link {
-        height: 100%;
-        width: 100%;
-        padding: 5px;
-        // border: 1px solid yellow;
-        @include globals.flex-column-center;
-        justify-content: flex-end;
-        opacity: 1;
-        text-decoration: none;
-        transition: all 200ms;
-        i {
-          font-size: 1rem;
-          transition: all 200ms;
-          color: rgba(255, 255, 255, 0.5);
-        }
-        &:hover {
-          cursor: pointer;
-          transform-origin: center;
-          i {
-            color: globals.$blue-primary;
-          }
-        }
+        // span {
+        //   background: globals.$grey-primary;
+        // }
       }
     }
   }
@@ -146,6 +170,10 @@ body {
     width: 80%;
   }
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//                                        LOADER
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 .loader__container {
   display: none;
@@ -177,6 +205,247 @@ body {
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+//                                           TAG
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+.tag {
+  width: inherit;
+  font-family: play;
+  font-size: 1rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  // color: globals.$blue-primary;
+  // color: globals.$editor-foreground;
+  color: globals.$white-primary;
+  white-space: nowrap;
+  position: relative;
+  background-color: globals.$grey-primary;
+  border-radius: globals.$border-radius;
+  padding: 5px 20px;
+  @media screen and (min-width: 768px) {
+    font-size: 1.1rem;
+  }
+  // .tag-after {
+  //   height: 2px;
+  //   width: 100%;
+  //   // background-color: #929595;
+  //   background: globals.$grey-primary;
+  //   position: absolute;
+  //   right: 0;
+  //   bottom: 0;
+  //   // border: dashed 1px globals.$white-primary;
+  // }
+}
+.tag-projects {
+  text-align: center;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////
+//                                           MAIN
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+main {
+  width: 100%;
+  background-color: globals.$editor-background;
+  position: relative;
+  // border: 5px solid tomato;
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+  //                                           CTA BUTTONS
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+
+  .cta {
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: globals.$editor-background;
+    // border: 1px solid white;
+  }
+  .cta-btn-more,
+  .cta-btn-download,
+  .cta-btn-contact {
+    font-family: play;
+    font-size: 1rem;
+    color: globals.$blue-primary;
+    padding: 5px 10px;
+    outline: none;
+    background-color: globals.$editor-background;
+    border: 1px solid globals.$blue-primary;
+    border-radius: globals.$border-radius;
+    transition: background-color 0.2s;
+    &:hover {
+      cursor: pointer;
+      color: globals.$editor-background;
+      background-color: globals.$blue-primary;
+    }
+    @media screen and (min-width: 1400px) {
+      font-size: 1.1rem;
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+  //                                          INFO - TITLE
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+
+  #info {
+    height: 100%;
+    min-height: 500px;
+    width: 100%;
+    position: relative;
+    @include globals.flex-column-center();
+    align-items: flex-start;
+    font-size: 1rem;
+    // border: 1px solid blue;
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+  //                                     MORE
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+
+  #more {
+    // border: 1px solid orange;
+    .more-container {
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+    .more-wrapper {
+      height: 100%;
+      color: white;
+      @include globals.flex-column-center;
+      justify-content: center;
+      #canvas {
+        border: 1px solid grey;
+        background-color: black;
+        &:hover {
+          cursor: pointer;
+          border: 1px solid globals.$white-primary;
+        }
+      }
+      #canvas {
+        height: 100px;
+        width: 95vw;
+        margin-top: 30px;
+        @media screen and (min-width: 768px) {
+          height: 150px;
+          width: calc(80vw - 100px);
+        }
+      }
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+  //                                   CONTACT
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+
+  #contact {
+    height: globals.$contact-height;
+    width: 100%;
+    .contact-container {
+      width: inherit;
+      height: inherit;
+      @include globals.flex-column-center();
+      background-color: globals.$editor-background;
+      // border: 1px solid turquoise;
+      justify-content: center;
+
+      .form-container {
+        @include globals.flex-column-center();
+        display: none;
+        align-items: flex-start;
+        justify-content: center;
+        position: relative;
+        bottom: -5%;
+        gap: 40px;
+        height: 80%;
+        width: 90%;
+        font-family: "Courier new";
+        // border: 1px solid turquoise;
+        outline: none;
+        @media screen and (min-width: 768px) {
+          height: 80%;
+          width: 70%;
+        }
+        label {
+          height: 30px;
+          padding: 0 10px;
+          @include globals.flex-column-center();
+          justify-content: center;
+          white-space: nowrap;
+          color: globals.$editor-foreground;
+          background-color: globals.$grey-primary;
+          border-radius: globals.$border-radius;
+        }
+        input {
+          outline: none;
+          font-family: "Courier new";
+          background-color: globals.$editor-foreground;
+          border: 1px solid transparent;
+          transition: all 200ms;
+          &:hover {
+            border-color: globals.$blue-primary;
+          }
+        }
+        .email-container {
+          @include globals.flex-column-center();
+          align-items: flex-start;
+          gap: 10px;
+
+          #contact__email {
+            width: 250px;
+            height: 30px;
+            border-radius: globals.$border-radius;
+          }
+        }
+        .msg-container {
+          height: 100%;
+          width: 100%;
+          @include globals.flex-column-center();
+          align-items: flex-start;
+          gap: 10px;
+          #contact__msg {
+            width: 100%;
+            height: 100%;
+            border-radius: globals.$border-radius;
+          }
+        }
+
+        button {
+          padding: 5px 20px;
+          font-size: 1rem;
+          font-family: "Courier new";
+          align-self: center;
+        }
+      }
+    }
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//                                      FOOTER
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+footer {
+  height: globals.$footer-height;
+  font-family: "courier new";
+  font-size: 0.75rem;
+  white-space: nowrap;
+  color: grey;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  // border-top: 5px solid yellow;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//                                           PROJECT FULLPAGE
+///////////////////////////////////////////////////////////////////////////////////////////////
+
 .fullpage {
   background-color: rgba(128, 128, 128, 0.739);
   position: fixed;
@@ -205,7 +474,6 @@ body {
       height: 30%;
       width: 90%;
       // border: 2px solid tomato;
-      // background: no-repeat center/contain;
       @media screen and (min-width: 600px) {
         height: 300px;
         width: 1000px;
@@ -293,246 +561,4 @@ body {
     position: absolute;
     right: -30px;
   }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-//                                           TAG
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-.tag {
-  width: inherit;
-  font-family: play;
-  font-size: 1rem;
-  font-weight: normal;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  // color: globals.$blue-primary;
-  // color: globals.$editor-foreground;
-  color: globals.$white-primary;
-  white-space: nowrap;
-  position: relative;
-  background-color: globals.$grey-primary;
-  border-radius: globals.$border-radius;
-  padding: 5px 20px;
-  @media screen and (min-width: 768px) {
-    font-size: 1.1rem;
-  }
-  // .tag-after {
-  //   height: 2px;
-  //   width: 100%;
-  //   // background-color: #929595;
-  //   background: globals.$grey-primary;
-  //   position: absolute;
-  //   right: 0;
-  //   bottom: 0;
-  //   // border: dashed 1px globals.$white-primary;
-  // }
-}
-.tag-projects {
-  text-align: center;
-}
-///////////////////////////////////////////////////////////////////////////////////////////////
-//                                           MAIN
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-main {
-  width: 100%;
-  // @include globals.section;
-  // display: grid;
-  // grid-template-rows: globals.$info-height globals.$projects-height min-content globals.$more-height globals.$contact-height;
-  // grid-template-columns: 75% 25%;
-  // grid-row-gap: 1em;
-  background-color: globals.$editor-background;
-  // justify-items: center;
-  position: relative;
-  // z-index: 10;
-  // border: 5px solid tomato;
-
-  ///////////////////////////////////////////////////////////////////////////////////////////////
-  //                                           CTA BUTTONS
-  ///////////////////////////////////////////////////////////////////////////////////////////////
-  .cta {
-    margin: 0 auto;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: globals.$editor-background;
-    // border: 1px solid white;
-  }
-
-  .cta-btn-download,
-  .cta-btn-contact {
-    font-family: play;
-    font-size: 1rem;
-    color: globals.$blue-primary;
-    padding: 5px 10px;
-    outline: none;
-    background-color: globals.$editor-background;
-    border: 1px solid globals.$blue-primary;
-    border-radius: globals.$border-radius;
-    transition: background-color 0.2s;
-    &:hover {
-      cursor: pointer;
-      color: globals.$editor-background;
-      background-color: globals.$blue-primary;
-    }
-    @media screen and (min-width: 1400px) {
-      font-size: 1.1rem;
-    }
-  }
-
-  ///////////////////////////////////////////////////////////////////////////////////////////////
-  //                                          INFO - TITLE
-  ///////////////////////////////////////////////////////////////////////////////////////////////
-  #info {
-    height: 100%;
-    min-height: 500px;
-    width: 100%;
-    position: relative;
-    @include globals.flex-column-center();
-    align-items: flex-start;
-    font-size: 1rem;
-    // gap: 30px;
-    // padding: 30px 0;
-    // border: 1px solid blue;
-  }
-
-  ///////////////////////////////////////////////////////////////////////////////////////////////
-  //                                     MORE
-  ///////////////////////////////////////////////////////////////////////////////////////////////
-
-  #more {
-    // border: 1px solid orange;
-    .more-container {
-      &::before,
-      &::after {
-        display: none;
-      }
-    }
-    .more-wrapper {
-      height: 100%;
-      color: white;
-      @include globals.flex-column-center;
-      justify-content: center;
-      #canvas {
-        border: 1px solid grey;
-        background-color: black;
-        &:hover {
-          cursor: pointer;
-          border: 1px solid globals.$white-primary;
-        }
-      }
-      #canvas {
-        height: 100px;
-        width: 95vw;
-        margin-top: 30px;
-        @media screen and (min-width: 768px) {
-          height: 150px;
-          width: calc(80vw - 100px);
-        }
-      }
-    }
-  }
-
-  ///////////////////////////////////////////////////////////////////////////////////////////////
-  //                                   CONTACT
-  ///////////////////////////////////////////////////////////////////////////////////////////////
-  #contact {
-    height: globals.$contact-height;
-    width: 100%;
-    .contact-container {
-      width: inherit;
-      height: inherit;
-      @include globals.flex-column-center();
-      background-color: globals.$editor-background;
-      // border: 1px solid turquoise;
-      justify-content: center;
-
-      .form-container {
-        @include globals.flex-column-center();
-        display: none;
-        align-items: flex-start;
-        justify-content: center;
-        position: relative;
-        bottom: -5%;
-        gap: 40px;
-        height: 80%;
-        width: 90%;
-        font-family: "Courier new";
-        // border: 1px solid turquoise;
-        outline: none;
-        @media screen and (min-width: 768px) {
-          height: 80%;
-          width: 70%;
-        }
-        label {
-          height: 30px;
-          padding: 0 10px;
-          @include globals.flex-column-center();
-          justify-content: center;
-          white-space: nowrap;
-          color: globals.$editor-foreground;
-          background-color: globals.$grey-primary;
-          border-radius: globals.$border-radius;
-        }
-        input {
-          outline: none;
-          font-family: "Courier new";
-          background-color: globals.$editor-foreground;
-          border: 1px solid transparent;
-          transition: all 200ms;
-          &:hover {
-            border-color: globals.$blue-primary;
-          }
-        }
-        .email-container {
-          @include globals.flex-column-center();
-          align-items: flex-start;
-          gap: 10px;
-
-          #contact__email {
-            width: 250px;
-            height: 30px;
-            border-radius: globals.$border-radius;
-          }
-        }
-        .msg-container {
-          height: 100%;
-          width: 100%;
-          @include globals.flex-column-center();
-          align-items: flex-start;
-          gap: 10px;
-          #contact__msg {
-            width: 100%;
-            height: 100%;
-            border-radius: globals.$border-radius;
-          }
-        }
-
-        button {
-          padding: 5px 20px;
-          font-size: 1rem;
-          font-family: "Courier new";
-          align-self: center;
-        }
-      }
-    }
-  }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-//                                      FOOTER
-///////////////////////////////////////////////////////////////////////////////////////////////
-footer {
-  height: globals.$footer-height;
-  font-family: "courier new";
-  font-size: 0.75rem;
-  white-space: nowrap;
-  color: grey;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 10px;
-  // border-top: 5px solid yellow;
 }

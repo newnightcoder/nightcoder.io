@@ -11,7 +11,8 @@
   line-height: 1.2rem;
   letter-spacing: 1px;
   color: globals.$editor-foreground;
-  //   border: 1px solid red;
+  @include globals.flex-column-center();
+  // border: 1px solid red;
   @media screen and (min-width: 768px) {
     font-size: 1rem;
   }
@@ -22,6 +23,8 @@
   .section-container {
     height: 100%;
     width: 100%;
+    position: relative;
+    // border: 1px solid yellow;
     @include globals.flex-column-center;
     align-items: flex-start;
     justify-content: center;
@@ -33,11 +36,21 @@
     @media screen and (min-width: 1400px) {
       padding: 0 75px;
     }
-    p {
+    .p-container {
+      height: 250px;
       width: 45ch;
+      overflow: hidden;
+      // border: 1px solid red;
+      scroll-behavior: smooth;
       @media screen and (min-width: 768px) {
         width: 58ch;
       }
+    }
+    .p-about {
+      height: 250px;
+      padding: 10px 0; // overflow: hidden;
+      // border: 1px solid yellow;
+      transition: transform 200ms;
     }
     .gif {
       border-radius: globals.$border-radius;
@@ -52,7 +65,18 @@
       }
       @media screen and (min-width: 768px) {
         display: block;
-        // transform: translateX(-75%);
+      }
+    }
+  }
+  .cta-btn-more {
+    position: absolute;
+    bottom: 10%;
+    left: 25%;
+    width: 100px;
+    &:hover {
+      .p-about {
+        // transform: translateY(-300px);
+        color: red;
       }
     }
   }

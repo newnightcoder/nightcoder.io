@@ -7,7 +7,7 @@
 
 const NAVBAR = document.querySelector("nav");
 // const FLAGS = document.querySelector(".flags-container");
-const NAVBARLINKS = document.querySelector(".link-wrapper");
+const NAVBARLINKS = document.querySelector(".nav__menu");
 const BRAND = document.querySelector(".brand");
 const hamburger = document.querySelector(".fa-bars");
 const PROJECTS = document.querySelectorAll(".project");
@@ -23,12 +23,12 @@ const navbarAnim = () => {
       (NAVBAR.style.background =
         "linear-gradient(to left, deeppink 0%, orange 100%)"),
         // (FLAGS.style.opacity = "1"),
-        (NAVBARLINKS.style.transform = "translateY(0)"),
+        (NAVBARLINKS.style.transform = "translateY(2.5px)"),
         (document.querySelector(".fa-bars").style.opacity = "1");
     } else {
       (NAVBAR.style.background = "transparent"),
         // (FLAGS.style.opacity = "0"),
-        (NAVBARLINKS.style.transform = "translateY(1.75vh)"),
+        (NAVBARLINKS.style.transform = "translateY(20px)"),
         (document.querySelector(".fa-bars").style.opacity = "0");
     }
     if (window.scrollY >= window.innerHeight / 1.16) {
@@ -50,7 +50,6 @@ const openHamburger = () => {
 
 const closeHamburger = () => {
   document.querySelector(".fa-times").addEventListener("click", () => {
-    console.log("hey hey");
     document.querySelector(".hamburger__content").style.transform =
       "translateX(100%)";
     document.querySelector("*").style.overflow = "scroll";
@@ -252,6 +251,10 @@ const tabEffect = () => {
     });
   });
 };
+const scrollAbout = () => {
+  document.querySelector(".p-container").scrollTo(0, 250);
+};
+document.querySelector(".cta-btn-more").addEventListener("click", scrollAbout);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                            EXPAND ANIMATION
