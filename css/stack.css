@@ -88,7 +88,7 @@
   position: absolute;
   bottom: -1.5px;
   left: 0;
-  background-color: #1a8cfe;
+  background-color: #d4d4d4;
   height: 2px;
   width: calc(100% / 3);
   transition: left 0.4s;

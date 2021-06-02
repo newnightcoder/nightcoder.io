@@ -16,13 +16,13 @@
 </head>
 
 <body>
-    <!------------------------------------------ LOADER ------------------------------------------->
+  <!------------------------------------------ LOADER ------------------------------------------->
 
   <div class="loader__container">
     <div class="loader"></div>
   </div>
 
-    <!----------------------------------- LINK BARS LEFT & RIGHT ------------------------------------>
+  <!----------------------------------- LINK BARS LEFT & RIGHT ------------------------------------>
 
   <div class="margin__left">
     <ul class="link-wrapper">
@@ -54,6 +54,7 @@
 
 
   <!-------------------------------------------- NAV ------------------------------------------->
+
   <nav>
     <div class="brand">daniel julien &middot; front-end developer</div>
     <ul class="nav__menu">
@@ -68,8 +69,8 @@
 
   <div class="body-container">
 
+    <!----------------------------------------- HOME ------------------------------------------->
 
-    <!-------------------------------------------- HOME ------------------------------------------->
     <section id="home">
       <div class="home-container">
         <header>
@@ -95,8 +96,12 @@
       <!------------------------------------------ MAIN ------------------------------------------->
       <main>
         <section id="info">
-          <!------------------------------------------ ABOUT ------------------------------------------->
-          <h2 class="tag tag-about">about me<span class="tag-after"></span></h2>
+          <!------------------------------------- ABOUT ------------------------------------------->
+
+          <div class="tag__container">
+            <h2 class="tag tag-about">about me</h2>
+            <div class="gradient"></div>
+          </div>
           <div id="about">
             <div class="section-container">
               <div class="p-container">
@@ -110,8 +115,10 @@
                   I love programming, as well as web design. <br />Let's
                   connect! I might be your next hire, who knows...
                 </p>
-                <p class="p-about">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex necessitatibus at consequuntur, enim assumenda provident voluptatem nulla cumque esse illo!</p>
-                <p class="p-about">toto Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex necessitatibus at consequuntur, enim assumenda provident voluptatem nulla cumque esse illo!</p>
+                <p class="p-about">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex necessitatibus at
+                  consequuntur, enim assumenda provident voluptatem nulla cumque esse illo!</p>
+                <p class="p-about">toto Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex necessitatibus at
+                  consequuntur, enim assumenda provident voluptatem nulla cumque esse illo!</p>
               </div>
               <div class="gif">
                 <img class="facegif" src="img/face1.jpg" loading="lazy" />
@@ -121,7 +128,11 @@
           </div>
 
           <!------------------------------------------ STACK ------------------------------------------->
-          <h2 class="tag tag-stack"><span class="span-stack">my stack</span><span class="tag-after"></span></h2>
+
+          <div class="tag__container">
+            <h2 class="tag tag-stack">my stack</h2>
+            <div class="gradient"></div>
+          </div>
           <div id="stack">
             <div class="section-container stack-container">
               <div class="tabs__container">
@@ -190,7 +201,10 @@
         <!------------------------------------------ PROJECTS ------------------------------------------->
 
         <section id="projects">
-          <h2 class="tag tag-projects">projects<span class="tag-after"></span></h2>
+          <div class="tag__container">
+            <h2 class="tag tag-projects">projects</h2>
+            <div class="gradient"></div>
+          </div>
           <div class="section-container projects-container">
             <ul class="projects-wrapper">
               <li class="project project-1 hover-effect">
@@ -302,6 +316,10 @@
 
         <section id="contact">
           <div class="section-container contact-container">
+            <div class="tag__container">
+              <h2 class="tag tag-contact">contact</h2>
+              <div class="gradient"></div>
+            </div>
             <div class="cta cta-contact">
               <button class="cta-btn-contact">contact&nbsp;me</button>
             </div>
@@ -331,12 +349,8 @@
 
     <div class="hamburger__content">
       <i class="fas fa-times"></i>
-      <div class="sky-placeholder">
-        <div class="sky-container">
-          <div class="circle-container">
-            <div class="circle"></div>
-          </div>
-        </div>
+      <div class="circle-container">
+        <div class="circle"><span></span><span></span><span></span><span></span></div>
       </div>
       <div class="hamburger__content--menu">
         <h3 class="hamburger__content--title">menu</h3>

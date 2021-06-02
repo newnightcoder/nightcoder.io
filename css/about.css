@@ -60,19 +60,29 @@
   transition: transform 200ms;
 }
 #about .section-container .gif {
-  border-radius: 5px;
-  height: 200px;
-  width: 220px;
+  border-radius: 50%;
+  height: 202px;
+  width: 212px;
+  position: relative;
   display: none;
+  background: #d4d4d4;
 }
 #about .section-container .gif .facegif {
   height: 200px;
-  width: 220px;
-  border-radius: 50px;
+  width: 210px;
+  border-radius: 50%;
+  position: absolute;
+  left: 1px;
+  top: 1px;
 }
 @media screen and (min-width: 768px) {
   #about .section-container .gif {
     display: block;
+  }
+}
+@keyframes turn {
+  to {
+    transform: rotate(360deg);
   }
 }
 #about .cta-btn-more {

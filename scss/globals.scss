@@ -22,7 +22,7 @@ $title-height: 20%;
 $projects-height: inherit;
 $more-height: max-content;
 $footer-height: 40px;
-$contact-height: calc(100vh - #{$navbar-height});
+$contact-height: calc(100vh - #{$navbar-height} - #{$footer-height});
 
 @mixin hamburger {
   position: absolute;
@@ -40,6 +40,3 @@ $contact-height: calc(100vh - #{$navbar-height});
   flex-direction: column;
   align-items: center;
 }
-
-// @mixin section {
-// }

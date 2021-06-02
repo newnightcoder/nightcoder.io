@@ -71,18 +71,6 @@ body {
           color: globals.$white-primary;
         }
       }
-      &::after {
-        content: "";
-        height: 100%;
-        width: 100%;
-        background: globals.$gradient;
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
-      }
     }
     .margin__left {
       justify-content: space-evenly;
@@ -137,6 +125,7 @@ body {
         @include globals.flex-column-center();
         background: globals.$grey-primary;
         margin: 0 auto;
+        justify-content: center;
         // border: 1px solid yellow;
         // span {
         //   background: globals.$grey-primary;
@@ -209,35 +198,63 @@ body {
 //                                           TAG
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-.tag {
-  width: inherit;
-  font-family: play;
-  font-size: 1rem;
-  font-weight: normal;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  // color: globals.$blue-primary;
-  // color: globals.$editor-foreground;
-  color: globals.$white-primary;
-  white-space: nowrap;
+.tag__container {
+  width: 100%;
   position: relative;
-  background-color: globals.$grey-primary;
-  border-radius: globals.$border-radius;
-  padding: 5px 20px;
-  @media screen and (min-width: 768px) {
-    font-size: 1.1rem;
+  .tag {
+    width: inherit;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    font-family: play;
+    font-size: 1.25rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: globals.$white-primary;
+    white-space: nowrap;
+    position: relative;
+    // background-color: globals.$grey-primary;
+    border-radius: globals.$border-radius;
+    padding: 5px 0;
+    @media screen and (min-width: 768px) {
+      font-size: 1.75rem;
+    }
   }
-  // .tag-after {
-  //   height: 2px;
-  //   width: 100%;
-  //   // background-color: #929595;
-  //   background: globals.$grey-primary;
-  //   position: absolute;
-  //   right: 0;
-  //   bottom: 0;
-  //   // border: dashed 1px globals.$white-primary;
-  // }
+
+  .gradient {
+    width: calc(100% + 2px);
+    height: 2px;
+    border-radius: globals.$border-radius;
+    background-size: 800%;
+    background-position: left;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-image: globals.$gradient;
+    animation: gradient 4000ms infinite alternate;
+    // filter: blur(1px);
+  }
+  .tag-stack + .gradient {
+    animation-delay: 2000ms;
+  }
+  .tag-projects + .gradient {
+    animation-delay: 3000ms;
+  }
+  @keyframes gradient {
+    0% {
+      background-position: left;
+    }
+    50% {
+      background-position: center;
+    }
+    100% {
+      background-position: right;
+    }
+  }
 }
+
 .tag-projects {
   text-align: center;
 }
@@ -305,30 +322,25 @@ main {
   ///////////////////////////////////////////////////////////////////////////////////////////////
 
   #more {
-    // border: 1px solid orange;
     .more-container {
-      &::before,
-      &::after {
-        display: none;
-      }
+      border: 1px solid red;
     }
     .more-wrapper {
       height: 100%;
       color: white;
       @include globals.flex-column-center;
       justify-content: center;
+      padding: 50px 0;
+
       #canvas {
+        height: 100px;
+        width: 95vw;
         border: 1px solid grey;
         background-color: black;
         &:hover {
           cursor: pointer;
           border: 1px solid globals.$white-primary;
         }
-      }
-      #canvas {
-        height: 100px;
-        width: 95vw;
-        margin-top: 30px;
         @media screen and (min-width: 768px) {
           height: 150px;
           width: calc(80vw - 100px);
@@ -349,8 +361,8 @@ main {
       height: inherit;
       @include globals.flex-column-center();
       background-color: globals.$editor-background;
-      // border: 1px solid turquoise;
       justify-content: center;
+      border: 1px solid turquoise;
 
       .form-container {
         @include globals.flex-column-center();

@@ -77,7 +77,7 @@ nav .nav__menu span:hover {
 }
 nav .fa-bars {
   position: absolute;
-  top: 20px;
+  top: 0;
   right: 20px;
   font-size: 2rem;
   opacity: 1;
@@ -91,42 +91,32 @@ nav .fa-bars {
 .hamburger__content {
   transform: translateX(100%);
   z-index: -100;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
   height: 100vh;
   width: 100vw;
   position: fixed;
-  color: #fefefe;
   top: 0;
   right: 0;
-  background-color: #2e2d2d;
+  color: #fefefe;
   background-color: #1e1e1e;
   transition: transform 0.3s;
 }
 .hamburger__content .fa-times {
   font-size: 2rem;
   position: absolute;
-  top: 5px;
-  right: 10px;
+  top: 10px;
+  right: 20px;
   color: #fefefe;
   z-index: 100;
 }
-.hamburger__content .sky-placeholder {
-  background: linear-gradient(to bottom, deepskyblue, #2e2d2d);
-  background: #1e1e1e;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 80;
-  height: 30vh;
+.hamburger__content .circle-container {
+  height: 35vh;
   width: 100%;
+  background: #1e1e1e;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.hamburger__content .sky-placeholder .circle {
+.hamburger__content .circle-container .circle {
   height: 150px;
   width: 150px;
   border-radius: 50%;
@@ -136,7 +126,7 @@ nav .fa-bars {
   align-items: center;
   justify-content: center;
 }
-.hamburger__content .sky-placeholder .circle::after {
+.hamburger__content .circle-container .circle::after {
   content: "";
   position: absolute;
   height: 90%;
@@ -144,15 +134,31 @@ nav .fa-bars {
   border-radius: 50%;
   background-color: #1e1e1e;
 }
+.hamburger__content .circle-container .circle span {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: linear-gradient(to right, #1a8cfe, deeppink);
+  border-radius: 50%;
+  filter: blur(5px);
+  animation: turn 2000ms linear infinite;
+}
+.hamburger__content .circle-container .circle span:nth-child(2) {
+  filter: blur(10px);
+}
+.hamburger__content .circle-container .circle span:nth-child(3) {
+  filter: blur(15px);
+}
+.hamburger__content .circle-container .circle span:nth-child(4) {
+  filter: blur(20px);
+}
 .hamburger__content .hamburger__content--menu {
-  height: 70vh;
+  height: 65vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  position: absolute;
-  top: 25%;
 }
 .hamburger__content a {
   color: #fefefe;
@@ -438,19 +444,29 @@ nav .fa-bars {
   transition: transform 200ms;
 }
 #about .section-container .gif {
-  border-radius: 5px;
-  height: 200px;
-  width: 220px;
+  border-radius: 50%;
+  height: 202px;
+  width: 212px;
+  position: relative;
   display: none;
+  background: #d4d4d4;
 }
 #about .section-container .gif .facegif {
   height: 200px;
-  width: 220px;
-  border-radius: 50px;
+  width: 210px;
+  border-radius: 50%;
+  position: absolute;
+  left: 1px;
+  top: 1px;
 }
 @media screen and (min-width: 768px) {
   #about .section-container .gif {
     display: block;
+  }
+}
+@keyframes turn {
+  to {
+    transform: rotate(360deg);
   }
 }
 #about .cta-btn-more {
@@ -556,7 +572,7 @@ nav .fa-bars {
   position: absolute;
   bottom: -1.5px;
   left: 0;
-  background-color: #1a8cfe;
+  background-color: #d4d4d4;
   height: 2px;
   width: calc(100% / 3);
   transition: left 0.4s;
@@ -925,19 +941,6 @@ body .margin__right:hover {
 body .margin__right:hover .link-wrapper i {
     color: #fefefe;
   }
-  body .margin__left::after,
-body .margin__right::after {
-    content: "";
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(to right, #1a8cfe, deeppink);
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-  }
   body .margin__left {
     justify-content: space-evenly;
   }
@@ -1001,6 +1004,7 @@ body .margin__right::after {
     align-items: center;
     background: #333333;
     margin: 0 auto;
+    justify-content: center;
   }
 }
 body .body-container {
@@ -1062,23 +1066,59 @@ body .body-container {
   }
 }
 
-.tag {
+.tag__container {
+  width: 100%;
+  position: relative;
+}
+.tag__container .tag {
   width: inherit;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
   font-family: play;
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: normal;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #fefefe;
   white-space: nowrap;
   position: relative;
-  background-color: #333333;
   border-radius: 5px;
-  padding: 5px 20px;
+  padding: 5px 0;
 }
 @media screen and (min-width: 768px) {
-  .tag {
-    font-size: 1.1rem;
+  .tag__container .tag {
+    font-size: 1.75rem;
+  }
+}
+.tag__container .gradient {
+  width: calc(100% + 2px);
+  height: 2px;
+  border-radius: 5px;
+  background-size: 800%;
+  background-position: left;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-image: linear-gradient(to right, #1a8cfe, deeppink);
+  animation: gradient 4000ms infinite alternate;
+}
+.tag__container .tag-stack + .gradient {
+  animation-delay: 2000ms;
+}
+.tag__container .tag-projects + .gradient {
+  animation-delay: 3000ms;
+}
+@keyframes gradient {
+  0% {
+    background-position: left;
+  }
+  50% {
+    background-position: center;
+  }
+  100% {
+    background-position: right;
   }
 }
 
@@ -1136,8 +1176,8 @@ main #info {
   align-items: flex-start;
   font-size: 1rem;
 }
-main #more .more-container::before, main #more .more-container::after {
-  display: none;
+main #more .more-container {
+  border: 1px solid red;
 }
 main #more .more-wrapper {
   height: 100%;
@@ -1146,19 +1186,17 @@ main #more .more-wrapper {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 50px 0;
 }
 main #more .more-wrapper #canvas {
+  height: 100px;
+  width: 95vw;
   border: 1px solid grey;
   background-color: black;
 }
 main #more .more-wrapper #canvas:hover {
   cursor: pointer;
   border: 1px solid #fefefe;
-}
-main #more .more-wrapper #canvas {
-  height: 100px;
-  width: 95vw;
-  margin-top: 30px;
 }
 @media screen and (min-width: 768px) {
   main #more .more-wrapper #canvas {
@@ -1167,7 +1205,7 @@ main #more .more-wrapper #canvas {
   }
 }
 main #contact {
-  height: calc(100vh - 40px);
+  height: calc(100vh - 40px - 40px);
   width: 100%;
 }
 main #contact .contact-container {
@@ -1178,6 +1216,7 @@ main #contact .contact-container {
   align-items: center;
   background-color: #1e1e1e;
   justify-content: center;
+  border: 1px solid turquoise;
 }
 main #contact .contact-container .form-container {
   display: flex;

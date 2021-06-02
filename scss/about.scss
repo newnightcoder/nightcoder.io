@@ -53,18 +53,31 @@
       transition: transform 200ms;
     }
     .gif {
-      border-radius: globals.$border-radius;
-      height: 200px;
-      width: 220px;
+      border-radius: 50%;
+      height: 202px;
+      width: 212px;
+      position: relative;
       display: none;
+      background: globals.$editor-foreground;
+      // animation: turn 1000ms linear infinite;
+
       .facegif {
         height: 200px;
-        width: 220px;
-        border-radius: 50px;
+        width: 210px;
+        border-radius: 50%;
+        position: absolute;
+        left: 1px;
+        top: 1px;
+        // transform: translate(1px, 1px);
         // border: 1px solid globals.$blue-primary;
       }
       @media screen and (min-width: 768px) {
         display: block;
+      }
+      @keyframes turn {
+        to {
+          transform: rotate(360deg);
+        }
       }
     }
   }
