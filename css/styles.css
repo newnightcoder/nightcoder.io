@@ -888,6 +888,7 @@ nav .fa-bars {
 
 * a {
   text-decoration: none;
+  color: #d4d4d4;
 }
 
 html {
@@ -955,6 +956,7 @@ body .margin__right:hover .link-wrapper i {
 }
 @media screen and (min-width: 1024px) and (min-width: 768px) {
   body .margin__left .link-wrapper {
+    width: 100%;
     height: 99%;
     display: flex;
     flex-direction: column;
@@ -966,7 +968,7 @@ body .margin__right:hover .link-wrapper i {
   body .margin__left .link-wrapper .link {
     height: 100%;
     width: 100%;
-    padding: 5px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -975,17 +977,22 @@ body .margin__right:hover .link-wrapper i {
     text-decoration: none;
     transition: all 200ms;
   }
-  body .margin__left .link-wrapper .link i {
-    font-size: 1rem;
+  body .margin__left .link-wrapper .link .feather {
+    height: 20px;
+    width: 20px;
     transition: all 200ms;
-    color: rgba(255, 255, 255, 0.5);
+    fill: rgba(255, 255, 255, 0.5);
+  }
+  body .margin__left .link-wrapper .link .feather-dev {
+    height: 30px;
+    width: 30px;
   }
   body .margin__left .link-wrapper .link:hover {
     cursor: pointer;
     transform-origin: center;
   }
-  body .margin__left .link-wrapper .link:hover i {
-    color: #1a8cfe;
+  body .margin__left .link-wrapper .link:hover .feather {
+    fill: #1a8cfe;
   }
 }
 @media screen and (min-width: 1024px) {
