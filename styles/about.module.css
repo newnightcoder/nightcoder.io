@@ -1,0 +1,7 @@
+.about {
+  min-height: max-content;
+  background-color: var(--about-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

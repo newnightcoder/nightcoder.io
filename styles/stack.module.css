@@ -1,0 +1,7 @@
+.stack {
+  min-height: max-content;
+  background-color: var(--stack-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

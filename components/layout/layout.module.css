@@ -1,0 +1,7 @@
+.layout {
+  display: grid;
+  grid-template-rows: var(--navbar-height) minmax(
+      calc(100vh - var(--navbar-height)),
+      max-content
+    );
+}
