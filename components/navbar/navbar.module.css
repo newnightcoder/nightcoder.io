@@ -20,7 +20,9 @@
   border: 1px solid yellow;
 }
 
-.navbar > * a {
-  text-decoration: none;
+.navbar > * button {
+  outline: none;
+  border: none;
+  background-color: inherit;
   color: var(--text-color-dark);
 }

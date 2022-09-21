@@ -1,10 +1,16 @@
 .main {
   grid-row: 2;
-  min-height: max-content;
-  background: var(--dark-mode-bg);
+  min-height: 100%;
   color: var(--text-color-dark);
   border: 4px solid #34d399;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* opacity: 0;
+  visibility: hidden; */
+}
+
+.span {
+  visibility: hidden;
+  opacity: 0;
 }

@@ -1,8 +1,9 @@
 .projects {
-  min-height: max-content;
+  min-height: 100%;
   background-color: var(--projects-bg);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-color-dark);
+  /* opacity: 0; */
 }

@@ -1,17 +1,14 @@
-import Head from "next/head";
+// import { Flip } from "gsap/dist/Flip";
+import Hero from "../Hero/Hero";
 import Navbar from "../navbar/Navbar";
 import styles from "./layout.module.css";
 
 const Layout = ({ children }) => {
   return (
     <div className={styles.layout}>
-      <Head>
-        <title>Daniel Julien Portfolio</title>
-        <meta name="description" content="This is my portfolio website!" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Navbar />
-      {children}
+      <Hero />
+      <div className={`${styles.pageContainer}`}>{children}</div>
     </div>
   );
 };

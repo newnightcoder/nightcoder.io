@@ -1,6 +1,7 @@
 /img
 /fonts
 .htaccess
+transition.md
 
 # dependencies
 /node_modules

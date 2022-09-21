@@ -1,7 +1,11 @@
 .about {
-  min-height: max-content;
-  background-color: var(--about-bg);
+  min-height: 100%;
+  /* background-color: var(--about-bg); */
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid yellow;
+  /* opacity: 0; */
+  /* transition: all 1000ms;
+  transform: translateX(100%); */
 }

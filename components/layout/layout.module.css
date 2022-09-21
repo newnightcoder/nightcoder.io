@@ -1,7 +1,12 @@
 .layout {
   display: grid;
-  grid-template-rows: var(--navbar-height) minmax(
-      calc(100vh - var(--navbar-height)),
+  grid-template-rows: var(--navbar-height) max-content minmax(
+      calc(100vh - var(--navbar-height) - var(--hero-height)),
       max-content
     );
+}
+
+.pageContainer {
+  height: 100%;
+  width: 100%;
 }

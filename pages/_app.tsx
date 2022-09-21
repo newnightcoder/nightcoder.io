@@ -1,12 +1,22 @@
-import Layout from "../components/layout/Layout";
+import AppHead from "../components/AppHead";
+import Layout from "../components/layout/layout";
+import { TransitionProvider } from "../context/TransitionContext";
+import TransitionLayout from "../context/TransitionLayout";
 import "../styles/_globals.css";
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      <AppHead />
+      <TransitionProvider>
+        <TransitionLayout>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </TransitionLayout>
+      </TransitionProvider>
+    </>
   );
-}
+};
 
 export default MyApp;
