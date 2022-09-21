@@ -1,8 +1,0 @@
-.stack {
-  min-height: 100%;
-  background-color: var(--stack-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* opacity: 0; */
-}

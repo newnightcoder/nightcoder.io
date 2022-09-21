@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import styles from "./navbar.module.css";
+import { NavbarContainer, NavLink, NavLinksContainer } from "./NavbarStyled";
 
 const Navbar = () => {
   const router = useRouter();
@@ -12,22 +12,22 @@ const Navbar = () => {
   const navLinks = ["home", "about", "projects", "stack", "contact"];
 
   return (
-    <div className={styles.navbarContainer}>
-      <ul className={styles.navbar}>
+    <NavbarContainer>
+      <NavLinksContainer>
         {navLinks.map((link) => {
           return (
             <li key={link}>
-              <button
+              <NavLink
                 id={link}
                 onClick={() => handleRoute(link === "home" ? "/" : `/${link}`)}
               >
                 <div>{link}</div>
-              </button>
+              </NavLink>
             </li>
           );
         })}
-      </ul>
-    </div>
+      </NavLinksContainer>
+    </NavbarContainer>
   );
 };
 

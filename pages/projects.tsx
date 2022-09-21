@@ -1,10 +1,10 @@
-import styles from "../styles/projects.module.css";
+import { PageContainer } from "../styles/projects";
 
 const Projects = () => {
   return (
-    <div className={`${styles.projects} test`}>
+    <PageContainer>
       <h1>PROJECTS</h1>
-    </div>
+    </PageContainer>
   );
 };
 

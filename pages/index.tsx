@@ -2,11 +2,10 @@ import gsap from "gsap";
 import { useContext, useRef } from "react";
 import { TransitionContext } from "../context/TransitionContext";
 import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
-import styles from "../styles/homepage.module.css";
+import { PageContainer, Span } from "../styles/home";
 
 const HomePage = () => {
-  const aref = useRef<HTMLDivElement | null>(null);
-  const spanref = useRef<HTMLSpanElement | null>(null);
+  const spanref = useRef<HTMLDivElement | null>(null);
   const { timeline, setBackgroundColor } = useContext(TransitionContext);
 
   useIsoMorphicLayoutEffect(() => {
@@ -34,11 +33,9 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div id="home" ref={aref} className={`${styles.main} `}>
-      <span ref={spanref} className={styles.span}>
-        HOME
-      </span>
-    </div>
+    <PageContainer id="home">
+      <Span ref={spanref}>HOME</Span>
+    </PageContainer>
   );
 };
 

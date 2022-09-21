@@ -1,10 +1,10 @@
-import styles from "../styles/stack.module.css";
+import { PageContainer } from "../styles/stack";
 
 const Stack = () => {
   return (
-    <div className={`${styles.stack} test`}>
+    <PageContainer>
       <h1>STACK</h1>
-    </div>
+    </PageContainer>
   );
 };
 

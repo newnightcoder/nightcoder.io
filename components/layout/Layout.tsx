@@ -1,16 +1,16 @@
-// import { Flip } from "gsap/dist/Flip";
-import Hero from "../Hero/Hero";
-import Navbar from "../navbar/Navbar";
-import styles from "./layout.module.css";
+import { forwardRef, PropsWithChildren } from "react";
+import Navbar from "../Navbar/Navbar";
+import { LayoutContainer, PageContainer } from "./LayoutStyled";
 
-const Layout = ({ children }) => {
+interface Props extends PropsWithChildren {}
+
+const Layout = forwardRef<HTMLDivElement, Props>(({ children }, ref) => {
   return (
-    <div className={styles.layout}>
+    <LayoutContainer ref={ref}>
       <Navbar />
-      <Hero />
-      <div className={`${styles.pageContainer}`}>{children}</div>
-    </div>
+      <PageContainer>{children}</PageContainer>
+    </LayoutContainer>
   );
-};
+});
 
 export default Layout;

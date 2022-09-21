@@ -1,12 +1,14 @@
 import gsap from "gsap";
 import { useContext, useRef, useState } from "react";
+import Layout from "../components/Layout/Layout";
 import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
+import { GlobalStyles } from "../styles/_globals";
 import { TransitionContext } from "./TransitionContext";
 
 const TransitionLayout = ({ children }) => {
   const { timeline, backgroundColor } = useContext(TransitionContext);
   const [nextChildren, setNextChildren] = useState(children);
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement | null>(null);
 
   useIsoMorphicLayoutEffect(() => {
     if (children === nextChildren) return;
@@ -28,9 +30,10 @@ const TransitionLayout = ({ children }) => {
   }, [backgroundColor]);
 
   return (
-    <div ref={ref} style={{ border: "2px solid red" }}>
-      {nextChildren}
-    </div>
+    <>
+      <GlobalStyles />
+      <Layout ref={ref}>{nextChildren}</Layout>
+    </>
   );
 };
 

@@ -1,10 +1,10 @@
-import styles from "../styles/contact.module.css";
+import { PageContainer } from "../styles/contact";
 
 const Contact = () => {
   return (
-    <div className={`${styles.contact} test`}>
+    <PageContainer>
       <h1>CONTACT</h1>
-    </div>
+    </PageContainer>
   );
 };
 export default Contact;

@@ -1,3 +1,7 @@
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyles = createGlobalStyle`
+
 :root {
   --light-mode-bg: white;
   --dark-mode-bg: black;
@@ -10,7 +14,7 @@
   --navbar-height: 4rem;
   --hero-height: 6rem;
   /* --navbar-bg-color: linear-gradient(to right, #fcb900, #ff6900, #cf2e2e); */
-  --navbar-bg-color: black;
+  --navbar-bg-color: white;
   --page-title-width: 200px;
 }
 
@@ -30,7 +34,9 @@ body {
 * button:hover {
   cursor: pointer;
 }
-/* DARK MODE / prefers-color-scheme */
+
+// DARK MODE / prefers-color-scheme 
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -40,3 +46,8 @@ body {
     background: var(--dark-mode-bg);
   }
 }
+
+
+
+
+`;

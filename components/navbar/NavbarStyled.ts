@@ -1,28 +1,31 @@
-.navbarContainer {
+import styled from "styled-components";
+
+const NavbarContainer = styled.div`
+  position: fixed;
+  inset: 0;
   width: 100%;
   height: 4rem;
-  background: white;
   grid-row: 1;
   background: var(--navbar-bg-color);
-  color: var(--text-color-dark);
   display: flex;
   align-items: center;
   justify-content: center;
-}
+  z-index: 1000;
+`;
 
-.navbar {
+const NavLinksContainer = styled.ul`
   list-style-type: none;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  border: 1px solid yellow;
-}
+`;
 
-.navbar > * button {
+const NavLink = styled.button`
   outline: none;
   border: none;
   background-color: inherit;
-  color: var(--text-color-dark);
-}
+`;
+
+export { NavbarContainer, NavLinksContainer, NavLink };

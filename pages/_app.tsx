@@ -1,8 +1,7 @@
 import AppHead from "../components/AppHead";
-import Layout from "../components/layout/layout";
 import { TransitionProvider } from "../context/TransitionContext";
 import TransitionLayout from "../context/TransitionLayout";
-import "../styles/_globals.css";
+// import "../styles/_globals.css";
 
 const MyApp = ({ Component, pageProps }) => {
   return (
@@ -10,9 +9,7 @@ const MyApp = ({ Component, pageProps }) => {
       <AppHead />
       <TransitionProvider>
         <TransitionLayout>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <Component {...pageProps} />
         </TransitionLayout>
       </TransitionProvider>
     </>
