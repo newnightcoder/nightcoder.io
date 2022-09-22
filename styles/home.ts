@@ -11,10 +11,13 @@ const PageContainer = styled.div`
 `;
 
 const Span = styled.span`
-  visibility: hidden;
-  opacity: 0;
-  border: 2px solid white;
   color: var(--text-color-dark);
 `;
 
-export { PageContainer, Span };
+const SpanContainer = styled.span`
+  visibility: hidden;
+  opacity: 0;
+  border: 2px solid white;
+`;
+
+export { PageContainer, Span, SpanContainer };

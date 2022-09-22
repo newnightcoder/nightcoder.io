@@ -2,6 +2,7 @@
 /fonts
 .htaccess
 transition.md
+next-with-styledcomponents.md
 
 # dependencies
 /node_modules

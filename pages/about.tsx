@@ -1,17 +1,21 @@
-import { useContext } from "react";
-import { TransitionContext } from "../context/TransitionContext";
+import { useRef } from "react";
 import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
+import { useTransitionBackground } from "../hooks/useTransitionBackground";
 import { PageContainer } from "../styles/about";
 
 const About = () => {
-  const { timeline, backgroundColor, setBackgroundColor } =
-    useContext(TransitionContext);
+  const ref = useRef<HTMLDivElement | null>(null);
+  const handleBackground = useTransitionBackground();
 
   useIsoMorphicLayoutEffect(() => {
-    setBackgroundColor("#4ade80");
+    if (ref.current) return handleBackground(ref.current.id);
   }, []);
 
-  return <PageContainer id="about">ABOUT</PageContainer>;
+  return (
+    <PageContainer ref={ref} id="about">
+      ABOUT
+    </PageContainer>
+  );
 };
 
 export default About;

@@ -24,7 +24,7 @@ const TransitionLayout = ({ children }) => {
     if (ref.current) {
       gsap.to(ref.current, {
         backgroundColor: backgroundColor,
-        duration: 1,
+        duration: 0.5,
       });
     }
   }, [backgroundColor]);

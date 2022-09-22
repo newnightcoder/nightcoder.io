@@ -1,6 +1,9 @@
 import Document, { DocumentContext } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
+// to allow SSR of css-in-js StyledComponent!! 💅🏾
+// = solution to FOUC!!! 🤩🚀
+
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();

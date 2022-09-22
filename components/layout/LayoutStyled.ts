@@ -8,9 +8,9 @@ const LayoutContainer = styled.div`
     );
 `;
 
-const PageContainer = styled.div`
+const Main = styled.div`
   height: 100%;
   width: 100%;
 `;
 
-export { LayoutContainer, PageContainer };
+export { LayoutContainer, Main };
