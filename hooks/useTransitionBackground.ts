@@ -5,11 +5,13 @@ export const useTransitionBackground = () => {
   const { setBackgroundColor } = useContext(TransitionContext);
 
   const colors = {
-    home: "#000",
-    about: "#4ade80",
-    projects: "#525252",
-    stack: "#ef4444",
-    contact: "#3b82f6",
+    // home: "linear-gradient(90deg, #110066, black)",
+    home: "linear-gradient(90deg, rgb(10,10,10), rgb(0,0,0))",
+    about: "linear-gradient(90deg, #34d399, #34d399)",
+    // about: "#4ade80",
+    projects: "linear-gradient(90deg, #525252, #525252)",
+    stack: "linear-gradient(90deg, #ef4444, #ef4444)",
+    contact: "linear-gradient(90deg, #3b82f6, #3b82f6)",
   };
 
   const handleBackground = (id: string) => {

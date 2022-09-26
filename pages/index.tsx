@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import HomeAnimation from "../animations/Home";
+import HomeAnimation from "../animations/HomeAnimation";
 import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
 import { useTransitionBackground } from "../hooks/useTransitionBackground";
 import { PageContainer, Span } from "../styles/home";

@@ -6,25 +6,25 @@ import { GlobalStyles } from "../styles/_globals";
 import { TransitionContext } from "./TransitionContext";
 
 const TransitionLayout = ({ children }) => {
-  const { timeline, backgroundColor } = useContext(TransitionContext);
+  const { timelinePages, backgroundColor } = useContext(TransitionContext);
   const [nextChildren, setNextChildren] = useState(children);
   const ref = useRef<HTMLDivElement | null>(null);
 
   useIsoMorphicLayoutEffect(() => {
     if (children === nextChildren) return;
-    if (timeline.duration() === 0) return setNextChildren(children);
-    timeline.play().then(() => {
+    if (timelinePages.duration() === 0) return setNextChildren(children);
+    timelinePages.play().then(() => {
       // out animation is complete so reset timeline to an empty paused timeline
-      timeline.pause().clear();
+      timelinePages.pause().clear();
       setNextChildren(children);
     });
   }, [children]);
 
   useIsoMorphicLayoutEffect(() => {
-    if (ref.current) {
+    if (ref.current && ref.current.firstElementChild.id !== "home") {
       gsap.to(ref.current, {
-        backgroundColor: backgroundColor,
-        duration: 0.5,
+        background: backgroundColor,
+        duration: 2,
       });
     }
   }, [backgroundColor]);
