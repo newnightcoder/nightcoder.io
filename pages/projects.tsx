@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import HomeAnimation from "../animations/HomeAnimation";
 import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
 import { useTransitionBackground } from "../hooks/useTransitionBackground";
 import { PageContainer } from "../styles/projects";
@@ -13,7 +14,9 @@ const Projects = () => {
 
   return (
     <PageContainer ref={ref} id="projects">
-      <h1>PROJECTS</h1>
+      <HomeAnimation>
+        <h1>PROJECTS</h1>
+      </HomeAnimation>
     </PageContainer>
   );
 };

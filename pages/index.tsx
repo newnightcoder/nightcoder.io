@@ -2,7 +2,7 @@ import { useRef } from "react";
 import HomeAnimation from "../animations/HomeAnimation";
 import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
 import { useTransitionBackground } from "../hooks/useTransitionBackground";
-import { PageContainer, Span } from "../styles/home";
+import { Container, PageContainer } from "../styles/home";
 
 const HomePage = ({ props }) => {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -15,7 +15,7 @@ const HomePage = ({ props }) => {
   return (
     <PageContainer ref={ref} id="home">
       <HomeAnimation>
-        <Span>HOME</Span>
+        <Container>HOME</Container>
       </HomeAnimation>
     </PageContainer>
   );

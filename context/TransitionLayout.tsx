@@ -6,7 +6,8 @@ import { GlobalStyles } from "../styles/_globals";
 import { TransitionContext } from "./TransitionContext";
 
 const TransitionLayout = ({ children }) => {
-  const { timelinePages, backgroundColor } = useContext(TransitionContext);
+  const { timelinePages, backgroundColor, isMenuOpen } =
+    useContext(TransitionContext);
   const [nextChildren, setNextChildren] = useState(children);
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -21,13 +22,17 @@ const TransitionLayout = ({ children }) => {
   }, [children]);
 
   useIsoMorphicLayoutEffect(() => {
-    if (ref.current && ref.current.firstElementChild.id !== "home") {
+    if (
+      ref.current &&
+      ref.current.firstElementChild.id !== "home" &&
+      !isMenuOpen
+    ) {
       gsap.to(ref.current, {
         background: backgroundColor,
         duration: 2,
       });
     }
-  }, [backgroundColor]);
+  }, [backgroundColor, isMenuOpen]);
 
   return (
     <>

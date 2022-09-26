@@ -34,19 +34,6 @@ const NavbarContainer = styled.div`
   backdrop-filter: saturate(180%) blur(5px);
 `;
 
-const LogoContainer = styled.div`
-  height: 100%;
-  width: max-content;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid white;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
 const HamburgerBtn = styled.button`
   position: fixed;
   right: 0.5rem;
@@ -60,11 +47,11 @@ const HamburgerBtn = styled.button`
 `;
 
 const NavLinksContainer = styled.ul`
-  display: var(--navbar-links-visibility);
   height: 100%;
-  width: max-content;
+  width: 100%;
+  display: var(--navbar-links-visibility);
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   & > * + * {
     margin-left: 3rem;
   }
@@ -87,6 +74,5 @@ export {
   NavLinksContainer,
   NavLink,
   NavBtn,
-  LogoContainer,
   HamburgerBtn,
 };

@@ -1,7 +1,9 @@
 import { useRef } from "react";
+import HomeAnimation from "../animations/HomeAnimation";
 import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
 import { useTransitionBackground } from "../hooks/useTransitionBackground";
 import { PageContainer } from "../styles/about";
+import { Container } from "../styles/home";
 
 const About = () => {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -13,7 +15,11 @@ const About = () => {
 
   return (
     <PageContainer ref={ref} id="about">
-      ABOUT
+      <HomeAnimation>
+        <Container>
+          <h1>About</h1>
+        </Container>
+      </HomeAnimation>
     </PageContainer>
   );
 };

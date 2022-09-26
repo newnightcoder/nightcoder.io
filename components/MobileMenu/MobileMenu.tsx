@@ -11,7 +11,7 @@ const MobileMenu = () => {
   const [child, setChild] = useState<ReactNode | null>(null);
   const [height, setHeight] = useState(null);
   const [width, setWidth] = useState(null);
-  const { isMenuOpen, timelineMenu } = useContext(TransitionContext);
+  const { isMenuOpen } = useContext(TransitionContext);
 
   const setSize = () => {
     if (typeof window !== undefined) {

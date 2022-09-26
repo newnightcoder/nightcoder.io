@@ -4,6 +4,7 @@ import {
   Dispatch,
   PropsWithChildren,
   SetStateAction,
+  useCallback,
   useState,
 } from "react";
 
@@ -18,8 +19,9 @@ type TransitionContext = {
   setIsMenuOpen?: Dispatch<SetStateAction<boolean>>;
   isMenuAnim?: boolean;
   setIsMenuAnim?: Dispatch<SetStateAction<boolean>>;
-  test?: boolean;
-  setTest?: Dispatch<SetStateAction<boolean>>;
+  isMenuClosing?: boolean;
+  setisMenuClosing?: Dispatch<SetStateAction<boolean>>;
+  toggleMenu?: (toggled: boolean) => void;
 };
 interface Props extends PropsWithChildren {}
 
@@ -32,14 +34,29 @@ const TransitionProvider = ({ children }: Props) => {
   const [backgroundColor, setBackgroundColor] = useState("#000");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuAnim, setIsMenuAnim] = useState(false);
-  const [test, setTest] = useState(false);
+  const [isMenuClosing, setIsMenuClosing] = useState(false);
 
   const [timelineMenu, setTimelineMenu] = useState(() =>
     gsap.timeline({
       paused: true,
-      onStart: () => setTest(true),
-      onComplete: () => setTest(false),
+      onStart: () => setIsMenuClosing(true),
+      onComplete: () => setIsMenuClosing(false),
     })
+  );
+
+  const toggleMenu = useCallback(
+    (bool: boolean) => {
+      if (isMenuAnim) return;
+      if (bool) {
+        setIsMenuOpen(true);
+      } else {
+        timelineMenu.play().then(() => {
+          timelineMenu.pause().clear();
+          setIsMenuOpen(false);
+        });
+      }
+    },
+    [isMenuAnim, setIsMenuOpen, timelineMenu]
   );
 
   return (
@@ -54,7 +71,8 @@ const TransitionProvider = ({ children }: Props) => {
           setIsMenuOpen,
           isMenuAnim,
           setIsMenuAnim,
-          test,
+          isMenuClosing,
+          toggleMenu,
         }}
       >
         {children}

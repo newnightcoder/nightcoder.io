@@ -10,14 +10,15 @@ const PageContainer = styled.div`
   // border: 4px solid #34d399;
 `;
 
-const Span = styled.span`
+const Container = styled.div`
   color: var(--text-dark);
+  border: 2px solid red;
 `;
 
-const AnimationContainer = styled.span`
+const AnimationContainer = styled.div`
   visibility: hidden;
   opacity: 0;
   transform: translateY(4rem);
 `;
 
-export { PageContainer, Span, AnimationContainer };
+export { PageContainer, Container, AnimationContainer };
