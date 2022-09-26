@@ -18,6 +18,8 @@ type TransitionContext = {
   setIsMenuOpen?: Dispatch<SetStateAction<boolean>>;
   isMenuAnim?: boolean;
   setIsMenuAnim?: Dispatch<SetStateAction<boolean>>;
+  test?: boolean;
+  setTest?: Dispatch<SetStateAction<boolean>>;
 };
 interface Props extends PropsWithChildren {}
 
@@ -30,10 +32,13 @@ const TransitionProvider = ({ children }: Props) => {
   const [backgroundColor, setBackgroundColor] = useState("#000");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuAnim, setIsMenuAnim] = useState(false);
+  const [test, setTest] = useState(false);
 
   const [timelineMenu, setTimelineMenu] = useState(() =>
     gsap.timeline({
       paused: true,
+      onStart: () => setTest(true),
+      onComplete: () => setTest(false),
     })
   );
 
@@ -49,6 +54,7 @@ const TransitionProvider = ({ children }: Props) => {
           setIsMenuOpen,
           isMenuAnim,
           setIsMenuAnim,
+          test,
         }}
       >
         {children}

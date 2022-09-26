@@ -24,6 +24,7 @@ html {
 
   --navbar-links-visibility: none;
   --hamburger-visibility: flex;
+  --navbar-padding-right: 0;
   
   /* TEXT COLORS */
   
@@ -55,6 +56,7 @@ html {
   @media screen and (min-width: ${breakpoints.md}){
     --navbar-links-visibility: flex;
     --hamburger-visibility: none;
+    --navbar-padding-right: 4rem;
 
   
   }
@@ -81,6 +83,11 @@ body {
 
 * ul{
   list-style-type: none;
+}
+
+* a{
+  text-decoration:none;
+  color:inherit;
 }
 
 

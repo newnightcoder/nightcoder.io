@@ -27,7 +27,6 @@ const MobileMenu = () => {
 
   useIsoMorphicLayoutEffect(() => {
     if (!isMenuOpen) return setChild(null);
-
     setChild(menu);
   }, [isMenuOpen]);
 

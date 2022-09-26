@@ -1,9 +1,7 @@
 import gsap from "gsap";
 import { PropsWithChildren, useContext, useRef, useState } from "react";
-import {
-  AnimationContainer,
-  MenuContainer,
-} from "../components/MobileMenu/MobileMenuStyled";
+import Menu from "../components/MobileMenu/Menu";
+import { AnimationContainer } from "../components/MobileMenu/MobileMenuStyled";
 import { TransitionContext } from "../context/TransitionContext";
 import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
 
@@ -79,7 +77,7 @@ const MobileMenuAnimation = ({ children }: Props) => {
 
   return (
     <AnimationContainer ref={ref}>
-      <MenuContainer />
+      <Menu />
     </AnimationContainer>
   );
 };

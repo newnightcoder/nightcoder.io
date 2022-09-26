@@ -4,6 +4,7 @@ interface Props {
   height?: number;
   width?: number;
   isMenuOpen?: boolean;
+  index?: number;
 }
 
 const Container = styled.div<Props>`
@@ -55,26 +56,46 @@ const MenuContainer = styled.div<Props>`
   color: var(--text-dark);
 `;
 
-const Box2 = styled.div<Props>`
-  height: 90vh;
-  width: 90vw;
+const BtnContainer = styled.div<Props>`
+  height: max-content;
+  width: 100%;
+  padding: 0 5vw 0 4vw;
   overflow: hidden;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
-  border: 2px solid pink;
-  background: transparent;
-  // transform: rotateX(-45deg);
-  // transform-origin: top left;
-`;
-const Box3 = styled.div<Props>`
-  height: 50%;
-  width: 50%;
-  border: 2px solid red;
-  background: yellow;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  & > * + * {
+    margin-top: 2rem;
+  }
 `;
 
-export { Container, AnimationContainer, MenuContainer, Box2, Box3 };
+const Btn = styled.button<Props>`
+  position: relative;
+  width: 100%;
+  text-align: left;
+  color: var(--text-dark);
+  font-size: 2.5rem;
+  padding-left: 30px;
+  // border: 1px solid white;
+  &::before {
+    content: "0${(props) => props.index}";
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+  }
+  &::after {
+    // content: "\\003E";
+    content: ">";
+    display: inline;
+    position: absolute;
+    top: 50%;
+    right: -0rem;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+  }
+`;
+
+export { Container, AnimationContainer, MenuContainer, BtnContainer, Btn };

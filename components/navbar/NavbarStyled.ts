@@ -24,7 +24,7 @@ const NavbarContainer = styled.div`
   height: 100%;
   width: 100%;
   position: absolute;
-  padding-right: 4rem;
+  padding-right: var(--navbar-padding-right);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -36,10 +36,12 @@ const NavbarContainer = styled.div`
 
 const LogoContainer = styled.div`
   height: 100%;
-  width: 12rem;
+  width: max-content;
+  padding: 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid white;
   &:hover {
     cursor: pointer;
   }
@@ -47,7 +49,7 @@ const LogoContainer = styled.div`
 
 const HamburgerBtn = styled.button`
   position: fixed;
-  right: 3rem;
+  right: 0.5rem;
   z-index: 2500;
   height: var(--navbar-height);
   width: max-content;
