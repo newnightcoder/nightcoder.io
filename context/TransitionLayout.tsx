@@ -1,14 +1,16 @@
 import gsap from "gsap";
 import { useContext, useRef, useState } from "react";
 import Layout from "../components/Layout/Layout";
+import Loader from "../components/Loader/Loader";
 import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
 import { GlobalStyles } from "../styles/_globals";
 import { TransitionContext } from "./TransitionContext";
 
 const TransitionLayout = ({ children }) => {
+  const [isLoading, setisLoading] = useState(true);
+  const [nextChildren, setNextChildren] = useState(children);
   const { timelinePages, backgroundColor, isMenuOpen } =
     useContext(TransitionContext);
-  const [nextChildren, setNextChildren] = useState(children);
   const ref = useRef<HTMLDivElement | null>(null);
 
   useIsoMorphicLayoutEffect(() => {
@@ -37,7 +39,11 @@ const TransitionLayout = ({ children }) => {
   return (
     <>
       <GlobalStyles />
-      <Layout ref={ref}>{nextChildren}</Layout>
+      {isLoading ? (
+        <Loader set={setisLoading} />
+      ) : (
+        <Layout ref={ref}>{nextChildren}</Layout>
+      )}
     </>
   );
 };
