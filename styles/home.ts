@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
 const PageContainer = styled.div`
-  grid-row: 2;
-  min-height: 100vh;
+  min-height: 100%;
   color: var(--text-dark);
   display: flex;
   align-items: center;
   justify-content: center;
-  // border: 4px solid #34d399;
 `;
 
 const Container = styled.div`

@@ -1,17 +1,21 @@
 import gsap from "gsap";
-import { useContext, useRef, useState } from "react";
+import { PropsWithChildren, useContext, useRef, useState } from "react";
+import Background from "../components/Background/Background";
 import Layout from "../components/Layout/Layout";
 import Loader from "../components/Loader/Loader";
 import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
 import { GlobalStyles } from "../styles/_globals";
 import { TransitionContext } from "./TransitionContext";
 
-const TransitionLayout = ({ children }) => {
+interface Props extends PropsWithChildren {}
+
+const TransitionLayout = ({ children }: Props) => {
   const [isLoading, setisLoading] = useState(true);
   const [nextChildren, setNextChildren] = useState(children);
   const { timelinePages, backgroundColor, isMenuOpen } =
     useContext(TransitionContext);
-  const ref = useRef<HTMLDivElement | null>(null);
+  const layoutRef = useRef<HTMLDivElement | null>(null);
+  const bgRef = useRef<HTMLDivElement | null>(null);
 
   useIsoMorphicLayoutEffect(() => {
     if (children === nextChildren) return;
@@ -25,11 +29,12 @@ const TransitionLayout = ({ children }) => {
 
   useIsoMorphicLayoutEffect(() => {
     if (
-      ref.current &&
-      ref.current.firstElementChild.id !== "home" &&
+      layoutRef.current &&
+      layoutRef.current.firstElementChild.id !== "home" &&
+      bgRef.current &&
       !isMenuOpen
     ) {
-      gsap.to(ref.current, {
+      gsap.to(bgRef.current, {
         background: backgroundColor,
         duration: 2,
       });
@@ -42,7 +47,10 @@ const TransitionLayout = ({ children }) => {
       {isLoading ? (
         <Loader set={setisLoading} />
       ) : (
-        <Layout ref={ref}>{nextChildren}</Layout>
+        <Layout ref={layoutRef}>
+          <Background ref={bgRef} />
+          {nextChildren}
+        </Layout>
       )}
     </>
   );

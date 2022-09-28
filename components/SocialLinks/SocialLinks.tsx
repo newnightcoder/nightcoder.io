@@ -40,7 +40,7 @@ const SocialLinks = () => {
       const duration = 0.7;
       setAnim(
         tl.to(ref.current.children, {
-          y: -65,
+          yPercent: -110,
           stagger: duration / 3,
           duration: duration,
           ease: CustomEase.create(

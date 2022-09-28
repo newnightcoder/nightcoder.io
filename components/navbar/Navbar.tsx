@@ -11,7 +11,7 @@ import {
 const Navbar = () => {
   const handleRoute = useHandleRoute();
 
-  const navLinks = ["about", "projects", "stack", "contact"];
+  const navLinks = ["home", "about", "projects", "stack", "contact"];
 
   return (
     <Wrapper>

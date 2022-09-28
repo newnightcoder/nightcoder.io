@@ -5,7 +5,6 @@ import Logo from "../Logo/Logo";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import Navbar from "../Navbar/Navbar";
 import { HamburgerBtn } from "../Navbar/NavbarStyled";
-import SocialLinks from "../SocialLinks/SocialLinks";
 import { LayoutContainer, Main } from "./LayoutStyled";
 
 interface Props extends PropsWithChildren {}
@@ -27,7 +26,7 @@ const Layout = forwardRef<HTMLDivElement, Props>(({ children }, ref) => {
       </HamburgerBtn>
       <MobileMenu />
       <Main>{children}</Main>
-      <SocialLinks />
+      {/* <SocialLinks /> */}
     </LayoutContainer>
   );
 });

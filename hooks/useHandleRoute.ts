@@ -5,7 +5,9 @@ export const useHandleRoute = () => {
   const { pathname } = router;
 
   const handleRoute = (path: string) => {
-    pathname === path
+    const samePage = pathname === path;
+    const samePageHome = pathname === "/" && path === "/home";
+    samePage || samePageHome
       ? undefined
       : path === "/home"
       ? router.push("/")

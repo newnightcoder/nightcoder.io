@@ -71,6 +71,11 @@ body {
   font-family: Arial, sans-serif;
 }
 
+
+.noscroll {
+  overflow: hidden;
+}
+
 * button {
   outline: none;
   border: none;

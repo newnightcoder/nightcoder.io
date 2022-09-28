@@ -12,7 +12,7 @@ const Loader = ({ set }: Props) => {
 
   useIsoMorphicLayoutEffect(() => {
     const anim = gsap.to(ref.current, {
-      autoAlpha: 0,
+      // autoAlpha: 0,
       duration: 4,
       onComplete: () => set(false),
     });

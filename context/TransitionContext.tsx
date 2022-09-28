@@ -31,7 +31,7 @@ const TransitionProvider = ({ children }: Props) => {
   const [timelinePages, setTimelinePages] = useState(() =>
     gsap.timeline({ paused: true })
   );
-  const [backgroundColor, setBackgroundColor] = useState("#000");
+  const [backgroundColor, setBackgroundColor] = useState("#34d399");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuAnim, setIsMenuAnim] = useState(false);
   const [isMenuClosing, setIsMenuClosing] = useState(false);

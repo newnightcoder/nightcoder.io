@@ -15,13 +15,14 @@ const Container = styled.div<Props>`
   z-index: ${(props) => (props.isMenuOpen ? 2000 : -1000)};
   opacity: ${(props) => (props.isMenuOpen ? 1 : 0)};
   visibility: ${(props) => (props.isMenuOpen ? "visible" : "hidden")};
-  overflow: hidden;
 `;
 
 const AnimationContainer = styled.div<Props>`
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  will-change: transform;
+  overflow-y: scroll;
+  border: 2px solid blue;
   //////////////////////////////////////////////////////////////////////////
   // Octagon + variables to manage the clip-path animation                //
   // = 3 points on each side move and the 2 diagonal points dont move 😎 //
@@ -49,21 +50,35 @@ const AnimationContainer = styled.div<Props>`
 const MenuContainer = styled.div<Props>`
   height: 100%;
   width: 100%;
+  overflow: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: var(--menu-bg);
   color: var(--text-dark);
 `;
 
-const BtnContainer = styled.div<Props>`
-  height: max-content;
+const OverflowWrapper = styled.div`
+  height: 100%;
   width: 100%;
+  padding-top: calc(var(--navbar-height) + 2rem);
+  overflow-y: auto;
+  border: 2px solid red;
+  display: grid;
+  align-items: place-items-center;
+`;
+
+const BtnContainer = styled.div<Props>`
+  border: 2px solid yellow;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  margin: auto 0;
   padding: 0 5vw 0 4vw;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   & > * + * {
     margin-top: 2rem;
@@ -72,6 +87,7 @@ const BtnContainer = styled.div<Props>`
 
 const Btn = styled.button<Props>`
   position: relative;
+  height: max-content;
   width: 100%;
   text-align: left;
   color: var(--text-dark);
@@ -98,4 +114,11 @@ const Btn = styled.button<Props>`
   }
 `;
 
-export { Container, AnimationContainer, MenuContainer, BtnContainer, Btn };
+export {
+  Container,
+  AnimationContainer,
+  MenuContainer,
+  OverflowWrapper,
+  BtnContainer,
+  Btn,
+};

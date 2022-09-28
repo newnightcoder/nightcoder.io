@@ -8,7 +8,8 @@ const Container = styled.div`
   justify-content: center;
   color: white;
   position: fixed;
-  bottom: -5vh;
+  bottom: 0;
+  transform: translateY(100%);
   z-index: 3000;
   margin-left: calc(2rem - 10px);
   & > * + * {
