@@ -31,4 +31,5 @@ const Layout = forwardRef<HTMLDivElement, Props>(({ children }, ref) => {
   );
 });
 
+Layout.displayName = "Layout";
 export default Layout;
