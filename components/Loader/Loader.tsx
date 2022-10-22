@@ -19,7 +19,11 @@ const Loader = ({ set }: Props) => {
     anim.play();
   }, []);
 
-  return <Container ref={ref}>Daniel Julien Lima</Container>;
+  return (
+    <Container ref={ref}>
+      <div>Daniel Julien Lima</div> <div>portfolio</div>
+    </Container>
+  );
 };
 
 export default Loader;
