@@ -1,12 +1,48 @@
-vscode-dark-color-theme.json
 /img
 /fonts
 .htaccess
-Screen Shot 2021-05-11 at 19.22.40.png
-Screen Shot 2021-05-11 at 20.53.30.png
-Screen Shot 2021-05-13 at 17.30.07.png
+<<<<<<< HEAD
 .next/
 next-env.d.ts
 next-with-styledcomponents.md
 node_modules/
 transition.md
+=======
+transition.md
+next-with-styledcomponents.md
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+>>>>>>> next-design
