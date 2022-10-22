@@ -5,7 +5,7 @@ import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
 import { useTransitionBackground } from "../hooks/useTransitionBackground";
 import { Container, PageContainer } from "../styles/home";
 
-const HomePage = ({ props }) => {
+const HomePage = () => {
   const ref = useRef<HTMLDivElement | null>(null);
   const handleBackground = useTransitionBackground();
   const { isMenuOpen } = useContext(TransitionContext);
