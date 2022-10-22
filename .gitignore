@@ -5,3 +5,8 @@ vscode-dark-color-theme.json
 Screen Shot 2021-05-11 at 19.22.40.png
 Screen Shot 2021-05-11 at 20.53.30.png
 Screen Shot 2021-05-13 at 17.30.07.png
+.next/
+next-env.d.ts
+next-with-styledcomponents.md
+node_modules/
+transition.md
