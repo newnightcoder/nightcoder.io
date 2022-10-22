@@ -24,7 +24,7 @@ const SpanWrapper = styled.div`
 
 const SpanTop = styled.span`
   padding: 0 20px;
-  font-size: 4rem;
+  font-size: 7vw;
   font-weight: bold;
   font-family: helvetica;
   background-clip: text;
@@ -34,7 +34,7 @@ const SpanTop = styled.span`
 `;
 const SpanBtm = styled.span`
   padding: 0 20px;
-  font-size: 4rem;
+  font-size: 7vw;
   font-weight: bold;
   font-family: helvetica;
   background-clip: text;
@@ -57,9 +57,9 @@ const Footer = styled.footer`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.05);
 `;
 
 export { Container, Footer, SpanTop, SpanBtm, Line, SpanWrapper };
