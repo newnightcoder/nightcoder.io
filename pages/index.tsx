@@ -9,6 +9,7 @@ const HomePage = () => {
   const ref = useRef<HTMLDivElement | null>(null);
   const handleBackground = useTransitionBackground();
   const { isMenuOpen } = useContext(TransitionContext);
+
   useIsoMorphicLayoutEffect(() => {
     ref.current && handleBackground(ref.current.id);
   }, []);

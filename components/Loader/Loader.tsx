@@ -12,15 +12,14 @@ const Loader = ({ set }: Props) => {
 
   useIsoMorphicLayoutEffect(() => {
     const anim = gsap.to(ref.current, {
-      // autoAlpha: 0,
       duration: 4,
-      onComplete: () => set(false),
+      // onComplete: () => set(false),
     });
 
     anim.play();
   }, []);
 
-  return <Container ref={ref}>Loader</Container>;
+  return <Container ref={ref}>Daniel Julien Lima</Container>;
 };
 
 export default Loader;
