@@ -1,7 +1,14 @@
 import gsap from "gsap";
 import { Dispatch, PropsWithChildren, SetStateAction, useRef } from "react";
 import { useIsoMorphicLayoutEffect } from "../../hooks/useIsoMorphicLayoutEffect";
-import { Container } from "./LoaderStyled";
+import {
+  Container,
+  Footer,
+  Line,
+  SpanBtm,
+  SpanTop,
+  SpanWrapper,
+} from "./LoaderStyled";
 
 interface Props extends PropsWithChildren {
   set: Dispatch<SetStateAction<boolean>>;
@@ -21,7 +28,12 @@ const Loader = ({ set }: Props) => {
 
   return (
     <Container ref={ref}>
-      <div>Daniel Julien Lima</div> <div>portfolio</div>
+      <SpanWrapper>
+        <SpanTop>Daniel Julien Lima</SpanTop>
+        <Line />
+        <SpanBtm>Frontend Developer</SpanBtm>
+      </SpanWrapper>
+      <Footer>🛠 Under construction - 2022 </Footer>
     </Container>
   );
 };
