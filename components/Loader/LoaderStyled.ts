@@ -58,8 +58,8 @@ const Footer = styled.footer`
   align-items: center;
   justify-content: center;
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.25);
-  background-color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.125);
 `;
 
 export { Container, Footer, SpanTop, SpanBtm, Line, SpanWrapper };
