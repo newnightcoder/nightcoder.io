@@ -1,15 +1,9 @@
 /img
 /fonts
 .htaccess
-<<<<<<< HEAD
-.next/
-next-env.d.ts
-next-with-styledcomponents.md
-node_modules/
-transition.md
-=======
 transition.md
 next-with-styledcomponents.md
+TODO
 
 # dependencies
 /node_modules
@@ -45,4 +39,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
->>>>>>> next-design

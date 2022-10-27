@@ -37,8 +37,8 @@ html {
   --dark-mode-bg: black;
   --navbar-bg: linear-gradient(to right, #fcb900, #ff6900, #cf2e2e); 
   --navbar-bg: white;
-  --navbar-bg: linear-gradient(to left, #FFB906, #FB098C, #06A5FF); 
-  // --home-bg:linear-gradient(90deg, green, black);
+  // --navbar-bg: linear-gradient(to left, #FFB906, #FB098C, #06A5FF); 
+  --navbar-bg: #222; 
   --home-bg:linear-gradient(90deg, dimgray, black);
   --menu-bg:#06A5FF;
   
