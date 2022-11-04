@@ -5,7 +5,13 @@ import { TransitionContext } from "../context/TransitionContext";
 import { useHandleRoute } from "../hooks/useHandleRoute";
 import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
 import { useTransitionBackground } from "../hooks/useTransitionBackground";
-import { Header, Hero, HomeSection, PageContainer } from "../styles/home";
+import {
+  GradientBlue,
+  Header,
+  Hero,
+  HomeSection,
+  PageContainer,
+} from "../styles/home";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(Scrolltrigger);
@@ -49,7 +55,9 @@ const HomePage = () => {
         <Header>
           <span>Hey! I'm Daniel</span>
           <span>aka Nightcoder 😎</span>
-          <span>I'm a frontend web developer </span>
+          <span>
+            I'm a <GradientBlue>frontend web developer</GradientBlue>
+          </span>
           <span>based in Paris</span>
         </Header>
         <Hero></Hero>

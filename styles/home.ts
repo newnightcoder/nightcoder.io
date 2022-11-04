@@ -45,8 +45,18 @@ const Hero = styled.div`
   // font-size: 46px;
 `;
 
-const Gradient = styled.span`
--webkit-
+const GradientBlue = styled.span`
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, #007cf0, #00dfd8);
+`;
+
+const GradientYellow = styled.span`
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, #007cf0, #00dfd8);
 `;
 
 const AnimationContainer = styled.div`
@@ -55,4 +65,11 @@ const AnimationContainer = styled.div`
   transform: translateY(4rem);
 `;
 
-export { PageContainer, HomeSection, Header, Hero, AnimationContainer };
+export {
+  PageContainer,
+  HomeSection,
+  Header,
+  Hero,
+  GradientBlue,
+  AnimationContainer,
+};
