@@ -19,7 +19,10 @@ export const GlobalStyles = createGlobalStyle`
 
 html {
   
- 
+  /*  FONTS */
+
+  --poppins : Poppins, sans-serif;
+
   /* MOBILE FIRST VARIABLES / RESPONSIVE */
 
   --navbar-links-visibility: none;
@@ -68,7 +71,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Arial, sans-serif;
+  // font-family: Arial, sans-serif;
 }
 
 

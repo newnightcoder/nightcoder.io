@@ -30,8 +30,9 @@ const TransitionLayout = ({ children }: Props) => {
   const bgRef = useRef<HTMLDivElement | null>(null);
   const handleRoute = useHandleRoute();
   const sections = ["/", "/about", "/projects", "/stack", "/contact"];
-  const wrap = gsap.utils.wrap(0, sections.length - 1);
+  const wrap = gsap.utils.wrap(0, sections.length);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const transitionPages = useCallback(() => {
     if (children === nextChildren) return;
@@ -58,6 +59,7 @@ const TransitionLayout = ({ children }: Props) => {
 
   const goToNextSection = (index: number, direction: number) => {
     index = wrap(index);
+    // setIsAnimating(true);
     if (direction === 1) {
       handleRoute(sections[index + 1]);
       setCurrentIndex(index + 1);
@@ -65,15 +67,19 @@ const TransitionLayout = ({ children }: Props) => {
       handleRoute(sections[index - 1]);
       setCurrentIndex(index - 1);
     }
+    // setIsAnimating(false);
   };
 
-  useIsoMorphicLayoutEffect(() => {
-    Observer.create({
-      type: "wheel, touch",
-      onDown: () => goToNextSection(currentIndex, 1),
-      onUp: () => goToNextSection(currentIndex, -1),
-    });
-  }, [currentIndex]);
+  // useIsoMorphicLayoutEffect(() => {
+  //   Observer.create({
+  //     type: "wheel, touch",
+  //     wheelSpeed: 0.5,
+  //     // scrollSpeed:0.5,
+  //     onDown: () => goToNextSection(currentIndex, 1),
+  //     onUp: () => goToNextSection(currentIndex, -1),
+  //     tolerance: 200,
+  //   });
+  // }, [currentIndex]);
 
   useIsoMorphicLayoutEffect(() => {
     transitionPages();

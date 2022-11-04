@@ -75,6 +75,7 @@ const NavLink = styled.li`
 
 const NavBtn = styled.button`
   // color: var(--text-dark);
+  font-family: var(--poppins);
   font-size: 0.75rem;
 `;
 
