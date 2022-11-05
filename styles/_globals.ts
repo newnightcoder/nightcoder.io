@@ -1,4 +1,9 @@
+// import { Poppins } from "@next/font/google";
 import { createGlobalStyle } from "styled-components";
+
+// const poppins = Poppins({
+//   weight: "700",
+// });
 
 const breakpoints = {
   xs: "500px",

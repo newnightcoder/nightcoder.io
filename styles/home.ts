@@ -14,6 +14,7 @@ const PageContainer = styled.div`
 const HomeSection = styled.div`
   height: 100vh;
   width: inherit;
+  position: relative;
   padding: 0 4vw;
   display: flex;
   align-items: center;
@@ -35,14 +36,23 @@ const Header = styled.header`
 `;
 
 const Hero = styled.div`
-  width: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  // flex-direction: column;
+  align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 4.75vw;
-  // font-size: 46px;
+  // border: 1px solid red;
+  // font-weight: 700;
+  // font-size: 4.75vw;
+`;
+
+const Span = styled.span`
+  white-space: nowrap;
 `;
 
 const GradientBlue = styled.span`
@@ -56,7 +66,7 @@ const GradientYellow = styled.span`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(to right, #007cf0, #00dfd8);
+  background-image: linear-gradient(to right, #ff4d4d, #e1b106);
 `;
 
 const AnimationContainer = styled.div`
@@ -69,7 +79,9 @@ export {
   PageContainer,
   HomeSection,
   Header,
+  Span,
   Hero,
   GradientBlue,
+  GradientYellow,
   AnimationContainer,
 };
