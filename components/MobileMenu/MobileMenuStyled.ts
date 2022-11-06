@@ -7,14 +7,20 @@ interface Props {
   index?: number;
 }
 
-const Container = styled.div<Props>`
+// use of attrs because too many class changes on resize (over 200 changes)
+// so the use of attrs is recommended with following syntax:
+
+const Container = styled.div.attrs<Props>((props) => ({
+  style: {
+    height: `${props.height}px`,
+    width: `${props.width}px`,
+    zIndex: `${props.isMenuOpen ? 2000 : -1000}`,
+    opacity: `${props.isMenuOpen ? 1 : 0}`,
+    visibility: `${props.isMenuOpen ? "visible" : "hidden"}`,
+  },
+}))`
   position: fixed;
   inset: 0;
-  height: ${(props) => props.height}px;
-  width: ${(props) => props.width}px;
-  z-index: ${(props) => (props.isMenuOpen ? 2000 : -1000)};
-  opacity: ${(props) => (props.isMenuOpen ? 1 : 0)};
-  visibility: ${(props) => (props.isMenuOpen ? "visible" : "hidden")};
 `;
 
 const AnimationContainer = styled.div<Props>`
