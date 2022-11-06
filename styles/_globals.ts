@@ -1,9 +1,9 @@
-// import { Poppins } from "@next/font/google";
+// import localFont from "@next/font/local";
 import { createGlobalStyle } from "styled-components";
 
-// const poppins = Poppins({
-//   weight: "700",
-// });
+// const Poppins_fonts = {
+//   light: localFont({ src: "./fonts/Poppins/Poppins-100.ttf" }),
+// };
 
 const breakpoints = {
   xs: "500px",

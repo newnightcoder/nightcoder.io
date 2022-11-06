@@ -30,7 +30,7 @@ const Header = styled.header`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 4.75vw;
   // font-size: 46px;
 `;
