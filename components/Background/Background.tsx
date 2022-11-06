@@ -9,7 +9,7 @@ const Background = forwardRef<HTMLDivElement>((children, ref) => {
 
   return (
     <Container ref={ref} background={backgroundColor}>
-      <div
+      {/* <div
         style={{
           height: "100%",
           width: "100%",
@@ -19,9 +19,9 @@ const Background = forwardRef<HTMLDivElement>((children, ref) => {
           fontSize: "10rem",
           color: "red",
         }}
-      >
-        {/* TEST */}
-      </div>
+      > */}
+      {/* TEST */}
+      {/* </div> */}
     </Container>
   );
 });

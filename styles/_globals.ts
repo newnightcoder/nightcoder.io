@@ -27,12 +27,14 @@ html {
   /*  FONTS */
 
   --poppins : Poppins, sans-serif;
+  --fontsize-header : clamp(46px, 4.75vw, 70px);
 
   /* MOBILE FIRST VARIABLES / RESPONSIVE */
 
   --navbar-links-visibility: none;
   --hamburger-visibility: flex;
   --navbar-padding-right: 0;
+  --header-width: 100%;
   
   /* TEXT COLORS */
   
@@ -65,9 +67,10 @@ html {
     --navbar-links-visibility: flex;
     --hamburger-visibility: none;
     --navbar-padding-right: 4rem;
+    --header-width: 50%;
 
-  
   }
+
 }
 
 
@@ -76,7 +79,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  // font-family: Arial, sans-serif;
 }
 
 

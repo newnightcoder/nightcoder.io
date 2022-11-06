@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const PageContainer = styled.div`
-  min-height: 100%;
+  min-height: 100vh;
   width: 100%;
   color: var(--text-dark);
   display: flex;
@@ -25,30 +25,31 @@ const HomeSection = styled.div`
 `;
 
 const Header = styled.header`
-  width: 50%;
+  width: var(--header-width);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: 4.75vw;
-  // font-size: 46px;
+  font-size: var(--fontsize-header);
+  border: 1px solid pink;
 `;
 
 const Hero = styled.div`
+  height: 100%;
+  width: 100%;
   position: absolute;
   top: 0;
   right: 0;
+  -webkit-transform: translate3d(
+    0,
+    0,
+    0
+  ); // to make "z-index: -1" work on safari browser
   z-index: -1;
-  height: 100%;
-  width: 100%;
   display: flex;
-  // flex-direction: column;
   align-items: center;
   justify-content: center;
-  // border: 1px solid red;
-  // font-weight: 700;
-  // font-size: 4.75vw;
 `;
 
 const Span = styled.span`

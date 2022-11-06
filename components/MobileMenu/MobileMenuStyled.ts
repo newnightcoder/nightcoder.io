@@ -29,6 +29,7 @@ const AnimationContainer = styled.div<Props>`
   will-change: transform;
   overflow-y: scroll;
   border: 2px solid blue;
+
   //////////////////////////////////////////////////////////////////////////
   // Octagon + variables to manage the clip-path animation                //
   // = 3 points on each side move and the 2 diagonal points dont move 😎 //
