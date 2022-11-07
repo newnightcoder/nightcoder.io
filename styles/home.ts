@@ -3,6 +3,7 @@ import styled from "styled-components";
 const PageContainer = styled.div`
   min-height: 100vh;
   width: 100%;
+  position: relative;
   color: var(--text-dark);
   display: flex;
   flex-direction: column;
@@ -14,7 +15,6 @@ const PageContainer = styled.div`
 const HomeSection = styled.div`
   height: 100vh;
   width: inherit;
-  position: relative;
   padding: 0 4vw;
   display: flex;
   align-items: center;
@@ -22,17 +22,19 @@ const HomeSection = styled.div`
   color: var(--text-dark);
   border: 2px solid green;
   font-family: var(--poppins);
+  z-index: 10;
+  pointer-events: none;
 `;
 
 const Header = styled.header`
   width: var(--header-width);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: var(--align-header);
   justify-content: center;
   font-weight: 800;
   font-size: var(--fontsize-header);
-  border: 1px solid pink;
+  // border: 1px solid red;
 `;
 
 const Hero = styled.div`
@@ -46,10 +48,11 @@ const Hero = styled.div`
     0,
     0
   ); // to make "z-index: -1" work on safari browser
-  z-index: -1;
+  z-index: 5;
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: auto;
 `;
 
 const Span = styled.span`

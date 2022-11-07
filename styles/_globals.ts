@@ -35,7 +35,8 @@ html {
   --hamburger-visibility: flex;
   --navbar-padding-right: 0;
   --header-width: 100%;
-  
+  --align-header:center;
+
   /* TEXT COLORS */
   
   --text-light: black;
@@ -67,7 +68,9 @@ html {
     --navbar-links-visibility: flex;
     --hamburger-visibility: none;
     --navbar-padding-right: 4rem;
-    --header-width: 50%;
+    --header-width: max-content;
+    --align-header:flex-start;
+
 
   }
 

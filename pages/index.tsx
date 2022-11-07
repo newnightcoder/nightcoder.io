@@ -70,10 +70,10 @@ const HomePage = () => {
           </Span>
           <Span>based in Paris</Span>
         </Header>
-        <Hero>
-          <DiscSvg />
-        </Hero>
       </HomeSection>
+      <Hero>
+        <DiscSvg />
+      </Hero>
       {/* </HomeAnimation> */}
     </PageContainer>
   );

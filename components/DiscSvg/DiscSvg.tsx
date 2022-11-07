@@ -1,8 +1,18 @@
+import gsap from "gsap";
+import MotionPathPlugin from "gsap/dist/MotionPathPlugin";
+import { useCallback, useRef, useState } from "react";
+import { useIsoMorphicLayoutEffect } from "../../hooks/useIsoMorphicLayoutEffect";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import { CANVAS_PATH, CSS_PATH, SVG_PATH, WEBGL_PATH } from "./Paths";
 
+if (typeof window !== undefined) {
+  gsap.registerPlugin(MotionPathPlugin);
+}
+
 const DiscSvg = () => {
   const { width, height } = useWindowSize();
+  const ref = useRef<SVGGElement | null>(null);
+  const [orbit] = useState<GSAPTimeline>(() => gsap.timeline());
 
   const colors = {
     disc1: "rgb(136,206,2)",
@@ -11,6 +21,29 @@ const DiscSvg = () => {
     planetSalmon: "#983334",
     planetBlue: "#1290ff",
   };
+
+  const interact = useCallback(() => {
+    orbit.isActive() ? orbit.pause() : orbit.resume();
+  }, [orbit]);
+
+  useIsoMorphicLayoutEffect(() => {
+    if (ref.current) {
+      orbit.to("#css", {
+        duration: 20,
+        repeat: -1,
+        // repeatDelay: 3,
+        yoyo: false,
+        ease: "none",
+        motionPath: {
+          path: "#path",
+          align: "#path",
+          autoRotate: true,
+          alignOrigin: [0.5, 0.5],
+        },
+      });
+      ref.current.addEventListener("click", interact);
+    }
+  }, [ref]);
 
   return (
     <svg id="ringSVG" height="100%" width="100%">
@@ -61,7 +94,7 @@ const DiscSvg = () => {
         }}
         // data-svg-origin="-165 -148.341064453125"
         // transform="matrix(1,0,0,1,506.5,0)"
-        transform={`matrix(1,0,0,1,${width - 50},0)`}
+        transform={`matrix(1, 0, 0, 1 , ${width - 50}, 0)`}
       >
         {/*////////////////////////////////// 
     //// GROUP CIRCLE N°5 + PLANETS /////
@@ -98,16 +131,28 @@ const DiscSvg = () => {
           ></circle>
 
           {/* CIRCLE N°5 */}
-          <circle
+          <g
             className="c1_line c1_line4"
-            cx="0"
-            cy="50"
-            r="550"
-            fill="none"
-            strokeWidth="2"
-            stroke="url(#grad-grey)"
-            opacity="0.925397"
-          ></circle>
+            style={{
+              opacity: 1,
+              translate: "none",
+              rotate: "none",
+              scale: "none",
+              transformOrigin: "0px 0px",
+            }}
+            // cx="0"
+            // cy="50"
+            // r="550"
+          >
+            <path
+              id="path"
+              d="M -550, 50 a 550, 550 0 1,0 1100, 0 a 550, 550 0 1, 0 -1100, 0 z"
+              fill="none"
+              strokeWidth="3"
+              stroke="url(#grad-grey)"
+              opacity="0.925397"
+            />
+          </g>
 
           {/* C5 - SATELLITE VUE */}
           <g
@@ -128,18 +173,9 @@ const DiscSvg = () => {
             ></image>
           </g>
           {/* C5 - SATELLITE CSS */}
-          <g
-            className="m1Orb orb4"
-            style={{
-              translate: "none",
-              rotate: "none",
-              scale: "none",
-              transformOrigin: "0px 0px",
-            }}
-            data-svg-origin="15 10.5"
-            transform="matrix(1.5,0,0,1.5,-41.48717,584.57561)"
-          >
-            <circle cx="15" cy="10.5" r="20" fill="#006bca"></circle>
+          <g id="css" className="m1Orb orb4" ref={ref}>
+            <circle cx="15" cy="10.5" r="25" fill="#006bca"></circle>
+
             <path fill="#fff" opacity="0.75" d={CSS_PATH}></path>
           </g>
         </g>
