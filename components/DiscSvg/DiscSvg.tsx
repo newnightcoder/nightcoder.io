@@ -1,18 +1,28 @@
 import gsap from "gsap";
 import MotionPathPlugin from "gsap/dist/MotionPathPlugin";
-import { useCallback, useRef, useState } from "react";
-import { useIsoMorphicLayoutEffect } from "../../hooks/useIsoMorphicLayoutEffect";
-import { useWindowSize } from "../../hooks/useWindowSize";
+import { useRouter } from "next/router";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { TransitionContext } from "../../context/TransitionContext";
+import { useIsoMorphicLayoutEffect, useWindowSize } from "../../hooks";
 import { CANVAS_PATH, CSS_PATH, SVG_PATH, WEBGL_PATH } from "./Paths";
-
-if (typeof window !== undefined) {
-  gsap.registerPlugin(MotionPathPlugin);
-}
+gsap.registerPlugin(MotionPathPlugin);
 
 const DiscSvg = () => {
-  const { width, height } = useWindowSize();
+  const { width, height, setSize } = useWindowSize();
   const ref = useRef<SVGGElement | null>(null);
-  const [orbit] = useState<GSAPTimeline>(() => gsap.timeline());
+  const { pathname } = useRouter();
+  const { isMenuOpen } = useContext(TransitionContext);
+
+  const [orbitCss] = useState<gsap.core.Timeline>(() =>
+    gsap.timeline({
+      paused: false,
+    })
+  );
+  const [orbitCanvas] = useState<gsap.core.Timeline>(() =>
+    gsap.timeline({
+      paused: false,
+    })
+  );
 
   const colors = {
     disc1: "rgb(136,206,2)",
@@ -23,20 +33,28 @@ const DiscSvg = () => {
   };
 
   const interact = useCallback(() => {
-    orbit.isActive() ? orbit.pause() : orbit.resume();
-  }, [orbit]);
+    orbitCss.isActive() ? orbitCss.pause() : orbitCss.resume();
+  }, [orbitCss]);
+
+  // useIsoMorphicLayoutEffect(() => {
+  // }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", setSize);
+  }, [window]);
 
   useIsoMorphicLayoutEffect(() => {
+    // if (pathname !== "/" || !isMenuOpen) return;
     if (ref.current) {
-      orbit.to("#css", {
+      orbitCss.to("#css", {
         duration: 20,
         repeat: -1,
         // repeatDelay: 3,
         yoyo: false,
         ease: "none",
         motionPath: {
-          path: "#path",
-          align: "#path",
+          path: "#css-path",
+          align: "#css-path",
           autoRotate: true,
           alignOrigin: [0.5, 0.5],
         },
@@ -81,9 +99,8 @@ const DiscSvg = () => {
       </defs>
 
       {/*///////////////// 
-  //// FULL SVG //////
-  //////////////////*/}
-
+      //// FULL SVG //////
+      //////////////////*/}
       <g
         className="m1_stage"
         style={{
@@ -92,44 +109,89 @@ const DiscSvg = () => {
           scale: "none",
           transformOrigin: "0px 0px",
         }}
-        // data-svg-origin="-165 -148.341064453125"
-        // transform="matrix(1,0,0,1,506.5,0)"
         transform={`matrix(1, 0, 0, 1 , ${width - 50}, 0)`}
       >
-        {/*////////////////////////////////// 
-    //// GROUP CIRCLE N°5 + PLANETS /////
-    ///////////////////////////////////*/}
-        <g
-          className="m1_cGroup"
-          style={{
-            opacity: 1,
-            transformOrigin: "0px 0px",
-            translate: "none",
-            rotate: "none",
-            scale: "none",
-          }}
-          // data-svg-origin="0 94.1168212890625"
-          // transform="matrix(1,0,0,1,141.7367,0)"
-        >
-          {/* PLANET GRADIENT BLUE-PINK */}
+        {/* PLANET GRADIENT BLUE-PINK */}
+        <g>
           <circle
             className="m1OrbBlank"
             cx="0"
             cy="50"
             r="50"
-            // fill={colors.planetBlue}
             fill="url(#grad2)"
             style={{
+              opacity: 1,
               translate: "none",
               rotate: "none",
               scale: "none",
-              opacity: 1,
               transformOrigin: "0px 0px",
             }}
-            // data-svg-origin="-670 0"
             transform={`matrix(1, 0, 0, 1, ${-width + width / 3.5} , -25)`}
           ></circle>
+        </g>
 
+        {/* PLANET GREEN */}
+        <g
+          transform={`matrix(1, 0, 0, 1, ${-width + width / 6}, ${
+            height - 150
+          })`}
+        >
+          <circle
+            cx="0"
+            cy="50"
+            r="35"
+            fill="none"
+            stroke={colors.disc1}
+            opacity="0.75"
+          ></circle>
+          <circle
+            className="m1OrbBlank"
+            cx="0"
+            cy="50"
+            r="20"
+            fill={"url(#grad-green)"}
+            style={{
+              opacity: 0.75,
+              translate: "none",
+              rotate: "none",
+              scale: "none",
+              transformOrigin: "0px 0px",
+            }}
+          ></circle>
+        </g>
+        {/* PLANET VIOLET */}
+        <g>
+          <circle
+            className="m1OrbBlank"
+            cx="0"
+            cy="50"
+            r="15"
+            fill={colors.planetPurple}
+            style={{
+              opacity: 0.5,
+              translate: "none",
+              rotate: "none",
+              scale: "none",
+              transformOrigin: "0px 0px",
+            }}
+            data-svg-origin="-445 35"
+            transform="matrix(-0.64026,0.76816,-0.76816,-0.64026,-273.0301,399.2403)"
+          ></circle>
+        </g>
+
+        {/*////////////////////////////////// 
+        ////    CIRCLE N°5 + PLANETS    /////
+        ///////////////////////////////////*/}
+        <g
+          className="m1_cGroup"
+          style={{
+            opacity: 1,
+            translate: "none",
+            rotate: "none",
+            scale: "none",
+            transformOrigin: "0px 0px",
+          }}
+        >
           {/* CIRCLE N°5 */}
           <g
             className="c1_line c1_line4"
@@ -140,13 +202,14 @@ const DiscSvg = () => {
               scale: "none",
               transformOrigin: "0px 0px",
             }}
+            // 📌 circle svg turned into path to animate satellites along the path            // =  😎
             // cx="0"
             // cy="50"
             // r="550"
           >
             <path
-              id="path"
-              d="M -550, 50 a 550, 550 0 1,0 1100, 0 a 550, 550 0 1, 0 -1100, 0 z"
+              id="css-path"
+              d="M -550, 50 a 550, 550 0 1,0 1100, 0 a 550, 550 0 1, 0 -1100, 0 z" // path deduced from svg circle coordinates (cx, cy, radius) 😎
               fill="none"
               strokeWidth="3"
               stroke="url(#grad-grey)"
@@ -175,7 +238,6 @@ const DiscSvg = () => {
           {/* C5 - SATELLITE CSS */}
           <g id="css" className="m1Orb orb4" ref={ref}>
             <circle cx="15" cy="10.5" r="25" fill="#006bca"></circle>
-
             <path fill="#fff" opacity="0.75" d={CSS_PATH}></path>
           </g>
         </g>
@@ -192,57 +254,23 @@ const DiscSvg = () => {
             rotate: "none",
             scale: "none",
           }}
-          // data-svg-origin="35.68157958984375 50"
-          // transform="matrix(1,0,0,1,70.8683,-4.6561)"
         >
-          {/* PLANET GREEN */}
-          <g
-            transform={`matrix(1, 0, 0, 1, ${-width + width / 6}, ${
-              height - 150
-            })`}
-          >
-            <circle
-              cx="0"
-              cy="50"
-              r="35"
-              fill="none"
-              stroke={colors.disc1}
-              opacity="0.75"
-            ></circle>
-            <circle
-              className="m1OrbBlank"
-              cx="0"
-              cy="50"
-              r="20"
-              fill={"url(#grad-green)"}
-              style={{
-                translate: "none",
-                rotate: "none",
-                scale: "none",
-                opacity: 0.75,
-                transformOrigin: "0px 0px",
-              }}
-              // data-svg-origin="-550 25"
-              // transform={`matrix(1, 0, 0, 1, ${-width + 200}, ${height - 150})`}
-            ></circle>
-          </g>
-
           {/* CIRCLE N°4 */}
-          <circle
-            className="c1_line c1_line3"
-            cx="0"
-            cy="50"
-            r="450"
-            fill="none"
-            strokeWidth="2"
-            stroke="url(#grad-grey)"
-            opacity="0.925397"
-          ></circle>
+          <g className="c1_line c1_line3">
+            <path
+              d="M -450,50 a 450,450 0 1, 0 900,0 a 450,450 0 1,0 -900,0 z"
+              fill="none"
+              strokeWidth="2"
+              stroke="url(#grad-grey)"
+              opacity="0.925397"
+            />
+          </g>
 
           {/* SATELLITE REACT */}
           <g
             className="m1Orb orb3c"
             style={{
+              opacity: 1,
               translate: "none",
               rotate: "none",
               scale: "none",
@@ -302,8 +330,8 @@ const DiscSvg = () => {
         </g>
 
         {/*////////////////////////////////// 
-    //// GROUP CIRCLE N°3 + PLANETS /////
-    ///////////////////////////////////*/}
+        ////   CIRCLE N°3 + SATELLITES  /////
+        ///////////////////////////////////*/}
         <g
           className="m1_cGroup"
           style={{
@@ -313,27 +341,7 @@ const DiscSvg = () => {
             rotate: "none",
             scale: "none",
           }}
-          // data-svg-origin="16.3858642578125 74.372314453125"
-          // transform="matrix(1,0,0,1,47.2456,-9.3122)"
         >
-          {/* PLANET VIOLET */}
-          <circle
-            className="m1OrbBlank"
-            cx="0"
-            cy="50"
-            r="15"
-            fill={colors.planetPurple}
-            style={{
-              translate: "none",
-              rotate: "none",
-              scale: "none",
-              opacity: 0.5,
-              transformOrigin: "0px 0px",
-            }}
-            data-svg-origin="-445 35"
-            transform="matrix(-0.64026,0.76816,-0.76816,-0.64026,-273.0301,399.2403)"
-          ></circle>
-
           {/* CIRCLE N°3 */}
           <circle
             className="c1_line c1_line2"
@@ -370,9 +378,9 @@ const DiscSvg = () => {
           </g>
         </g>
 
-        {/*////////////////////////////////// 
-    //// GROUP CIRCLE N°2 + SATELLITE //////
-    /////////////////////////////////////*/}
+        {/*///////////////////////////////// 
+        ////  CIRCLE N°2 + SATELLITE //////
+        //////////////////////////////////*/}
         <g
           className="m1_cGroup"
           style={{
@@ -382,8 +390,6 @@ const DiscSvg = () => {
             rotate: "none",
             scale: "none",
           }}
-          // data-svg-origin="-0.904937744140625 65.42562866210938"
-          // transform="matrix(1,0,0,1,35.4342,-13.9683)"
         >
           {/* CIRCLE N°2 */}
           <circle
@@ -391,7 +397,6 @@ const DiscSvg = () => {
             cx="0"
             cy="50"
             r="280"
-            // fill="url(#grad1)"
             fill="url(#grad-grey)"
             opacity="0.925397"
           ></circle>
@@ -431,8 +436,8 @@ const DiscSvg = () => {
         </g>
 
         {/*//////////////////////// 
-    //// GROUP CIRCLE N°1 /////
-    /////////////////////////*/}
+        //// GROUP CIRCLE N°1 /////
+        /////////////////////////*/}
         <g
           className="m1_cGroup"
           style={{
@@ -442,8 +447,6 @@ const DiscSvg = () => {
             rotate: "none",
             scale: "none",
           }}
-          // data-svg-origin="0 50"
-          // transform="matrix(1,0,0,1,20.2481,-27.9365)"
         >
           <circle
             className="c1_solid"

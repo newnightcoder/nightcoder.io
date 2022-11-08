@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { NavLinksAnimation } from "../../animations/NavLinksAnimation";
-import { useHandleRoute } from "../../hooks/useHandleRoute";
+import { NavLinksAnimation } from "../../animations";
+import { useHandleRoute } from "../../hooks";
 import {
   BackgroundShapes,
   NavbarContainer,

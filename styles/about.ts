@@ -5,6 +5,7 @@ const PageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--text-dark);
   // border: 2px solid red;
 `;
 

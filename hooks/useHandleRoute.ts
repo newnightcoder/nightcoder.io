@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-export const useHandleRoute = () => {
+const useHandleRoute = () => {
   const router = useRouter();
   const { pathname } = router;
 
@@ -16,3 +16,5 @@ export const useHandleRoute = () => {
 
   return handleRoute;
 };
+
+export default useHandleRoute;

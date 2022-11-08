@@ -1,7 +1,6 @@
-import { useCallback, useState } from "react";
-import { useIsoMorphicLayoutEffect } from "./useIsoMorphicLayoutEffect";
+import { useCallback, useEffect, useState } from "react";
 
-export const useWindowSize = () => {
+const useWindowSize = () => {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
@@ -12,10 +11,11 @@ export const useWindowSize = () => {
     }
   }, [window, setHeight, setWidth]);
 
-  useIsoMorphicLayoutEffect(() => {
+  useEffect(() => {
     setSize();
-    window.addEventListener("resize", setSize);
   }, []);
 
-  return { height, width };
+  return { height, width, setSize };
 };
+
+export default useWindowSize;

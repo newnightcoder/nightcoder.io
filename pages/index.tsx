@@ -1,12 +1,11 @@
-import gsap from "gsap";
-import Scrolltrigger from "gsap/dist/Scrolltrigger";
 import { useContext, useEffect, useRef } from "react";
-import DiscSvg from "../components/DiscSvg/DiscSvg";
+import { DiscSvg } from "../components";
 import { TransitionContext } from "../context/TransitionContext";
-import { useHandleRoute } from "../hooks/useHandleRoute";
-import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
-import { useTransitionBackground } from "../hooks/useTransitionBackground";
-import { useWindowSize } from "../hooks/useWindowSize";
+import {
+  useHandleRoute,
+  useIsoMorphicLayoutEffect,
+  useTransitionBackground,
+} from "../hooks";
 import {
   GradientBlue,
   GradientYellow,
@@ -17,16 +16,15 @@ import {
   Span,
 } from "../styles/home";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(Scrolltrigger);
-}
+// if (typeof window !== "undefined") {
+//   gsap.registerPlugin(Scrolltrigger);
+// }
 
 const HomePage = () => {
   const ref = useRef<HTMLDivElement | null>(null);
   const handleBackground = useTransitionBackground();
   const handleRoute = useHandleRoute();
   const { isMenuOpen } = useContext(TransitionContext);
-  const { width } = useWindowSize();
 
   useIsoMorphicLayoutEffect(() => {
     ref.current && handleBackground(ref.current.id);

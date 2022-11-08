@@ -1,9 +1,7 @@
 import { Squeeze as Hamburger } from "hamburger-react";
 import { forwardRef, PropsWithChildren, useContext } from "react";
+import { Logo, MobileMenu, Navbar } from "../";
 import { TransitionContext } from "../../context/TransitionContext";
-import Logo from "../Logo/Logo";
-import MobileMenu from "../MobileMenu/MobileMenu";
-import Navbar from "../Navbar/Navbar";
 import { HamburgerBtn } from "../Navbar/NavbarStyled";
 import { LayoutContainer, Main } from "./LayoutStyled";
 

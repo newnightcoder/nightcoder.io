@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { TransitionContext } from "../../context/TransitionContext";
-import { useHandleRoute } from "../../hooks/useHandleRoute";
+import { useHandleRoute } from "../../hooks";
 import {
   Btn,
   BtnContainer,
   MenuContainer,
   OverflowWrapper,
-} from "./MobileMenuStyled";
+} from "../Menu/MenuStyled";
 
 const Menu = () => {
   const btns = ["home", "about", "projects", "stack", "contact"];

@@ -1,7 +1,6 @@
 import { useRef } from "react";
-import HomeAnimation from "../animations/HomeAnimation";
-import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
-import { useTransitionBackground } from "../hooks/useTransitionBackground";
+import { HomeAnimation } from "../animations";
+import { useIsoMorphicLayoutEffect, useTransitionBackground } from "../hooks";
 import { PageContainer } from "../styles/contact";
 
 const Contact = () => {

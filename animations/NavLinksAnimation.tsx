@@ -1,8 +1,8 @@
 import gsap from "gsap";
 import React, { useRef } from "react";
-import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
+import { useIsoMorphicLayoutEffect } from "../hooks";
 
-export const NavLinksAnimation = ({ children }) => {
+const NavLinksAnimation = ({ children }) => {
   const ref = useRef<HTMLUListElement | null>(null);
   const child = React.Children.only(children);
 
@@ -21,3 +21,5 @@ export const NavLinksAnimation = ({ children }) => {
 
   return React.cloneElement(child, { ref: ref });
 };
+
+export default NavLinksAnimation;

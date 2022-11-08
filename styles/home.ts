@@ -34,6 +34,7 @@ const Header = styled.header`
   justify-content: center;
   font-weight: 800;
   font-size: var(--fontsize-header);
+  line-height: 4.25rem;
   // border: 1px solid red;
 `;
 

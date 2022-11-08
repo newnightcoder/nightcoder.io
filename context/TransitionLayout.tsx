@@ -1,5 +1,4 @@
 import gsap from "gsap";
-import Observer from "gsap/dist/Observer";
 import {
   PropsWithChildren,
   useCallback,
@@ -7,17 +6,14 @@ import {
   useRef,
   useState,
 } from "react";
-import Background from "../components/Background/Background";
-import Layout from "../components/Layout/Layout";
-import Loader from "../components/Loader/Loader";
-import { useHandleRoute } from "../hooks/useHandleRoute";
-import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
+import { Background, Layout, Loader } from "../components";
+import { useHandleRoute, useIsoMorphicLayoutEffect } from "../hooks";
 import { GlobalStyles } from "../styles/_globals";
 import { TransitionContext } from "./TransitionContext";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(Observer);
-}
+// if (typeof window !== "undefined") {
+//   gsap.registerPlugin(Observer);
+// }
 
 interface Props extends PropsWithChildren {}
 

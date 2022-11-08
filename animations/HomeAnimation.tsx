@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { useContext, useRef } from "react";
 import { TransitionContext } from "../context/TransitionContext";
-import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
+import { useIsoMorphicLayoutEffect } from "../hooks";
 import { AnimationContainer } from "../styles/home";
 
 const HomeAnimation = ({ children }) => {

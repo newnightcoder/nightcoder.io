@@ -3,7 +3,7 @@ import CustomEase from "gsap/dist/CustomEase";
 import { useContext, useRef, useState } from "react";
 import { GrGithub, GrLinkedinOption, GrTwitter } from "react-icons/gr";
 import { TransitionContext } from "../../context/TransitionContext";
-import { useIsoMorphicLayoutEffect } from "../../hooks/useIsoMorphicLayoutEffect";
+import { useIsoMorphicLayoutEffect } from "../../hooks";
 import { Container, Logo } from "./SocialLinksStyled";
 gsap.registerPlugin(CustomEase);
 

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { TransitionContext } from "../context/TransitionContext";
 
-export const useTransitionBackground = () => {
+const useTransitionBackground = () => {
   const { setBackgroundColor } = useContext(TransitionContext);
 
   // const colors = {
@@ -41,3 +41,5 @@ export const useTransitionBackground = () => {
 
   return handleBackground;
 };
+
+export default useTransitionBackground;

@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { Dispatch, PropsWithChildren, SetStateAction, useRef } from "react";
-import { useIsoMorphicLayoutEffect } from "../../hooks/useIsoMorphicLayoutEffect";
+import { useIsoMorphicLayoutEffect } from "../../hooks";
 import { Container } from "./LoaderStyled";
 
 interface Props extends PropsWithChildren {

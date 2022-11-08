@@ -1,9 +1,9 @@
 import gsap from "gsap";
 import { PropsWithChildren, useContext, useRef, useState } from "react";
-import Menu from "../components/MobileMenu/Menu";
-import { AnimationContainer } from "../components/MobileMenu/MobileMenuStyled";
+import { Menu } from "../components";
+import { AnimationContainer } from "../components/Menu/MenuStyled";
 import { TransitionContext } from "../context/TransitionContext";
-import { useIsoMorphicLayoutEffect } from "../hooks/useIsoMorphicLayoutEffect";
+import { useIsoMorphicLayoutEffect } from "../hooks";
 
 interface Props extends PropsWithChildren {}
 
@@ -11,25 +11,21 @@ const MobileMenuAnimation = ({ children }: Props) => {
   const { timelineMenu, isMenuOpen, setIsMenuAnim } =
     useContext(TransitionContext);
   const ref = useRef<HTMLDivElement | null>(null);
-  const [anim, setAnim] = useState<gsap.core.Timeline | null>(null);
+  const [anim, setAnim] = useState<gsap.core.Timeline>(() =>
+    gsap.timeline({
+      paused: true,
+      repeat: 0,
+      onStart: () => {
+        setIsMenuAnim(true);
+      },
+      onComplete: () => {
+        setIsMenuAnim(false);
+      },
+    })
+  );
 
   useIsoMorphicLayoutEffect(() => {
-    setAnim(() =>
-      gsap.timeline({
-        paused: true,
-        repeat: 0,
-        onStart: () => {
-          setIsMenuAnim(true);
-        },
-        onComplete: () => {
-          setIsMenuAnim(false);
-        },
-      })
-    );
-  }, []);
-
-  useIsoMorphicLayoutEffect(() => {
-    if (anim && ref.current) {
+    if (ref.current) {
       anim
         .set(ref.current, {
           "--clip-1": "100%",
@@ -73,7 +69,7 @@ const MobileMenuAnimation = ({ children }: Props) => {
         timelineMenu.add(anim.reverse());
       });
     }
-  }, [anim, isMenuOpen]);
+  }, [ref]);
 
   return (
     <AnimationContainer ref={ref}>
