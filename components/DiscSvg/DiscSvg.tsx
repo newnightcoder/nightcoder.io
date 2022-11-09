@@ -11,21 +11,10 @@ if (typeof window !== "undefined") {
 const DiscSvg = () => {
   const { width, height, setSize } = useWindowSize();
   const c5Ref = useRef<SVGPathElement | null>(null);
-  const [rawPathC5, setRawPathC5] = useState<gsap.plugins.RawPath | null>(null);
-  const [cacheRawPathC5, setCacheRawPathC5] =
-    useState<gsap.plugins.RawPath | null>(null);
-  const [vueStart, setVueStart] =
-    useState<gsap.plugins.getRelativePositionObject>(null);
   const cssRef = useRef<SVGGElement | null>(null);
   const vueRef = useRef<SVGGElement | null>(null);
-  const [vueX, setVueX] = useState<number | null>(null);
-  const [vueY, setVueY] = useState<number | null>(null);
   const [orbitCss, setOrbitCss] = useState<gsap.core.Tween | null>(null);
-  const [orbitVue, setOrbitVue] = useState<gsap.core.Timeline>(() =>
-    gsap.timeline({
-      paused: true,
-    })
-  );
+  const [orbitVue, setOrbitVue] = useState<gsap.core.Tween | null>(null);
   const [orbitCanvas] = useState<gsap.core.Tween>();
 
   const colors = {
@@ -61,60 +50,6 @@ const DiscSvg = () => {
     };
   }, [cssRef]);
 
-  const getRawPathC5 = useCallback(() => {
-    // if (c5Ref.current) {
-    //   setRawPathC5(() => MotionPathPlugin.getRawPath("#circle-5"));
-    // }
-  }, [c5Ref]);
-
-  const saveCacheRawPathC5 = useCallback(() => {
-    if (rawPathC5) {
-      setCacheRawPathC5(() =>
-        MotionPathPlugin.cacheRawPathMeasurements(rawPathC5)
-      );
-    }
-  }, [rawPathC5]);
-
-  const placeVueSat = useCallback(() => {
-    if (cacheRawPathC5) {
-      setVueStart(
-        () =>
-          MotionPathPlugin.getPositionOnPath(
-            rawPathC5,
-            0.2,
-            true
-          ) as gsap.plugins.getRelativePositionObject
-      );
-    }
-  }, [cacheRawPathC5]);
-
-  useIsoMorphicLayoutEffect(() => {
-    if (c5Ref.current) {
-      setRawPathC5(() => MotionPathPlugin.getRawPath("#circle-5"));
-    }
-  }, [c5Ref]);
-
-  useIsoMorphicLayoutEffect(() => {
-    if (rawPathC5) {
-      setCacheRawPathC5(() =>
-        MotionPathPlugin.cacheRawPathMeasurements(rawPathC5)
-      );
-    }
-  }, [rawPathC5]);
-
-  useIsoMorphicLayoutEffect(() => {
-    placeVueSat();
-    console.log("cache", cacheRawPathC5);
-  }, [cacheRawPathC5]);
-
-  useIsoMorphicLayoutEffect(() => {
-    if (vueStart) {
-      console.log("vue start", vueStart);
-      setVueX(vueStart.x);
-      setVueY(vueStart.y);
-    }
-  }, [vueStart]);
-
   //////////////////////////////
   //    TWEEN CREATION       //
   /////////////////////////////
@@ -134,72 +69,47 @@ const DiscSvg = () => {
             align: "#circle-5",
             autoRotate: true,
             alignOrigin: [0.5, 0.5],
-            start: 0.2,
-            end: 1.2,
+            start: 0.05,
+            end: 1.005,
           },
         })
       );
     }
   }, [cssRef]);
 
-  // const createTweenVue = useCallback(() => {
-  //   if (vueRef.current && vueStart) {
-  //     // setOrbitVue(
-  //     orbitVue
-  //       .set(vueRef.current, {
-  //         x: vueStart.x,
-  //         y: vueStart.y,
-  //         rotation: vueStart.angle,
-  //       })
-  //       .to(vueRef.current, {
-  //         duration: 45,
-  //         repeat: -1,
-  //         // repeatDelay: 3,
-  //         yoyo: false,
-  //         ease: "none",
-  //         motionPath: {
-  //           path: "#circle-5",
-  //           align: "#circle-5",
-  //           autoRotate: true,
-  //           alignOrigin: [0.5, 0.5],
-  //         },
-  //       });
-  //     // );
-  //   }
-  // }, [vueRef, vueStart]);
+  const createTweenVue = useCallback(() => {
+    if (vueRef.current) {
+      setOrbitVue(() =>
+        gsap.to(vueRef.current, {
+          duration: 45,
+          repeat: -1,
+          // repeatDelay: 3,
+          yoyo: false,
+          ease: "none",
+          motionPath: {
+            path: "#circle-5",
+            align: "#circle-5",
+            autoRotate: true,
+            alignOrigin: [0.5, 0.5],
+            start: 0.1,
+            end: 1.1,
+          },
+        })
+      );
+    }
+  }, [vueRef]);
 
   useIsoMorphicLayoutEffect(() => {
     createTweenCss();
-    // createTweenVue();
-  }, [cssRef]);
+    createTweenVue();
+  }, [cssRef, vueRef]);
 
   //////////////////////////////
   //  PLAY TWEENS + CLEANUP   //
   /////////////////////////////
 
   useIsoMorphicLayoutEffect(() => {
-    if (vueRef.current) {
-      // setOrbitVue(
-      orbitVue.to(vueRef.current, {
-        duration: 45,
-        repeat: -1,
-        // repeatDelay: 3,
-        yoyo: false,
-        ease: "none",
-        motionPath: {
-          path: "#circle-5",
-          align: "#circle-5",
-          autoRotate: true,
-          alignOrigin: [0.5, 0.5],
-          start: 0.25,
-          end: 1.25,
-        },
-      });
-    }
-  }, [vueRef]);
-
-  useIsoMorphicLayoutEffect(() => {
-    if (orbitCss) {
+    if (orbitCss && orbitVue) {
       orbitCss.play();
       orbitVue.play();
     }
@@ -255,7 +165,7 @@ const DiscSvg = () => {
           scale: "none",
           transformOrigin: "0px 0px",
         }}
-        transform={`matrix(1, 0, 0, 1 , ${width / 2}, 0)`}
+        transform={`matrix(1, 0, 0, 1 , ${width - 50}, 0)`}
       >
         {/* PLANET GRADIENT BLUE-PINK */}
         <g>
@@ -374,13 +284,11 @@ const DiscSvg = () => {
               scale: "none",
               transformOrigin: "0px 0px",
             }}
-            // data-svg-origin="20 20"
-            // transform={`matrix(1,0,0,1,${vueX}, ${vueY})`}
           >
             <image
               xlinkHref="https://greensock.com/images/header/logoVue.png"
-              width="40"
-              height="40"
+              width="45"
+              height="45"
             ></image>
           </g>
           {/* C5 - SATELLITE CSS */}
