@@ -27,8 +27,10 @@ const HomePage = () => {
   const { isMenuOpen } = useContext(TransitionContext);
 
   useIsoMorphicLayoutEffect(() => {
-    ref.current && handleBackground(ref.current.id);
-  }, []);
+    if (ref.current) {
+      handleBackground(ref.current.id);
+    }
+  }, [ref]);
 
   // useIsoMorphicLayoutEffect(() => {
   //   if (ref.current) {
