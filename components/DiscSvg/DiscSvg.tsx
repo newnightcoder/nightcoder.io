@@ -2,7 +2,7 @@ import gsap from "gsap";
 import MotionPathPlugin from "gsap/dist/MotionPathPlugin";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useIsoMorphicLayoutEffect, useWindowSize } from "../../hooks";
-import { CANVAS_PATH, CSS_PATH, SVG_PATH, WEBGL_PATH } from "./Paths";
+import { SVG_PATH, WEBGL_PATH } from "./Paths";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(MotionPathPlugin);
@@ -17,12 +17,80 @@ const DiscSvg = () => {
   const [orbitVue, setOrbitVue] = useState<gsap.core.Tween | null>(null);
   const [orbitCanvas] = useState<gsap.core.Tween>();
 
+  const [c5Path, setC5Path] = useState<gsap.plugins.RawPath | null>(null);
+  const [cacheC5Path, setCacheC5Path] = useState<gsap.plugins.RawPath | null>(
+    null
+  );
+  const [c5Point, setC5Point] =
+    useState<gsap.plugins.getRelativePositionObject>(null);
+
+  const [coord, setCoord] = useState<{ x: number; y: number; angle?: number }>(
+    null
+  );
+
+  // 1- get rawPath
+  useIsoMorphicLayoutEffect(() => {
+    if (c5Ref.current) {
+      setC5Path(() => MotionPathPlugin.getRawPath(c5Ref.current));
+    }
+  }, [c5Ref]);
+
+  // 2- cache rawPath
+  useIsoMorphicLayoutEffect(() => {
+    if (c5Path) {
+      setCacheC5Path(() => MotionPathPlugin.cacheRawPathMeasurements(c5Path));
+    }
+  }, [c5Path]);
+
+  // 3- find point on path
+  useIsoMorphicLayoutEffect(() => {
+    if (cacheC5Path) {
+      console.log("cache path!", cacheC5Path);
+      setC5Point(
+        () =>
+          MotionPathPlugin.getPositionOnPath(
+            c5Path,
+            0.125,
+            true
+          ) as gsap.plugins.getRelativePositionObject
+      );
+    }
+  }, [cacheC5Path]);
+
+  // 4- log point
+  useIsoMorphicLayoutEffect(() => {
+    if (c5Point) {
+      setCoord({
+        x: c5Point.x,
+        y: c5Point.y,
+        angle: c5Point.angle,
+      });
+    }
+  }, [c5Point]);
+
   const colors = {
     disc1: "rgb(136,206,2)",
     disc1_grey: "#707176",
     planetPurple: "#6600ff",
     planetSalmon: "#983334",
     planetBlue: "#1290ff",
+  };
+
+  const icons = {
+    js: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg",
+    ts: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+    next: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-line.svg",
+
+    node: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    express:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+
+    react:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    redux:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg",
+    sql: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-plain-wordmark.svg",
+    aws: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
   };
 
   //////////////////////////////
@@ -60,8 +128,8 @@ const DiscSvg = () => {
         gsap.to(cssRef.current, {
           duration: 45,
           repeat: -1,
-          paused: true,
           // repeatDelay: 3,
+          paused: true,
           yoyo: false,
           ease: "none",
           motionPath: {
@@ -70,7 +138,7 @@ const DiscSvg = () => {
             autoRotate: true,
             alignOrigin: [0.5, 0.5],
             start: 0.05,
-            end: 1.005,
+            end: 1.05,
           },
         })
       );
@@ -84,6 +152,7 @@ const DiscSvg = () => {
           duration: 45,
           repeat: -1,
           // repeatDelay: 3,
+          paused: true,
           yoyo: false,
           ease: "none",
           motionPath: {
@@ -91,8 +160,8 @@ const DiscSvg = () => {
             align: "#circle-5",
             autoRotate: true,
             alignOrigin: [0.5, 0.5],
-            start: 0.1,
-            end: 1.1,
+            start: 0.125,
+            end: 1.125,
           },
         })
       );
@@ -110,8 +179,8 @@ const DiscSvg = () => {
 
   useIsoMorphicLayoutEffect(() => {
     if (orbitCss && orbitVue) {
-      orbitCss.play();
-      orbitVue.play();
+      orbitCss.pause();
+      orbitVue.pause();
     }
     return () => {
       orbitCss?.kill();
@@ -165,7 +234,7 @@ const DiscSvg = () => {
           scale: "none",
           transformOrigin: "0px 0px",
         }}
-        transform={`matrix(1, 0, 0, 1 , ${width - 50}, 0)`}
+        transform={`matrix(1, 0, 0, 1 , ${width / 2}, 0)`}
       >
         {/* PLANET GRADIENT BLUE-PINK */}
         <g>
@@ -274,7 +343,7 @@ const DiscSvg = () => {
             />
           </g>
 
-          {/* C5 - SATELLITE VUE */}
+          {/* C5 - SATELLITE AWS */}
           <g
             ref={vueRef}
             className="m1Orb orb4b test"
@@ -284,17 +353,23 @@ const DiscSvg = () => {
               scale: "none",
               transformOrigin: "0px 0px",
             }}
+            // transform="matrix(1.5,0,0,1.5,-166.29174,469.04007)"
           >
-            <image
-              xlinkHref="https://greensock.com/images/header/logoVue.png"
-              width="45"
-              height="45"
-            ></image>
+            <circle
+              cx={coord?.x ?? 0}
+              cy={coord?.y ?? 0}
+              r={30}
+              stroke="white"
+              strokeWidth={2}
+            ></circle>
+            {/* <image xlinkHref={icons.aws} width="45" height="45"></image> */}
           </g>
-          {/* C5 - SATELLITE CSS */}
+
+          {/* C5 - SATELLITE NEXTJS */}
           <g id="css" className="m1Orb orb4 test" ref={cssRef}>
-            <circle cx="15" cy="10.5" r="25" fill="#006bca"></circle>
-            <path fill="#fff" opacity="0.75" d={CSS_PATH}></path>
+            {/* <circle cx="15" cy="10.5" r="25" fill="#006bca"></circle> */}
+            {/* <path fill="#fff" opacity="0.75" d={CSS_PATH}></path> */}
+            <image xlinkHref={icons.next} width="45" height="45"></image>
           </g>
         </g>
 
@@ -322,7 +397,7 @@ const DiscSvg = () => {
             />
           </g>
 
-          {/* SATELLITE REACT */}
+          {/* SATELLITE NODE */}
           <g
             className="m1Orb orb3c"
             style={{
@@ -335,14 +410,10 @@ const DiscSvg = () => {
             data-svg-origin="20 20"
             transform="matrix(1.5,0,0,1.5,144.51104,435.7473)"
           >
-            <image
-              xlinkHref="https://greensock.com/images/header/logoReact.png"
-              width="40"
-              height="40"
-            ></image>
+            <image xlinkHref={icons.node} width="40" height="40"></image>
           </g>
 
-          {/* SATELLITE ANGULAR */}
+          {/* SATELLITE EXPRESS */}
           <g
             className="m1Orb orb3b"
             style={{
@@ -354,14 +425,10 @@ const DiscSvg = () => {
             data-svg-origin="20 20"
             transform="matrix(1.5,0,0,1.5,-312.56838,-320.2412)"
           >
-            <image
-              xlinkHref="https://greensock.com/images/header/logoAngular.png"
-              width="40"
-              height="40"
-            ></image>
+            <image xlinkHref={icons.express} width="40" height="40"></image>
           </g>
 
-          {/* SATELLITE CANVAS */}
+          {/* SATELLITE SQL */}
           <g
             className="m1Orb orb3"
             style={{
@@ -377,11 +444,12 @@ const DiscSvg = () => {
               cx="20"
               cy="8"
               r="24"
-              stroke="#bc7c00"
+              stroke="#00618A"
               strokeWidth="3"
-              fill="#cc971b"
+              fill="#000"
             ></circle>
-            <path fill="#fff" opacity="0.7" d={CANVAS_PATH}></path>
+
+            {/* <path fill="#fff" opacity="0.7" d={CANVAS_PATH}></path> */}
           </g>
         </g>
 

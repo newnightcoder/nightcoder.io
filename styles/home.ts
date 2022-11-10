@@ -28,7 +28,7 @@ const HomeSection = styled.div`
 
 const Header = styled.header`
   width: var(--header-width);
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: var(--align-header);
   justify-content: center;
