@@ -1,7 +1,11 @@
 import gsap from "gsap";
 import MotionPathPlugin from "gsap/dist/MotionPathPlugin";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useIsoMorphicLayoutEffect, useWindowSize } from "../../hooks";
+import { useEffect, useRef } from "react";
+import {
+  useIsoMorphicLayoutEffect,
+  useTween,
+  useWindowSize,
+} from "../../hooks";
 import { SVG_PATH, WEBGL_PATH } from "./Paths";
 
 if (typeof window !== "undefined") {
@@ -10,63 +14,23 @@ if (typeof window !== "undefined") {
 
 const DiscSvg = () => {
   const { width, height, setSize } = useWindowSize();
-  const c5Ref = useRef<SVGPathElement | null>(null);
-  const cssRef = useRef<SVGGElement | null>(null);
-  const vueRef = useRef<SVGGElement | null>(null);
-  const [orbitCss, setOrbitCss] = useState<gsap.core.Tween | null>(null);
-  const [orbitVue, setOrbitVue] = useState<gsap.core.Tween | null>(null);
-  const [orbitCanvas] = useState<gsap.core.Tween>();
 
-  const [c5Path, setC5Path] = useState<gsap.plugins.RawPath | null>(null);
-  const [cacheC5Path, setCacheC5Path] = useState<gsap.plugins.RawPath | null>(
-    null
-  );
-  const [c5Point, setC5Point] =
-    useState<gsap.plugins.getRelativePositionObject>(null);
+  // circles
+  const c5Ref = useRef<SVGPathElement>(null);
+  const c4Ref = useRef<SVGPathElement>(null);
+  // satellites
+  const cssRef = useRef<SVGGElement>(null);
+  const awsRef = useRef<SVGGElement>(null);
+  const sqlRef = useRef<SVGGElement>(null);
 
-  const [coord, setCoord] = useState<{ x: number; y: number; angle?: number }>(
-    null
-  );
+  const positions = {
+    aws: 0.125,
+    sql: 0.2,
+  };
 
-  // 1- get rawPath
-  useIsoMorphicLayoutEffect(() => {
-    if (c5Ref.current) {
-      setC5Path(() => MotionPathPlugin.getRawPath(c5Ref.current));
-    }
-  }, [c5Ref]);
-
-  // 2- cache rawPath
-  useIsoMorphicLayoutEffect(() => {
-    if (c5Path) {
-      setCacheC5Path(() => MotionPathPlugin.cacheRawPathMeasurements(c5Path));
-    }
-  }, [c5Path]);
-
-  // 3- find point on path
-  useIsoMorphicLayoutEffect(() => {
-    if (cacheC5Path) {
-      console.log("cache path!", cacheC5Path);
-      setC5Point(
-        () =>
-          MotionPathPlugin.getPositionOnPath(
-            c5Path,
-            0.125,
-            true
-          ) as gsap.plugins.getRelativePositionObject
-      );
-    }
-  }, [cacheC5Path]);
-
-  // 4- log point
-  useIsoMorphicLayoutEffect(() => {
-    if (c5Point) {
-      setCoord({
-        x: c5Point.x,
-        y: c5Point.y,
-        angle: c5Point.angle,
-      });
-    }
-  }, [c5Point]);
+  // Tweens
+  const [tweenAws] = useTween(c5Ref, "#circle-5", awsRef, positions.aws);
+  const [tweenSql] = useTween(c4Ref, "#circle-4", sqlRef, positions.sql);
 
   const colors = {
     disc1: "rgb(136,206,2)",
@@ -104,89 +68,32 @@ const DiscSvg = () => {
     };
   }, [window]);
 
-  const handleHover = () => {
-    orbitCss?.isActive() ? orbitCss.pause() : orbitCss?.resume();
-  };
+  // const handleHover = () => {
+  //   orbitCss?.isActive() ? orbitCss.pause() : orbitCss?.resume();
+  // };
 
-  useEffect(() => {
-    cssRef?.current?.addEventListener("mouseover", handleHover);
-  }, [cssRef, orbitCss]);
+  // useEffect(() => {
+  //   cssRef?.current?.addEventListener("mouseover", handleHover);
+  // }, [cssRef, orbitCss]);
 
-  useEffect(() => {
-    return () => {
-      cssRef?.current?.removeEventListener("mouseover", handleHover);
-    };
-  }, [cssRef]);
+  // useEffect(() => {
+  //   return () => {
+  //     cssRef?.current?.removeEventListener("mouseover", handleHover);
+  //   };
+  // }, [cssRef]);
 
-  //////////////////////////////
-  //    TWEEN CREATION       //
-  /////////////////////////////
-
-  const createTweenCss = useCallback(() => {
-    if (cssRef.current) {
-      setOrbitCss(
-        gsap.to(cssRef.current, {
-          duration: 45,
-          repeat: -1,
-          // repeatDelay: 3,
-          paused: true,
-          yoyo: false,
-          ease: "none",
-          motionPath: {
-            path: "#circle-5",
-            align: "#circle-5",
-            autoRotate: true,
-            alignOrigin: [0.5, 0.5],
-            start: 0.05,
-            end: 1.05,
-          },
-        })
-      );
-    }
-  }, [cssRef]);
-
-  const createTweenVue = useCallback(() => {
-    if (vueRef.current) {
-      setOrbitVue(() =>
-        gsap.to(vueRef.current, {
-          duration: 45,
-          repeat: -1,
-          // repeatDelay: 3,
-          paused: true,
-          yoyo: false,
-          ease: "none",
-          motionPath: {
-            path: "#circle-5",
-            align: "#circle-5",
-            autoRotate: true,
-            alignOrigin: [0.5, 0.5],
-            start: 0.125,
-            end: 1.125,
-          },
-        })
-      );
-    }
-  }, [vueRef]);
+  //  PLAY TWEENS + CLEANUP
 
   useIsoMorphicLayoutEffect(() => {
-    createTweenCss();
-    createTweenVue();
-  }, [cssRef, vueRef]);
-
-  //////////////////////////////
-  //  PLAY TWEENS + CLEANUP   //
-  /////////////////////////////
-
-  useIsoMorphicLayoutEffect(() => {
-    if (orbitCss && orbitVue) {
-      orbitCss.pause();
-      orbitVue.pause();
+    if (tweenAws && tweenSql) {
+      tweenAws.seek(0);
+      tweenSql.seek(0);
     }
     return () => {
-      orbitCss?.kill();
-      orbitVue?.kill();
+      tweenAws?.kill();
+      tweenSql?.kill();
     };
-  }, [orbitCss, orbitVue]);
+  }, [tweenAws, tweenSql]);
 
   return (
     <svg id="ringSVG" height="100%" width="100%">
@@ -233,6 +140,7 @@ const DiscSvg = () => {
           rotate: "none",
           scale: "none",
           transformOrigin: "0px 0px",
+          border: "4px solid red",
         }}
         transform={`matrix(1, 0, 0, 1 , ${width / 2}, 0)`}
       >
@@ -344,25 +252,26 @@ const DiscSvg = () => {
           </g>
 
           {/* C5 - SATELLITE AWS */}
-          <g
-            ref={vueRef}
-            className="m1Orb orb4b test"
-            style={{
-              translate: "none",
-              rotate: "none",
-              scale: "none",
-              transformOrigin: "0px 0px",
-            }}
-            // transform="matrix(1.5,0,0,1.5,-166.29174,469.04007)"
-          >
-            <circle
-              cx={coord?.x ?? 0}
-              cy={coord?.y ?? 0}
-              r={30}
-              stroke="white"
-              strokeWidth={2}
-            ></circle>
-            {/* <image xlinkHref={icons.aws} width="45" height="45"></image> */}
+          <g ref={awsRef}>
+            <svg height="100" width="100" className="m1Orb orb4b test">
+              <defs>
+                <clipPath id="clip">
+                  <circle
+                    cx={50}
+                    cy={50}
+                    r={20}
+                    fill="none"
+                    stroke="red"
+                  ></circle>
+                </clipPath>
+              </defs>
+              <image
+                xlinkHref={icons.aws}
+                width="100"
+                height="100"
+                clipPath="url(#clip)"
+              ></image>
+            </svg>
           </g>
 
           {/* C5 - SATELLITE NEXTJS */}
@@ -387,8 +296,9 @@ const DiscSvg = () => {
           }}
         >
           {/* CIRCLE N°4 */}
-          <g className="c1_line c1_line3">
+          <g className="c1_line c1_line3" ref={c4Ref}>
             <path
+              id="circle-4"
               d="M -450,50 a 450,450 0 1, 0 900,0 a 450,450 0 1,0 -900,0 z"
               fill="none"
               strokeWidth="2"
@@ -429,21 +339,11 @@ const DiscSvg = () => {
           </g>
 
           {/* SATELLITE SQL */}
-          <g
-            className="m1Orb orb3"
-            style={{
-              translate: "none",
-              rotate: "none",
-              scale: "none",
-              transformOrigin: "0px 0px",
-            }}
-            data-svg-origin="20 8"
-            transform="matrix(1.5,0,0,1.5,-166.29174,469.04007)"
-          >
+          <g className="m1Orb orb3" ref={sqlRef}>
             <circle
-              cx="20"
-              cy="8"
-              r="24"
+              // cx="20"
+              // cy="8"
+              r="30"
               stroke="#00618A"
               strokeWidth="3"
               fill="#000"
