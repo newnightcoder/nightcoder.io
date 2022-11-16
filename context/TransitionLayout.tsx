@@ -22,8 +22,8 @@ const TransitionLayout = ({ children }: Props) => {
   const [nextChildren, setNextChildren] = useState(children);
   const { timelinePages, backgroundColor, isMenuOpen } =
     useContext(TransitionContext);
-  const layoutRef = useRef<HTMLDivElement | null>(null);
-  const bgRef = useRef<HTMLDivElement | null>(null);
+  const layoutRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
   const handleRoute = useHandleRoute();
   const sections = ["/", "/about", "/projects", "/stack", "/contact"];
   const wrap = gsap.utils.wrap(0, sections.length);

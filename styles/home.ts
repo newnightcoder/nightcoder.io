@@ -9,7 +9,7 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid red;
+  border: 5px solid red;
 `;
 
 const HomeSection = styled.div`
@@ -20,21 +20,48 @@ const HomeSection = styled.div`
   align-items: center;
   justify-content: center;
   color: var(--text-dark);
-  border: 2px solid green;
+  border: 5px solid green;
   font-family: var(--poppins);
   z-index: 10;
   pointer-events: none;
+  position: relative;
+`;
+
+const Section = styled.div`
+  height: 100vh;
+  width: inherit;
+  position: relative;
+  padding: 0 4vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dark);
+  font-family: var(--poppins);
+  border: 2px solid yellow;
+`;
+
+const MoreBtn = styled.button`
+  font-size: 1.5rem;
+  padding: 5px 20px;
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+  border-radius: 30px;
+  position: absolute;
+  bottom: 2rem;
 `;
 
 const Header = styled.header`
   width: var(--header-width);
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: var(--align-header);
   justify-content: center;
   font-weight: 800;
   font-size: var(--fontsize-header);
   line-height: 4.25rem;
+  z-index: 6;
   // border: 1px solid red;
 `;
 
@@ -83,6 +110,8 @@ const AnimationContainer = styled.div`
 export {
   PageContainer,
   HomeSection,
+  Section,
+  MoreBtn,
   Header,
   Span,
   Hero,

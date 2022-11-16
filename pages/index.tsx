@@ -12,7 +12,9 @@ import {
   Header,
   Hero,
   HomeSection,
+  MoreBtn,
   PageContainer,
+  Section,
   Span,
 } from "../styles/home";
 
@@ -70,11 +72,43 @@ const HomePage = () => {
           </Span>
           <Span>based in Paris</Span>
         </Header>
+        <Hero>
+          <DiscSvg />
+        </Hero>
       </HomeSection>
-      <Hero>
-        <DiscSvg />
-      </Hero>
       {/* </HomeAnimation> */}
+      <Section>
+        <span style={{ fontWeight: "200", fontSize: "1rem" }}>01</span>
+        <h2 style={{ fontWeight: "400", fontSize: "2rem" }}>about me</h2>
+        <div
+          style={{
+            fontWeight: "200",
+            fontSize: "2rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "start",
+          }}
+        >
+          <span>i'm a proud self-taught developer.</span>
+          <span>in love with code.</span>
+          <span>i speak fluently JavaScript with a strong React accent.</span>
+        </div>
+        <MoreBtn onClick={() => handleRoute("/about")}>more info</MoreBtn>
+      </Section>
+      <Section>
+        <span style={{ fontWeight: "200", fontSize: "1rem" }}>02</span>
+        <h2 style={{ fontWeight: "800", fontSize: "2rem" }}>projects</h2>
+        <div style={{ fontWeight: "200", fontSize: "2rem" }}>
+          some projects i built
+        </div>
+        <MoreBtn onClick={() => handleRoute("/projects")}>more info</MoreBtn>
+      </Section>
+      <Section>
+        <span style={{ fontWeight: "200", fontSize: "1rem" }}>03</span>
+        <h2>contact</h2>
+        <div style={{ fontSize: "2rem" }}>let's get in touch!</div>
+        <MoreBtn onClick={() => handleRoute("/contact")}>more info</MoreBtn>
+      </Section>
     </PageContainer>
   );
 };

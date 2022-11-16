@@ -10,30 +10,30 @@ import { useIsoMorphicLayoutEffect } from ".";
 // }
 
 const useTween = (
-  circleRef: MutableRefObject<SVGPathElement>,
-  circlePath: string,
+  circleRef: SVGPathElement,
+  circlePathId: string,
   satelliteRef: MutableRefObject<SVGGElement>,
   start: number
 ) => {
   const [tween, setTween] = useState<gsap.core.Tween | null>(null);
 
   useIsoMorphicLayoutEffect(() => {
-    if (circleRef.current && satelliteRef.current) {
+    if (circleRef && satelliteRef.current) {
       setTween(
         gsap.to(satelliteRef.current, {
           duration: 45,
           repeat: -1,
-          // repeatDelay: 3,
-          paused: true,
-          yoyo: false,
+          repeatDelay: 3,
+          // paused: true,
+          yoyo: true,
           ease: "none",
           motionPath: {
-            path: circlePath,
-            align: circlePath,
+            path: circlePathId,
+            align: circlePathId,
             autoRotate: false,
             alignOrigin: [0.5, 0.5],
             start: start,
-            end: 1 + start,
+            end: start + 0.25,
           },
         })
       );
