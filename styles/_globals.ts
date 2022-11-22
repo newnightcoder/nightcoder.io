@@ -23,6 +23,9 @@ export const GlobalStyles = createGlobalStyle`
 }
 
 html {
+
+  // border:5px solid violet;
+  // min-height:100vh;
   
   /*  FONTS */
 
@@ -82,6 +85,7 @@ html,
 body {
   padding: 0;
   margin: 0;
+  height: 100%;
 }
 
 

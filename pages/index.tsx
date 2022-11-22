@@ -1,4 +1,5 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { gsap, ScrollTrigger } from "../animations/gsap";
 import { DiscSvg } from "../components";
 import { TransitionContext } from "../context/TransitionContext";
 import {
@@ -23,31 +24,47 @@ import {
 // }
 
 const HomePage = () => {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const handleBackground = useTransitionBackground();
   const handleRoute = useHandleRoute();
-  const { isMenuOpen } = useContext(TransitionContext);
+  const { isMenuOpen, setBackgroundColor } = useContext(TransitionContext);
+
+  const [sections, setSections] = useState<HTMLDivElement[]>(null);
 
   useIsoMorphicLayoutEffect(() => {
     if (ref.current) {
       handleBackground(ref.current.id);
+      setSections(() => gsap.utils.toArray(".section"));
     }
   }, [ref]);
 
-  // useIsoMorphicLayoutEffect(() => {
-  //   if (ref.current) {
-  //     Scrolltrigger.create({
-  //       trigger: "#home",
-  //       markers: true,
-  //       start: "bottom bottom",
-  //       end: "bottom bottom",
-  //       // onLeave: () => {
-  //       //   console.log("yay");
-  //       //   handleRoute("/about");
-  //       // },
-  //     });
-  //   }
-  // }, [ref.current]);
+  useIsoMorphicLayoutEffect(() => {
+    if (sections) {
+      sections.forEach((section) => {
+        const bgColor = section.getAttribute("data-color");
+        ScrollTrigger.create({
+          trigger: section,
+          markers: true,
+          start: "top 30%",
+          end: "bottom 30%",
+          onEnter: () =>
+            gsap.to(ref.current, {
+              duration: 1,
+              background: bgColor,
+            }),
+          onEnterBack: () =>
+            gsap.to(ref.current, {
+              duration: 1,
+              background: bgColor,
+            }),
+          // onEnter: () =>{
+          //   duration: 1,
+          //   setBackgroundColor(bgColor),
+          // }
+        });
+      });
+    }
+  }, [sections]);
 
   useEffect(() => {
     if (ref.current && isMenuOpen) {
@@ -58,7 +75,7 @@ const HomePage = () => {
   return (
     <PageContainer ref={ref} id="home">
       {/* <HomeAnimation> */}
-      <HomeSection>
+      <HomeSection className="section" data-color="#000000">
         <Header>
           <Span>
             Hey! 👋🏾 I'm <GradientYellow> Daniel</GradientYellow>
@@ -77,7 +94,7 @@ const HomePage = () => {
         </Hero>
       </HomeSection>
       {/* </HomeAnimation> */}
-      <Section>
+      <Section className="section" data-color="#333333">
         <span style={{ fontWeight: "200", fontSize: "1rem" }}>01</span>
         <h2 style={{ fontWeight: "400", fontSize: "2rem" }}>about me</h2>
         <div
@@ -95,7 +112,7 @@ const HomePage = () => {
         </div>
         <MoreBtn onClick={() => handleRoute("/about")}>more info</MoreBtn>
       </Section>
-      <Section>
+      <Section className="section" data-color="#4d4d4d">
         <span style={{ fontWeight: "200", fontSize: "1rem" }}>02</span>
         <h2 style={{ fontWeight: "800", fontSize: "2rem" }}>projects</h2>
         <div style={{ fontWeight: "200", fontSize: "2rem" }}>
@@ -103,7 +120,7 @@ const HomePage = () => {
         </div>
         <MoreBtn onClick={() => handleRoute("/projects")}>more info</MoreBtn>
       </Section>
-      <Section>
+      <Section className="section" data-color="#666666">
         <span style={{ fontWeight: "200", fontSize: "1rem" }}>03</span>
         <h2>contact</h2>
         <div style={{ fontSize: "2rem" }}>let's get in touch!</div>

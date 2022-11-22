@@ -9,7 +9,7 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 5px solid red;
+  // border: 5px solid red;
 `;
 
 const HomeSection = styled.div`
@@ -20,11 +20,11 @@ const HomeSection = styled.div`
   align-items: center;
   justify-content: center;
   color: var(--text-dark);
-  border: 5px solid green;
   font-family: var(--poppins);
   z-index: 10;
   pointer-events: none;
   position: relative;
+  // border: 5px solid green;
 `;
 
 const Section = styled.div`
@@ -38,18 +38,18 @@ const Section = styled.div`
   justify-content: center;
   color: var(--text-dark);
   font-family: var(--poppins);
-  border: 2px solid yellow;
+  // border: 2px solid yellow;
 `;
 
 const MoreBtn = styled.button`
   font-size: 1.5rem;
   padding: 5px 20px;
   color: white;
-  border: 1px solid white;
   cursor: pointer;
   border-radius: 30px;
   position: absolute;
   bottom: 2rem;
+  border: 1px solid white;
 `;
 
 const Header = styled.header`
