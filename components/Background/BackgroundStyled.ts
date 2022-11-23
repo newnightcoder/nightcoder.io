@@ -12,7 +12,6 @@ const Container = styled.div<Props>`
   background: ${(props) => props.background};
   color: red;
   z-index: -1;
-  display: none;
 `;
 
 export { Container };

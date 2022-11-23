@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const PageContainer = styled.div`
+interface Props {
+  background: string;
+}
+
+const PageContainer = styled.div<Props>`
   min-height: 100vh;
   width: 100%;
   position: relative;
@@ -9,6 +13,7 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: ${(props) => props.background};
   // border: 5px solid red;
 `;
 

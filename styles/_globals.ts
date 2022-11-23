@@ -85,7 +85,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  height: 100%;
+  border: 4px solid red;
+  // height: max-content;
 }
 
 

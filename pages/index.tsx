@@ -1,6 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger } from "../animations/gsap";
-import { DiscSvg } from "../components";
 import { TransitionContext } from "../context/TransitionContext";
 import {
   useHandleRoute,
@@ -19,52 +18,48 @@ import {
   Span,
 } from "../styles/home";
 
-// if (typeof window !== "undefined") {
-//   gsap.registerPlugin(Scrolltrigger);
-// }
-
 const HomePage = () => {
   const ref = useRef<HTMLDivElement>(null);
   const handleBackground = useTransitionBackground();
   const handleRoute = useHandleRoute();
-  const { isMenuOpen, setBackgroundColor } = useContext(TransitionContext);
+  const { isMenuOpen, setBackgroundColor, backgroundColor } =
+    useContext(TransitionContext);
 
   const [sections, setSections] = useState<HTMLDivElement[]>(null);
+  const [ctx, setCtx] = useState<gsap.Context>(null);
 
   useIsoMorphicLayoutEffect(() => {
-    if (ref.current) {
-      handleBackground(ref.current.id);
-      setSections(() => gsap.utils.toArray(".section"));
-    }
-  }, [ref]);
-
-  useIsoMorphicLayoutEffect(() => {
-    if (sections) {
-      sections.forEach((section) => {
-        const bgColor = section.getAttribute("data-color");
-        ScrollTrigger.create({
-          trigger: section,
-          markers: true,
-          start: "top 30%",
-          end: "bottom 30%",
-          onEnter: () =>
-            gsap.to(ref.current, {
-              duration: 1,
-              background: bgColor,
-            }),
-          onEnterBack: () =>
-            gsap.to(ref.current, {
-              duration: 1,
-              background: bgColor,
-            }),
-          // onEnter: () =>{
-          //   duration: 1,
-          //   setBackgroundColor(bgColor),
-          // }
-        });
-      });
-    }
-  }, [sections]);
+    // if (ref.current) {
+    handleBackground(ref?.current?.id);
+    // setSections(() => gsap.utils.toArray(".section"));
+    // setCtx(
+    const ctx = gsap.context(() =>
+      gsap.utils
+        .toArray(ref?.current?.children)
+        .forEach((section: HTMLDivElement) => {
+          const bgColor = section.getAttribute("data-color");
+          ScrollTrigger.create({
+            trigger: section,
+            markers: true,
+            start: "top 30%",
+            end: "bottom 30%",
+            onEnter: () =>
+              gsap.to(ref.current, {
+                duration: 1,
+                background: bgColor,
+              }),
+            onEnterBack: () =>
+              gsap.to(ref.current, {
+                duration: 1,
+                background: bgColor,
+              }),
+          });
+        })
+    );
+    // );
+    // }
+    return () => ctx.revert();
+  }, [ref.current]);
 
   useEffect(() => {
     if (ref.current && isMenuOpen) {
@@ -73,7 +68,7 @@ const HomePage = () => {
   }, [isMenuOpen]);
 
   return (
-    <PageContainer ref={ref} id="home">
+    <PageContainer ref={ref} id="home" background={backgroundColor}>
       {/* <HomeAnimation> */}
       <HomeSection className="section" data-color="#000000">
         <Header>
@@ -89,9 +84,7 @@ const HomePage = () => {
           </Span>
           <Span>based in Paris</Span>
         </Header>
-        <Hero>
-          <DiscSvg />
-        </Hero>
+        <Hero>{/* <DiscSvg /> */}</Hero>
       </HomeSection>
       {/* </HomeAnimation> */}
       <Section className="section" data-color="#333333">

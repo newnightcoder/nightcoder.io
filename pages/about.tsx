@@ -1,27 +1,25 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { HomeAnimation } from "../animations";
+import { TransitionContext } from "../context/TransitionContext";
 import {
   useHandleRoute,
   useIsoMorphicLayoutEffect,
   useTransitionBackground,
 } from "../hooks";
-import { PageContainer } from "../styles/about";
-
-// if (typeof window !== "undefined") {
-//   gsap.registerPlugin(Scrolltrigger);
-// }
+import { PageContainer } from "../styles/home";
 
 const About = () => {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const handleBackground = useTransitionBackground();
   const handleRoute = useHandleRoute();
+  const { backgroundColor } = useContext(TransitionContext);
 
   useIsoMorphicLayoutEffect(() => {
-    if (ref.current) return handleBackground(ref.current.id);
-  }, []);
+    handleBackground(ref?.current?.id);
+  }, [ref.current]);
 
   return (
-    <PageContainer ref={ref} id="about">
+    <PageContainer ref={ref} id="about" background={backgroundColor}>
       <HomeAnimation>
         {/* <Container> */}
         <h1>About</h1>

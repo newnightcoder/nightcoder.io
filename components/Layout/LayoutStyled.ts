@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const LayoutContainer = styled.div`
+  height: max-content;
   position: relative;
   display: grid;
   grid-template-rows: var(--navbar-height) minmax(
