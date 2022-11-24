@@ -6,7 +6,7 @@ import {
   useIsoMorphicLayoutEffect,
   useTransitionBackground,
 } from "../hooks";
-import { PageContainer } from "../styles/home";
+import { PageContainer } from "../styles/_globals";
 
 const About = () => {
   const ref = useRef<HTMLDivElement>(null);

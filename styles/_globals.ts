@@ -1,9 +1,25 @@
 // import localFont from "@next/font/local";
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 // const Poppins_fonts = {
 //   light: localFont({ src: "./fonts/Poppins/Poppins-100.ttf" }),
 // };
+interface Props {
+  background: string;
+}
+
+export const PageContainer = styled.div<Props>`
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  color: var(--text-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: ${(props) => props.background};
+  // border: 5px solid red;
+`;
 
 const breakpoints = {
   xs: "500px",
@@ -11,7 +27,7 @@ const breakpoints = {
   md: "768px",
   lg: "1024px",
   xl: "1280px",
-  xxl: " 1536px",
+  xxl: "1536px",
 };
 
 export const GlobalStyles = createGlobalStyle`
@@ -30,14 +46,15 @@ html {
   /*  FONTS */
 
   --poppins : Poppins, sans-serif;
-  --fontsize-header : clamp(46px, 4.75vw, 70px);
+  --fontsize-header : 2rem;
+  --line-height-header:3rem;
 
   /* MOBILE FIRST VARIABLES / RESPONSIVE */
 
   --navbar-links-visibility: none;
   --hamburger-visibility: flex;
   --navbar-padding-right: 0;
-  --header-width: 100%;
+  --header-width: max-content;
   --align-header:center;
 
   /* TEXT COLORS */
@@ -73,7 +90,8 @@ html {
     --navbar-padding-right: 4rem;
     --header-width: max-content;
     --align-header:flex-start;
-
+    --fontsize-header : clamp(46px, 4.75vw, 70px);
+    --line-height-header:4.25rem;
 
   }
 
@@ -85,8 +103,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  border: 4px solid red;
-  // height: max-content;
 }
 
 

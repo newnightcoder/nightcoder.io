@@ -13,10 +13,10 @@ import {
   Hero,
   HomeSection,
   MoreBtn,
-  PageContainer,
   Section,
   Span,
 } from "../styles/home";
+import { PageContainer } from "../styles/_globals";
 
 const HomePage = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -40,7 +40,7 @@ const HomePage = () => {
           const bgColor = section.getAttribute("data-color");
           ScrollTrigger.create({
             trigger: section,
-            markers: true,
+            markers: false,
             start: "top 30%",
             end: "bottom 30%",
             onEnter: () =>

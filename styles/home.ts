@@ -1,22 +1,5 @@
 import styled from "styled-components";
 
-interface Props {
-  background: string;
-}
-
-const PageContainer = styled.div<Props>`
-  min-height: 100vh;
-  width: 100%;
-  position: relative;
-  color: var(--text-dark);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: ${(props) => props.background};
-  // border: 5px solid red;
-`;
-
 const HomeSection = styled.div`
   height: 100vh;
   width: inherit;
@@ -61,11 +44,12 @@ const Header = styled.header`
   width: var(--header-width);
   display: flex;
   flex-direction: column;
-  align-items: var(--align-header);
+  // align-items: var(--align-header);
+  align-items: flex-start;
   justify-content: center;
   font-weight: 800;
   font-size: var(--fontsize-header);
-  line-height: 4.25rem;
+  line-height: var(--line-height-header);
   z-index: 6;
   // border: 1px solid red;
 `;
@@ -113,7 +97,6 @@ const AnimationContainer = styled.div`
 `;
 
 export {
-  PageContainer,
   HomeSection,
   Section,
   MoreBtn,
