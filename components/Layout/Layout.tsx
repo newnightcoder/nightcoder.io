@@ -1,6 +1,6 @@
 import { Squeeze as Hamburger } from "hamburger-react";
 import { forwardRef, PropsWithChildren, useContext } from "react";
-import { Logo, MobileMenu } from "../";
+import { Logo, MobileMenu, Navbar } from "../";
 import { TransitionContext } from "../../context/TransitionContext";
 import { HamburgerBtn } from "../Navbar/NavbarStyled";
 import { LayoutContainer, Main } from "./LayoutStyled";
@@ -12,7 +12,7 @@ const Layout = forwardRef<HTMLDivElement, Props>(({ children }, ref) => {
 
   return (
     <LayoutContainer ref={ref}>
-      {/* <Navbar /> */}
+      <Navbar />
       <Logo />
       <HamburgerBtn>
         <Hamburger

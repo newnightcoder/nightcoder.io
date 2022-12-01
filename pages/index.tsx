@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "../animations/gsap";
 import { TransitionContext } from "../context/TransitionContext";
 import {
@@ -25,8 +25,8 @@ const HomePage = () => {
   const { isMenuOpen, setBackgroundColor, backgroundColor } =
     useContext(TransitionContext);
 
-  const [sections, setSections] = useState<HTMLDivElement[]>(null);
-  const [ctx, setCtx] = useState<gsap.Context>(null);
+  // const [sections, setSections] = useState<HTMLDivElement[]>(null);
+  // const [ctx, setCtx] = useState<gsap.Context>(null);
 
   useIsoMorphicLayoutEffect(() => {
     // if (ref.current) {
@@ -59,7 +59,7 @@ const HomePage = () => {
     // );
     // }
     return () => ctx.revert();
-  }, [ref.current]);
+  }, []);
 
   useEffect(() => {
     if (ref.current && isMenuOpen) {
@@ -73,11 +73,11 @@ const HomePage = () => {
       <HomeSection className="section" data-color="#000000">
         <Header>
           <Span>
-            Hey! 👋🏾 I'm <GradientYellow> Daniel</GradientYellow>
+            Hey! 👋🏾 I&apos;m <GradientYellow> Daniel</GradientYellow>
           </Span>
           <Span>aka Nightcoder 😎</Span>
           <Span>
-            I'm a <GradientBlue>frontend </GradientBlue>
+            I&apos;m a <GradientBlue>frontend </GradientBlue>
           </Span>
           <Span>
             <GradientBlue>web developer</GradientBlue>
@@ -99,7 +99,7 @@ const HomePage = () => {
             alignItems: "start",
           }}
         >
-          <span>i'm a proud self-taught developer.</span>
+          <span>i&apos;m a proud self-taught developer.</span>
           <span>in love with code.</span>
           <span>i speak fluently JavaScript with a strong React accent.</span>
         </div>
@@ -116,7 +116,7 @@ const HomePage = () => {
       <Section className="section" data-color="#666666">
         <span style={{ fontWeight: "200", fontSize: "1rem" }}>03</span>
         <h2>contact</h2>
-        <div style={{ fontSize: "2rem" }}>let's get in touch!</div>
+        <div style={{ fontSize: "2rem" }}>let&apos;s get in touch!</div>
         <MoreBtn onClick={() => handleRoute("/contact")}>more info</MoreBtn>
       </Section>
     </PageContainer>

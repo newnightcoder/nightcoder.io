@@ -17,7 +17,7 @@ const MobileMenu = () => {
 
   useEffect(() => {
     window.addEventListener("resize", setSize);
-  }, [window]);
+  }, [setSize]);
 
   return (
     <Container height={height} width={width} isMenuOpen={isMenuOpen}>

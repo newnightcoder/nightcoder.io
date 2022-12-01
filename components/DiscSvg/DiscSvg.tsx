@@ -137,7 +137,7 @@ const DiscSvg = () => {
     return () => {
       window.removeEventListener("resize", setSize);
     };
-  }, [window]);
+  }, [setSize]);
 
   // const handleHover = () => {
   //   orbitCss?.isActive() ? orbitCss.pause() : orbitCss?.resume();

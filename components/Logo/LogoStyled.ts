@@ -7,8 +7,9 @@ const Container = styled.div`
   z-index: 3000;
   left: 1rem;
   border-radius: 50%;
-  background: black;
-  mix-blend-mode: multiply;
+  background: white;
+  // background: black;
+  // mix-blend-mode: multiply;
   // transform-style: preserve-3d;
   // &::after {
   //   content: "";
@@ -39,7 +40,7 @@ const LogoLink = styled.a`
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  color: var(--text-dark);
+  color: var(--text-light);
 `;
 
 // const BackgroundShapes = styled.span`

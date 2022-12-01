@@ -10,6 +10,7 @@ interface Props {
 
 export const PageContainer = styled.div<Props>`
   min-height: 100vh;
+  padding-top: var(--navbar-height);
   width: 100%;
   position: relative;
   color: var(--text-dark);
@@ -104,7 +105,6 @@ body {
   padding: 0;
   margin: 0;
 }
-
 
 .noscroll {
   overflow: hidden;

@@ -9,7 +9,7 @@ const useWindowSize = () => {
       setHeight(window.innerHeight);
       setWidth(window.innerWidth);
     }
-  }, [window, setHeight, setWidth]);
+  }, [setHeight, setWidth]);
 
   useEffect(() => {
     setSize();

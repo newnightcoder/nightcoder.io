@@ -9,7 +9,7 @@ const Wrapper = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--navbar-bg);
+  // background: var(--navbar-bg);
 `;
 
 const NavbarContainer = styled.div`
@@ -23,14 +23,18 @@ const NavbarContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   color: var(--text-dark);
-  background: rgba(255, 255, 255, 0.25);
+  // background: rgba(255, 255, 255, 0.25);
+  background: transparent;
   z-index: 1000;
   backdrop-filter: saturate(180%) blur(5px);
 `;
 
 const BackgroundShapes = styled.span`
-  height: 15%;
+  height: 1px;
   width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   background: linear-gradient(to left, #ffb906, #fb098c, #06a5ff);
   background-size: 400%;
   background-position: left;

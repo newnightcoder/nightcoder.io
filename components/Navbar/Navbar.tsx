@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { NavLinksAnimation } from "../../animations";
 import { useHandleRoute } from "../../hooks";
 import {
@@ -15,7 +15,10 @@ const Navbar = () => {
   const handleRoute = useHandleRoute();
   const router = useRouter();
   const [active, setActive] = useState("");
-  const navLinks = ["home", "about", "projects", "stack", "contact"];
+  const navLinks = useMemo(
+    () => ["home", "about", "projects", "stack", "contact"],
+    []
+  );
 
   const activateLink = useCallback(() => {
     navLinks.forEach((link) => {
@@ -25,15 +28,14 @@ const Navbar = () => {
         setActive(link);
       }
     });
-  }, [router.pathname]);
+  }, [navLinks, router.pathname]);
 
   useEffect(() => {
     activateLink();
-  }, [router.pathname]);
+  }, [activateLink]);
 
   return (
     <Wrapper>
-      <BackgroundShapes />
       <NavbarContainer>
         <NavLinksAnimation>
           <NavLinksContainer id="ul">
@@ -65,6 +67,7 @@ const Navbar = () => {
           </NavLinksContainer>
         </NavLinksAnimation>
       </NavbarContainer>
+      <BackgroundShapes />
     </Wrapper>
   );
 };

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import { TransitionContext } from "../context/TransitionContext";
 
 const useTransitionBackground = () => {
@@ -12,7 +12,7 @@ const useTransitionBackground = () => {
     contact: "#666666",
   };
 
-  const handleBackground = (id: string) => {
+  const handleBackground = useCallback((id: string) => {
     switch (id) {
       case "home":
         return setBackgroundColor(colors.home);
@@ -27,7 +27,7 @@ const useTransitionBackground = () => {
       default:
         return;
     }
-  };
+  }, []);
 
   return handleBackground;
 };
