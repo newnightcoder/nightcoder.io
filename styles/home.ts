@@ -29,15 +29,29 @@ const Section = styled.div`
   // border: 2px solid yellow;
 `;
 
-const MoreBtn = styled.button`
-  font-size: 1.5rem;
+interface Props {
+  color?: string;
+}
+
+const MoreBtn = styled.button<Props>`
+  width: 110px;
+  height: 40px;
+  font-size: 0.75rem;
   padding: 5px 20px;
   color: white;
   cursor: pointer;
   border-radius: 30px;
   position: absolute;
   bottom: 2rem;
-  border: 1px solid white;
+  // border: 1px solid #2190ff;
+  // background: #3b4662;
+  // background-image: linear-gradient(135deg, #007cf0, #00dfd8);
+  background: ${(props) =>
+    props.color === "blue"
+      ? "var(--gradient-blue)"
+      : props.color === "orange"
+      ? "var(--gradient-orange)"
+      : "transparent"};
 `;
 
 const Header = styled.header`
@@ -80,14 +94,14 @@ const GradientBlue = styled.span`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(to right, #007cf0, #00dfd8);
+  background-image: var(--gradient-blue);
 `;
 
 const GradientYellow = styled.span`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(to right, #ff4d4d, #e1b106);
+  background-image: var(--gradient-orange);
 `;
 
 const AnimationContainer = styled.div`

@@ -26,7 +26,7 @@ const NavbarContainer = styled.div`
   // background: rgba(255, 255, 255, 0.25);
   background: transparent;
   z-index: 1000;
-  backdrop-filter: saturate(180%) blur(5px);
+  backdrop-filter: saturate(180%) blur(8px);
 `;
 
 const BackgroundShapes = styled.span`

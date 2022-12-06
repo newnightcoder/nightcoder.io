@@ -73,6 +73,8 @@ html {
   --navbar-bg: #222; 
   --home-bg:linear-gradient(90deg, dimgray, black);
   --menu-bg:#06A5FF;
+  --gradient-blue: linear-gradient(135deg, #007cf0, #00dfd8);
+  --gradient-orange: linear-gradient(135deg, #ff4d4d, #e1b106);
   
   /* HEIGHT & WIDTH */
   

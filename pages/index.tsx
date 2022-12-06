@@ -103,7 +103,9 @@ const HomePage = () => {
           <span>in love with code.</span>
           <span>i speak fluently JavaScript with a strong React accent.</span>
         </div>
-        <MoreBtn onClick={() => handleRoute("/about")}>more info</MoreBtn>
+        <MoreBtn color={"orange"} onClick={() => handleRoute("/about")}>
+          more info
+        </MoreBtn>
       </Section>
       <Section className="section" data-color="#4d4d4d">
         <span style={{ fontWeight: "200", fontSize: "1rem" }}>02</span>
@@ -111,13 +113,17 @@ const HomePage = () => {
         <div style={{ fontWeight: "200", fontSize: "2rem" }}>
           some projects i built
         </div>
-        <MoreBtn onClick={() => handleRoute("/projects")}>more info</MoreBtn>
+        <MoreBtn color={"blue"} onClick={() => handleRoute("/projects")}>
+          more info
+        </MoreBtn>
       </Section>
       <Section className="section" data-color="#666666">
         <span style={{ fontWeight: "200", fontSize: "1rem" }}>03</span>
         <h2>contact</h2>
         <div style={{ fontSize: "2rem" }}>let&apos;s get in touch!</div>
-        <MoreBtn onClick={() => handleRoute("/contact")}>more info</MoreBtn>
+        <MoreBtn color={"blue"} onClick={() => handleRoute("/contact")}>
+          more info
+        </MoreBtn>
       </Section>
     </PageContainer>
   );
