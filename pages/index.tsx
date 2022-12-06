@@ -7,6 +7,7 @@ import {
   useTransitionBackground,
 } from "../hooks";
 import {
+  BtnText,
   GradientBlue,
   GradientYellow,
   Header,
@@ -24,6 +25,13 @@ const HomePage = () => {
   const handleRoute = useHandleRoute();
   const { isMenuOpen, setBackgroundColor, backgroundColor } =
     useContext(TransitionContext);
+
+  const dataColor = {
+    sectionHome: "#000000",
+    sectionAbout: "#333333",
+    sectionProjects: "#4d4d4d",
+    sectionContact: "#666666",
+  };
 
   // const [sections, setSections] = useState<HTMLDivElement[]>(null);
   // const [ctx, setCtx] = useState<gsap.Context>(null);
@@ -70,7 +78,7 @@ const HomePage = () => {
   return (
     <PageContainer ref={ref} id="home" background={backgroundColor}>
       {/* <HomeAnimation> */}
-      <HomeSection className="section" data-color="#000000">
+      <HomeSection className="section" data-color={dataColor.sectionHome}>
         <Header>
           <Span>
             Hey! 👋🏾 I&apos;m <GradientYellow> Daniel</GradientYellow>
@@ -87,7 +95,7 @@ const HomePage = () => {
         <Hero>{/* <DiscSvg /> */}</Hero>
       </HomeSection>
       {/* </HomeAnimation> */}
-      <Section className="section" data-color="#333333">
+      <Section className="section" data-color={dataColor.sectionAbout}>
         <span style={{ fontWeight: "200", fontSize: "1rem" }}>01</span>
         <h2 style={{ fontWeight: "400", fontSize: "2rem" }}>about me</h2>
         <div
@@ -103,26 +111,38 @@ const HomePage = () => {
           <span>in love with code.</span>
           <span>i speak fluently JavaScript with a strong React accent.</span>
         </div>
-        <MoreBtn color={"orange"} onClick={() => handleRoute("/about")}>
-          more info
+        <MoreBtn
+          color={"orange"}
+          bg={dataColor.sectionAbout}
+          onClick={() => handleRoute("/about")}
+        >
+          <BtnText>more info</BtnText>
         </MoreBtn>
       </Section>
-      <Section className="section" data-color="#4d4d4d">
+      <Section className="section" data-color={dataColor.sectionProjects}>
         <span style={{ fontWeight: "200", fontSize: "1rem" }}>02</span>
         <h2 style={{ fontWeight: "800", fontSize: "2rem" }}>projects</h2>
         <div style={{ fontWeight: "200", fontSize: "2rem" }}>
           some projects i built
         </div>
-        <MoreBtn color={"blue"} onClick={() => handleRoute("/projects")}>
-          more info
+        <MoreBtn
+          color={"blue"}
+          bg={dataColor.sectionProjects}
+          onClick={() => handleRoute("/projects")}
+        >
+          <BtnText>more info</BtnText>
         </MoreBtn>
       </Section>
-      <Section className="section" data-color="#666666">
+      <Section className="section" data-color={dataColor.sectionContact}>
         <span style={{ fontWeight: "200", fontSize: "1rem" }}>03</span>
         <h2>contact</h2>
         <div style={{ fontSize: "2rem" }}>let&apos;s get in touch!</div>
-        <MoreBtn color={"blue"} onClick={() => handleRoute("/contact")}>
-          more info
+        <MoreBtn
+          color={"blue"}
+          bg={dataColor.sectionContact}
+          onClick={() => handleRoute("/contact")}
+        >
+          <BtnText>more info</BtnText>
         </MoreBtn>
       </Section>
     </PageContainer>
