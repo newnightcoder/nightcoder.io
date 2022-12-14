@@ -9,6 +9,7 @@ const Wrapper = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
+  // border: 1px solid lightgray;
   // background: var(--navbar-bg);
 `;
 
@@ -23,14 +24,13 @@ const NavbarContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   color: var(--text-dark);
-  // background: rgba(255, 255, 255, 0.25);
   background: transparent;
-  z-index: 1000;
-  backdrop-filter: saturate(180%) blur(8px);
+  z-index: 999;
+  backdrop-filter: saturate(180%) blur(10px);
 `;
 
 const BackgroundShapes = styled.span`
-  height: 1px;
+  height: 10%;
   width: 100%;
   position: absolute;
   bottom: 0;
