@@ -41,35 +41,27 @@ const MoreBtn = styled.button<Props>`
   padding: 5px 20px;
   color: white;
   cursor: pointer;
-  border-radius: 30px;
   position: absolute;
   bottom: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: ${(props) =>
+  /* background: ${(props) =>
+    `linear-gradient(${props.bg}, ${props.bg}) padding-box, var(--gradient-blue) border-box`};  */
+  // border: 1px solid transparent;
+  border-image: ${(props) =>
     props.color === "blue"
-      ? "var(--gradient-blue)"
-      : props.color === "orange"
-      ? "var(--gradient-orange)"
-      : "transparent"};
+      ? "var(--gradient-blue) 1"
+      : "var(--gradient-orange) 1"};
+  border-width: 1px;
+  border-style: solid;
 
-  &::before {
-    content: "";
-    position: absolute;
-    border-radius: 30px;
-    height: calc(100% - 2px);
-    width: calc(100% - 2px);
-    background: ${(props) => props.bg};
-    pointer-events: none;
-    z-index: 2;
-  }
   &::after {
     content: "";
     position: absolute;
-    height: 101%;
-    width: 101%;
+    height: 100%;
+    width: 100%;
     background: ${(props) =>
       props.color === "blue"
         ? "var(--gradient-blue)"
@@ -77,7 +69,7 @@ const MoreBtn = styled.button<Props>`
     z-index: 3;
     transform: scale(0, 1);
     transform-origin: left;
-    transition: transform 500ms;
+    transition: transform 150ms;
     pointer-events: none;
   }
 
@@ -91,7 +83,8 @@ const MoreBtn = styled.button<Props>`
 const BtnText = styled.span`
   z-index: 10;
   pointer-events: none;
-  font-size: 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
   white-space: nowrap;
 `;
 

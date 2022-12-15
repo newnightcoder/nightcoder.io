@@ -9,8 +9,9 @@ const Wrapper = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
-  // border: 1px solid lightgray;
   // background: var(--navbar-bg);
+  // background: rgba(0, 0, 0, 0.05);
+  // border: 1px solid lightgray;
 `;
 
 const NavbarContainer = styled.div`

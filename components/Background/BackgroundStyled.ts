@@ -10,7 +10,7 @@ const Container = styled.div<Props>`
   position: fixed;
   inset: 0;
   background: ${(props) => props.background};
-  color: red;
+  // color: red;
   z-index: -1;
 `;
 
