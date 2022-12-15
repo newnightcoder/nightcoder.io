@@ -26,15 +26,18 @@ const NavbarContainer = styled.div`
   color: var(--text-dark);
   background: transparent;
   z-index: 999;
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
   backdrop-filter: saturate(180%) blur(10px);
 `;
 
 const BackgroundShapes = styled.span`
-  height: 10%;
+  height: 7%;
   width: 100%;
   position: absolute;
   bottom: 0;
   left: 0;
+  z-index: 1000;
+  filter: blur(1px);
   background: linear-gradient(to left, #ffb906, #fb098c, #06a5ff);
   background-size: 400%;
   background-position: left;

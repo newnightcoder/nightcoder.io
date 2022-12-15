@@ -12,22 +12,25 @@ const useTransitionBackground = () => {
     contact: "#666666",
   };
 
-  const handleBackground = useCallback((id: string) => {
-    switch (id) {
-      case "home":
-        return setBackgroundColor(colors.home);
-      case "about":
-        return setBackgroundColor(colors.about);
-      case "projects":
-        return setBackgroundColor(colors.projects);
-      case "stack":
-        return setBackgroundColor(colors.stack);
-      case "contact":
-        return setBackgroundColor(colors.contact);
-      default:
-        return;
-    }
-  }, []);
+  const handleBackground = useCallback(
+    (id: string) => {
+      switch (id) {
+        case "home":
+          return setBackgroundColor(colors.home);
+        case "about":
+          return setBackgroundColor(colors.about);
+        case "projects":
+          return setBackgroundColor(colors.projects);
+        case "stack":
+          return setBackgroundColor(colors.stack);
+        case "contact":
+          return setBackgroundColor(colors.contact);
+        default:
+          return;
+      }
+    },
+    [setBackgroundColor, colors]
+  );
 
   return handleBackground;
 };

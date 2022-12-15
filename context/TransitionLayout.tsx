@@ -6,7 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { Layout, Loader } from "../components";
+import { Background, Layout, Loader } from "../components";
 import { useHandleRoute, useIsoMorphicLayoutEffect } from "../hooks";
 import { GlobalStyles } from "../styles/_globals";
 import { TransitionContext } from "./TransitionContext";
@@ -92,7 +92,7 @@ const TransitionLayout = ({ children }: Props) => {
         <Loader set={setisLoading} />
       ) : (
         <Layout ref={layoutRef}>
-          {/* <Background ref={bgRef} /> */}
+          <Background ref={bgRef} />
           {nextChildren}
         </Layout>
       )}

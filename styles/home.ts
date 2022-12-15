@@ -47,6 +47,7 @@ const MoreBtn = styled.button<Props>`
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   background: ${(props) =>
     props.color === "blue"
       ? "var(--gradient-blue)"

@@ -1,6 +1,5 @@
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { HomeAnimation } from "../animations";
-import { TransitionContext } from "../context/TransitionContext";
 import {
   useHandleRoute,
   useIsoMorphicLayoutEffect,
@@ -12,14 +11,13 @@ const About = () => {
   const ref = useRef<HTMLDivElement>(null);
   const handleBackground = useTransitionBackground();
   const handleRoute = useHandleRoute();
-  const { backgroundColor } = useContext(TransitionContext);
 
   useIsoMorphicLayoutEffect(() => {
-    handleBackground(ref?.current?.id);
-  }, [ref.current]);
+    if (ref.current) return handleBackground(ref.current.id);
+  }, []);
 
   return (
-    <PageContainer ref={ref} id="about" background={backgroundColor}>
+    <PageContainer ref={ref} id="about">
       <HomeAnimation>
         {/* <Container> */}
         <h1>About</h1>

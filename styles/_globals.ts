@@ -5,7 +5,7 @@ import styled, { createGlobalStyle } from "styled-components";
 //   light: localFont({ src: "./fonts/Poppins/Poppins-100.ttf" }),
 // };
 interface Props {
-  background: string;
+  background?: string;
 }
 
 export const PageContainer = styled.div<Props>`
@@ -18,7 +18,7 @@ export const PageContainer = styled.div<Props>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => props.background};
+  // background-color: ${(props) => props.background};
   // border: 5px solid red;
 `;
 
