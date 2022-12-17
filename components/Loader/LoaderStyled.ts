@@ -7,6 +7,8 @@ const Container = styled.div`
   inset: 0;
   background: #34d399;
   color: var(--text-light);
+  // font-family: var(--lucky);
+  font-size: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;

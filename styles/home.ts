@@ -56,7 +56,6 @@ const MoreBtn = styled.button<Props>`
       : "var(--gradient-orange) 1"};
   border-width: 1px;
   border-style: solid;
-
   &::after {
     content: "";
     position: absolute;

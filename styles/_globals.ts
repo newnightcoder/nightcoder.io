@@ -1,9 +1,11 @@
 // import localFont from "@next/font/local";
 import styled, { createGlobalStyle } from "styled-components";
+import "./font.module.css";
 
 // const Poppins_fonts = {
 //   light: localFont({ src: "./fonts/Poppins/Poppins-100.ttf" }),
 // };
+
 interface Props {
   background?: string;
 }
@@ -33,6 +35,11 @@ const breakpoints = {
 
 export const GlobalStyles = createGlobalStyle`
 
+// @font-face {
+//   font-family: "hemihead";
+//   src: url("/hemihead.ttf") format("truetype");
+// }
+
 *,
 *::before,
 *::after {
@@ -41,14 +48,13 @@ export const GlobalStyles = createGlobalStyle`
 
 html {
 
-  // border:5px solid violet;
-  // min-height:100vh;
   
   /*  FONTS */
 
   --poppins : Poppins, sans-serif;
+  --lucky : "Luckiest Guy", cursive;
   --fontsize-header : 2rem;
-  --line-height-header:3rem;
+  --line-height-header: 3rem;
 
   /* MOBILE FIRST VARIABLES / RESPONSIVE */
 
