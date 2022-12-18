@@ -1,6 +1,5 @@
 // import localFont from "@next/font/local";
 import styled, { createGlobalStyle } from "styled-components";
-import "./font.module.css";
 
 // const Poppins_fonts = {
 //   light: localFont({ src: "./fonts/Poppins/Poppins-100.ttf" }),
@@ -8,6 +7,7 @@ import "./font.module.css";
 
 interface Props {
   background?: string;
+  justify?: string;
 }
 
 export const PageContainer = styled.div<Props>`
@@ -19,7 +19,7 @@ export const PageContainer = styled.div<Props>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: ${(props) => props.justify};
   // background-color: ${(props) => props.background};
   // border: 5px solid red;
 `;

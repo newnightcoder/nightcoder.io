@@ -12,7 +12,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <PageContainer ref={ref} id="projects">
+    <PageContainer ref={ref} id="projects" justify="">
       <HomeAnimation>
         <h1>PROJECTS</h1>
       </HomeAnimation>

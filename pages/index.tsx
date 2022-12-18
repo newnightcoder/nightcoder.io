@@ -76,7 +76,7 @@ const HomePage = () => {
   }, [isMenuOpen]);
 
   return (
-    <PageContainer ref={ref} id="home" background={backgroundColor}>
+    <PageContainer ref={ref} id="home" justify="center">
       {/* <HomeAnimation> */}
       <HomeSection className="section" data-color={dataColor.sectionHome}>
         <Header>
