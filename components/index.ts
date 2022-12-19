@@ -1,3 +1,4 @@
+export { default as AboutItem } from "./AboutItem/AboutItem";
 export { default as Background } from "./Background/Background";
 export { default as DiscSvg } from "./DiscSvg/DiscSvg";
 export { default as Layout } from "./Layout/Layout";

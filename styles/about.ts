@@ -14,6 +14,7 @@ const Container = styled.div`
 
 const Title = styled.h1`
   font-family: var(--poppins);
+  z-index: 5;
   // border: 1px solid red;
 `;
 
@@ -33,41 +34,18 @@ const Text = styled.div`
   height: 100%;
   // width: 50%;
   // max-width: 400px;
-  padding: 15px 20px 0;
+  // padding: 15px 20px 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   border-radius: 10px;
+  z-index: 5;
   // background-color: #333;
   // border: 1px solid pink;
   & * + * {
     margin-top: 15px;
   }
-`;
-
-const MenuContainer = styled.div`
-  width: 100%;
-  background-color: #333;
-  border-radius: 10px;
-  position: relative;
-  padding: 0 10px;
-
-  &::before {
-    content: "";
-    position: absolute;
-    left: -1px;
-    top: -1px;
-    background-image: var(--gradient-blue);
-    height: calc(100% + 2px);
-    width: calc(100% + 2px);
-    border-radius: 10px;
-    z-index: -1;
-  }
-`;
-
-const MenuItem = styled.div`
-  padding: 0 15px 20px;
 `;
 
 const ImgContainer = styled.div`
@@ -81,6 +59,7 @@ const ImgContainer = styled.div`
   align-items: center;
   justify-content: center;
   transition: transform 500ms;
+  z-index: 2;
   // transition-timing-function: ease-out
   // border: 7px solid #333;
   &:after {
@@ -99,12 +78,4 @@ const ImgContainer = styled.div`
   }
 `;
 
-export {
-  Title,
-  Container,
-  FlexContainer,
-  Text,
-  MenuContainer,
-  MenuItem,
-  ImgContainer,
-};
+export { Title, Container, FlexContainer, Text, ImgContainer };
