@@ -8,10 +8,10 @@ import {
   useTransitionBackground,
 } from "../hooks";
 import {
+  AboutItemsContainer,
   Container,
-  FlexContainer,
+  ContentContainer,
   ImgContainer,
-  Text,
   Title,
 } from "../styles/about";
 import { PageContainer } from "../styles/_globals";
@@ -27,12 +27,14 @@ const About = () => {
   }, []);
 
   return (
-    <PageContainer ref={pageRef} id="about" justify="flex-start">
+    <PageContainer ref={pageRef} id="about" justify="center">
       {/* <HomeAnimation> */}
       <Container>
-        <Title>In a few words, i am...</Title>
-        <FlexContainer>
-          <Text>
+        <Title>
+          <h1>In a few words, i am...</h1>
+        </Title>
+        <ContentContainer>
+          <AboutItemsContainer>
             <AboutItem
               itemTitle={text.item.title1}
               itemText={text.item.text1}
@@ -50,14 +52,10 @@ const About = () => {
               itemText={text.item.text4}
             />
             <AboutItem
-              itemTitle={text.item.title5}
-              itemText={text.item.text5}
-            />
-            <AboutItem
               itemTitle={text.item.title6}
               itemText={text.item.text6}
             />
-          </Text>
+          </AboutItemsContainer>
           <ImgContainer>
             <Image
               src={moi}
@@ -65,7 +63,7 @@ const About = () => {
               style={{ borderRadius: "50%" }}
             />
           </ImgContainer>
-        </FlexContainer>
+        </ContentContainer>
       </Container>
       {/* </HomeAnimation> */}
     </PageContainer>

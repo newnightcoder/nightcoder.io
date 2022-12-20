@@ -3,45 +3,43 @@ import styled from "styled-components";
 const Container = styled.div`
   min-height: 100vh;
   width: 100%;
-  padding: 30px 2vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  padding: 10px 2vw;
+  display: grid;
+  grid-template-rows: 150px max-content;
+  justify-content: center;
   font-family: var(--poppins);
   // border: 1px solid white;
 `;
 
-const Title = styled.h1`
+const Title = styled.div`
+  grid-row: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: var(--poppins);
   z-index: 5;
   // border: 1px solid red;
 `;
 
-const FlexContainer = styled.div`
+const ContentContainer = styled.div`
+  grid-row: 2;
   width: 100%;
   max-width: 900px;
-  // display: flex;
-  // align-items: flex-start;
-  // justify-content: space-between;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 2vw;
+  grid-column-gap: 3vw;
   // border: 1px solid red;
 `;
 
-const Text = styled.div`
+const AboutItemsContainer = styled.div`
   height: 100%;
-  // width: 50%;
-  // max-width: 400px;
-  // padding: 15px 20px 0;
+  padding: 30px 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   border-radius: 10px;
   z-index: 5;
-  // background-color: #333;
   // border: 1px solid pink;
   & * + * {
     margin-top: 15px;
@@ -50,10 +48,10 @@ const Text = styled.div`
 
 const ImgContainer = styled.div`
   height: min-content;
-  max-width: 400px;
+  // max-width: 400px;
   position: sticky;
   top: 7rem;
-  border-radius: 20px;
+  border-radius: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,21 +59,27 @@ const ImgContainer = styled.div`
   transition: transform 500ms;
   z-index: 2;
   // transition-timing-function: ease-out
-  // border: 7px solid #333;
-  &:after {
-    content: "";
-    height: calc(100% + 4px);
-    width: calc(100% + 4px);
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    background-image: var(--gradient-orange);
-    border-radius: 50%;
-    z-index: -1;
-  }
+  border: 3px solid #333;
+  // &:after {
+  //   content: "";
+  //   height: calc(100% + 4px);
+  //   width: calc(100% + 4px);
+  //   position: absolute;
+  //   top: -2px;
+  //   left: -2px;
+  //   background-image: var(--gradient-orange);
+  //   border-radius: 50%;
+  //   z-index: -1;
+  // }
   &:hover {
     transform: scale(1.2);
   }
 `;
 
-export { Title, Container, FlexContainer, Text, ImgContainer };
+export {
+  Title,
+  Container,
+  ContentContainer,
+  AboutItemsContainer,
+  ImgContainer,
+};

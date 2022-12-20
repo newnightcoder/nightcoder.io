@@ -17,19 +17,47 @@ const ItemContainer = styled.div`
     position: absolute;
     left: -1px;
     top: -1px;
-    background-image: var(--gradient-blue);
+    background: var(--gradient-blue);
     height: calc(100% + 2px);
     width: calc(100% + 2px);
     border-radius: 10px;
     z-index: -1;
+    opacity: 1;
+    transition: opacity 500ms;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    background: var(--gradient-orange);
+    height: calc(100% + 2px);
+    width: calc(100% + 2px);
+    border-radius: 10px;
+    z-index: -2;
+  }
+
+  &:hover {
+    &::before {
+      opacity: 0;
+    }
   }
 `;
 
-const ItemTitle = styled.p``;
+const ItemTitle = styled.p`
+  width: max-content;
+`;
 
 const ItemBtn = styled.button<Props>`
+  height: 25px;
+  width: 25px;
+  border-radius: 5px;
   color: white;
+  transition: all 300ms;
   transform: ${(props) => (props.rotated ? "rotate(90deg)" : "rotate(0deg)")};
+  &:hover {
+    background: #555;
+  }
 `;
 
 const Item = styled.div<Props>`

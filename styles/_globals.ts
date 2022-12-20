@@ -48,7 +48,6 @@ export const GlobalStyles = createGlobalStyle`
 
 html {
 
-  
   /*  FONTS */
 
   --poppins : Poppins, sans-serif;
@@ -80,6 +79,7 @@ html {
   --home-bg:linear-gradient(90deg, dimgray, black);
   --menu-bg:#06A5FF;
   --gradient-blue: linear-gradient(135deg, #007cf0, #00dfd8);
+  --gradient-blue-2: linear-gradient(135deg, #38BDF8, #2563EB);
   --gradient-orange: linear-gradient(135deg, #ff4d4d, #e1b106);
   
   /* HEIGHT & WIDTH */
@@ -106,13 +106,26 @@ html {
 
 }
 
-
+html{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
 
 html,
 body {
   padding: 0;
   margin: 0;
+
+
 }
+
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
 
 .noscroll {
   overflow: hidden;
