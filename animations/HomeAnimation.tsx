@@ -6,7 +6,7 @@ import { AnimationContainer } from "../styles/home";
 
 const HomeAnimation = ({ children }) => {
   const { timelinePages, isMenuOpen } = useContext(TransitionContext);
-  const spanref = useRef<HTMLDivElement | null>(null);
+  const spanref = useRef<HTMLDivElement>(null);
 
   useIsoMorphicLayoutEffect(() => {
     if (spanref.current && !isMenuOpen) {

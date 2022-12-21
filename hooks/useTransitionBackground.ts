@@ -2,11 +2,12 @@ import { useCallback, useContext } from "react";
 import { TransitionContext } from "../context/TransitionContext";
 
 const useTransitionBackground = () => {
-  const { setBackgroundColor } = useContext(TransitionContext);
+  const { setBackgroundColor, setBackgroundWord } =
+    useContext(TransitionContext);
 
   const colors = {
     home: "#000000",
-    about: "#191919",
+    about: "#252525",
     projects: "#333333",
     stack: "#4d4d4d",
     contact: "#666666",
@@ -14,6 +15,7 @@ const useTransitionBackground = () => {
 
   const handleBackground = useCallback(
     (id: string) => {
+      setBackgroundWord(id);
       switch (id) {
         case "home":
           return setBackgroundColor(colors.home);
@@ -29,7 +31,7 @@ const useTransitionBackground = () => {
           return;
       }
     },
-    [setBackgroundColor, colors]
+    [setBackgroundColor, setBackgroundWord, colors]
   );
 
   return handleBackground;

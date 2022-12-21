@@ -141,6 +141,7 @@ const AnimationContainer = styled.div`
   visibility: hidden;
   opacity: 0;
   transform: translateY(4rem);
+  border: 10px solid yellow;
 `;
 
 export {

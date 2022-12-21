@@ -15,6 +15,8 @@ type TransitionContext = {
   setTimelineMenu?: Dispatch<SetStateAction<gsap.core.Timeline>>;
   backgroundColor: string;
   setBackgroundColor: Dispatch<SetStateAction<string>>;
+  backgroundWord: string;
+  setBackgroundWord: Dispatch<SetStateAction<string>>;
   isMenuOpen?: boolean;
   setIsMenuOpen?: Dispatch<SetStateAction<boolean>>;
   isMenuAnim?: boolean;
@@ -32,6 +34,7 @@ const TransitionProvider = ({ children }: Props) => {
     gsap.timeline({ paused: true })
   );
   const [backgroundColor, setBackgroundColor] = useState("#34d399");
+  const [backgroundWord, setBackgroundWord] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuAnim, setIsMenuAnim] = useState(false);
   const [isMenuClosing, setIsMenuClosing] = useState(false);
@@ -67,6 +70,8 @@ const TransitionProvider = ({ children }: Props) => {
           timelineMenu,
           backgroundColor,
           setBackgroundColor,
+          backgroundWord,
+          setBackgroundWord,
           isMenuOpen,
           setIsMenuOpen,
           isMenuAnim,

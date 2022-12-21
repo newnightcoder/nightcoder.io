@@ -1,28 +1,17 @@
 import { forwardRef, PropsWithChildren, useContext } from "react";
 import { TransitionContext } from "../../context/TransitionContext";
-import { Container } from "./BackgroundStyled";
+import { BgContainer, WordContainer } from "./BackgroundStyled";
 
 interface Props extends PropsWithChildren {}
 
 const Background = forwardRef<HTMLDivElement>((children, ref) => {
-  const { backgroundColor } = useContext(TransitionContext);
+  const { backgroundColor, backgroundWord } = useContext(TransitionContext);
 
   return (
-    <Container ref={ref} background={backgroundColor}>
-      {/* <div
-        style={{
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: "10rem",
-          color: "red",
-        }}
-      > */}
-      {/* TEST */}
-      {/* </div> */}
-    </Container>
+    <BgContainer ref={ref} background={backgroundColor} word={backgroundWord}>
+      {/* <HomeAnimation></HomeAnimation> */}
+      <WordContainer>{backgroundWord}</WordContainer>
+    </BgContainer>
   );
 });
 

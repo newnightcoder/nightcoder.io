@@ -6,11 +6,12 @@ interface Props {
 }
 
 const ItemContainer = styled.div`
-  width: 100%;
+  width: 99%;
   background-color: #333;
   border-radius: 10px;
   position: relative;
   padding: 0 10px;
+  // z-index: -1;
 
   &::before {
     content: "";
