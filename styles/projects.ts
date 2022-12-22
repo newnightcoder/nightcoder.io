@@ -10,12 +10,20 @@ const ProjectsContainer = styled.div`
   // border: 10px solid yellow;
 `;
 
-const ImgContainer = styled.div`
+interface Props {
+  clipIn: { clip1: string; clip2: string };
+  clipOut: { clip1: string; clip2: string };
+}
+const ImgContainer = styled.div<Props>`
   position: sticky;
   top: calc(50% - 100px);
   height: 300px;
   width: 700px;
   border: 1px solid red;
+  transition: clip-path 500ms;
+  clip-path: ${(props) =>
+    `polygon(0 ${props.clipIn.clip1}, 100% ${props.clipIn.clip2}, 100% ${props.clipOut.clip1}, 0% ${props.clipOut.clip2})`};
+  // clip-path:polygon(0 100%, 100% 100%, 100% 100%, 0% 100%); // empty
   // z-index: 10;
 `;
 
