@@ -9,6 +9,7 @@ import {
   ImgContainer,
   ProjectList,
   ProjectsContainer,
+  ProjectTitle,
 } from "../styles/projects";
 import { PageContainer } from "../styles/_globals";
 
@@ -42,7 +43,7 @@ const Projects = () => {
         <ProjectList>
           {list.map((item, i) => {
             return (
-              <div
+              <ProjectTitle
                 key={i + 1}
                 onMouseOver={() => {
                   setImg(item.img);
@@ -54,10 +55,9 @@ const Projects = () => {
                   setClipOut({ clip1: "0%", clip2: "0%" });
                   setClipIn({ clip1: "100%", clip2: "100%" });
                 }}
-                style={{ cursor: "pointer" }}
               >
                 <div>{item.title}</div>
-              </div>
+              </ProjectTitle>
             );
           })}
         </ProjectList>

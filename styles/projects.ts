@@ -39,4 +39,16 @@ const ProjectList = styled.div`
   font-weight: 600;
 `;
 
-export { ImgContainer, ProjectsContainer, ProjectList };
+const ProjectTitle = styled.div`
+  cursor: pointer;
+  color: transparent;
+  text-stroke: 0.01em white;
+  -webkit-text-stroke: 0.01em white;
+  transition: color 300ms;
+
+  &:hover {
+    color: white;
+  }
+`;
+
+export { ImgContainer, ProjectsContainer, ProjectList, ProjectTitle };
