@@ -150,6 +150,17 @@ body {
   color:inherit;
 }
 
+.anim{
+  animation: test 1s forwards; 
+  @keyframes test{
+    0% {
+      transform:scale(1.3);
+    }
+    100%{
+      transform:scale(1);
+    }
+  }
+}
 
 // DARK MODE / prefers-color-scheme 
 
