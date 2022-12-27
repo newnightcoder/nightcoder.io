@@ -26,11 +26,12 @@ const ImgContainer = styled.div<Props>`
   // clip-path:polygon(0 100%, 100% 100%, 100% 100%, 0% 100%); // empty
   z-index: 1;
   border: 1px solid red;
+  overflow: hidden;
 `;
 // clip-path: ${(props) =>
 //   `polygon(0 ${props.clipIn.clip1}, 100% ${props.clipIn.clip2}, 100% ${props.clipOut.clip1}, 0% ${props.clipOut.clip2})`};
 
-const ProjectList = styled.div`
+const ProjectList = styled.a`
   height: max-content;
   width: max-content;
   max-width: 400px;
