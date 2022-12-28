@@ -65,6 +65,7 @@ const Item = styled.div<Props>`
   padding: 0 15px 20px;
   width: 100%;
   word-break: break-all;
+  white-space: wrap;
   display: ${(props) => props.display};
 `;
 

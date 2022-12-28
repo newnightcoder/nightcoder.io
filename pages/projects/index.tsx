@@ -60,17 +60,12 @@ const Projects = () => {
 
       <ProjectsContainer>
         <ImgContainer ref={testRef} clipIn={clipIn} clipOut={clipOut}>
-          {/* {img ? (
-            <Image src={img} layout="fill" alt="" className="anim" />
-          ) : null} */}
-
           {projects.map((p, i) => {
             return (
               <div
                 key={i + 2}
                 ref={(el) => (imgRef.current = [...imgRef.current, el])}
                 id={p.title}
-                // className="anim"
                 style={{
                   height: "100%",
                   width: "100%",
@@ -81,14 +76,9 @@ const Projects = () => {
                   transition: "all 500ms",
                   background: "green",
                   border: "2px solid green",
-                  // position: "relative",
-                  // inset: 0,
-                  // top: 0,
-                  // transition: "clip-path 500ms",
-                  // transform: "scale(1.3)",
-                  // zIndex: `${i}`,
-                  // clipPath: `polygon(0 ${clipIn.clip1}, 100% ${clipIn.clip2}, 100% ${clipOut.clip1}, 0% ${clipOut.clip2})`,
-                  // clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+                  position: "absolute",
+                  inset: 0,
+                  zIndex: `${i}`,
                 }}
               >
                 <Image src={p.img} layout="fill" alt="" />
@@ -99,31 +89,26 @@ const Projects = () => {
         <ProjectList>
           {projects.map((p, i) => {
             return (
-              <Link href={`projects/${p.title}`} passHref legacyBehavior>
+              <Link
+                key={i + 1}
+                href={`projects/${p.title}`}
+                passHref
+                legacyBehavior
+              >
                 <ProjectTitle
-                  key={i + 1}
                   onMouseOver={() => {
                     if (imgRef?.current[i]?.id === p.title) {
+                      imgRef.current[i].classList.remove("project-out");
                       imgRef.current[i].style.opacity = "1";
-                      imgRef.current[i].classList.add("anim");
                       imgRef.current[i].style.zIndex = "999";
-                      // imgRef.current[i].style.clipPath =
-                      //   "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)";
-                      // setClipIn({ clip1: "0%", clip2: "0%" });
-                      // console.log("mouseover", imgRef?.current[i]?.id);
+                      imgRef.current[i].classList.add("project-in");
                     }
-                    // setImg(p.img);
-                    // setClipOut({ clip1: "100%", clip2: "100%" });
                   }}
                   onMouseOut={() => {
-                    // setImg(null);
-                    // setClipOut({ clip1: "0%", clip2: "0%" });
-                    // setClipIn({ clip1: "100%", clip2: "100%" });
                     if (imgRef?.current[i]?.id === p.title) {
-                      imgRef.current[i].style.opacity = "0";
-                      imgRef.current[i].classList.remove("anim");
-                      // imgRef.current[i].style.transform = "scale(1.3)";
-                      // console.log("mouseout!", imgRef?.current[i]?.id);
+                      imgRef.current[i].classList.add("project-out");
+                      imgRef.current[i].classList.remove("project-in");
+                      imgRef.current[i].style.zIndex = `${i}`;
                     }
                   }}
                 >

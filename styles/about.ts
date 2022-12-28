@@ -26,8 +26,9 @@ const ContentContainer = styled.div`
   width: 100%;
   max-width: 900px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 3vw;
+  // grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
+  // grid-column-gap: 3vw;
   // border: 1px solid red;
 `;
 

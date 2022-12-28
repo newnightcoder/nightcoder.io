@@ -1,24 +1,26 @@
+import { StaticImageData } from "next/image";
 import styled from "styled-components";
 
 interface Props {
-  background?: string;
-  word?: string;
+  backgroundColor?: string;
+  backgroundWord?: string;
+  backgroundImg?: StaticImageData;
 }
 
-const BgContainer = styled.div<Props>`
+const Container = styled.div<Props>`
   min-height: 100vh;
   width: 100%;
   position: fixed;
   inset: 0;
   padding-top: var(--navbar-height);
-  background: ${(props) => props.background};
+  background: ${(props) => props.backgroundColor};
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: -1;
 `;
 
-const WordContainer = styled.div`
+const WordContainer = styled.div<Props>`
   height: calc(100% - var(--navbar-height));
   width: 100%;
   display: flex;
@@ -34,5 +36,27 @@ const WordContainer = styled.div`
   color: #444;
   // border: 1px solid yellow;
 `;
+const ImgContainer = styled.div`
+  height: calc(100% - var(--navbar-height));
+  height: 100%;
+  width: 100%;
+  // overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: grayscale(50%);
+  animation: leftright 10s infinite alternate;
+  @keyframes leftright {
+    0% {
+      transform: translateX(-50%);
+    }
+    // 100% {
+    //   transform: translateX(50%) rotate(360deg);
+    // }
+    100% {
+      transform: translateX(50%);
+    }
+  }
+`;
 
-export { BgContainer, WordContainer };
+export { Container, WordContainer, ImgContainer };

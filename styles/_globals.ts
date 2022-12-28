@@ -61,7 +61,7 @@ html {
   --hamburger-visibility: flex;
   --navbar-padding-right: 0;
   --header-width: max-content;
-  --align-header:center;
+  --align-header: center;
 
   /* TEXT COLORS */
   
@@ -98,9 +98,9 @@ html {
     --hamburger-visibility: none;
     --navbar-padding-right: 4rem;
     --header-width: max-content;
-    --align-header:flex-start;
+    --align-header: flex-start;
     --fontsize-header : clamp(46px, 4.75vw, 70px);
-    --line-height-header:4.25rem;
+    --line-height-header: 4.25rem;
 
   }
 
@@ -134,30 +134,46 @@ body {
 * button {
   outline: none;
   border: none;
-  background:none;
+  background: none;
 }
 
 * button:hover {
   cursor: pointer;
 }
 
-* ul{
+* ul {
   list-style-type: none;
 }
 
-* a{
-  text-decoration:none;
-  color:inherit;
+* a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.anim{
-  animation: test 1s forwards; 
-  @keyframes test{
+.project-in {
+  animation: clipIn 1500ms forwards; 
+  @keyframes clipIn {
     0% {
-      transform:scale(1.3);
+      transform: scale(1.5);
+      clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
     }
-    100%{
-      transform:scale(1);
+    60% {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
+.project-out {
+  animation: clipOut 1000ms forwards;
+  @keyframes clipOut {
+    0% {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    100% {
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
     }
   }
 }

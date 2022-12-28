@@ -1,9 +1,14 @@
+import { useRouter } from "next/router";
 import { useCallback, useContext } from "react";
+import portrait from "../assets/moi.jpg";
 import { TransitionContext } from "../context/TransitionContext";
 
 const useTransitionBackground = () => {
-  const { setBackgroundColor, setBackgroundWord } =
+  const { setBackgroundColor, setBackgroundWord, setBackgroundImg } =
     useContext(TransitionContext);
+
+  const { pathname } = useRouter();
+  const isAboutPage = pathname === "/about";
 
   const colors = {
     home: "#000000",
@@ -15,7 +20,9 @@ const useTransitionBackground = () => {
 
   const handleBackground = useCallback(
     (id: string) => {
-      setBackgroundWord(id);
+      if (isAboutPage) {
+        setBackgroundImg(portrait);
+      } else setBackgroundWord(id);
       switch (id) {
         case "home":
           return setBackgroundColor(colors.home);
@@ -31,7 +38,13 @@ const useTransitionBackground = () => {
           return;
       }
     },
-    [setBackgroundColor, setBackgroundWord, colors]
+    [
+      setBackgroundColor,
+      setBackgroundWord,
+      setBackgroundImg,
+      colors,
+      isAboutPage,
+    ]
   );
 
   return handleBackground;

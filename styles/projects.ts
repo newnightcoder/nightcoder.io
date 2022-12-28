@@ -42,6 +42,7 @@ const ProjectList = styled.a`
   font-weight: 600;
   border: 1px solid pink;
   transform: translateX(100%);
+  z-index: 100;
 `;
 
 const ProjectTitle = styled.div<Props>`
@@ -50,7 +51,7 @@ const ProjectTitle = styled.div<Props>`
   color: transparent;
   text-stroke: 0.01em white;
   -webkit-text-stroke: 0.01em white;
-  transition: color 300ms;
+  transition: all 300ms;
   // z-index: ${(props) => props.z};
   &:hover {
     color: white;

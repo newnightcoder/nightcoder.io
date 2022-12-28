@@ -1,17 +1,41 @@
+import Image from "next/image";
+import { useRouter } from "next/router";
 import { forwardRef, PropsWithChildren, useContext } from "react";
 import { TransitionContext } from "../../context/TransitionContext";
-import { BgContainer, WordContainer } from "./BackgroundStyled";
+import { Container, ImgContainer, WordContainer } from "./BackgroundStyled";
 
 interface Props extends PropsWithChildren {}
 
 const Background = forwardRef<HTMLDivElement>((children, ref) => {
-  const { backgroundColor, backgroundWord } = useContext(TransitionContext);
+  const { backgroundColor, backgroundWord, backgroundImg } =
+    useContext(TransitionContext);
+  const { pathname } = useRouter();
+  const isAboutPage = pathname === "/about";
 
   return (
-    <BgContainer ref={ref} background={backgroundColor} word={backgroundWord}>
+    <Container
+      ref={ref}
+      backgroundColor={backgroundColor}
+      backgroundWord={backgroundWord}
+      backgroundImg={backgroundImg}
+    >
       {/* <HomeAnimation></HomeAnimation> */}
-      <WordContainer>{backgroundWord}</WordContainer>
-    </BgContainer>
+      {isAboutPage ? (
+        <ImgContainer>
+          {backgroundImg ? (
+            <Image
+              src={backgroundImg}
+              layout="fixed"
+              style={{ borderRadius: "50%" }}
+              priority={false}
+              loading="lazy"
+            />
+          ) : null}
+        </ImgContainer>
+      ) : (
+        <WordContainer>{backgroundWord}</WordContainer>
+      )}
+    </Container>
   );
 });
 

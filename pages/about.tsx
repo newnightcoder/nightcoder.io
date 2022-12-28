@@ -1,6 +1,4 @@
-import Image from "next/image";
 import { useRef } from "react";
-import moi from "../assets/moi.jpg";
 import { AboutItem } from "../components";
 import {
   useHandleRoute,
@@ -11,7 +9,6 @@ import {
   AboutItemsContainer,
   Container,
   ContentContainer,
-  ImgContainer,
   Title,
 } from "../styles/about";
 import { PageContainer } from "../styles/_globals";
@@ -56,13 +53,13 @@ const About = () => {
               itemText={text.item.text6}
             />
           </AboutItemsContainer>
-          <ImgContainer>
+          {/* <ImgContainer>
             <Image
               src={moi}
               layout="intrinsic"
               style={{ borderRadius: "50%" }}
             />
-          </ImgContainer>
+          </ImgContainer> */}
         </ContentContainer>
       </Container>
       {/* </HomeAnimation> */}

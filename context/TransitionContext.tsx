@@ -1,4 +1,5 @@
 import gsap from "gsap";
+import { StaticImageData } from "next/image";
 import {
   createContext,
   Dispatch,
@@ -17,6 +18,8 @@ type TransitionContext = {
   setBackgroundColor: Dispatch<SetStateAction<string>>;
   backgroundWord: string;
   setBackgroundWord: Dispatch<SetStateAction<string>>;
+  backgroundImg: StaticImageData;
+  setBackgroundImg: Dispatch<SetStateAction<StaticImageData>>;
   isMenuOpen?: boolean;
   setIsMenuOpen?: Dispatch<SetStateAction<boolean>>;
   isMenuAnim?: boolean;
@@ -35,6 +38,7 @@ const TransitionProvider = ({ children }: Props) => {
   );
   const [backgroundColor, setBackgroundColor] = useState("#34d399");
   const [backgroundWord, setBackgroundWord] = useState("");
+  const [backgroundImg, setBackgroundImg] = useState<StaticImageData>();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuAnim, setIsMenuAnim] = useState(false);
   const [isMenuClosing, setIsMenuClosing] = useState(false);
@@ -72,6 +76,8 @@ const TransitionProvider = ({ children }: Props) => {
           setBackgroundColor,
           backgroundWord,
           setBackgroundWord,
+          backgroundImg,
+          setBackgroundImg,
           isMenuOpen,
           setIsMenuOpen,
           isMenuAnim,
