@@ -24,13 +24,19 @@ export const PageContainer = styled.div<Props>`
   // border: 5px solid red;
 `;
 
-const breakpoints = {
+export const breakpoints = {
   xs: "500px",
+  xsNumber: 500,
   sm: "640px",
+  smNumber: 640,
   md: "768px",
+  mdNumber: 768,
   lg: "1024px",
+  lgNumber: 1024,
   xl: "1280px",
+  xlNumber: 1280,
   xxl: "1536px",
+  xxlNumber: 1536,
 };
 
 export const GlobalStyles = createGlobalStyle`
@@ -62,7 +68,13 @@ html {
   --navbar-padding-right: 0;
   --header-width: max-content;
   --align-header: center;
-
+  --mobile-menu-display: block;
+  --about-items-container-width: 100%;
+  --about-items-whitespace: wrap;
+  --project-img-height: 300px;
+  --project-img-width: 90%;
+  
+  
   /* TEXT COLORS */
   
   --text-light: black;
@@ -88,9 +100,9 @@ html {
   --page-title-width: 200px;
   
   /* ANIMATIONS */
-
+  
   --clip-path: 0%;
-
+  
   /* MEDIA QUERIES */
   
   @media screen and (min-width: ${breakpoints.md}){
@@ -101,9 +113,14 @@ html {
     --align-header: flex-start;
     --fontsize-header : clamp(46px, 4.75vw, 70px);
     --line-height-header: 4.25rem;
-
+    --mobile-menu-display: none;
+    --about-items-container-width: 60vmax;
+    --about-items-whitespace: nowrap;
+    --project-img-height: 90%;
+    --project-img-width: 90vmax;
+    
   }
-
+  
 }
 
 html{
@@ -167,7 +184,7 @@ body {
 }
 
 .project-out {
-  animation: clipOut 1000ms forwards;
+  animation: clipOut 1500ms forwards;
   @keyframes clipOut {
     0% {
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);

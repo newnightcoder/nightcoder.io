@@ -47,6 +47,7 @@ const Projects = () => {
       timelinePages.add(
         gsap.to(testRef.current, {
           x: -1000,
+          duration: 2,
         }),
         0
       );
@@ -81,7 +82,7 @@ const Projects = () => {
                   zIndex: `${i}`,
                 }}
               >
-                <Image src={p.img} layout="fill" alt="" />
+                <Image src={p.img} layout="intrinsic" alt="" />
               </div>
             );
           })}

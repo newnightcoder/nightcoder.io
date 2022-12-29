@@ -20,6 +20,7 @@ const Container = styled.div.attrs((props: Props) => ({
 }))<Props>`
   position: fixed;
   inset: 0;
+  display: var(--mobile-menu-display);
 `;
 
 export { Container };

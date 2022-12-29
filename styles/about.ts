@@ -8,7 +8,7 @@ const Container = styled.div`
   grid-template-rows: 150px max-content;
   justify-content: center;
   font-family: var(--poppins);
-  // border: 1px solid white;
+  border: 2px solid violet;
 `;
 
 const Title = styled.div`
@@ -23,13 +23,13 @@ const Title = styled.div`
 
 const ContentContainer = styled.div`
   grid-row: 2;
-  width: 100%;
-  max-width: 900px;
+  width: var(--about-items-container-width);
+  max-width: 500px;
   display: grid;
-  // grid-template-columns: repeat(2, 1fr);
   grid-template-columns: 1fr;
+  // grid-template-columns: repeat(2, 1fr);
   // grid-column-gap: 3vw;
-  // border: 1px solid red;
+  border: 1px solid yellow;
 `;
 
 const AboutItemsContainer = styled.div`

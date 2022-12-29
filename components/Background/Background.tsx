@@ -20,17 +20,15 @@ const Background = forwardRef<HTMLDivElement>((children, ref) => {
       backgroundImg={backgroundImg}
     >
       {/* <HomeAnimation></HomeAnimation> */}
-      {isAboutPage ? (
+      {backgroundImg ? (
         <ImgContainer>
-          {backgroundImg ? (
-            <Image
-              src={backgroundImg}
-              layout="fixed"
-              style={{ borderRadius: "50%" }}
-              priority={false}
-              loading="lazy"
-            />
-          ) : null}
+          <Image
+            src={backgroundImg}
+            layout="fixed"
+            style={{ borderRadius: "50%" }}
+            priority={false}
+            loading="lazy"
+          />
         </ImgContainer>
       ) : (
         <WordContainer>{backgroundWord}</WordContainer>

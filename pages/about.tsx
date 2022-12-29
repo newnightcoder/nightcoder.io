@@ -1,5 +1,6 @@
-import { useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { AboutItem } from "../components";
+import { TransitionContext } from "../context/TransitionContext";
 import {
   useHandleRoute,
   useIsoMorphicLayoutEffect,
@@ -18,9 +19,14 @@ const About = () => {
   const pageRef = useRef<HTMLDivElement>(null);
   const handleBackground = useTransitionBackground();
   const handleRoute = useHandleRoute();
+  const { setBackgroundImg } = useContext(TransitionContext);
 
   useIsoMorphicLayoutEffect(() => {
     if (pageRef.current) return handleBackground(pageRef.current.id);
+  }, []);
+
+  useEffect(() => {
+    return () => setBackgroundImg(null);
   }, []);
 
   return (

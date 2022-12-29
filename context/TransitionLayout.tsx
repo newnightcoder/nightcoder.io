@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 import { Background, Layout, Loader } from "../components";
-import { useHandleRoute, useIsoMorphicLayoutEffect } from "../hooks";
+import { useIsoMorphicLayoutEffect } from "../hooks";
 import { GlobalStyles } from "../styles/_globals";
 import { TransitionContext } from "./TransitionContext";
 
@@ -20,15 +20,21 @@ interface Props extends PropsWithChildren {}
 const TransitionLayout = ({ children }: Props) => {
   const [isLoading, setisLoading] = useState(true);
   const [nextChildren, setNextChildren] = useState(children);
-  const { timelinePages, backgroundColor, isMenuOpen } =
-    useContext(TransitionContext);
+  const {
+    timelinePages,
+    timelineMenu,
+    backgroundColor,
+    backgroundWord,
+    backgroundImg,
+    isMenuOpen,
+  } = useContext(TransitionContext);
   const layoutRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
-  const handleRoute = useHandleRoute();
   const sections = ["/", "/about", "/projects", "/stack", "/contact"];
-  const wrap = gsap.utils.wrap(0, sections.length);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  // const handleRoute = useHandleRoute();
+  // const wrap = gsap.utils.wrap(0, sections.length);
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  // const [isAnimating, setIsAnimating] = useState(false);
 
   const transitionPages = useCallback(() => {
     if (children === nextChildren) return;
@@ -37,7 +43,7 @@ const TransitionLayout = ({ children }: Props) => {
       timelinePages.pause().clear();
       setNextChildren(children);
     });
-  }, [children, nextChildren, setNextChildren, timelinePages]);
+  }, [children, nextChildren, setNextChildren, timelinePages, timelineMenu]);
 
   const transitionBackground = useCallback(() => {
     if (
@@ -46,25 +52,40 @@ const TransitionLayout = ({ children }: Props) => {
       bgRef.current &&
       !isMenuOpen
     ) {
-      gsap.to(bgRef.current, {
-        background: backgroundColor,
-        duration: 2,
-      });
+      gsap
+        .timeline({
+          default: {
+            duration: 2,
+          },
+        })
+        .to(bgRef.current, {
+          background: backgroundColor,
+          // duration: 2,
+        })
+        .to(
+          bgRef.current.firstChild,
+          {
+            opacity: 1,
+            // duration: 2,
+          },
+          ">"
+        );
+      // console.log("children of BG", bgRef.current.firstChild);
     }
   }, [layoutRef, bgRef, isMenuOpen, backgroundColor, gsap]);
 
-  const goToNextSection = (index: number, direction: number) => {
-    index = wrap(index);
-    // setIsAnimating(true);
-    if (direction === 1) {
-      handleRoute(sections[index + 1]);
-      setCurrentIndex(index + 1);
-    } else if (direction === -1) {
-      handleRoute(sections[index - 1]);
-      setCurrentIndex(index - 1);
-    }
-    // setIsAnimating(false);
-  };
+  // const goToNextSection = (index: number, direction: number) => {
+  //   index = wrap(index);
+  //   // setIsAnimating(true);
+  //   if (direction === 1) {
+  //     handleRoute(sections[index + 1]);
+  //     setCurrentIndex(index + 1);
+  //   } else if (direction === -1) {
+  //     handleRoute(sections[index - 1]);
+  //     setCurrentIndex(index - 1);
+  //   }
+  //   // setIsAnimating(false);
+  // };
 
   // useIsoMorphicLayoutEffect(() => {
   //   Observer.create({
@@ -83,7 +104,7 @@ const TransitionLayout = ({ children }: Props) => {
 
   useIsoMorphicLayoutEffect(() => {
     transitionBackground();
-  }, [backgroundColor, isMenuOpen]);
+  }, [backgroundColor, backgroundWord, backgroundImg, isMenuOpen]);
 
   return (
     <>

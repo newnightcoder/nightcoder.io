@@ -7,7 +7,7 @@ import { Container } from "./MobileMenuStyled";
 const MobileMenu = () => {
   const menu = <MobileMenuAnimation />;
   const [child, setChild] = useState<ReactNode | null>(null);
-  const { isMenuOpen } = useContext(TransitionContext);
+  const { isMenuOpen, setIsMenuOpen } = useContext(TransitionContext);
   const { width, height, setSize } = useWindowSize();
 
   useIsoMorphicLayoutEffect(() => {
@@ -16,7 +16,9 @@ const MobileMenu = () => {
   }, [isMenuOpen]);
 
   useEffect(() => {
+    // if (width > breakpoints.mdNumber) return setIsMenuOpen(false);
     window.addEventListener("resize", setSize);
+    return () => window.removeEventListener("resize", setSize);
   }, [setSize]);
 
   return (

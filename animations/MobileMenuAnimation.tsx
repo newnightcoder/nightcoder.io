@@ -10,11 +10,11 @@ interface Props extends PropsWithChildren {}
 const MobileMenuAnimation = ({ children }: Props) => {
   const { timelineMenu, isMenuOpen, setIsMenuAnim } =
     useContext(TransitionContext);
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const [anim, setAnim] = useState<gsap.core.Timeline>(() =>
     gsap.timeline({
       paused: true,
-      repeat: 0,
+      // repeat: 0,
       onStart: () => {
         setIsMenuAnim(true);
       },
@@ -24,7 +24,11 @@ const MobileMenuAnimation = ({ children }: Props) => {
     })
   );
 
+  const didAnimate = useRef(false); // to prevent animation from playing TWICE (Dan Abramov's gsap solution: https://greensock.com/forums/topic/31712-simple-opacity-fade-doesnt-work-in-react/?do=findComment&comment=158569&_rid=92885)
+
   useIsoMorphicLayoutEffect(() => {
+    if (didAnimate.current) return;
+
     if (ref.current) {
       anim
         .set(ref.current, {
@@ -64,12 +68,14 @@ const MobileMenuAnimation = ({ children }: Props) => {
         });
 
       // play anim on enter
+      didAnimate.current = true;
       anim.play().then(() => {
         // play anim.reverse() on exit
         timelineMenu.add(anim.reverse());
       });
     }
-  }, [ref]);
+    console.log("menu animation playing");
+  }, []);
 
   return (
     <AnimationContainer ref={ref}>

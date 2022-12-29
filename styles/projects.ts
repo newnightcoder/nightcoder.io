@@ -7,7 +7,7 @@ const ProjectsContainer = styled.div`
   padding: 0 5vw;
   display: flex;
   justify-content: center;
-  // border: 10px solid yellow;
+  border: 10px solid yellow;
 `;
 
 interface Props {
@@ -19,19 +19,22 @@ interface Props {
 const ImgContainer = styled.div<Props>`
   position: fixed;
   top: var(--navbar-height);
-  height: calc(100vh - var(--navbar-height));
-  height: 500px;
-  width: 700px;
-  // transition: clip-path 500ms;
-  // clip-path:polygon(0 100%, 100% 100%, 100% 100%, 0% 100%); // empty
+  left: 0;
+  // height: calc(100vh - var(--navbar-height));
+  // height: 500px;
+  // width: 700px;
+  height: var(--project-img-height);
+  width: var(--project-img-width);
   z-index: 1;
-  border: 1px solid red;
+  // margin: 0 auto;
+  transform: translateX(5vmax);
+  border: 4px solid red;
   overflow: hidden;
 `;
 // clip-path: ${(props) =>
 //   `polygon(0 ${props.clipIn.clip1}, 100% ${props.clipIn.clip2}, 100% ${props.clipOut.clip1}, 0% ${props.clipOut.clip2})`};
 
-const ProjectList = styled.a`
+const ProjectList = styled.div`
   height: max-content;
   width: max-content;
   max-width: 400px;
@@ -40,12 +43,14 @@ const ProjectList = styled.a`
   font-family: var(--poppins);
   font-size: 18vmin;
   font-weight: 600;
-  border: 1px solid pink;
-  transform: translateX(100%);
+  // transform: translateX(100%);
+  position: relative;
+  right: 0;
   z-index: 100;
+  border: 1px solid pink;
 `;
 
-const ProjectTitle = styled.div<Props>`
+const ProjectTitle = styled.a<Props>`
   position: relative;
   cursor: pointer;
   color: transparent;

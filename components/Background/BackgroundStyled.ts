@@ -34,29 +34,28 @@ const WordContainer = styled.div<Props>`
   transform: scale(1, 3);
   text-transform: uppercase;
   color: #444;
+  opacity: 0;
   // border: 1px solid yellow;
 `;
+
 const ImgContainer = styled.div`
-  height: calc(100% - var(--navbar-height));
   height: 100%;
   width: 100%;
-  // overflow: hidden;
+  padding-top: var(--navbar-height);
   display: flex;
   align-items: center;
   justify-content: center;
   filter: grayscale(50%);
   animation: leftright 10s infinite alternate;
-  @keyframes leftright {
-    0% {
-      transform: translateX(-50%);
-    }
-    // 100% {
-    //   transform: translateX(50%) rotate(360deg);
-    // }
-    100% {
-      transform: translateX(50%);
-    }
-  }
+  opacity: 0;
+  // @keyframes leftright {
+  //   0% {
+  //     transform: translateX(-50%);
+  //   }
+  //   100% {
+  //     transform: translateX(50%);
+  //   }
+  // }
 `;
 
 export { Container, WordContainer, ImgContainer };

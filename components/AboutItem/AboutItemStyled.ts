@@ -6,13 +6,12 @@ interface Props {
 }
 
 const ItemContainer = styled.div`
-  width: 99%;
+  width: 100%;
+  // max-width: 500px;
   background-color: #333;
   border-radius: 10px;
   position: relative;
-  padding: 0 10px;
-  // z-index: -1;
-
+  padding: 0 30px 0 10px;
   &::before {
     content: "";
     position: absolute;
@@ -46,7 +45,9 @@ const ItemContainer = styled.div`
 `;
 
 const ItemTitle = styled.p`
-  width: max-content;
+  width: 100%;
+  // max-width: 900px;
+  white-space: var(--about-items-whitespace);
 `;
 
 const ItemBtn = styled.button<Props>`
@@ -65,7 +66,6 @@ const Item = styled.div<Props>`
   padding: 0 15px 20px;
   width: 100%;
   word-break: break-all;
-  white-space: wrap;
   display: ${(props) => props.display};
 `;
 
