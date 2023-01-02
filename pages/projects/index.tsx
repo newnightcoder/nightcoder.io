@@ -1,3 +1,4 @@
+import { groq } from "next-sanity";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { useContext, useRef, useState } from "react";
@@ -11,6 +12,7 @@ import {
   useIsoMorphicLayoutEffect,
   useTransitionBackground,
 } from "../../hooks";
+import { client } from "../../sanity";
 import {
   ImgContainer,
   ProjectList,
@@ -30,6 +32,9 @@ const Projects = () => {
     { title: "things", img: p3 },
     { title: "arkanoid mini", img: p4 },
   ];
+
+  const p = client.fetch(groq`*[_type=="project"]`);
+  console.log("data", p);
 
   const { timelinePages } = useContext(TransitionContext);
 
