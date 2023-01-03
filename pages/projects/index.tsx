@@ -1,47 +1,42 @@
-import { groq } from "next-sanity";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
-import { useContext, useRef, useState } from "react";
+import { MutableRefObject, useContext, useRef } from "react";
 import { gsap } from "../../animations/gsap";
-import p1 from "../../assets/azerty.png";
-import p2 from "../../assets/code.jpg";
-import p4 from "../../assets/Giphy.png";
-import p3 from "../../assets/NOTION.jpg";
 import { TransitionContext } from "../../context/TransitionContext";
 import {
   useIsoMorphicLayoutEffect,
   useTransitionBackground,
 } from "../../hooks";
-import { client } from "../../sanity";
+import { client, createUrl } from "../../sanity";
 import {
   ImgContainer,
+  ImgWrapper,
   ProjectList,
   ProjectsContainer,
   ProjectTitle,
 } from "../../styles/projects";
 import { PageContainer } from "../../styles/_globals";
 
-const Projects = () => {
+interface IProject {
+  title: string;
+  undertitle: string;
+  image: string;
+  description: object[];
+  stack: string[];
+  _id: string;
+  projectId: number;
+}
+
+interface Props {
+  projects: IProject[];
+}
+
+const Projects = ({ projects }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
   const testRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLDivElement[]>([]);
   const handleBackground = useTransitionBackground();
-  const projects = [
-    { title: "forum", img: p1 },
-    { title: "colorwave", img: p2 },
-    { title: "things", img: p3 },
-    { title: "arkanoid mini", img: p4 },
-  ];
-
-  const p = client.fetch(groq`*[_type=="project"]`);
-  console.log("data", p);
-
   const { timelinePages } = useContext(TransitionContext);
-
-  const [img, setImg] = useState<string | StaticImageData>(null);
-  const [clipIn, setClipIn] = useState({ clip1: "100%", clip2: "100%" });
-  const [clipOut, setClipOut] = useState({ clip1: "100%", clip2: "100%" });
-  const [opacity, setOpacity] = useState(0);
 
   useIsoMorphicLayoutEffect(() => {
     if (ref.current) return handleBackground(ref.current.id);
@@ -59,36 +54,46 @@ const Projects = () => {
     }
   }, []);
 
+  const handleProjectAnimation = (
+    ref: MutableRefObject<HTMLDivElement[]>,
+    i: number,
+    project: IProject,
+    bool: boolean
+  ) => {
+    if (bool && ref?.current[i]?.id === project.title) {
+      ref.current[i].classList.remove("project-out");
+      ref.current[i].style.opacity = "1";
+      ref.current[i].style.zIndex = "999";
+      ref.current[i].classList.add("project-in");
+    } else {
+      imgRef.current[i].classList.add("project-out");
+      imgRef.current[i].classList.remove("project-in");
+      imgRef.current[i].style.zIndex = `${i}`;
+    }
+  };
+
   return (
     <PageContainer ref={ref} id="projects" justify="">
       {/* <HomeAnimation>
       </HomeAnimation> */}
 
       <ProjectsContainer>
-        <ImgContainer ref={testRef} clipIn={clipIn} clipOut={clipOut}>
+        <ImgContainer ref={testRef}>
           {projects.map((p, i) => {
             return (
-              <div
-                key={i + 2}
+              <ImgWrapper
+                key={p._id}
                 ref={(el) => (imgRef.current = [...imgRef.current, el])}
                 id={p.title}
-                style={{
-                  height: "100%",
-                  width: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  opacity: 0,
-                  transition: "all 500ms",
-                  background: "green",
-                  border: "2px solid green",
-                  position: "absolute",
-                  inset: 0,
-                  zIndex: `${i}`,
-                }}
+                zIndex={i}
               >
-                <Image src={p.img} layout="intrinsic" alt="" />
-              </div>
+                <Image
+                  src={createUrl(p.image).url()}
+                  layout="fill"
+                  alt="project thumbnail"
+                  quality={100}
+                />
+              </ImgWrapper>
             );
           })}
         </ImgContainer>
@@ -102,21 +107,8 @@ const Projects = () => {
                 legacyBehavior
               >
                 <ProjectTitle
-                  onMouseOver={() => {
-                    if (imgRef?.current[i]?.id === p.title) {
-                      imgRef.current[i].classList.remove("project-out");
-                      imgRef.current[i].style.opacity = "1";
-                      imgRef.current[i].style.zIndex = "999";
-                      imgRef.current[i].classList.add("project-in");
-                    }
-                  }}
-                  onMouseOut={() => {
-                    if (imgRef?.current[i]?.id === p.title) {
-                      imgRef.current[i].classList.add("project-out");
-                      imgRef.current[i].classList.remove("project-in");
-                      imgRef.current[i].style.zIndex = `${i}`;
-                    }
-                  }}
+                  onMouseOver={() => handleProjectAnimation(imgRef, i, p, true)}
+                  onMouseOut={() => handleProjectAnimation(imgRef, i, p, false)}
                 >
                   <div>{p.title}</div>
                 </ProjectTitle>
@@ -127,6 +119,22 @@ const Projects = () => {
       </ProjectsContainer>
     </PageContainer>
   );
+};
+
+export const getStaticProps = async () => {
+  const query = `*[_type=="project"]`;
+
+  const data: IProject[] = await client.fetch(query);
+  const projects = data.sort((a, b) => {
+    if (new Date(a.projectId) < new Date(b.projectId)) return 1;
+    if (new Date(a.projectId) > new Date(b.projectId)) return -1;
+  });
+
+  return {
+    props: {
+      projects,
+    },
+  };
 };
 
 export default Projects;

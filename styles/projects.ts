@@ -11,28 +11,35 @@ const ProjectsContainer = styled.div`
 `;
 
 interface Props {
-  clipIn?: { clip1: string; clip2: string };
-  clipOut?: { clip1: string; clip2: string };
-  z?: number;
-  opacity?: number;
+  zIndex?: number;
 }
-const ImgContainer = styled.div<Props>`
+
+const ImgContainer = styled.div`
   position: fixed;
   top: var(--navbar-height);
   left: 0;
-  // height: calc(100vh - var(--navbar-height));
-  // height: 500px;
-  // width: 700px;
   height: var(--project-img-height);
   width: var(--project-img-width);
   z-index: 1;
-  // margin: 0 auto;
   transform: translateX(5vmax);
   border: 4px solid red;
   overflow: hidden;
 `;
-// clip-path: ${(props) =>
-//   `polygon(0 ${props.clipIn.clip1}, 100% ${props.clipIn.clip2}, 100% ${props.clipOut.clip1}, 0% ${props.clipOut.clip2})`};
+
+const ImgWrapper = styled.div<Props>`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 500ms;
+  background: green;
+  border: 2px solid green;
+  position: absolute;
+  inset: 0;
+  z-index: ${(props) => props.zIndex};
+`;
 
 const ProjectList = styled.div`
   height: max-content;
@@ -43,7 +50,6 @@ const ProjectList = styled.div`
   font-family: var(--poppins);
   font-size: 18vmin;
   font-weight: 600;
-  // transform: translateX(100%);
   position: relative;
   right: 0;
   z-index: 100;
@@ -57,10 +63,15 @@ const ProjectTitle = styled.a<Props>`
   text-stroke: 0.01em white;
   -webkit-text-stroke: 0.01em white;
   transition: all 300ms;
-  // z-index: ${(props) => props.z};
   &:hover {
     color: white;
   }
 `;
 
-export { ImgContainer, ProjectsContainer, ProjectList, ProjectTitle };
+export {
+  ImgContainer,
+  ImgWrapper,
+  ProjectsContainer,
+  ProjectList,
+  ProjectTitle,
+};
