@@ -68,10 +68,22 @@ const ProjectTitle = styled.a<Props>`
   }
 `;
 
+const ProjectPage = styled.div`
+  background: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  color: white;
+`;
+
 export {
   ImgContainer,
   ImgWrapper,
   ProjectsContainer,
   ProjectList,
   ProjectTitle,
+  ProjectPage,
 };

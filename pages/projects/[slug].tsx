@@ -2,26 +2,16 @@ import { GetStaticProps, GetStaticPropsContext } from "next";
 import { IProject } from ".";
 import { HomeAnimation } from "../../animations";
 import { sanityClient } from "../../sanity";
+import { ProjectPage } from "../../styles/projects";
 
 const Project = ({ project }) => {
   console.log(project);
 
   return (
-    <div
-      style={{
-        background: "black",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "100vh",
-        width: "100%",
-        color: "white",
-      }}
-    >
+    <ProjectPage>
       <HomeAnimation>Project:{project.title}</HomeAnimation>
       <span>{project.undertitle}</span>
-    </div>
+    </ProjectPage>
   );
 };
 
