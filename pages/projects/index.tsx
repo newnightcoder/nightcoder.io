@@ -7,7 +7,7 @@ import {
   useIsoMorphicLayoutEffect,
   useTransitionBackground,
 } from "../../hooks";
-import { client, createUrl } from "../../sanity";
+import { createUrl, sanityClient } from "../../sanity";
 import {
   ImgContainer,
   ImgWrapper,
@@ -17,13 +17,16 @@ import {
 } from "../../styles/projects";
 import { PageContainer } from "../../styles/_globals";
 
-interface IProject {
+export interface IProject {
+  _id: string;
+  slug: {
+    current: string;
+  };
   title: string;
   undertitle: string;
   image: string;
   description: object[];
   stack: string[];
-  _id: string;
   projectId: number;
 }
 
@@ -102,7 +105,7 @@ const Projects = ({ projects }: Props) => {
             return (
               <Link
                 key={i + 1}
-                href={`projects/${p.title}`}
+                href={`projects/${p.slug.current}`}
                 passHref
                 legacyBehavior
               >
@@ -124,7 +127,7 @@ const Projects = ({ projects }: Props) => {
 export const getStaticProps = async () => {
   const query = `*[_type=="project"]`;
 
-  const data: IProject[] = await client.fetch(query);
+  const data: IProject[] = await sanityClient.fetch(query);
   const projects = data.sort((a, b) => {
     if (new Date(a.projectId) < new Date(b.projectId)) return 1;
     if (new Date(a.projectId) > new Date(b.projectId)) return -1;
