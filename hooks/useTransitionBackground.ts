@@ -13,7 +13,8 @@ const useTransitionBackground = () => {
   const colors = {
     home: "#000000",
     about: "#252525",
-    projects: "#333333",
+    // projects: "#333333",
+    projects: "#111111",
     stack: "#4d4d4d",
     contact: "#666666",
   };

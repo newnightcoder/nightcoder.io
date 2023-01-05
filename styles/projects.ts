@@ -6,8 +6,8 @@ const ProjectsContainer = styled.div`
   width: 100%;
   padding: 0 5vw;
   display: flex;
-  justify-content: center;
-  border: 10px solid yellow;
+  justify-content: var(--projects-container-justify);
+  // border: 10px solid yellow;
 `;
 
 interface Props {
@@ -15,49 +15,55 @@ interface Props {
 }
 
 const ImgContainer = styled.div`
+  // display: var(--project-img-display);
+  height: var(--project-img-height);
+  width: var(--project-img-width);
   position: fixed;
   top: var(--navbar-height);
   left: 0;
-  height: var(--project-img-height);
-  width: var(--project-img-width);
-  z-index: 1;
-  transform: translateX(5vmax);
-  border: 4px solid red;
+  transform: translateX(2.5vmax);
   overflow: hidden;
+  z-index: 1;
+  // border: 4px solid red;
 `;
 
 const ImgWrapper = styled.div<Props>`
-  height: 100%;
+  height: 66%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   transition: all 500ms;
-  background: green;
-  border: 2px solid green;
+  background: transparent;
   position: absolute;
-  inset: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  overflow: hidden;
   z-index: ${(props) => props.zIndex};
+  // border: 2px solid green;
 `;
 
 const ProjectList = styled.div`
   height: max-content;
-  width: max-content;
-  max-width: 400px;
-  overflow-wrap: break-word;
-  // word-break: break-word;
+  width: var(--project-list-width);
+  // overflow-wrap: break-word;
+  word-break: break-word;
   font-family: var(--poppins);
-  font-size: 18vmin;
+  font-size: 9vmax;
   font-weight: 600;
-  position: relative;
-  right: 0;
+  // position: relative;
+  // right: 0;
   z-index: 100;
-  border: 1px solid pink;
+  // border: 1px solid pink;
 `;
 
 const ProjectTitle = styled.a<Props>`
   position: relative;
+  word-break: break-word;
+  font-family: var(--poppins);
+  font-size: var(--fontsize-project-list);
+  font-weight: 600;
   cursor: pointer;
   color: transparent;
   text-stroke: 0.01em white;
@@ -69,11 +75,12 @@ const ProjectTitle = styled.a<Props>`
 `;
 
 const ProjectPage = styled.div`
+  padding-top: var(--navbar-height);
   background: black;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 100vh;
   width: 100%;
   color: white;

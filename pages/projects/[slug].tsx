@@ -1,16 +1,38 @@
 import { GetStaticProps, GetStaticPropsContext } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { IProject } from ".";
 import { HomeAnimation } from "../../animations";
-import { sanityClient } from "../../sanity";
+import { createUrl, sanityClient } from "../../sanity";
 import { ProjectPage } from "../../styles/projects";
 
-const Project = ({ project }) => {
+const Project = ({ project }: { project: IProject }) => {
   console.log(project);
 
   return (
     <ProjectPage>
       <HomeAnimation>Project:{project.title}</HomeAnimation>
       <span>{project.undertitle}</span>
+
+      <div
+        style={{
+          height: "500px",
+          width: "80vw",
+          position: "relative",
+          border: "2px solid white",
+        }}
+      >
+        <Image
+          src={createUrl(project.image).url()}
+          layout="fill"
+          alt="project thumbnail"
+          quality={100}
+          objectFit="contain"
+        />
+      </div>
+      <Link href="/projects" legacyBehavior>
+        back
+      </Link>
     </ProjectPage>
   );
 };
@@ -33,9 +55,10 @@ export const getStaticPaths = async () => {
   return { paths, fallback: "blocking" };
 };
 
-export const getStaticProps: GetStaticProps = async ({
-  params,
-}: GetStaticPropsContext) => {
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext
+) => {
+  const { params } = context;
   const projectQuery = `*[_type=="project" && slug.current==$slug][0]`;
 
   const project = await sanityClient.fetch(projectQuery, { slug: params.slug });

@@ -33,7 +33,8 @@ const WordContainer = styled.div<Props>`
   line-height: 100vh;
   transform: scale(1, 3);
   text-transform: uppercase;
-  color: #444;
+  color: #222;
+  color: rgba(30, 30, 30, 0.9);
   opacity: 0;
   // border: 1px solid yellow;
 `;

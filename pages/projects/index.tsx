@@ -68,9 +68,11 @@ const Projects = ({ projects }: Props) => {
       ref.current[i].style.opacity = "1";
       ref.current[i].style.zIndex = "999";
       ref.current[i].classList.add("project-in");
+      ref.current[i].firstElementChild.classList.add("img-scale");
     } else {
       imgRef.current[i].classList.add("project-out");
       imgRef.current[i].classList.remove("project-in");
+      ref.current[i].firstElementChild.classList.remove("img-scale");
       imgRef.current[i].style.zIndex = `${i}`;
     }
   };
@@ -93,8 +95,9 @@ const Projects = ({ projects }: Props) => {
                 <Image
                   src={createUrl(p.image).url()}
                   layout="fill"
-                  alt="project thumbnail"
+                  objectFit="cover"
                   quality={100}
+                  alt="project thumbnail"
                 />
               </ImgWrapper>
             );
