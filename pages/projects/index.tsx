@@ -16,19 +16,7 @@ import {
   ProjectTitle,
 } from "../../styles/projects";
 import { PageContainer } from "../../styles/_globals";
-
-export interface IProject {
-  _id: string;
-  slug: {
-    current: string;
-  };
-  title: string;
-  undertitle: string;
-  image: string;
-  description: object[];
-  stack: string[];
-  projectId: number;
-}
+import { IProject } from "../../types";
 
 interface Props {
   projects: IProject[];
@@ -132,8 +120,8 @@ export const getStaticProps = async () => {
 
   const data: IProject[] = await sanityClient.fetch(query);
   const projects = data.sort((a, b) => {
-    if (new Date(a.projectId) < new Date(b.projectId)) return 1;
-    if (new Date(a.projectId) > new Date(b.projectId)) return -1;
+    if (a.projectId < b.projectId) return 1;
+    if (a.projectId > b.projectId) return -1;
   });
 
   return {

@@ -75,7 +75,9 @@ html {
   --project-img-height: 0;
   --project-img-width: 0;
   --project-list-width: 45vmax;
+  --project-list-height: max-content;
   --fontsize-project-list: 9vmax;
+  --project-columns: 1fr;
   
   
   /* TEXT COLORS */
@@ -123,11 +125,10 @@ html {
     --project-img-height: 90%;
     --project-img-width: 60vmax;
     --project-list-width: 30vmax;
+    --project-list-height: calc(100vh - var(--navbar-height));
+    --fontsize-project-list: 5vmax;
+    --project-columns: repeat(3, 1fr);
     
-  }
-  @media screen and (min-width:${breakpoints.xxl}){
-    --fontsize-project-list: 7vmax;
-
   }
 }
 

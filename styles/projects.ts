@@ -12,6 +12,7 @@ const ProjectsContainer = styled.div`
 
 interface Props {
   zIndex?: number;
+  bgColor?: string;
 }
 
 const ImgContainer = styled.div`
@@ -28,7 +29,7 @@ const ImgContainer = styled.div`
 `;
 
 const ImgWrapper = styled.div<Props>`
-  height: 66%;
+  height: 33vmax;
   width: 100%;
   display: flex;
   align-items: center;
@@ -41,17 +42,20 @@ const ImgWrapper = styled.div<Props>`
   transform: translateY(-50%);
   overflow: hidden;
   z-index: ${(props) => props.zIndex};
-  // border: 2px solid green;
+  border: 2px solid green;
 `;
 
 const ProjectList = styled.div`
-  height: max-content;
+  height: var(--project-list-height);
   width: var(--project-list-width);
   // overflow-wrap: break-word;
   word-break: break-word;
   font-family: var(--poppins);
   font-size: 9vmax;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   // position: relative;
   // right: 0;
   z-index: 100;
@@ -74,16 +78,23 @@ const ProjectTitle = styled.a<Props>`
   }
 `;
 
-const ProjectPage = styled.div`
-  padding-top: var(--navbar-height);
-  background: black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+const ProjectPage = styled.div<Props>`
+  padding-top: calc(var(--navbar-height) + 60px);
+  padding-bottom: 50px;
+  // background: ${(props) => props.bgColor};
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: flex-start;
+  position: relative;
+  font-family: var(--poppins);
+  display: grid;
+  grid-template-columns: var(--project-columns);
+  grid-template-rows: max-content;
   min-height: 100vh;
   width: 100%;
-  color: white;
+  color: black;
+  background: rgb(245, 245, 245);
 `;
 
 export {

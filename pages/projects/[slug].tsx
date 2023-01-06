@@ -1,38 +1,92 @@
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { IProject } from ".";
 import { HomeAnimation } from "../../animations";
 import { createUrl, sanityClient } from "../../sanity";
 import { ProjectPage } from "../../styles/projects";
+import { IProject } from "../../types";
 
 const Project = ({ project }: { project: IProject }) => {
-  console.log(project);
-
+  console.log(project.image);
+  const { palette } = project.image;
   return (
-    <ProjectPage>
-      <HomeAnimation>Project:{project.title}</HomeAnimation>
-      <span>{project.undertitle}</span>
-
+    <ProjectPage
+    // bgColor={palette.lightVibrant.background}
+    >
       <div
         style={{
-          height: "500px",
-          width: "80vw",
+          height: "33vmax",
+          width: "100%",
           position: "relative",
           border: "2px solid white",
+          gridColumn: "span 2",
         }}
       >
         <Image
           src={createUrl(project.image).url()}
           layout="fill"
-          alt="project thumbnail"
+          objectFit="cover"
           quality={100}
-          objectFit="contain"
+          alt="project thumbnail"
         />
       </div>
-      <Link href="/projects" legacyBehavior>
-        back
-      </Link>
+      <div
+        style={{
+          padding: "2vh 2vw",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          justifyContent: "center",
+          border: "1px solid red",
+        }}
+      >
+        <HomeAnimation>
+          <span
+            style={{ fontSize: "5rem", letterSpacing: "-2px", width: "100%" }}
+          >
+            {project.title}
+          </span>
+        </HomeAnimation>
+        <span>{project.undertitle}</span>
+      </div>
+
+      <div style={{ border: "1px solid black", width: "100%" }}>
+        about this project
+      </div>
+      <div
+        style={{
+          border: "1px solid black",
+          height: "300px",
+          gridColumn: "span 2",
+        }}
+      >
+        description
+      </div>
+      <div
+        style={{
+          border: "1px solid black",
+          height: "300px",
+          gridColumn: "span 2",
+        }}
+      >
+        somethhin else
+      </div>
+      <div style={{ border: "1px solid black" }}>ok ok</div>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "calc(var(--navbar-height) + 15px)",
+          left: "15px",
+          height: "30px",
+          border: "1px solid black",
+          padding: "0 5px",
+        }}
+      >
+        <Link href="/projects" legacyBehavior>
+          back
+        </Link>
+      </div>
     </ProjectPage>
   );
 };
@@ -59,7 +113,14 @@ export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
   const { params } = context;
-  const projectQuery = `*[_type=="project" && slug.current==$slug][0]`;
+  const projectQuery = `*[_type=="project" && slug.current==$slug][0]{
+    ...,
+    image{
+      ...,
+      "palette": asset -> metadata.palette
+    }
+  } 
+  `;
 
   const project = await sanityClient.fetch(projectQuery, { slug: params.slug });
 
