@@ -78,6 +78,12 @@ html {
   --project-list-height: max-content;
   --fontsize-project-list: 9vmax;
   --project-columns: 1fr;
+  --project-areas: "title"
+                   "img"
+                   "about" 
+                   "desc" 
+                   "som"
+                   "ok";
   
   
   /* TEXT COLORS */
@@ -127,7 +133,10 @@ html {
     --project-list-width: 30vmax;
     --project-list-height: calc(100vh - var(--navbar-height));
     --fontsize-project-list: 5vmax;
-    --project-columns: repeat(3, 1fr);
+    --project-columns:repeat(3, 1fr);
+    --project-areas: "img img title"
+                      "about desc desc" 
+                      "som som ok";
     
   }
 }

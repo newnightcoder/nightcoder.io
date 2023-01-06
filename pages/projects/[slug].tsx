@@ -19,7 +19,7 @@ const Project = ({ project }: { project: IProject }) => {
           width: "100%",
           position: "relative",
           border: "2px solid white",
-          gridColumn: "span 2",
+          gridArea: "img",
         }}
       >
         <Image
@@ -38,6 +38,7 @@ const Project = ({ project }: { project: IProject }) => {
           alignItems: "flex-start",
           justifyContent: "center",
           border: "1px solid red",
+          gridArea: "title",
         }}
       >
         <HomeAnimation>
@@ -50,14 +51,16 @@ const Project = ({ project }: { project: IProject }) => {
         <span>{project.undertitle}</span>
       </div>
 
-      <div style={{ border: "1px solid black", width: "100%" }}>
+      <div
+        style={{ border: "1px solid black", width: "100%", gridArea: "about" }}
+      >
         about this project
       </div>
       <div
         style={{
           border: "1px solid black",
           height: "300px",
-          gridColumn: "span 2",
+          gridArea: "desc",
         }}
       >
         description
@@ -66,12 +69,12 @@ const Project = ({ project }: { project: IProject }) => {
         style={{
           border: "1px solid black",
           height: "300px",
-          gridColumn: "span 2",
+          gridArea: "som",
         }}
       >
         somethhin else
       </div>
-      <div style={{ border: "1px solid black" }}>ok ok</div>
+      <div style={{ border: "1px solid black", gridArea: "ok" }}>ok ok</div>
 
       <div
         style={{
