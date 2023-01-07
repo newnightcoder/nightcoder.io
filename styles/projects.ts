@@ -92,6 +92,8 @@ const ProjectPage = styled.div<Props>`
   grid-template-columns: var(--project-columns);
   grid-template-rows: max-content;
   grid-template-areas: var(--project-areas);
+  grid-column-gap: 20px;
+  grid-row-gap: 30px;
   min-height: 100vh;
   width: 100%;
   color: black;

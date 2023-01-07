@@ -1,3 +1,5 @@
+import { TypedObject } from "@portabletext/types";
+
 export interface IProject {
   _id: string;
   slug: {
@@ -6,7 +8,7 @@ export interface IProject {
   title: string;
   undertitle: string;
   image: IProjectImg;
-  description: object[];
+  description: TypedObject[];
   stack: string[];
   projectId: number;
 }
