@@ -3,56 +3,30 @@ import { GetStaticProps, GetStaticPropsContext } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { HomeAnimation } from "../../animations";
+import { Badge } from "../../components";
 import { createUrl, sanityClient } from "../../sanity";
-import { ProjectPage } from "../../styles/projects";
+import {
+  AboutSpan,
+  AboutTitle,
+  BackLink,
+  BadgeContainer,
+  DescriptionContainer,
+  ImgContainer,
+  ProjectPage,
+  Title,
+  TitleContainer,
+  UnderTitle,
+} from "../../styles/slug";
 import { IProject } from "../../types";
 
 const Project = ({ project }: { project: IProject }) => {
-  console.log(project.description);
-  const { palette } = project.image;
-
-  const Title = () => {
-    return <h1></h1>;
-  };
-
-  const badgeColorDict = {
-    react: "#61DAFB",
-    redux: "#764ABC",
-    MUI: "#007FFF",
-    styledcomponents: "#DB7093",
-    firebase: "#FFCA28",
-    javascript: "#F7DF1E",
-    typescript: "#3178C6",
-    html5: "#E34F26",
-    sass: "#CC6699",
-    stripe: "#008CDD",
-  };
-
-  const badgeColor = (str: string) => {
-    let color: string;
-    for (let key in badgeColorDict) {
-      if (str === key) {
-        console.log(Object.values(badgeColorDict)[key]);
-
-        // color = Object.values(badgeColorDict)[key];
-      }
-    }
-    console.log(color);
-  };
+  // const { palette } = project.image;
 
   return (
     <ProjectPage
     // bgColor={palette.lightVibrant.background}
     >
-      <div
-        style={{
-          gridArea: "img",
-          height: "33vmax",
-          width: "100%",
-          position: "relative",
-          // border: "2px solid white",
-        }}
-      >
+      <ImgContainer>
         <Image
           src={createUrl(project.image).url()}
           layout="fill"
@@ -60,83 +34,28 @@ const Project = ({ project }: { project: IProject }) => {
           quality={100}
           alt="project thumbnail"
         />
-      </div>
-      <div
-        style={{
-          gridArea: "title",
-          padding: "2vh 2vw",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          justifyContent: "center",
-          // border: "1px solid red",
-        }}
-      >
-        <HomeAnimation>
-          <span
-            style={{ fontSize: "5rem", letterSpacing: "-2px", width: "100%" }}
-          >
-            {project.title}
-          </span>
-        </HomeAnimation>
-        <span style={{ textTransform: "uppercase", paddingLeft: "15px" }}>
-          {project.undertitle}
-        </span>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, 200px)",
-            gridGap: "5px",
-          }}
-        >
-          {project.stack.map((str, i) => (
-            <img
-              key={i + 1}
-              src={`https://img.shields.io/badge/${str}-test-${badgeColor(
-                str
-              )}?style=for-the-badge&logo=${str}`}
-              alt=""
-            />
-          ))}
-        </div>
-      </div>
+      </ImgContainer>
 
-      <div
-        style={{
-          gridArea: "about",
-          width: "100%",
-          height: "max-content",
-          padding: "1.5vh 2vw",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-end",
-          justifyContent: "flex-start",
-          fontSize: "3.75rem",
-          fontWeight: "800",
-          textTransform: "uppercase",
-          color: "rgba(0, 0, 0, 0.125)",
-          // border: "1px solid black",
-        }}
-      >
-        <span style={{ display: "block" }}>about</span>
-        <span style={{ display: "block", transform: "translateY(-25px)" }}>
-          this
-        </span>
-        <span style={{ display: "block", transform: "translateY(-50px)" }}>
-          project
-        </span>
-      </div>
-      <div
-        style={{
-          gridArea: "desc",
-          height: "auto",
-          padding: "1vh 1.5vw",
-          fontSize: "1.25rem",
-          // border: "1px solid black",
-        }}
-      >
+      <TitleContainer>
+        <HomeAnimation>
+          <Title>{project.title}</Title>
+        </HomeAnimation>
+        <UnderTitle>{project.undertitle}</UnderTitle>
+        <BadgeContainer>
+          {project.stack.map((name, i) => (
+            <Badge key={i + 1} height={23} name={name} />
+          ))}
+        </BadgeContainer>
+      </TitleContainer>
+
+      <AboutTitle>
+        <AboutSpan>about</AboutSpan>
+        <AboutSpan translateY={25}>this</AboutSpan>
+        <AboutSpan translateY={50}>project</AboutSpan>
+      </AboutTitle>
+      <DescriptionContainer>
         <PortableText value={project.description} />
-      </div>
+      </DescriptionContainer>
       <div
         style={{
           border: "1px solid black",
@@ -148,26 +67,14 @@ const Project = ({ project }: { project: IProject }) => {
       </div>
       <div style={{ border: "1px solid black", gridArea: "ok" }}>ok ok</div>
 
-      <div
-        style={{
-          position: "fixed",
-          top: "calc(var(--navbar-height) + 15px)",
-          right: "15px",
-          height: "30px",
-          padding: "0 20px",
-          fontSize: ".75rem",
-          border: "1px solid black",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "black",
-          color: "white",
-        }}
-      >
-        <Link href="/projects" legacyBehavior>
-          back to projects
-        </Link>
-      </div>
+      <Link href="/projects" passHref legacyBehavior>
+        <BackLink>
+          <span style={{ fontSize: "1.25rem" }}>&lt;&nbsp;</span>
+          <span style={{ fontWeight: "500", textTransform: "uppercase" }}>
+            back
+          </span>
+        </BackLink>
+      </Link>
     </ProjectPage>
   );
 };

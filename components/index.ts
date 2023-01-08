@@ -1,5 +1,6 @@
 export { default as AboutItem } from "./AboutItem/AboutItem";
 export { default as Background } from "./Background/Background";
+export { default as Badge } from "./Badge/Badge";
 export { default as DiscSvg } from "./DiscSvg/DiscSvg";
 export { default as Layout } from "./Layout/Layout";
 export { default as Loader } from "./Loader/Loader";

@@ -79,6 +79,7 @@ html {
   --fontsize-project-list: 9vmax;
   --project-columns: 1fr;
   --project-areas: "title"
+                  "shields"
                    "img"
                    "about" 
                    "desc" 
@@ -135,6 +136,7 @@ html {
     --fontsize-project-list: 5vmax;
     --project-columns:repeat(3, 1fr);
     --project-areas: "img img title"
+                     "shields shields ."
                       "about desc desc" 
                       "som som ok";
     

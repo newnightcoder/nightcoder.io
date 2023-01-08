@@ -12,7 +12,6 @@ const ProjectsContainer = styled.div`
 
 interface Props {
   zIndex?: number;
-  bgColor?: string;
 }
 
 const ImgContainer = styled.div`
@@ -42,7 +41,7 @@ const ImgWrapper = styled.div<Props>`
   transform: translateY(-50%);
   overflow: hidden;
   z-index: ${(props) => props.zIndex};
-  border: 2px solid green;
+  // border: 2px solid green;
 `;
 
 const ProjectList = styled.div`
@@ -78,33 +77,10 @@ const ProjectTitle = styled.a<Props>`
   }
 `;
 
-const ProjectPage = styled.div<Props>`
-  padding-top: calc(var(--navbar-height) + 60px);
-  padding-bottom: 50px;
-  // background: ${(props) => props.bgColor};
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // justify-content: flex-start;
-  position: relative;
-  font-family: var(--poppins);
-  display: grid;
-  grid-template-columns: var(--project-columns);
-  grid-template-rows: max-content;
-  grid-template-areas: var(--project-areas);
-  grid-column-gap: 20px;
-  grid-row-gap: 30px;
-  min-height: 100vh;
-  width: 100%;
-  color: black;
-  background: rgb(245, 245, 245);
-`;
-
 export {
   ImgContainer,
   ImgWrapper,
   ProjectsContainer,
   ProjectList,
   ProjectTitle,
-  ProjectPage,
 };
