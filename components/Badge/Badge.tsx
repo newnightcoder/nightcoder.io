@@ -1,9 +1,10 @@
 interface Props {
   name: string;
   height: number;
+  style: string;
 }
 
-const Badge = ({ name, height }: Props) => {
+const Badge = ({ name, height, style }: Props) => {
   const badgeColorDict = {
     react: "#61DAFB",
     redux: "#764ABC",
@@ -37,7 +38,7 @@ const Badge = ({ name, height }: Props) => {
       height={height}
       src={`https://img.shields.io/badge/${name}-${badgeColor(
         name
-      )}?style=flat&logo=${name}&logoColor=white`}
+      )}?style=${style}&logo=${name}&logoColor=white`}
       alt=""
       style={{ margin: "0 3px 3px 0" }}
     />

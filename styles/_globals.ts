@@ -79,12 +79,13 @@ html {
   --fontsize-project-list: 9vmax;
   --project-columns: 1fr;
   --project-areas: "title"
-                  "shields"
                    "img"
+                  //  "shields"
                    "about" 
                    "desc" 
                    "som"
-                   "ok";
+                   "ok"
+                   "next";
   
   
   /* TEXT COLORS */
@@ -134,11 +135,12 @@ html {
     --project-list-width: 30vmax;
     --project-list-height: calc(100vh - var(--navbar-height));
     --fontsize-project-list: 5vmax;
-    --project-columns:repeat(3, 1fr);
-    --project-areas: "img img title"
-                     "shields shields ."
-                      "about desc desc" 
-                      "som som ok";
+    --project-columns:repeat(5, 1fr);
+    --project-areas:  "img img img title title"
+                      // "shields shields ."
+                      "about about desc desc desc" 
+                      "som som som ok ok"
+                      "next next next next next";
     
   }
 }
@@ -226,6 +228,8 @@ body {
     }
   }
 }
+
+
 
 // DARK MODE / prefers-color-scheme 
 

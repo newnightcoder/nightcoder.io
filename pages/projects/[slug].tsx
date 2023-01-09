@@ -2,16 +2,21 @@ import { PortableText } from "@portabletext/react";
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { HomeAnimation } from "../../animations";
 import { Badge } from "../../components";
 import { createUrl, sanityClient } from "../../sanity";
 import {
   AboutSpan,
   AboutTitle,
+  AnimatedSpanNext,
   BackLink,
   BadgeContainer,
   DescriptionContainer,
   ImgContainer,
+  NextContainer,
+  NextImgContainer,
+  NextTitle,
   ProjectPage,
   Title,
   TitleContainer,
@@ -21,21 +26,31 @@ import { IProject } from "../../types";
 
 const Project = ({ project }: { project: IProject }) => {
   // const { palette } = project.image;
+  console.log(`projects/${project.next?.slug.current}`);
+
+  const [showNextImg, setShowNextImg] = useState(false);
 
   return (
     <ProjectPage
     // bgColor={palette.lightVibrant.background}
     >
+      <Link href="/projects" passHref legacyBehavior>
+        <BackLink>
+          <span style={{ fontSize: "1.25rem" }}>&lt;&nbsp;</span>
+          <span style={{ fontWeight: "500", textTransform: "uppercase" }}>
+            back
+          </span>
+        </BackLink>
+      </Link>
       <ImgContainer>
         <Image
           src={createUrl(project.image).url()}
           layout="fill"
-          objectFit="cover"
+          objectFit="contain"
           quality={100}
           alt="project thumbnail"
         />
       </ImgContainer>
-
       <TitleContainer>
         <HomeAnimation>
           <Title>{project.title}</Title>
@@ -43,7 +58,12 @@ const Project = ({ project }: { project: IProject }) => {
         <UnderTitle>{project.undertitle}</UnderTitle>
         <BadgeContainer>
           {project.stack.map((name, i) => (
-            <Badge key={i + 1} height={23} name={name} />
+            <Badge
+              key={i + 1}
+              name={name}
+              height={20}
+              style={"for-the-badge"}
+            />
           ))}
         </BadgeContainer>
       </TitleContainer>
@@ -67,14 +87,29 @@ const Project = ({ project }: { project: IProject }) => {
       </div>
       <div style={{ border: "1px solid black", gridArea: "ok" }}>ok ok</div>
 
-      <Link href="/projects" passHref legacyBehavior>
-        <BackLink>
-          <span style={{ fontSize: "1.25rem" }}>&lt;&nbsp;</span>
-          <span style={{ fontWeight: "500", textTransform: "uppercase" }}>
-            back
-          </span>
-        </BackLink>
-      </Link>
+      {project.next ? (
+        <NextContainer>
+          <AnimatedSpanNext animation={"slide1"}>next project</AnimatedSpanNext>
+          <AnimatedSpanNext animation={"slide2"}>next project</AnimatedSpanNext>
+
+          <Link href={`${project.next?.slug.current}`} passHref legacyBehavior>
+            <NextTitle
+              showNextImg={showNextImg}
+              onMouseOver={() => setShowNextImg(true)}
+              onMouseOut={() => setShowNextImg(false)}
+            >
+              {project.next?.title}
+            </NextTitle>
+          </Link>
+          <NextImgContainer showNextImg={showNextImg}>
+            <Image
+              src={createUrl(project.next?.image).url()}
+              layout={"fill"}
+              objectFit="cover"
+            />
+          </NextImgContainer>
+        </NextContainer>
+      ) : null}
     </ProjectPage>
   );
 };
@@ -91,6 +126,7 @@ export const getStaticPaths = async () => {
     // map with parentheses : [].map() => () or with brackets + explicit return: [].map() => { return {}}
     params: {
       slug: project.slug.current,
+      id: project.projectId,
     },
   }));
 
@@ -103,10 +139,18 @@ export const getStaticProps: GetStaticProps = async (
   const { params } = context;
   const projectQuery = `*[_type=="project" && slug.current==$slug][0]{
     ...,
+    projectId,
     image{
       ...,
       "palette": asset -> metadata.palette
-    }
+    },
+    "next":*[_type=="project" && projectId==^.projectId-1][0]{
+      title,
+      slug{
+        current
+      },
+      image
+    },
   } 
   `;
 

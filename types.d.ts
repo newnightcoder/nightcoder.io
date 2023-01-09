@@ -11,6 +11,13 @@ export interface IProject {
   description: TypedObject[];
   stack: string[];
   projectId: number;
+  next: {
+    title: string;
+    image: string;
+    slug: {
+      current: string;
+    };
+  };
 }
 
 export interface IProjectImg {

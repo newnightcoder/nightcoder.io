@@ -3,11 +3,13 @@ import styled from "styled-components";
 interface Props {
   bgColor?: string;
   translateY?: number;
+  animation?: string;
+  showNextImg?: boolean;
 }
 
 const ProjectPage = styled.div<Props>`
   padding-top: calc(var(--navbar-height) + 60px);
-  padding-bottom: 50px;
+  // padding-bottom: 50px;
   // background: ${(props) => props.bgColor};
   // display: flex;
   // flex-direction: column;
@@ -41,7 +43,8 @@ const BadgeContainer = styled.div`
   width: 100%;
   height: max-content;
   justify-content: flex-start;
-  padding: 1vh 5px;
+  padding: 10px 5px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 `;
 
 const TitleContainer = styled.div`
@@ -102,10 +105,81 @@ const BackLink = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  // background: black;
-  color: rgb(245, 245, 245);
   color: black;
+  z-index: 10;
+  // color: rgb(245, 245, 245);
+  // background: black;
   // border: 1px solid rgba(0, 0, 0, 0.15);
+`;
+
+const NextContainer = styled.div`
+  grid-area: next;
+  height: calc(100vh - var(--navbar-height));
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  // border: 2px solid red;
+`;
+
+const AnimatedSpanNext = styled.span<Props>`
+  // display: block;
+  position: absolute;
+  // font-size: 7vw;
+  font-size: 70vmin;
+  height: 100%;
+  // width: 55vmax;
+  width: max-content;
+  font-weight: 200;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+  line-height: 100vh;
+  // transform: scale(1, 3);
+  animation: ${(props) => props.animation} 8000ms infinite linear;
+  // border: 1px solid black;
+
+  @keyframes slide1 {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-120%);
+    }
+  }
+
+  @keyframes slide2 {
+    0% {
+      transform: translateX(120%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+`;
+
+const NextTitle = styled.a<Props>`
+  position: absolute;
+  font-weight: 700;
+  font-size: 4rem;
+  z-index: 50;
+  transition: background 300ms;
+  background: ${(props) =>
+    props.showNextImg ? "rgb(245, 245, 245)" : "transparent"};
+  // border: 2px solid green;
+`;
+
+const NextImgContainer = styled.div<Props>`
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  transition: transform 500ms;
+  transform: ${(props) =>
+    props.showNextImg ? "translateX(0)" : "translateX(-100%)"};
+  z-index: 30;
 `;
 
 export {
@@ -119,4 +193,8 @@ export {
   BackLink,
   Title,
   UnderTitle,
+  NextContainer,
+  AnimatedSpanNext,
+  NextTitle,
+  NextImgContainer,
 };
