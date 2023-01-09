@@ -47,3 +47,9 @@ export interface IProjectImg {
     };
   };
 }
+
+export interface IBadge {
+  name: string;
+  size: number;
+  style: "plastic" | "flat" | "flat-square" | "for-the-badge"; // string literal type
+}

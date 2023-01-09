@@ -22,9 +22,9 @@ import {
   TitleContainer,
   UnderTitle,
 } from "../../styles/slug";
-import { IProject } from "../../types";
+import { IBadge, IProject } from "../../types";
 
-const Project = ({ project }: { project: IProject }) => {
+const Project = ({ project, badge }: { project: IProject; badge: IBadge }) => {
   // const { palette } = project.image;
   console.log(`projects/${project.next?.slug.current}`);
 
@@ -58,12 +58,7 @@ const Project = ({ project }: { project: IProject }) => {
         <UnderTitle>{project.undertitle}</UnderTitle>
         <BadgeContainer>
           {project.stack.map((name, i) => (
-            <Badge
-              key={i + 1}
-              name={name}
-              height={20}
-              style={"for-the-badge"}
-            />
+            <Badge key={i + 1} name={name} size={20} style={"flat-square"} />
           ))}
         </BadgeContainer>
       </TitleContainer>

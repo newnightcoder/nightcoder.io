@@ -1,10 +1,7 @@
-interface Props {
-  name: string;
-  height: number;
-  style: string;
-}
+import { IBadge } from "../../types.d";
 
-const Badge = ({ name, height, style }: Props) => {
+const Badge = ({ name, size, style }: IBadge) => {
+  //📌 Could use a map...
   const badgeColorDict = {
     react: "#61DAFB",
     redux: "#764ABC",
@@ -35,7 +32,7 @@ const Badge = ({ name, height, style }: Props) => {
 
   return (
     <img
-      height={height}
+      height={size}
       src={`https://img.shields.io/badge/${name}-${badgeColor(
         name
       )}?style=${style}&logo=${name}&logoColor=white`}
