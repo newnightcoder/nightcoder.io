@@ -22,9 +22,9 @@ import {
   TitleContainer,
   UnderTitle,
 } from "../../styles/slug";
-import { IBadge, IProject } from "../../types";
+import { IProject } from "../../types";
 
-const Project = ({ project, badge }: { project: IProject; badge: IBadge }) => {
+const Project = ({ project }: { project: IProject }) => {
   // const { palette } = project.image;
   console.log(`projects/${project.next?.slug.current}`);
 
