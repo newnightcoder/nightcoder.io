@@ -27,6 +27,8 @@ type TransitionContext = {
   isMenuClosing?: boolean;
   setisMenuClosing?: Dispatch<SetStateAction<boolean>>;
   toggleMenu?: (toggled: boolean) => void;
+  lang?: string;
+  setLang?: Dispatch<SetStateAction<string>>;
 };
 interface Props extends PropsWithChildren {}
 
@@ -42,6 +44,7 @@ const TransitionProvider = ({ children }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuAnim, setIsMenuAnim] = useState(false);
   const [isMenuClosing, setIsMenuClosing] = useState(false);
+  const [lang, setLang] = useState("en");
 
   const [timelineMenu, setTimelineMenu] = useState(() =>
     gsap.timeline({
@@ -84,6 +87,8 @@ const TransitionProvider = ({ children }: Props) => {
           setIsMenuAnim,
           isMenuClosing,
           toggleMenu,
+          lang,
+          setLang,
         }}
       >
         {children}

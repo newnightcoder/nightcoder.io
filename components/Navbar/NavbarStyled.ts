@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface Props {
+  isBgDark?: boolean;
+}
+
 const Wrapper = styled.nav`
   width: 100%;
   height: var(--navbar-height);
@@ -14,7 +18,7 @@ const Wrapper = styled.nav`
   // border: 1px solid lightgray;
 `;
 
-const NavbarContainer = styled.div`
+const NavbarContainer = styled.div<Props>`
   height: 100%;
   width: 100%;
   position: absolute;
@@ -24,7 +28,7 @@ const NavbarContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: var(--text-dark);
+
   background: transparent;
   z-index: 999;
   -webkit-backdrop-filter: saturate(180%) blur(10px);
@@ -68,6 +72,7 @@ const NavLinksContainer = styled.ul`
   display: var(--navbar-links-visibility);
   align-items: center;
   justify-content: flex-end;
+
   // border: 1px solid green;
   & > * + * {
     margin-left: 1rem;
@@ -81,10 +86,12 @@ const NavLink = styled.li`
   visibility: hidden;
 `;
 
-const NavBtn = styled.button`
-  // color: var(--text-dark);
+const NavBtn = styled.button<Props>`
   font-family: var(--poppins);
   font-size: 0.75rem;
+  transition: 1000ms color 1000ms;
+  color: ${(props) =>
+    props.isBgDark ? "var(--text-dark)" : "var(--text-light)"};
 `;
 
 export {

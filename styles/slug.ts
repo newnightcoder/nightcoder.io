@@ -57,7 +57,7 @@ const TitleContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 4rem;
+  font-size: var(--fontsize-project-title);
   letter-spacing: -2px;
   width: 100%;
   margin: 0;

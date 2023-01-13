@@ -13,26 +13,34 @@ import {
 
 const Navbar = () => {
   const handleRoute = useHandleRoute();
-  const router = useRouter();
+  const { pathname, locale } = useRouter();
+
   const [active, setActive] = useState("");
   const navLinks = useMemo(
     () => ["home", "about", "projects", "stack", "contact"],
     []
   );
 
+  const [isBgDark, setIsBgDark] = useState(true);
+
+  const handleLinkColor = useCallback(() => {
+    pathname === "/projects/[slug]" ? setIsBgDark(false) : setIsBgDark(true);
+  }, [pathname, setIsBgDark]);
+
   const activateLink = useCallback(() => {
     navLinks.forEach((link) => {
-      if (router.pathname === `/`) {
+      if (pathname === `/`) {
         setActive("");
-      } else if (router.pathname === `/${link}`) {
+      } else if (pathname === `/${link}`) {
         setActive(link);
       }
     });
-  }, [navLinks, router.pathname]);
+  }, [navLinks, pathname]);
 
   useEffect(() => {
     activateLink();
-  }, [activateLink]);
+    handleLinkColor();
+  }, [activateLink, handleLinkColor]);
 
   return (
     <Wrapper>
@@ -42,19 +50,29 @@ const Navbar = () => {
             {navLinks.map((link, i) => {
               return (
                 <NavLink key={link}>
-                  <NavBtn id={link} onClick={() => handleRoute(`/${link}`)}>
+                  <NavBtn
+                    id={link}
+                    isBgDark={isBgDark}
+                    onClick={() => handleRoute(`/${link}`)}
+                  >
                     <div>
                       <span
                         style={{
                           fontFamily: "courier, sans-serif",
-                          color: active === link ? "black" : "white",
+                          textDecoration:
+                            active === link ? "underline" : "none",
+                          textDecorationColor:
+                            active === link ? "black" : "white",
                         }}
                       >
                         [{i}]
                       </span>
                       <span
                         style={{
-                          color: active === link ? "black" : "white",
+                          textDecoration:
+                            active === link ? "underline" : "none",
+                          textDecorationColor:
+                            active === link ? "black" : "white",
                         }}
                       >
                         {link}
@@ -66,6 +84,11 @@ const Navbar = () => {
             })}
           </NavLinksContainer>
         </NavLinksAnimation>
+        <button
+          style={{ fontSize: "2rem", position: "absolute", right: "1vw" }}
+        >
+          {locale === "en" ? <div>🥐</div> : <div>🍪</div>}
+        </button>
       </NavbarContainer>
       <BackgroundShapes />
     </Wrapper>

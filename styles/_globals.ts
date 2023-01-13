@@ -86,7 +86,8 @@ html {
                    "som"
                    "ok"
                    "next";
-  
+  --fontsize-project-title: 4rem;
+
   
   /* TEXT COLORS */
   
@@ -137,10 +138,11 @@ html {
     --fontsize-project-list: 5vmax;
     --project-columns:repeat(5, 1fr);
     --project-areas:  "img img img title title"
-                      // "shields shields ."
-                      "about about desc desc desc" 
-                      "som som som ok ok"
-                      "next next next next next";
+    // "shields shields ."
+    "about about desc desc desc" 
+    "som som som ok ok"
+    "next next next next next";
+    --fontsize-project-title: 6vw;
     
   }
 }

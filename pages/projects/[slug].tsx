@@ -2,9 +2,10 @@ import { PortableText } from "@portabletext/react";
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { HomeAnimation } from "../../animations";
 import { Badge } from "../../components";
+import { TransitionContext } from "../../context/TransitionContext";
 import { createUrl, sanityClient } from "../../sanity";
 import {
   AboutSpan,
@@ -25,9 +26,7 @@ import {
 import { IProject } from "../../types";
 
 const Project = ({ project }: { project: IProject }) => {
-  // const { palette } = project.image;
-  console.log(`projects/${project.next?.slug.current}`);
-
+  const { lang } = useContext(TransitionContext);
   const [showNextImg, setShowNextImg] = useState(false);
 
   return (
@@ -131,7 +130,8 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const { params } = context;
+  const { params, locale } = context;
+
   const projectQuery = `*[_type=="project" && slug.current==$slug][0]{
     ...,
     projectId,
@@ -139,6 +139,8 @@ export const getStaticProps: GetStaticProps = async (
       ...,
       "palette": asset -> metadata.palette
     },
+    "description":description.${locale},
+    "undertitle":undertitle.${locale},
     "next":*[_type=="project" && projectId==^.projectId-1][0]{
       title,
       slug{

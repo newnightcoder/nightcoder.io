@@ -1,6 +1,6 @@
 // Middleware to add default locale (en, fr, etc...) to the url 😎
 
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 const PUBLIC_FILE = /\.(.*)$/;
 
@@ -12,7 +12,9 @@ export async function middleware(req: NextRequest) {
     !PUBLIC_FILE.test(req.nextUrl.pathname) &&
     req.nextUrl.locale === "default";
 
-  return shouldHandleLocale
-    ? NextResponse.redirect(new URL(`/en${req.nextUrl.pathname}`, req.url))
-    : undefined;
+  // return shouldHandleLocale
+  //   ? NextResponse.redirect(new URL(`/en${req.nextUrl.pathname}`, req.url))
+  //   : undefined;
+
+  return null;
 }
