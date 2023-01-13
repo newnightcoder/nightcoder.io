@@ -65,6 +65,8 @@ html {
 
   --navbar-links-visibility: none;
   --hamburger-visibility: flex;
+  --lang-emoji-right:auto;
+  --lang-emoji-left:50%;
   --navbar-padding-right: 0;
   --header-width: max-content;
   --align-header: center;
@@ -122,6 +124,8 @@ html {
   @media screen and (min-width: ${breakpoints.md}){
     --navbar-links-visibility: flex;
     --hamburger-visibility: none;
+    --lang-emoji-right:1vw;
+    --lang-emoji-left:auto;
     --navbar-padding-right: 4rem;
     --header-width: max-content;
     --align-header: flex-start;

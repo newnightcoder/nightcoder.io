@@ -85,7 +85,12 @@ const Navbar = () => {
           </NavLinksContainer>
         </NavLinksAnimation>
         <button
-          style={{ fontSize: "2rem", position: "absolute", right: "1vw" }}
+          style={{
+            fontSize: "2rem",
+            position: "absolute",
+            right: "var(--lang-emoji-right)",
+            left: "var(--lang-emoji-left)",
+          }}
         >
           {locale === "en" ? <div>🥐</div> : <div>🍪</div>}
         </button>
