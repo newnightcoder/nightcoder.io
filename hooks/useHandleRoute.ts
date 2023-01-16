@@ -5,9 +5,9 @@ const useHandleRoute = () => {
   const { pathname } = router;
 
   const handleRoute = (path: string) => {
-    const samePage = pathname === path;
-    const samePageHome = pathname === "/" && path === "/home";
-    samePage || samePageHome
+    const isSamePage = pathname === path;
+    const isHomePage = pathname === "/" && path === "/home";
+    isSamePage || isHomePage
       ? undefined
       : path === "/home"
       ? router.push("/")

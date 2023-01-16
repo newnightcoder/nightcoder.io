@@ -28,7 +28,6 @@ const NavbarContainer = styled.div<Props>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   background: transparent;
   z-index: 999;
   -webkit-backdrop-filter: saturate(180%) blur(10px);
@@ -54,7 +53,7 @@ const BackgroundShapes = styled.span`
   }
 `;
 
-const HamburgerBtn = styled.button`
+const HamburgerBtn = styled.button<Props>`
   position: fixed;
   right: 0.5rem;
   z-index: 2500;
@@ -63,7 +62,9 @@ const HamburgerBtn = styled.button`
   display: var(--hamburger-visibility);
   align-items: center;
   justify-content: center;
-  color: var(--text-dark);
+  transition: 1000ms color 1000ms;
+  color: ${(props) =>
+    props.isBgDark ? "var(--text-dark)" : "var(--text-light)"};
 `;
 
 const NavLinksContainer = styled.ul`

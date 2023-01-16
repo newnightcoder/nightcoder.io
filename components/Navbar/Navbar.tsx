@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useContext } from "react";
 import { NavLinksAnimation } from "../../animations";
 import { TransitionContext } from "../../context/TransitionContext";
-import { useHandleRoute } from "../../hooks";
+import { useBgColor, useHandleRoute, useNavLinks } from "../../hooks";
 import {
   BackgroundShapes,
   NavbarContainer,
@@ -17,27 +17,9 @@ const Navbar = () => {
   const router = useRouter();
   const { pathname, locale, query, asPath } = useRouter();
   const { lang, setLang } = useContext(TransitionContext);
-  const [active, setActive] = useState("");
-  const navLinks = useMemo(
-    () => ["home", "about", "projects", "stack", "contact"],
-    []
-  );
-  const [isBgDark, setIsBgDark] = useState(true);
-  const isProjectPage = pathname === "/projects/[slug]";
 
-  const handleLinkColor = useCallback(() => {
-    isProjectPage ? setIsBgDark(false) : setIsBgDark(true);
-  }, [pathname, setIsBgDark]);
-
-  const activateLink = useCallback(() => {
-    navLinks.forEach((link) => {
-      if (pathname === `/`) {
-        setActive("");
-      } else if (pathname === `/${link}`) {
-        setActive(link);
-      }
-    });
-  }, [navLinks, pathname]);
+  const isBgDark = useBgColor();
+  const { navLinks, active } = useNavLinks();
 
   const handleLocale = (locale: string) => {
     switch (locale) {
@@ -54,11 +36,6 @@ const Navbar = () => {
     }
   };
 
-  useEffect(() => {
-    activateLink();
-    handleLinkColor();
-  }, [activateLink, handleLinkColor]);
-
   return (
     <Wrapper>
       <NavbarContainer>
@@ -66,7 +43,7 @@ const Navbar = () => {
           <NavLinksContainer id="ul">
             {navLinks.map((link, i) => {
               return (
-                <NavLink key={link}>
+                <NavLink key={i + 1}>
                   <NavBtn
                     id={link}
                     isBgDark={isBgDark}
@@ -79,7 +56,11 @@ const Navbar = () => {
                           textDecoration:
                             active === link ? "underline" : "none",
                           textDecorationColor:
-                            active === link ? "black" : "white",
+                            active === link && isBgDark
+                              ? "white"
+                              : active === link && !isBgDark
+                              ? "black"
+                              : "none",
                         }}
                       >
                         [{i}]
@@ -89,7 +70,11 @@ const Navbar = () => {
                           textDecoration:
                             active === link ? "underline" : "none",
                           textDecorationColor:
-                            active === link ? "black" : "white",
+                            active === link && isBgDark
+                              ? "white"
+                              : active === link && !isBgDark
+                              ? "black"
+                              : "none",
                         }}
                       >
                         {link}

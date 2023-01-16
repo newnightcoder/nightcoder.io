@@ -1,5 +1,13 @@
 {
   "en": {
+    "navLinks": {
+      "home": "home",
+      "about": "about",
+      "projects": "projects",
+      "stack": "stack",
+      "contact": "contact"
+    },
+
     "item": {
       "title1": " 🌱  A proud self-taught developer",
       "text1": "End of 2019 was when i decided that it was the right time for me to change my career path and do what i truly like. The idea and desire to code had been living in me for quite some time at this point, so i just did it. I even stood up and quit my former job, in order for me to make space and time in my life for learning how to code. It all started with the [#100daysofcode](https://twitter.com/_100daysofcode) hashtag : the goal is to keep coding everyday and post one’s daily report on Twitter, for accountability. That’s when i became addicted to code. Dive into the the tech universe, the coding world, where i’ve met amazing and super supportive developers from all over the world, in a fantastic ecosystem of resources for learning, training, sharing knowledge and best practices etc… I also did a sort of bootcamp course in France (called Openclassrooms) and graduated their certificated Web Developer degree. I did it mostly to meet other French speaking developers (i had only been immersed in the English speaking tech community since the beginning), some of which are really experienced and currently hired.",
@@ -16,6 +24,13 @@
     }
   },
   "fr": {
+    "navLinks": {
+      "home": "accueil",
+      "about": "à propos",
+      "projects": "projets",
+      "stack": "stack",
+      "contact": "contact"
+    },
     "item": {
       "title1": " 🌱  Fier d’être autodidacte",
       "text1": "End of 2019 was when i decided that it was the right time for me to change my career path and do what i truly like. The idea and desire to code had been living in me for quite some time at this point, so i just did it. I even stood up and quit my former job, in order for me to make space and time in my life for learning how to code. It all started with the [#100daysofcode](https://twitter.com/_100daysofcode) hashtag : the goal is to keep coding everyday and post one’s daily report on Twitter, for accountability. That’s when i became addicted to code. Dive into the the tech universe, the coding world, where i’ve met amazing and super supportive developers from all over the world, in a fantastic ecosystem of resources for learning, training, sharing knowledge and best practices etc… I also did a sort of bootcamp course in France (called Openclassrooms) and graduated their certificated Web Developer degree. I did it mostly to meet other French speaking developers (i had only been immersed in the English speaking tech community since the beginning), some of which are really experienced and currently hired.",
