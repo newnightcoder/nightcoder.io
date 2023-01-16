@@ -13,18 +13,18 @@ import {
 
 const Navbar = () => {
   const handleRoute = useHandleRoute();
-  const { pathname, locale } = useRouter();
-
+  const router = useRouter();
+  const { pathname, locale, query, asPath } = useRouter();
   const [active, setActive] = useState("");
   const navLinks = useMemo(
     () => ["home", "about", "projects", "stack", "contact"],
     []
   );
-
   const [isBgDark, setIsBgDark] = useState(true);
+  const isProjectPage = pathname === "/projects/[slug]";
 
   const handleLinkColor = useCallback(() => {
-    pathname === "/projects/[slug]" ? setIsBgDark(false) : setIsBgDark(true);
+    isProjectPage ? setIsBgDark(false) : setIsBgDark(true);
   }, [pathname, setIsBgDark]);
 
   const activateLink = useCallback(() => {
@@ -36,6 +36,12 @@ const Navbar = () => {
       }
     });
   }, [navLinks, pathname]);
+
+  const handleLocale = (locale: string) => {
+    return isProjectPage && locale === "en"
+      ? router.push({ pathname, query }, asPath, { locale: "fr" })
+      : router.push({ pathname, query }, asPath, { locale: "en" });
+  };
 
   useEffect(() => {
     activateLink();
@@ -85,6 +91,7 @@ const Navbar = () => {
           </NavLinksContainer>
         </NavLinksAnimation>
         <button
+          onClick={() => handleLocale(locale)}
           style={{
             fontSize: "2rem",
             position: "absolute",
@@ -92,7 +99,7 @@ const Navbar = () => {
             left: "var(--lang-emoji-left)",
           }}
         >
-          {locale === "en" ? <div>🥐</div> : <div>🍪</div>}
+          {locale === "en" ? <div>🥐</div> : <div>🍩</div>}
         </button>
       </NavbarContainer>
       <BackgroundShapes />
