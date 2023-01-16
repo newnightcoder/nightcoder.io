@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { NavLinksAnimation } from "../../animations";
+import { TransitionContext } from "../../context/TransitionContext";
 import { useHandleRoute } from "../../hooks";
 import {
   BackgroundShapes,
@@ -15,6 +16,7 @@ const Navbar = () => {
   const handleRoute = useHandleRoute();
   const router = useRouter();
   const { pathname, locale, query, asPath } = useRouter();
+  const { lang, setLang } = useContext(TransitionContext);
   const [active, setActive] = useState("");
   const navLinks = useMemo(
     () => ["home", "about", "projects", "stack", "contact"],
@@ -38,9 +40,18 @@ const Navbar = () => {
   }, [navLinks, pathname]);
 
   const handleLocale = (locale: string) => {
-    return isProjectPage && locale === "en"
-      ? router.push({ pathname, query }, asPath, { locale: "fr" })
-      : router.push({ pathname, query }, asPath, { locale: "en" });
+    switch (locale) {
+      case "en":
+        router.push({ pathname, query }, asPath, { locale: "fr" });
+        setLang("fr");
+        break;
+      case "fr":
+        router.push({ pathname, query }, asPath, { locale: "en" });
+        setLang("en");
+        break;
+      default:
+        return;
+    }
   };
 
   useEffect(() => {
@@ -91,7 +102,10 @@ const Navbar = () => {
           </NavLinksContainer>
         </NavLinksAnimation>
         <button
-          onClick={() => handleLocale(locale)}
+          onClick={() => {
+            // handleLang();
+            handleLocale(locale);
+          }}
           style={{
             fontSize: "2rem",
             position: "absolute",
@@ -99,7 +113,7 @@ const Navbar = () => {
             left: "var(--lang-emoji-left)",
           }}
         >
-          {locale === "en" ? <div>🥐</div> : <div>🍩</div>}
+          {locale === "en" ? <div>🥐</div> : <div>🍔</div>}
         </button>
       </NavbarContainer>
       <BackgroundShapes />

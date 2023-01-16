@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MutableRefObject, useContext, useRef } from "react";
-import { gsap } from "../../animations/gsap";
 import { TransitionContext } from "../../context/TransitionContext";
 import {
   useIsoMorphicLayoutEffect,
@@ -33,17 +32,17 @@ const Projects = ({ projects }: Props) => {
     if (ref.current) return handleBackground(ref.current.id);
   }, []);
 
-  useIsoMorphicLayoutEffect(() => {
-    if (testRef.current) {
-      timelinePages.add(
-        gsap.to(testRef.current, {
-          x: -1000,
-          duration: 2,
-        }),
-        0
-      );
-    }
-  }, []);
+  // useIsoMorphicLayoutEffect(() => {
+  //   if (testRef.current) {
+  //     timelinePages.add(
+  //       gsap.to(testRef.current, {
+  //         x: -1000,
+  //         duration: 2,
+  //       }),
+  //       0
+  //     );
+  //   }
+  // }, []);
 
   const handleProjectAnimation = (
     ref: MutableRefObject<HTMLDivElement[]>,

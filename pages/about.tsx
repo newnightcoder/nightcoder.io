@@ -19,7 +19,7 @@ const About = () => {
   const pageRef = useRef<HTMLDivElement>(null);
   const handleBackground = useTransitionBackground();
   const handleRoute = useHandleRoute();
-  const { setBackgroundImg } = useContext(TransitionContext);
+  const { setBackgroundImg, lang } = useContext(TransitionContext);
 
   useIsoMorphicLayoutEffect(() => {
     if (pageRef.current) return handleBackground(pageRef.current.id);
@@ -39,24 +39,24 @@ const About = () => {
         <ContentContainer>
           <AboutItemsContainer>
             <AboutItem
-              itemTitle={text.item.title1}
-              itemText={text.item.text1}
+              itemTitle={text[lang].item.title1}
+              itemText={text[lang].item.text1}
             />
             <AboutItem
-              itemTitle={text.item.title2}
-              itemText={text.item.text2}
+              itemTitle={text[lang].item.title2}
+              itemText={text[lang].item.text2}
             />
             <AboutItem
-              itemTitle={text.item.title3}
-              itemText={text.item.text3}
+              itemTitle={text[lang].item.title3}
+              itemText={text[lang].item.text3}
             />
             <AboutItem
-              itemTitle={text.item.title4}
-              itemText={text.item.text4}
+              itemTitle={text[lang].item.title4}
+              itemText={text[lang].item.text4}
             />
             <AboutItem
-              itemTitle={text.item.title6}
-              itemText={text.item.text6}
+              itemTitle={text[lang].item.title6}
+              itemText={text[lang].item.text6}
             />
           </AboutItemsContainer>
           {/* <ImgContainer>
