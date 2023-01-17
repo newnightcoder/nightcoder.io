@@ -5,7 +5,8 @@
       "about": "about",
       "projects": "projects",
       "stack": "stack",
-      "contact": "contact"
+      "contact": "contact",
+      "back": "back"
     },
 
     "item": {
@@ -21,6 +22,11 @@
       "text5": "I’m open to freelance opportunities so i’m working on my portfolio website. Never satisfied of course 😅 i’ve already made at least 3 versions of it… But it’s coming it’s coming!",
       "title6": " ❤️  In love with code",
       "text6": "Code is a passion... So rich: challenge and joy to find solutions to problems, fulfill the client’s or PO’s request and contribute to the satifaction of the end user, collaborating with the team on a project, Agile principles, craftsmanship approach, the documentation / knowledge sharing aspect of things, code at the service of a business, the personal and intellectual benefit gained by working in said business etc… I feel like code opens the door to endless possibilities. I just love to keep learning and looking for the best practices. ...which is why i chose this career!"
+    },
+    "projectAbout": {
+      "about": "about",
+      "this": "this",
+      "project": "project"
     }
   },
   "fr": {
@@ -29,7 +35,8 @@
       "about": "à propos",
       "projects": "projets",
       "stack": "stack",
-      "contact": "contact"
+      "contact": "contact",
+      "back": "retour"
     },
     "item": {
       "title1": " 🌱  Fier d’être autodidacte",
@@ -44,6 +51,11 @@
       "text5": "I’m open to freelance opportunities so i’m working on my portfolio website. Never satisfied of course 😅 i’ve already made at least 3 versions of it… But it’s coming it’s coming!",
       "title6": " ❤️  Amoureux du code",
       "text6": "Code is a passion... So rich: challenge and joy to find solutions to problems, fulfill the client’s or PO’s request and contribute to the satifaction of the end user, collaborating with the team on a project, Agile principles, craftsmanship approach, the documentation / knowledge sharing aspect of things, code at the service of a business, the personal and intellectual benefit gained by working in said business etc… I feel like code opens the door to endless possibilities. I just love to keep learning and looking for the best practices. ...which is why i chose this career!"
+    },
+    "projectAbout": {
+      "about": "infos",
+      "this": "sur ce",
+      "project": "projet"
     }
   }
 }

@@ -47,7 +47,6 @@ const ImgWrapper = styled.div<Props>`
 const ProjectList = styled.div`
   height: var(--project-list-height);
   width: var(--project-list-width);
-  // overflow-wrap: break-word;
   word-break: break-word;
   font-family: var(--poppins);
   font-size: 9vmax;
@@ -55,9 +54,10 @@ const ProjectList = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 100;
+  // overflow-wrap: break-word;
   // position: relative;
   // right: 0;
-  z-index: 100;
   // border: 1px solid pink;
 `;
 

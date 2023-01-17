@@ -24,6 +24,7 @@ import {
   UnderTitle,
 } from "../../styles/slug";
 import { IProject } from "../../types";
+import text from "../api/text.json";
 
 const Project = ({ project }: { project: IProject }) => {
   const { lang } = useContext(TransitionContext);
@@ -37,7 +38,7 @@ const Project = ({ project }: { project: IProject }) => {
         <BackLink>
           <span style={{ fontSize: "1.25rem" }}>&lt;&nbsp;</span>
           <span style={{ fontWeight: "500", textTransform: "uppercase" }}>
-            back
+            {text[lang].navLinks.back}
           </span>
         </BackLink>
       </Link>
@@ -63,9 +64,9 @@ const Project = ({ project }: { project: IProject }) => {
       </TitleContainer>
 
       <AboutTitle>
-        <AboutSpan>about</AboutSpan>
-        <AboutSpan translateY={25}>this</AboutSpan>
-        <AboutSpan translateY={50}>project</AboutSpan>
+        <AboutSpan>{text[lang].projectAbout.about}</AboutSpan>
+        <AboutSpan translateY={30}>{text[lang].projectAbout.this}</AboutSpan>
+        <AboutSpan translateY={60}>{text[lang].projectAbout.project}</AboutSpan>
       </AboutTitle>
       <DescriptionContainer>
         <PortableText value={project.description} />
@@ -80,12 +81,10 @@ const Project = ({ project }: { project: IProject }) => {
         somethhin else
       </div>
       <div style={{ border: "1px solid black", gridArea: "ok" }}>ok ok</div>
-
       {project.next ? (
         <NextContainer>
           <AnimatedSpanNext animation={"slide1"}>next project</AnimatedSpanNext>
           <AnimatedSpanNext animation={"slide2"}>next project</AnimatedSpanNext>
-
           <Link href={`${project.next?.slug.current}`} passHref legacyBehavior>
             <NextTitle
               showNextImg={showNextImg}

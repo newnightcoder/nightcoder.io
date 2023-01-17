@@ -1,4 +1,5 @@
 import gsap from "gsap";
+import { useRouter } from "next/router";
 import { useContext, useRef, useState } from "react";
 import { TransitionContext } from "../context/TransitionContext";
 import { useIsoMorphicLayoutEffect } from "../hooks";
@@ -7,11 +8,16 @@ import { AnimationContainer } from "../styles/home";
 const HomeAnimation = ({ children }) => {
   const { timelinePages, isMenuOpen } = useContext(TransitionContext);
   const spanref = useRef<HTMLDivElement>(null);
+  const { pathname, query } = useRouter();
 
   const [isAnimDone, setIsAnimDone] = useState(true);
 
   useIsoMorphicLayoutEffect(() => {
-    if (spanref.current && !isMenuOpen && isAnimDone) {
+    // Prevent animation from playing when just changing locale
+    // console.log("query", query.slug);
+    // if (pathname.includes(query.slug as string)) return;
+
+    if (spanref.current && isAnimDone && !isMenuOpen) {
       // re-set element's position at each remount
       gsap.set(spanref.current, {
         autoAlpha: 0,
