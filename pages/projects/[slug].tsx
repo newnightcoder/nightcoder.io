@@ -8,6 +8,7 @@ import { Badge } from "../../components";
 import { TransitionContext } from "../../context/TransitionContext";
 import { createUrl, sanityClient } from "../../sanity";
 import {
+  AboutContainer,
   AboutSpan,
   AboutTitle,
   AnimatedSpanNext,
@@ -63,14 +64,18 @@ const Project = ({ project }: { project: IProject }) => {
         </BadgeContainer>
       </TitleContainer>
 
-      <AboutTitle>
-        <AboutSpan>{text[lang].projectAbout.about}</AboutSpan>
-        <AboutSpan translateY={30}>{text[lang].projectAbout.this}</AboutSpan>
-        <AboutSpan translateY={60}>{text[lang].projectAbout.project}</AboutSpan>
-      </AboutTitle>
-      <DescriptionContainer>
-        <PortableText value={project.description} />
-      </DescriptionContainer>
+      <AboutContainer>
+        <AboutTitle>
+          <AboutSpan>{text[lang].projectAbout.about}</AboutSpan>
+          <AboutSpan translateY={30}>{text[lang].projectAbout.this}</AboutSpan>
+          <AboutSpan translateY={60}>
+            {text[lang].projectAbout.project}
+          </AboutSpan>
+        </AboutTitle>
+        <DescriptionContainer>
+          <PortableText value={project.description} />
+        </DescriptionContainer>
+      </AboutContainer>
       <div
         style={{
           border: "1px solid black",

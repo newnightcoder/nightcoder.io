@@ -82,13 +82,17 @@ html {
   --project-columns: 1fr;
   --project-areas: "title"
                    "img"
-                  //  "shields"
                    "about" 
-                   "desc" 
                    "som"
                    "ok"
                    "next";
   --fontsize-project-title: 4rem;
+  --flex-direction-about-container: column;
+  --width-about-title: 100%;
+  --width-about-desc: 100%;
+  --position-about-title: relative;
+  --stack-columns: repeat(4, max-content);
+  --stack-rows: repeat(6, max-content);
 
   
   /* TEXT COLORS */
@@ -142,12 +146,16 @@ html {
     --fontsize-project-list: 5vmax;
     --project-columns:repeat(5, 1fr);
     --project-areas:  "img img img title title"
-    // "shields shields ."
-    "about about desc desc desc" 
-    "som som som ok ok"
-    "next next next next next";
+                      "about about about about about" 
+                      "som som som ok ok"
+                      "next next next next next";
     --fontsize-project-title: 6vw;
-    
+    --flex-direction-about-container: row;
+    --width-about-title: 40%;
+    --width-about-desc: 60%;
+    --position-about-title: sticky;
+    --stack-columns: repeat(6, max-content);
+    --stack-rows: repeat(4, max-content);
   }
 }
 

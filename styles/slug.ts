@@ -9,12 +9,7 @@ interface Props {
 
 const ProjectPage = styled.div<Props>`
   padding-top: calc(var(--navbar-height) + 60px);
-  // padding-bottom: 50px;
   // background: ${(props) => props.bgColor};
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // justify-content: flex-start;
   position: relative;
   font-family: var(--poppins);
   display: grid;
@@ -27,13 +22,16 @@ const ProjectPage = styled.div<Props>`
   width: 100%;
   color: black;
   background: rgb(245, 245, 245);
+  contain: content;
 `;
 
 const ImgContainer = styled.div`
   grid-area: img;
   height: 33vmax;
+  height: 33vmax;
   width: 100%;
   position: relative;
+  border: 1px solid red;
 `;
 
 const BadgeContainer = styled.div`
@@ -69,9 +67,17 @@ const UnderTitle = styled.span`
   transform: translateY(-15px);
 `;
 
-const AboutTitle = styled.div`
+const AboutContainer = styled.div`
   grid-area: about;
   width: 100%;
+  display: flex;
+  flex-direction: var(--flex-direction-about-container);
+`;
+
+const AboutTitle = styled.div`
+  position: var(--position-about-title);
+  top: var(--navbar-height);
+  width: var(--width-about-title);
   height: max-content;
   padding: 1.5vh 2vw;
   display: flex;
@@ -89,9 +95,9 @@ const AboutSpan = styled.span<Props>`
 `;
 
 const DescriptionContainer = styled.div`
-  grid-area: desc;
   height: auto;
-  padding: 1vh 1.5vw;
+  width: var(--width-about-desc);
+  padding: 1vh 3vw;
   font-size: 1.25rem;
 `;
 
@@ -187,6 +193,7 @@ export {
   ImgContainer,
   BadgeContainer,
   TitleContainer,
+  AboutContainer,
   AboutTitle,
   AboutSpan,
   DescriptionContainer,
