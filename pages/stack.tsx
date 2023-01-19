@@ -1,12 +1,7 @@
 import { useRef } from "react";
+import { GameCard } from "../components";
 import { useIsoMorphicLayoutEffect, useTransitionBackground } from "../hooks";
-import {
-  Card,
-  CardBack,
-  CardContainer,
-  CardFront,
-  CardInner,
-} from "../styles/stack";
+import { CardContainer } from "../styles/stack";
 import { reactSvg } from "../styles/svg";
 import { PageContainer } from "../styles/_globals";
 
@@ -26,14 +21,7 @@ const Stack = () => {
       </HomeAnimation> */}
       <CardContainer>
         {cardsNumber.map((card, i) => {
-          return (
-            <Card key={i + 1}>
-              <CardInner>
-                <CardFront />
-                <CardBack>{reactSvg}</CardBack>
-              </CardInner>
-            </Card>
-          );
+          return <GameCard svg={reactSvg} key={i + 1} />;
         })}
       </CardContainer>
     </PageContainer>
