@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const Card = styled.div`
-  height: 10vmax;
-  width: 10vmax;
+  height: 8vmax;
+  width: 8vmax;
   cursor: pointer;
   background-color: transparent;
   perspective: 1000px;
@@ -30,8 +30,9 @@ const CardFront = styled.div`
 const CardBack = styled.div`
   height: 100%;
   width: 100%;
+  padding: 5px;
   position: absolute;
-  background-color: pink;
+  background-color: rgb(0, 0, 0);
   backface-visibility: hidden;
   transform: rotateY(180deg);
 `;
