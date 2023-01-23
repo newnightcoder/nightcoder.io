@@ -1,5 +1,10 @@
 import { useRef } from "react";
-import { GameCard } from "../components";
+import {
+  Card,
+  CardBack,
+  CardFront,
+  CardInner,
+} from "../components/GameCard/GameCardStyled";
 import {
   useCardGame,
   useIsoMorphicLayoutEffect,
@@ -9,9 +14,10 @@ import { CardContainer } from "../styles/stack";
 import { PageContainer } from "../styles/_globals";
 
 const Stack = () => {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const handleBackground = useTransitionBackground();
-  const { shuffledSvgArr } = useCardGame();
+  const { shuffledSvgArr1, flipCard, compare } = useCardGame();
+  const cardRefs = useRef<HTMLDivElement[]>([]);
 
   useIsoMorphicLayoutEffect(() => {
     if (ref.current) return handleBackground(ref.current.id);
@@ -19,12 +25,31 @@ const Stack = () => {
 
   return (
     <PageContainer ref={ref} id="stack" justify="center">
-      {/* <HomeAnimation>
-        <h1>STACK</h1>
-      </HomeAnimation> */}
       <CardContainer>
-        {shuffledSvgArr.map((svg, i) => {
-          return <GameCard svg={svg} key={i + 1} />;
+        {shuffledSvgArr1.map((el: [string, JSX.Element], i) => {
+          return (
+            // <GameCard
+            //   key={i + 1}
+            //   svg={svg}
+            //   ref={(el) => (cardRefs.current = [...cardRefs.current, el])}
+            // />
+
+            // ❗️❗️ TO REFACTOR TO Card component above = forwardRef. but how???
+            <Card
+              data-card={el[0]}
+              onClick={() => {
+                flipCard(cardRefs, i);
+                compare();
+              }}
+              key={i + 1}
+              ref={(el) => (cardRefs.current = [...cardRefs.current, el])}
+            >
+              <CardInner>
+                <CardFront />
+                <CardBack>{el[1]}</CardBack>
+              </CardInner>
+            </Card>
+          );
         })}
       </CardContainer>
     </PageContainer>

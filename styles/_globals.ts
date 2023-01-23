@@ -93,6 +93,7 @@ html {
   --position-about-title: relative;
   --stack-columns: repeat(4, max-content);
   --stack-rows: repeat(6, max-content);
+  --card-size: calc((98vw - 40px) / 4);
 
   
   /* TEXT COLORS */
@@ -154,8 +155,9 @@ html {
     --width-about-title: 40%;
     --width-about-desc: 60%;
     --position-about-title: sticky;
-    --stack-columns: repeat(6, max-content);
+    --stack-columns: repeat(4, max-content);
     --stack-rows: repeat(4, max-content);
+    --card-size: calc((98vw - 40px) / 8)
   }
 }
 
@@ -243,7 +245,9 @@ body {
   }
 }
 
-
+.flip-card > :nth-child(1){
+  transform: rotateY(180deg);
+}
 
 // DARK MODE / prefers-color-scheme 
 

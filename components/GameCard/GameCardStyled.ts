@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 const Card = styled.div`
-  height: 8vmax;
-  width: 8vmax;
+  height: var(--card-size);
+  width: var(--card-size);
   cursor: pointer;
   background-color: transparent;
   perspective: 1000px;
-  &:hover > :nth-child(1) {
-    transform: rotateY(180deg);
-  }
+  // &:hover > :nth-child(1) {
+  //   transform: rotateY(180deg);
+  // }
 `;
 
 const CardInner = styled.div`

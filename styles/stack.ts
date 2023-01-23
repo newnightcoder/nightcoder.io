@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const CardContainer = styled.div`
   min-height: 100%;
-  width: max-content;
+  width: 100%;
   padding: 4vh 1vw;
   display: grid;
   grid-template-columns: var(--stack-columns);
