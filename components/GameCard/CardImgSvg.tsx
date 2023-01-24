@@ -149,21 +149,22 @@ const sassSvg = (
 );
 
 const svgMap = {
-  sassSvg,
-  htmlSvg,
-  nextSvg,
-  stripeSvg,
-  awsSvg,
+  jsSvg,
   reactSvg,
-  reduxSvg,
-  tailwindSvg,
+  tsSvg,
   nodeSvg,
   expressSvg,
-  jsSvg,
-  tsSvg,
-  styledSvg,
   sqlSvg,
-  mongoSvg,
+
+  // sassSvg,
+  // htmlSvg,
+  // nextSvg,
+  // stripeSvg,
+  // awsSvg,
+  // reduxSvg,
+  // tailwindSvg,
+  // styledSvg,
+  // mongoSvg,
 };
 
 export { svgMap };

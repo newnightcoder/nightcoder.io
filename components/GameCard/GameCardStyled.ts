@@ -17,6 +17,7 @@ const CardInner = styled.div`
   position: relative;
   transition: transform 500ms;
   transform-style: preserve-3d;
+  // border: 1px solid transparent;
 `;
 
 const CardFront = styled.div`
@@ -25,6 +26,7 @@ const CardFront = styled.div`
   position: absolute;
   background-color: rgba(255, 255, 255, 0.65);
   backface-visibility: hidden;
+  border: 1px solid transparent;
 `;
 
 const CardBack = styled.div`
@@ -35,6 +37,7 @@ const CardBack = styled.div`
   background-color: rgb(0, 0, 0);
   backface-visibility: hidden;
   transform: rotateY(180deg);
+  border: 1px solid white;
 `;
 
 export { Card, CardInner, CardFront, CardBack };

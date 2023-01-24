@@ -41,6 +41,7 @@ const Stack = () => {
                 flipCard(cardRefs, i);
                 compare();
               }}
+              // onMouseOver={() => flipCard(cardRefs, i)}
               key={i + 1}
               ref={(el) => (cardRefs.current = [...cardRefs.current, el])}
             >

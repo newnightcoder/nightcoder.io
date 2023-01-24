@@ -91,9 +91,9 @@ html {
   --width-about-title: 100%;
   --width-about-desc: 100%;
   --position-about-title: relative;
-  --stack-columns: repeat(4, max-content);
+  --stack-columns: repeat(3, max-content);
   --stack-rows: repeat(6, max-content);
-  --card-size: calc((98vw - 40px) / 4);
+  --card-size: calc((98vw - 30px) / 3);
 
   
   /* TEXT COLORS */
