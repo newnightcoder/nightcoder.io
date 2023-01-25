@@ -13,6 +13,7 @@ const useCardGame = () => {
   const [cardCount, setCardCount] = useState(0);
   const [flippedCards, setFlippedCards] = useState<ICard[]>([]);
   const svgMapToArray = Object.entries(svgMap).map((entry) => entry);
+  const [wins, setWins] = useState(0);
 
   const duplicateArray = (arr: unknown[], duplicator: number) => {
     const length = arr.length;
@@ -41,8 +42,7 @@ const useCardGame = () => {
   }, []);
 
   useEffect(() => {
-    console.log(cardCount);
-
+    // console.log(cardCount);
     compare();
   }, [cardCount]);
 
@@ -59,7 +59,7 @@ const useCardGame = () => {
       if (cardCount === 2) return;
       if (isAlreadyFlipped) return;
       setCardCount(() => cardCount + 1);
-      console.log("flip");
+      // console.log("flip");
       currentCard.domEl.classList.toggle("flip-card");
       setFlippedCards(() => [...flippedCards, currentCard]);
     },
@@ -67,14 +67,15 @@ const useCardGame = () => {
   );
 
   const winRound = () => {
-    console.log("you won");
+    // console.log("you won");
+    setWins(() => wins + 1);
     setTimeout(() => {
       resetCardCount();
     }, 2000);
   };
 
   const loseRound = () => {
-    console.log("you lost");
+    // console.log("you lost");
     const length = flippedCards.length;
     setTimeout(() => {
       const wrongCards = flippedCards.splice(length - 2, 2);
@@ -93,13 +94,20 @@ const useCardGame = () => {
     const length = flippedCards.length;
     const card1 = flippedCards[length - 1].name;
     const card2 = flippedCards[length - 2].name;
-    console.log("compare");
+    // console.log("compare");
     if (card1 === card2) {
       winRound();
     } else loseRound();
   }, [flippedCards, winRound, loseRound, resetCardCount]);
 
-  return { shuffledSvgArr1, shuffledSvgArr2, flipCard, compare };
+  return {
+    shuffledSvgArr1,
+    shuffledSvgArr2,
+    flipCard,
+    compare,
+    wins,
+    flippedCards,
+  };
 };
 
 export default useCardGame;

@@ -249,6 +249,28 @@ body {
   transform: rotateY(180deg);
 }
 
+.split-screen{
+  animation: split 2000ms ease-in forwards;
+  @keyframes split{
+    0%{
+      clip-path:polygon(0% 100%, 50% 100%, 100% 100%, 100% 0, 0% 0, 0% 50%, 100% 50%, 100% 50%, 50% 50%, 0% 50%);
+    }
+    100%{
+      clip-path:polygon(0% 100%, 50% 100%, 100% 100%, 100% 0, 0% 0, 0% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+    }
+  }
+  @media screen and (min-width:${breakpoints.md}){
+    @keyframes split{
+      0%{
+        clip-path:polygon(0% 0%, 0% 100%, 50% 100%, 50% 0, 50% 0, 50% 50%, 50% 50%, 50% 100%, 100% 100%, 100% 0%);
+      }
+      100%{
+        clip-path:polygon(0% 0%, 0% 100%, 0% 100%, 0% 0, 100% 0, 100% 50%, 100% 50%, 100% 100%, 100% 100%, 100% 0%);
+      }
+    }
+  }
+}
+
 // DARK MODE / prefers-color-scheme 
 
 @media (prefers-color-scheme: dark) {
