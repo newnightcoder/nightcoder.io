@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Results } from "../components";
 import {
   Card,
   CardBack,
@@ -10,13 +11,12 @@ import {
   useIsoMorphicLayoutEffect,
   useTransitionBackground,
 } from "../hooks";
+import { ICard, ICardElement } from "../hooks/useCardGame";
 import {
   BtnContainer,
   CardContainer,
   ChoiceBtn,
   GameTitleContainer,
-  Result,
-  ResultContainer,
 } from "../styles/stack";
 import { PageContainer } from "../styles/_globals";
 
@@ -24,7 +24,7 @@ const Stack = () => {
   const ref = useRef<HTMLDivElement>(null);
   const welcomeRef = useRef(null);
   const handleBackground = useTransitionBackground();
-  const { shuffledSvgArr1, flipCard, compare, wins, flippedCards } =
+  const { shuffledCards, flipCard, compare, wins, flippedCards } =
     useCardGame();
   const cardRefs = useRef<HTMLDivElement[]>([]);
   const [displayResult, setDisplayResult] = useState(false);
@@ -44,6 +44,21 @@ const Stack = () => {
       }, 2200);
     }
   }, [wins]);
+
+  const SymbolCard = ({ card }: { card: ICard }) => {
+    const symbol = shuffledCards.find((x) => x.name == card.name);
+    return symbol !== undefined ? (
+      <div style={{ height: "30px", width: "30px", marginRight: "10px" }}>
+        {symbol.jsx}
+      </div>
+    ) : (
+      <>null</>
+    );
+  };
+
+  const capitalizeFirstLetter = (str: string) => {
+    return str[0].toUpperCase() + str.slice(1);
+  };
 
   return (
     <PageContainer ref={ref} id="stack" justify="center">
@@ -67,40 +82,38 @@ const Stack = () => {
         </BtnContainer>
       </GameTitleContainer>
       <CardContainer>
-        {shuffledSvgArr1.map((el: [string, JSX.Element], i) => {
+        {shuffledCards.map((card: ICardElement, i) => {
           return (
             // <GameCard
             //   key={i + 1}
-            //   svg={svg}
+            //   svg={card.jsx}
             //   ref={(el) => (cardRefs.current = [...cardRefs.current, el])}
+            //   data-card={card.name}
+            //   onClick={() => {
+            //     flipCard(cardRefs, i);
+            //     compare();
+            //   }}
             // />
-
             // ❗️❗️ TO REFACTOR TO Card component above = forwardRef. but how???
             <Card
-              data-card={el[0]}
+              key={i + 1}
+              ref={(el) => (cardRefs.current = [...cardRefs.current, el])}
+              data-card={card.name}
               onClick={() => {
                 flipCard(cardRefs, i);
                 compare();
               }}
-              // onMouseOver={() => flipCard(cardRefs, i)}
-              key={i + 1}
-              ref={(el) => (cardRefs.current = [...cardRefs.current, el])}
             >
               <CardInner>
                 <CardFront />
-                <CardBack>{el[1]}</CardBack>
+                <CardBack>{card.jsx}</CardBack>
               </CardInner>
             </Card>
           );
         })}
       </CardContainer>
-      {displayResult ? (
-        <ResultContainer displayResult={displayResult}>
-          {flippedCards.map((card, i) => {
-            if (i % 2 === 0) return <Result key={i + 1}>{card.name}</Result>;
-          })}
-        </ResultContainer>
-      ) : null}
+
+      {displayResult ? <Results displayResult={displayResult} /> : null}
     </PageContainer>
   );
 };

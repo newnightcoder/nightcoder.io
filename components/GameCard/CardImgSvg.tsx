@@ -149,21 +149,23 @@ const sassSvg = (
 );
 
 const svgMap = {
-  jsSvg,
-  reactSvg,
-  tsSvg,
-  nodeSvg,
-  expressSvg,
-  sqlSvg,
+  javascript: jsSvg,
+  react: reactSvg,
+  typescript: tsSvg,
+  "node.js": nodeSvg,
+  express: expressSvg,
+  sql: sqlSvg,
+
+  // webpack,
+  // nextSvg,
+  // reduxSvg,
+  // awsSvg,
+  // tailwindSvg,
+  // styledSvg,
 
   // sassSvg,
   // htmlSvg,
-  // nextSvg,
   // stripeSvg,
-  // awsSvg,
-  // reduxSvg,
-  // tailwindSvg,
-  // styledSvg,
   // mongoSvg,
 };
 

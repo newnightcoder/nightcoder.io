@@ -36,6 +36,7 @@ const CardContainer = styled.div`
 
 interface Props {
   displayResult?: boolean;
+  isWon?: boolean;
 }
 
 const ResultContainer = styled.div<Props>`
@@ -46,22 +47,28 @@ const ResultContainer = styled.div<Props>`
   position: fixed;
   inset: 0;
   top: 0;
-  z-index: ${(props) => (props.displayResult ? "50" : "-1")};
-  opacity: ${(props) => (props.displayResult ? "1" : "0")};
+  z-index: ${(props) => (props.displayResult ? 50 : -1)};
+  opacity: ${(props) => (props.displayResult ? 1 : 0)};
   visibility: ${(props) => (props.displayResult ? "visible" : "hidden")};
   transition: opacity 500ms;
-  background: yellow;
+  background: rgba(10, 10, 10, 0.9);
 `;
 
-const Result = styled.div`
+const Result = styled.div<Props>`
+  opacity: ${(props) => (props.isWon ? 1 : 0)};
+  width: 200px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: black;
+  justify-content: flex-start;
+  color: white;
   font-size: 1.5rem;
   font-weight: 700;
-  border: 1px solid black;
+  margin-bottom: 10px;
+  // text-transform: capitalize;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 5px 15px;
+  background: black;
+  border-radius: 7px;
 `;
 
 const BtnContainer = styled.div`

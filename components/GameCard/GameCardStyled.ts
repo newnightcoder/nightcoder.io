@@ -37,7 +37,7 @@ const CardBack = styled.div`
   background-color: rgb(0, 0, 0);
   backface-visibility: hidden;
   transform: rotateY(180deg);
-  border: 1px solid white;
+  // border: 1px solid white;
 `;
 
 export { Card, CardInner, CardFront, CardBack };

@@ -1,18 +1,26 @@
 import { MutableRefObject, useCallback, useEffect, useState } from "react";
 import { svgMap } from "../components/GameCard/CardImgSvg";
 
-interface ICard {
+export interface ICardElement {
+  name: string;
+  jsx: JSX.Element;
+}
+
+export interface ICard {
   domEl: HTMLDivElement;
   name: string;
   index: number;
+  symbol?: JSX.Element;
 }
 
 const useCardGame = () => {
-  const [shuffledSvgArr1, setShuffledSvgArr1] = useState([]);
-  const [shuffledSvgArr2, setShuffledSvgArr2] = useState([]);
+  const [shuffledCards, setShuffledCards] = useState<ICardElement[]>([]);
   const [cardCount, setCardCount] = useState(0);
   const [flippedCards, setFlippedCards] = useState<ICard[]>([]);
-  const svgMapToArray = Object.entries(svgMap).map((entry) => entry);
+  const svgMapToArray = Object.entries(svgMap).map((entry) => ({
+    name: entry[0],
+    jsx: entry[1],
+  }));
   const [wins, setWins] = useState(0);
 
   const duplicateArray = (arr: unknown[], duplicator: number) => {
@@ -26,7 +34,7 @@ const useCardGame = () => {
     return newArray;
   };
 
-  const shuffleArray = (arr: unknown[]) => {
+  const shuffleArray = (arr: ICardElement[]) => {
     // this is the Schwartzian transform algo 🔥😎 - so cool because so easy to read and unbiased/efficient shuffle
     // NB: Fisher-Yates shuffle algo would be more efficient for large arrays
     // more here: https://stackoverflow.com/a/46545530/12209569
@@ -37,8 +45,10 @@ const useCardGame = () => {
   };
 
   useEffect(() => {
+    console.log("svgMapToArray", svgMapToArray);
+
     const svgArray = duplicateArray(svgMapToArray, 2);
-    setShuffledSvgArr1(() => shuffleArray(svgArray));
+    setShuffledCards(() => shuffleArray(svgArray));
   }, []);
 
   useEffect(() => {
@@ -59,7 +69,6 @@ const useCardGame = () => {
       if (cardCount === 2) return;
       if (isAlreadyFlipped) return;
       setCardCount(() => cardCount + 1);
-      // console.log("flip");
       currentCard.domEl.classList.toggle("flip-card");
       setFlippedCards(() => [...flippedCards, currentCard]);
     },
@@ -67,7 +76,6 @@ const useCardGame = () => {
   );
 
   const winRound = () => {
-    // console.log("you won");
     setWins(() => wins + 1);
     setTimeout(() => {
       resetCardCount();
@@ -75,7 +83,6 @@ const useCardGame = () => {
   };
 
   const loseRound = () => {
-    // console.log("you lost");
     const length = flippedCards.length;
     setTimeout(() => {
       const wrongCards = flippedCards.splice(length - 2, 2);
@@ -101,8 +108,8 @@ const useCardGame = () => {
   }, [flippedCards, winRound, loseRound, resetCardCount]);
 
   return {
-    shuffledSvgArr1,
-    shuffledSvgArr2,
+    svgMapToArray,
+    shuffledCards,
     flipCard,
     compare,
     wins,
