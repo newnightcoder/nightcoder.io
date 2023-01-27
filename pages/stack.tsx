@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Results } from "../components";
 import {
   Card,
@@ -6,12 +6,13 @@ import {
   CardFront,
   CardInner,
 } from "../components/GameCard/GameCardStyled";
+import { TransitionContext } from "../context/TransitionContext";
 import {
   useCardGame,
   useIsoMorphicLayoutEffect,
   useTransitionBackground,
 } from "../hooks";
-import { ICard, ICardElement } from "../hooks/useCardGame";
+import { ICardElement } from "../hooks/useCardGame";
 import {
   BtnContainer,
   CardContainer,
@@ -24,10 +25,19 @@ const Stack = () => {
   const ref = useRef<HTMLDivElement>(null);
   const welcomeRef = useRef(null);
   const handleBackground = useTransitionBackground();
-  const { shuffledCards, flipCard, compare, wins, flippedCards } =
-    useCardGame();
+  const { shuffledCards, flipCard, compare, wins } = useCardGame();
+  const {
+    displayMemoryGameResult,
+    setDisplayMemoryGameResult,
+    isMemoryGamePlayed,
+    setIsMemoryGamePlayed,
+  } = useContext(TransitionContext);
   const cardRefs = useRef<HTMLDivElement[]>([]);
-  const [displayResult, setDisplayResult] = useState(false);
+
+  const skipGame = () => {
+    setDisplayMemoryGameResult(true);
+    setIsMemoryGamePlayed(false);
+  };
 
   useIsoMorphicLayoutEffect(() => {
     if (ref.current) return handleBackground(ref.current.id);
@@ -36,29 +46,14 @@ const Stack = () => {
   useEffect(() => {
     if (wins === 0) return;
     setTimeout(() => {
-      setDisplayResult(true);
+      setDisplayMemoryGameResult(true);
     }, 1000);
     if (wins !== 6) {
       setTimeout(() => {
-        setDisplayResult(false);
+        setDisplayMemoryGameResult(false);
       }, 2200);
     }
   }, [wins]);
-
-  const SymbolCard = ({ card }: { card: ICard }) => {
-    const symbol = shuffledCards.find((x) => x.name == card.name);
-    return symbol !== undefined ? (
-      <div style={{ height: "30px", width: "30px", marginRight: "10px" }}>
-        {symbol.jsx}
-      </div>
-    ) : (
-      <>null</>
-    );
-  };
-
-  const capitalizeFirstLetter = (str: string) => {
-    return str[0].toUpperCase() + str.slice(1);
-  };
 
   return (
     <PageContainer ref={ref} id="stack" justify="center">
@@ -75,7 +70,7 @@ const Stack = () => {
               play
             </span>
           </ChoiceBtn>
-          <ChoiceBtn>
+          <ChoiceBtn onClick={() => skipGame()}>
             <span style={{ fontSize: "2rem" }}>🤬</span>i really don't have time
             for this sh*t
           </ChoiceBtn>
@@ -113,7 +108,12 @@ const Stack = () => {
         })}
       </CardContainer>
 
-      {displayResult ? <Results displayResult={displayResult} /> : null}
+      {displayMemoryGameResult ? (
+        <Results
+          displayResult={displayMemoryGameResult}
+          isGamePlayed={isMemoryGamePlayed}
+        />
+      ) : null}
     </PageContainer>
   );
 };

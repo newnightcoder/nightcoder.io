@@ -37,6 +37,7 @@ const CardContainer = styled.div`
 interface Props {
   displayResult?: boolean;
   isWon?: boolean;
+  isGamePlayed?: boolean;
 }
 
 const ResultContainer = styled.div<Props>`
@@ -47,15 +48,17 @@ const ResultContainer = styled.div<Props>`
   position: fixed;
   inset: 0;
   top: 0;
-  z-index: ${(props) => (props.displayResult ? 50 : -1)};
-  opacity: ${(props) => (props.displayResult ? 1 : 0)};
-  visibility: ${(props) => (props.displayResult ? "visible" : "hidden")};
+  z-index: ${(props) => (props.displayResult || !props.isGamePlayed ? 50 : -1)};
+  opacity: ${(props) => (props.displayResult || !props.isGamePlayed ? 1 : 0)};
+  visibility: ${(props) =>
+    props.displayResult || !props.isGamePlayed ? "visible" : "hidden"};
   transition: opacity 500ms;
-  background: rgba(10, 10, 10, 0.9);
+  background: ${(props) =>
+    props.isGamePlayed ? "rgba(10, 10, 10, 0.9)" : "#222"};
 `;
 
 const Result = styled.div<Props>`
-  opacity: ${(props) => (props.isWon ? 1 : 0)};
+  opacity: ${(props) => (props.isWon || !props.isGamePlayed ? 1 : 0)};
   width: 200px;
   display: flex;
   align-items: center;
@@ -67,7 +70,7 @@ const Result = styled.div<Props>`
   // text-transform: capitalize;
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 5px 15px;
-  background: black;
+  background: ${(props) => (props.isGamePlayed ? "black" : "transparent")};
   border-radius: 7px;
 `;
 

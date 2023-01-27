@@ -29,6 +29,10 @@ type TransitionContext = {
   toggleMenu?: (toggled: boolean) => void;
   lang?: string;
   setLang?: Dispatch<SetStateAction<string>>;
+  displayMemoryGameResult?: boolean;
+  setDisplayMemoryGameResult?: Dispatch<SetStateAction<boolean>>;
+  isMemoryGamePlayed?: boolean;
+  setIsMemoryGamePlayed?: Dispatch<SetStateAction<boolean>>;
 };
 interface Props extends PropsWithChildren {}
 
@@ -45,6 +49,8 @@ const TransitionProvider = ({ children }: Props) => {
   const [isMenuAnim, setIsMenuAnim] = useState(false);
   const [isMenuClosing, setIsMenuClosing] = useState(false);
   const [lang, setLang] = useState("en");
+  const [displayMemoryGameResult, setDisplayMemoryGameResult] = useState(false);
+  const [isMemoryGamePlayed, setIsMemoryGamePlayed] = useState(true);
 
   const [timelineMenu, setTimelineMenu] = useState(() =>
     gsap.timeline({
@@ -89,6 +95,10 @@ const TransitionProvider = ({ children }: Props) => {
           toggleMenu,
           lang,
           setLang,
+          isMemoryGamePlayed,
+          setIsMemoryGamePlayed,
+          displayMemoryGameResult,
+          setDisplayMemoryGameResult,
         }}
       >
         {children}
