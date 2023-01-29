@@ -1,11 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import { Results } from "../components";
-import {
-  Card,
-  CardBack,
-  CardFront,
-  CardInner,
-} from "../components/GameCard/GameCardStyled";
+import { GameCard, Results } from "../components";
 import { TransitionContext } from "../context/TransitionContext";
 import {
   useCardGame,
@@ -48,11 +42,11 @@ const Stack = () => {
     setTimeout(() => {
       setDisplayMemoryGameResult(true);
     }, 1000);
-    if (wins !== 6) {
-      setTimeout(() => {
-        setDisplayMemoryGameResult(false);
-      }, 2200);
-    }
+    // if (wins !== 6) {
+    //   setTimeout(() => {
+    //     setDisplayMemoryGameResult(false);
+    //   }, 2200);
+    // }
   }, [wins]);
 
   return (
@@ -79,31 +73,20 @@ const Stack = () => {
       <CardContainer>
         {shuffledCards.map((card: ICardElement, i) => {
           return (
-            // <GameCard
-            //   key={i + 1}
-            //   svg={card.jsx}
-            //   ref={(el) => (cardRefs.current = [...cardRefs.current, el])}
-            //   data-card={card.name}
-            //   onClick={() => {
-            //     flipCard(cardRefs, i);
-            //     compare();
-            //   }}
-            // />
-            // ❗️❗️ TO REFACTOR TO Card component above = forwardRef. but how???
-            <Card
+            <GameCard
               key={i + 1}
+              height="var(--memory-card-size)"
+              width="var(--memory-card-size)"
+              cardName={card.name}
               ref={(el) => (cardRefs.current = [...cardRefs.current, el])}
-              data-card={card.name}
               onClick={() => {
+                console.log(cardRefs.current[i]);
                 flipCard(cardRefs, i);
                 compare();
               }}
             >
-              <CardInner>
-                <CardFront />
-                <CardBack>{card.jsx}</CardBack>
-              </CardInner>
-            </Card>
+              <>{card.jsx}</>
+            </GameCard>
           );
         })}
       </CardContainer>

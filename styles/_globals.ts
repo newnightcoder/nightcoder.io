@@ -93,8 +93,9 @@ html {
   --position-about-title: relative;
   --stack-columns: repeat(3, max-content);
   --stack-rows: repeat(6, max-content);
-  --card-size: calc((98vw - 30px) / 3);
-
+  --memory-card-size: calc((98vw - 30px) / 3);
+  --result-card-width: 200px;
+  --result-card-height: auto;
   
   /* TEXT COLORS */
   
@@ -157,7 +158,9 @@ html {
     --position-about-title: sticky;
     --stack-columns: repeat(4, max-content);
     --stack-rows: repeat(4, max-content);
-    --card-size: calc((98vw - 40px) / 8)
+    --memory-card-size: calc((98vw - 40px) / 8);
+    --result-card-width: 200px;
+    --result-card-height: 40px;
   }
 }
 
@@ -245,11 +248,14 @@ body {
   }
 }
 
-.flip-card > :nth-child(1){
+.flip-card-x > :nth-child(1) { 
+  transform: rotateX(180deg);
+}
+.flip-card-y > :nth-child(1) { 
   transform: rotateY(180deg);
 }
 
-.split-screen{
+.split-screen {
   animation: split 2000ms ease-in forwards;
   @keyframes split{
     0%{

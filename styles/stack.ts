@@ -47,7 +47,8 @@ const ResultContainer = styled.div<Props>`
   justify-content: center;
   position: fixed;
   inset: 0;
-  top: 0;
+  top: var(--navbar-height);
+  // padding-top: 4rem;
   z-index: ${(props) => (props.displayResult || !props.isGamePlayed ? 50 : -1)};
   opacity: ${(props) => (props.displayResult || !props.isGamePlayed ? 1 : 0)};
   visibility: ${(props) =>
@@ -55,23 +56,28 @@ const ResultContainer = styled.div<Props>`
   transition: opacity 500ms;
   background: ${(props) =>
     props.isGamePlayed ? "rgba(10, 10, 10, 0.9)" : "#222"};
+  font-family: var(--poppins);
 `;
 
 const Result = styled.div<Props>`
   opacity: ${(props) => (props.isWon || !props.isGamePlayed ? 1 : 0)};
   width: 200px;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   color: white;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 10px;
+  font-size: 1.1rem;
+  font-weight: 200;
+  // margin-bottom: 10px;
   // text-transform: capitalize;
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 5px 15px;
-  background: ${(props) => (props.isGamePlayed ? "black" : "transparent")};
-  border-radius: 7px;
+  // background: ${(props) => (props.isGamePlayed ? "black" : "transparent")};
+  // border-radius: 7px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 const BtnContainer = styled.div`

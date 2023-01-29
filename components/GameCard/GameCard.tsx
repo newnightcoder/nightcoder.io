@@ -2,17 +2,34 @@ import { forwardRef, PropsWithChildren } from "react";
 import { Card, CardBack, CardFront, CardInner } from "./GameCardStyled";
 
 interface Props extends PropsWithChildren {
-  svg: JSX.Element;
+  height: string;
+  width: string;
+  isGamePlayed?: boolean;
+  isResult?: boolean;
+  onClick?: () => void;
+  onMouseOver?: () => void;
+  cardName?: string;
 }
 
 // HOW TO USE IT IN Stack.ts file without error?
 
-const GameCard = forwardRef<HTMLDivElement>(({ svg }: Props, ref) => {
+const GameCard = forwardRef<HTMLDivElement, Props>((props: Props, ref) => {
   return (
-    <Card ref={ref}>
-      <CardInner>
-        <CardFront />
-        <CardBack>{svg}</CardBack>
+    <Card
+      ref={ref}
+      height={props.height}
+      width={props.width}
+      data-card={props.cardName}
+      isGamePlayed={props.isGamePlayed}
+      isResult={props.isResult}
+      onClick={props.onClick}
+      onMouseOver={props.onMouseOver}
+    >
+      <CardInner isResult={props.isResult}>
+        <CardFront isResult={props.isResult} />
+        <CardBack isGamePlayed={props.isGamePlayed} isResult={props.isResult}>
+          {props.children}
+        </CardBack>
       </CardInner>
     </Card>
   );

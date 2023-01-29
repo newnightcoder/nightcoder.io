@@ -1,5 +1,14 @@
 import { MutableRefObject, useCallback, useEffect, useState } from "react";
-import { svgMap } from "../components/GameCard/CardImgSvg";
+import {
+  backend,
+  db,
+  front,
+  integration,
+  svgMap,
+  svgMap2,
+  svgMap3,
+  tools,
+} from "../components/GameCard/CardImgSvg";
 
 export interface ICardElement {
   name: string;
@@ -17,11 +26,39 @@ const useCardGame = () => {
   const [shuffledCards, setShuffledCards] = useState<ICardElement[]>([]);
   const [cardCount, setCardCount] = useState(0);
   const [flippedCards, setFlippedCards] = useState<ICard[]>([]);
+  const [wins, setWins] = useState(0);
   const svgMapToArray = Object.entries(svgMap).map((entry) => ({
     name: entry[0],
     jsx: entry[1],
   }));
-  const [wins, setWins] = useState(0);
+  const svgMapToArray2 = Object.entries(svgMap2).map((entry) => ({
+    name: entry[0],
+    jsx: entry[1],
+  }));
+  const svgMapToArray3 = Object.entries(svgMap3).map((entry) => ({
+    name: entry[0],
+    jsx: entry[1],
+  }));
+  const integrationArray = Object.entries(integration).map((entry) => ({
+    name: entry[0],
+    jsx: entry[1],
+  }));
+  const frontArray = Object.entries(front).map((entry) => ({
+    name: entry[0],
+    jsx: entry[1],
+  }));
+  const backendArray = Object.entries(backend).map((entry) => ({
+    name: entry[0],
+    jsx: entry[1],
+  }));
+  const dbArray = Object.entries(db).map((entry) => ({
+    name: entry[0],
+    jsx: entry[1],
+  }));
+  const toolsArray = Object.entries(tools).map((entry) => ({
+    name: entry[0],
+    jsx: entry[1],
+  }));
 
   const duplicateArray = (arr: unknown[], duplicator: number) => {
     const length = arr.length;
@@ -46,7 +83,6 @@ const useCardGame = () => {
 
   useEffect(() => {
     console.log("svgMapToArray", svgMapToArray);
-
     const svgArray = duplicateArray(svgMapToArray, 2);
     setShuffledCards(() => shuffleArray(svgArray));
   }, []);
@@ -69,7 +105,7 @@ const useCardGame = () => {
       if (cardCount === 2) return;
       if (isAlreadyFlipped) return;
       setCardCount(() => cardCount + 1);
-      currentCard.domEl.classList.toggle("flip-card");
+      currentCard.domEl.classList.toggle("flip-card-y");
       setFlippedCards(() => [...flippedCards, currentCard]);
     },
     [cardCount, flippedCards, setFlippedCards, setCardCount]
@@ -86,7 +122,7 @@ const useCardGame = () => {
     const length = flippedCards.length;
     setTimeout(() => {
       const wrongCards = flippedCards.splice(length - 2, 2);
-      wrongCards.forEach((card) => card.domEl.classList.remove("flip-card"));
+      wrongCards.forEach((card) => card.domEl.classList.remove("flip-card-y"));
       setFlippedCards(() => flippedCards);
       resetCardCount();
     }, 2000);
@@ -101,7 +137,7 @@ const useCardGame = () => {
     const length = flippedCards.length;
     const card1 = flippedCards[length - 1].name;
     const card2 = flippedCards[length - 2].name;
-    // console.log("compare");
+    console.log("compare", card1, card2);
     if (card1 === card2) {
       winRound();
     } else loseRound();
@@ -109,11 +145,18 @@ const useCardGame = () => {
 
   return {
     svgMapToArray,
+    svgMapToArray2,
+    svgMapToArray3,
     shuffledCards,
     flipCard,
     compare,
     wins,
     flippedCards,
+    integrationArray,
+    frontArray,
+    backendArray,
+    dbArray,
+    toolsArray,
   };
 };
 

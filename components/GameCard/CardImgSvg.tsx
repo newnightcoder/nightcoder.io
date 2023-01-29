@@ -1,4 +1,4 @@
-const reactSvg = (
+const react = (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>React</title>
     <path
@@ -8,7 +8,7 @@ const reactSvg = (
   </svg>
 );
 
-const reduxSvg = (
+const redux = (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>Redux</title>
     <path
@@ -18,7 +18,7 @@ const reduxSvg = (
   </svg>
 );
 
-const jsSvg = (
+const javascript = (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>JavaScript</title>
     <path
@@ -28,7 +28,7 @@ const jsSvg = (
   </svg>
 );
 
-const tsSvg = (
+const typescript = (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>TypeScript</title>
     <path
@@ -38,7 +38,7 @@ const tsSvg = (
   </svg>
 );
 
-const nodeSvg = (
+const nodejs = (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>Node.js</title>
     <path
@@ -48,7 +48,7 @@ const nodeSvg = (
   </svg>
 );
 
-const expressSvg = (
+const express = (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>Express</title>
     <path
@@ -58,7 +58,7 @@ const expressSvg = (
   </svg>
 );
 
-const tailwindSvg = (
+const tailwind = (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>Tailwind CSS</title>
     <path
@@ -68,7 +68,7 @@ const tailwindSvg = (
   </svg>
 );
 
-const styledSvg = (
+const styled = (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>styled-components</title>
     <path
@@ -78,7 +78,7 @@ const styledSvg = (
   </svg>
 );
 
-const sqlSvg = (
+const sql = (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>MySQL</title>
     <path
@@ -88,7 +88,7 @@ const sqlSvg = (
   </svg>
 );
 
-const mongoSvg = (
+const mongo = (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>MongoDB</title>
     <path
@@ -98,7 +98,7 @@ const mongoSvg = (
   </svg>
 );
 
-const awsSvg = (
+const aws = (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>Amazon S3</title>
     <path
@@ -108,7 +108,17 @@ const awsSvg = (
   </svg>
 );
 
-const stripeSvg = (
+const webpack = (
+  <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>Webpack</title>
+    <path
+      fill="#8DD6F9"
+      d="M22.1987 18.498l-9.7699 5.5022v-4.2855l6.0872-3.3338 3.6826 2.117zm.6683-.6026V6.3884l-3.5752 2.0544v7.396zm-21.0657.6026l9.7699 5.5022v-4.2855L5.484 16.3809l-3.6826 2.117zm-.6683-.6026V6.3884l3.5751 2.0544v7.396zm.4183-12.2515l10.0199-5.644v4.1434L5.152 7.6586l-.0489.028zm20.8975 0l-10.02-5.644v4.1434l6.4192 3.5154.0489.028 3.5518-2.0427zm-10.8775 13.096l-6.0056-3.2873V8.9384l6.0054 3.4525v6.349zm.8575 0l6.0053-3.2873V8.9384l-6.0053 3.4525zM5.9724 8.1845l6.0287-3.3015L18.03 8.1845l-6.0288 3.4665z"
+    />
+  </svg>
+);
+
+const stripe = (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>Stripe</title>
     <path
@@ -118,7 +128,7 @@ const stripeSvg = (
   </svg>
 );
 
-const nextSvg = (
+const nextjs = (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>Next.js</title>
     <path
@@ -128,7 +138,7 @@ const nextSvg = (
   </svg>
 );
 
-const htmlSvg = (
+const html = (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>HTML5</title>
     <path
@@ -138,7 +148,7 @@ const htmlSvg = (
   </svg>
 );
 
-const sassSvg = (
+const sass = (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>Sass</title>
     <path
@@ -148,25 +158,102 @@ const sassSvg = (
   </svg>
 );
 
+const firebase = (
+  <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>Firebase</title>
+    <path
+      fill="#FFCA28"
+      d="M3.89 15.672L6.255.461A.542.542 0 017.27.288l2.543 4.771zm16.794 3.692l-2.25-14a.54.54 0 00-.919-.295L3.316 19.365l7.856 4.427a1.621 1.621 0 001.588 0zM14.3 7.147l-1.82-3.482a.542.542 0 00-.96 0L3.53 17.984z"
+    />
+  </svg>
+);
+
+const git = (
+  <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>Git</title>
+    <path
+      fill="#F05032"
+      d="M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.215 1.379-.07 1.889.441.516.515.658 1.258.438 1.9l2.658 2.66c.645-.223 1.387-.078 1.9.435.721.72.721 1.884 0 2.604-.719.719-1.881.719-2.6 0-.539-.541-.674-1.337-.404-1.996L12.86 8.955v6.525c.176.086.342.203.488.348.713.721.713 1.883 0 2.6-.719.721-1.889.721-2.609 0-.719-.719-.719-1.879 0-2.598.182-.18.387-.316.605-.406V8.835c-.217-.091-.424-.222-.6-.401-.545-.545-.676-1.342-.396-2.009L7.636 3.7.45 10.881c-.6.605-.6 1.584 0 2.189l10.48 10.477c.604.604 1.582.604 2.186 0l10.43-10.43c.605-.603.605-1.582 0-2.187"
+    />
+  </svg>
+);
+
+const css = (
+  <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>CSS3</title>
+    <path
+      fill="#1572B6"
+      d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z"
+    />
+  </svg>
+);
+
+const mui = (
+  <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>MUI</title>
+    <path
+      fill="#007FFF"
+      d="M20.229 15.793a.666.666 0 0 0 .244-.243.666.666 0 0 0 .09-.333l.012-3.858a.666.666 0 0 1 .09-.333.666.666 0 0 1 .245-.243L23 9.58a.667.667 0 0 1 .333-.088.667.667 0 0 1 .333.09.667.667 0 0 1 .244.243.666.666 0 0 1 .089.333v7.014a.667.667 0 0 1-.335.578l-7.893 4.534a.666.666 0 0 1-.662 0l-6.194-3.542a.667.667 0 0 1-.246-.244.667.667 0 0 1-.09-.335v-3.537c0-.004.004-.006.008-.004s.008 0 .008-.005v-.004c0-.003.002-.005.004-.007l5.102-2.93c.004-.003.002-.01-.003-.01a.005.005 0 0 1-.004-.002.005.005 0 0 1-.001-.004l.01-3.467a.667.667 0 0 0-.333-.58.667.667 0 0 0-.667 0L8.912 9.799a.667.667 0 0 1-.665 0l-3.804-2.19a.667.667 0 0 0-.999.577v6.267a.667.667 0 0 1-.332.577.666.666 0 0 1-.332.09.667.667 0 0 1-.333-.088L.336 13.825a.667.667 0 0 1-.246-.244.667.667 0 0 1-.09-.336L.019 2.292a.667.667 0 0 1 .998-.577l7.23 4.153a.667.667 0 0 0 .665 0l7.228-4.153a.666.666 0 0 1 .333-.088.666.666 0 0 1 .333.09.667.667 0 0 1 .244.244.667.667 0 0 1 .088.333V13.25c0 .117-.03.232-.089.334a.667.667 0 0 1-.245.244l-3.785 2.18a.667.667 0 0 0-.245.245.666.666 0 0 0-.089.334.667.667 0 0 0 .09.334.666.666 0 0 0 .247.244l2.088 1.189a.67.67 0 0 0 .33.087.667.667 0 0 0 .332-.089l4.457-2.56Zm.438-9.828a.666.666 0 0 0 .09.335.666.666 0 0 0 .248.244.667.667 0 0 0 .67-.008l2.001-1.2a.666.666 0 0 0 .237-.243.667.667 0 0 0 .087-.329V2.32a.667.667 0 0 0-.091-.335.667.667 0 0 0-.584-.33.667.667 0 0 0-.334.094l-2 1.2a.666.666 0 0 0-.238.243.668.668 0 0 0-.086.329v2.445Z"
+    />
+  </svg>
+);
+
 const svgMap = {
-  javascript: jsSvg,
-  react: reactSvg,
-  typescript: tsSvg,
-  "node.js": nodeSvg,
-  express: expressSvg,
-  sql: sqlSvg,
-
-  // webpack,
-  // nextSvg,
-  // reduxSvg,
-  // awsSvg,
-  // tailwindSvg,
-  // styledSvg,
-
-  // sassSvg,
-  // htmlSvg,
-  // stripeSvg,
-  // mongoSvg,
+  javascript,
+  typescript,
+  react,
+  redux,
 };
 
-export { svgMap };
+const svgMap2 = {
+  sass,
+  tailwind,
+  "styled-components": styled,
+  sql,
+  webpack,
+  "next.js": nextjs,
+};
+
+const svgMap3 = {
+  mongo,
+  aws,
+  html,
+  firebase,
+  git,
+};
+// stripeSvg,
+
+const integration = {
+  html,
+  css,
+  sass,
+  javascript,
+};
+
+const front = {
+  typescript,
+  react,
+  redux,
+  tailwind,
+  "styled-components": styled,
+  "material UI": mui,
+};
+
+const backend = {
+  "node.js": nodejs,
+  express,
+  nextjs,
+};
+
+const db = {
+  sql,
+  mongo,
+};
+
+const tools = {
+  git,
+  firebase,
+  aws,
+};
+
+export { svgMap, svgMap2, svgMap3, integration, front, backend, db, tools };
