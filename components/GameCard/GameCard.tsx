@@ -11,8 +11,6 @@ interface Props extends PropsWithChildren {
   cardName?: string;
 }
 
-// HOW TO USE IT IN Stack.ts file without error?
-
 const GameCard = forwardRef<HTMLDivElement, Props>((props: Props, ref) => {
   return (
     <Card
