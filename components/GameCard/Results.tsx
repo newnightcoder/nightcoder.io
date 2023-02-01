@@ -1,10 +1,24 @@
-import { useContext, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { TransitionContext } from "../../context/TransitionContext";
-import useCardGame, { ICardElement } from "../../hooks/useCardGame";
+import useCardGame, { ICard, ICardElement } from "../../hooks/useCardGame";
 import { ResultContainer } from "../../styles/stack";
 import GameCard from "./GameCard";
 
-const ResultInner = ({ jsx, str }: { jsx: JSX.Element; str: string }) => {
+interface ResultCardInnerProps {
+  jsx: JSX.Element;
+  str: string;
+}
+
+interface ResultsProps {
+  displayResult: boolean;
+  isGamePlayed: boolean;
+  wins: number;
+  flipped: ICard[];
+  flippedResults: HTMLDivElement[];
+  update: (resultCard: HTMLDivElement) => void;
+}
+
+const ResultCardInner = ({ jsx, str }: ResultCardInnerProps) => {
   const capitalizeFirstLetter = (str: string) => {
     return str[0].toUpperCase() + str.slice(1);
   };
@@ -38,36 +52,81 @@ const ResultInner = ({ jsx, str }: { jsx: JSX.Element; str: string }) => {
   );
 };
 
-const Results = ({ displayResult, isGamePlayed }) => {
-  const {
-    integrationArray,
-    flippedCards,
-    frontArray,
-    backendArray,
-    dbArray,
-    toolsArray,
-    flipCard,
-  } = useCardGame();
+const Results = ({
+  displayResult,
+  isGamePlayed,
+  wins,
+  flipped,
+  update,
+  flippedResults,
+}: ResultsProps) => {
+  const { integrationArray, frontArray, backendArray, dbArray, toolsArray } =
+    useCardGame();
   const { setDisplayMemoryGameResult, setIsMemoryGamePlayed } =
     useContext(TransitionContext);
-  const [isWon, setIsWon] = useState(false);
+
   const cardRefs = useRef<HTMLDivElement[]>([]);
   const cardRefs2 = useRef<HTMLDivElement[]>([]);
   const cardRefs3 = useRef<HTMLDivElement[]>([]);
   const cardRefs4 = useRef<HTMLDivElement[]>([]);
   const cardRefs5 = useRef<HTMLDivElement[]>([]);
-
-  const checkIsFlipped = (card: ICardElement) => {
-    const isFlipped = flippedCards.find((c) => c.name === card.name);
-    if (isFlipped) return setIsWon(true);
-  };
+  const allPossibleResults = [
+    ...integrationArray,
+    ...frontArray,
+    ...backendArray,
+    ...dbArray,
+    ...toolsArray,
+  ];
+  const [allRefs, setAllRefs] = useState<HTMLDivElement[]>([]);
 
   const backToGameScreen = () => {
     setDisplayMemoryGameResult(!displayResult);
     setIsMemoryGamePlayed(!isGamePlayed);
   };
 
-  // useEffect(() => {checkIsFlipped()}, [flippedCards]);
+  useEffect(() => {
+    if (isGamePlayed && displayResult) {
+      setAllRefs([
+        ...cardRefs.current,
+        ...cardRefs2.current,
+        ...cardRefs3.current,
+        ...cardRefs4.current,
+        ...cardRefs5.current,
+      ]);
+    }
+  }, [displayResult, isGamePlayed]);
+
+  const findCorrespondingResult = useCallback(
+    (card: ICard) => {
+      const wonCard = allPossibleResults.find(
+        (resultCard) => resultCard.name === card.name
+      );
+      if (wonCard !== undefined) {
+        console.log("allrefs", allRefs);
+
+        const resultCard = allRefs.find(
+          (ref) => ref?.dataset.card === card.name
+        );
+        console.log("updated flippedResults array", flippedResults);
+        update(resultCard);
+        setTimeout(() => {
+          resultCard?.classList.add("flip-card-x");
+        }, 1000);
+      }
+    },
+    [allPossibleResults, allRefs, flippedResults]
+  );
+
+  const handleClassName = (el: ICardElement): string => {
+    if (flippedResults.some((card) => card.dataset.card === el.name)) {
+      return "flip-card-x";
+    } else return "";
+  };
+
+  useEffect(() => {
+    if (!isGamePlayed) return;
+    findCorrespondingResult(flipped[flipped.length - 1]);
+  }, [flipped, allRefs]);
 
   return (
     <ResultContainer displayResult={displayResult} isGamePlayed={isGamePlayed}>
@@ -104,6 +163,7 @@ const Results = ({ displayResult, isGamePlayed }) => {
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundImage: "var(--gradient-orange)",
+              filter: "drop-shadow(-4px 2px 4px rgba(255,255,255,.5))",
             }}
           >
             Wins
@@ -112,6 +172,7 @@ const Results = ({ displayResult, isGamePlayed }) => {
             style={{
               height: "75px",
               width: "75px",
+              position: "relative",
               borderRadius: "50%",
               border: "4px solid yellow",
               display: "flex",
@@ -119,9 +180,11 @@ const Results = ({ displayResult, isGamePlayed }) => {
               justifyContent: "center",
               fontSize: "2rem",
               fontWeight: "500",
+              // APLLY FILTER TO PSEUDO ELEMENT SO IT DOESNT APPLY TO CHILD ELEMENT WINS
+              filter: "drop-shadow(-4px 2px 4px rgba(255,255,255,.95))",
             }}
           >
-            18
+            <span>{wins}</span>
           </div>
         </div>
       ) : (
@@ -171,16 +234,15 @@ const Results = ({ displayResult, isGamePlayed }) => {
             return (
               <GameCard
                 key={el.name}
+                ref={(el) => (cardRefs.current = [...cardRefs.current, el])}
                 height="var(--result-card-height)"
                 width="var(--result-card-width)"
-                ref={(el) => (cardRefs.current = [...cardRefs.current, el])}
+                cardName={el.name}
                 isResult={true}
                 isGamePlayed={isGamePlayed}
-                onMouseOver={() =>
-                  cardRefs.current[i].classList.toggle("flip-card-x")
-                }
+                className={handleClassName(el)}
               >
-                <ResultInner jsx={el.jsx} str={el.name} />
+                <ResultCardInner jsx={el.jsx} str={el.name} />
               </GameCard>
             );
           })}
@@ -196,16 +258,15 @@ const Results = ({ displayResult, isGamePlayed }) => {
             return (
               <GameCard
                 key={el.name}
+                ref={(el) => (cardRefs2.current = [...cardRefs2.current, el])}
                 height="var(--result-card-height)"
                 width="var(--result-card-width)"
-                ref={(el) => (cardRefs2.current = [...cardRefs2.current, el])}
+                cardName={el.name}
                 isResult={true}
                 isGamePlayed={isGamePlayed}
-                onMouseOver={() =>
-                  cardRefs2.current[i].classList.toggle("flip-card-x")
-                }
+                className={handleClassName(el)}
               >
-                <ResultInner jsx={el.jsx} str={el.name} />
+                <ResultCardInner jsx={el.jsx} str={el.name} />
               </GameCard>
             );
           })}
@@ -221,16 +282,15 @@ const Results = ({ displayResult, isGamePlayed }) => {
             return (
               <GameCard
                 key={el.name}
+                ref={(el) => (cardRefs3.current = [...cardRefs3.current, el])}
                 height="var(--result-card-height)"
                 width="var(--result-card-width)"
-                ref={(el) => (cardRefs3.current = [...cardRefs3.current, el])}
+                cardName={el.name}
                 isResult={true}
                 isGamePlayed={isGamePlayed}
-                onMouseOver={() =>
-                  cardRefs3.current[i].classList.toggle("flip-card-x")
-                }
+                className={handleClassName(el)}
               >
-                <ResultInner jsx={el.jsx} str={el.name} />
+                <ResultCardInner jsx={el.jsx} str={el.name} />
               </GameCard>
             );
           })}
@@ -239,16 +299,15 @@ const Results = ({ displayResult, isGamePlayed }) => {
             return (
               <GameCard
                 key={el.name}
+                ref={(el) => (cardRefs4.current = [...cardRefs4.current, el])}
                 height="var(--result-card-height)"
                 width="var(--result-card-width)"
-                ref={(el) => (cardRefs4.current = [...cardRefs4.current, el])}
+                cardName={el.name}
                 isResult={true}
                 isGamePlayed={isGamePlayed}
-                onMouseOver={() =>
-                  cardRefs4.current[i].classList.toggle("flip-card-x")
-                }
+                className={handleClassName(el)}
               >
-                <ResultInner jsx={el.jsx} str={el.name} />
+                <ResultCardInner jsx={el.jsx} str={el.name} />
               </GameCard>
             );
           })}
@@ -264,16 +323,15 @@ const Results = ({ displayResult, isGamePlayed }) => {
             return (
               <GameCard
                 key={el.name}
+                ref={(el) => (cardRefs5.current = [...cardRefs5.current, el])}
                 height="var(--result-card-height)"
                 width="var(--result-card-width)"
-                ref={(el) => (cardRefs5.current = [...cardRefs5.current, el])}
+                cardName={el.name}
                 isResult={true}
                 isGamePlayed={isGamePlayed}
-                onMouseOver={() =>
-                  cardRefs5.current[i].classList.toggle("flip-card-x")
-                }
+                className={handleClassName(el)}
               >
-                <ResultInner jsx={el.jsx} str={el.name} />
+                <ResultCardInner jsx={el.jsx} str={el.name} />
               </GameCard>
             );
           })}

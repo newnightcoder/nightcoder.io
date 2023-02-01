@@ -251,6 +251,7 @@ body {
 .flip-card-x > :nth-child(1) { 
   transform: rotateX(180deg);
 }
+
 .flip-card-y > :nth-child(1) { 
   transform: rotateY(180deg);
 }

@@ -19,7 +19,15 @@ const Stack = () => {
   const ref = useRef<HTMLDivElement>(null);
   const welcomeRef = useRef(null);
   const handleBackground = useTransitionBackground();
-  const { shuffledCards, flipCard, compare, wins } = useCardGame();
+  const {
+    shuffledCards,
+    flipCard,
+    compare,
+    wins,
+    flippedGameCards,
+    flippedResultCards,
+    updateResultCardsArray,
+  } = useCardGame();
   const {
     displayMemoryGameResult,
     setDisplayMemoryGameResult,
@@ -42,11 +50,11 @@ const Stack = () => {
     setTimeout(() => {
       setDisplayMemoryGameResult(true);
     }, 1000);
-    // if (wins !== 6) {
-    //   setTimeout(() => {
-    //     setDisplayMemoryGameResult(false);
-    //   }, 2200);
-    // }
+    if (wins !== 4) {
+      setTimeout(() => {
+        setDisplayMemoryGameResult(false);
+      }, 3200);
+    }
   }, [wins]);
 
   return (
@@ -78,14 +86,14 @@ const Stack = () => {
               height="var(--memory-card-size)"
               width="var(--memory-card-size)"
               cardName={card.name}
+              isGamePlayed={isMemoryGamePlayed}
               ref={(el) => (cardRefs.current = [...cardRefs.current, el])}
               onClick={() => {
-                console.log(cardRefs.current[i]);
                 flipCard(cardRefs, i);
                 compare();
               }}
             >
-              <>{card.jsx}</>
+              <div style={{ height: "100%", width: "100%" }}>{card.jsx}</div>
             </GameCard>
           );
         })}
@@ -95,6 +103,10 @@ const Stack = () => {
         <Results
           displayResult={displayMemoryGameResult}
           isGamePlayed={isMemoryGamePlayed}
+          wins={wins}
+          flipped={flippedGameCards}
+          flippedResults={flippedResultCards}
+          update={updateResultCardsArray}
         />
       ) : null}
     </PageContainer>

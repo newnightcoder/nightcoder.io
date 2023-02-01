@@ -25,7 +25,10 @@ export interface ICard {
 const useCardGame = () => {
   const [shuffledCards, setShuffledCards] = useState<ICardElement[]>([]);
   const [cardCount, setCardCount] = useState(0);
-  const [flippedCards, setFlippedCards] = useState<ICard[]>([]);
+  const [flippedGameCards, setFlippedGameCards] = useState<ICard[]>([]);
+  const [flippedResultCards, setFlippedResultCards] = useState<
+    HTMLDivElement[]
+  >([]);
   const [wins, setWins] = useState(0);
   const svgMapToArray = Object.entries(svgMap).map((entry) => ({
     name: entry[0],
@@ -82,7 +85,6 @@ const useCardGame = () => {
   };
 
   useEffect(() => {
-    console.log("svgMapToArray", svgMapToArray);
     const svgArray = duplicateArray(svgMapToArray, 2);
     setShuffledCards(() => shuffleArray(svgArray));
   }, []);
@@ -99,17 +101,24 @@ const useCardGame = () => {
         domEl: el.current[index],
         index,
       };
-      const isAlreadyFlipped = flippedCards.some(
+      const isAlreadyFlipped = flippedGameCards.some(
         (card) => card.index == currentCard.index
       );
       if (cardCount === 2) return;
       if (isAlreadyFlipped) return;
       setCardCount(() => cardCount + 1);
       currentCard.domEl.classList.toggle("flip-card-y");
-      setFlippedCards(() => [...flippedCards, currentCard]);
+      setFlippedGameCards(() => [...flippedGameCards, currentCard]);
     },
-    [cardCount, flippedCards, setFlippedCards, setCardCount]
+    [cardCount, flippedGameCards, setFlippedGameCards, setCardCount]
   );
+
+  const updateResultCardsArray = (resultCard: HTMLDivElement) => {
+    const update = [...flippedResultCards, resultCard].filter(
+      (x) => x !== undefined
+    );
+    setFlippedResultCards(() => update);
+  };
 
   const winRound = () => {
     setWins(() => wins + 1);
@@ -119,11 +128,11 @@ const useCardGame = () => {
   };
 
   const loseRound = () => {
-    const length = flippedCards.length;
+    const length = flippedGameCards.length;
     setTimeout(() => {
-      const wrongCards = flippedCards.splice(length - 2, 2);
+      const wrongCards = flippedGameCards.splice(length - 2, 2);
       wrongCards.forEach((card) => card.domEl.classList.remove("flip-card-y"));
-      setFlippedCards(() => flippedCards);
+      setFlippedGameCards(() => flippedGameCards);
       resetCardCount();
     }, 2000);
   };
@@ -134,14 +143,14 @@ const useCardGame = () => {
 
   const compare = useCallback(() => {
     if (cardCount !== 2) return;
-    const length = flippedCards.length;
-    const card1 = flippedCards[length - 1].name;
-    const card2 = flippedCards[length - 2].name;
+    const length = flippedGameCards.length;
+    const card1 = flippedGameCards[length - 1].name;
+    const card2 = flippedGameCards[length - 2].name;
     console.log("compare", card1, card2);
     if (card1 === card2) {
       winRound();
     } else loseRound();
-  }, [flippedCards, winRound, loseRound, resetCardCount]);
+  }, [flippedGameCards, winRound, loseRound, resetCardCount]);
 
   return {
     svgMapToArray,
@@ -151,12 +160,14 @@ const useCardGame = () => {
     flipCard,
     compare,
     wins,
-    flippedCards,
+    flippedGameCards,
+    flippedResultCards,
     integrationArray,
     frontArray,
     backendArray,
     dbArray,
     toolsArray,
+    updateResultCardsArray,
   };
 };
 
