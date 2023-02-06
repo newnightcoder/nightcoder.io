@@ -6,6 +6,7 @@ interface CardProps {
   isResult?: boolean;
   isWon?: boolean;
   isGamePlayed?: boolean;
+  round?: number;
 }
 
 const Card = styled.div<CardProps>`
@@ -43,17 +44,24 @@ const CardFront = styled.div<CardProps>`
   border: ${(props) => (props.isResult ? "1px solid transparent" : "none")};
   // border-radius: ${(props) => (props.isResult ? "7px" : "none")};
   &::after {
-    display: ${(props) => (props.isResult ? "none" : "block")};
-    content: "🧠";
+    content: "${(props) =>
+      props.round === 1
+        ? "\\01F9E0"
+        : props.round === 2
+        ? "\\01F441"
+        : props.round === 3
+        ? "\\01F680"
+        : ""}";
+    display: ${(props) => (props.isResult ? "none" : "")};
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: var(--poppins);
     font-size: 5rem;
-    font-weight: 500;
-    color: #222;
-    text-align: center;
+    // font-family: var(--poppins);
+    // font-weight: 500;
+    // color: #222;
+    // text-align: center;
   }
 `;
 

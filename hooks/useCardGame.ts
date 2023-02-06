@@ -4,9 +4,6 @@ import {
   db,
   front,
   integration,
-  svgMap,
-  svgMap2,
-  svgMap3,
   tools,
 } from "../components/GameCard/CardImgSvg";
 
@@ -24,24 +21,15 @@ export interface ICard {
 
 const useCardGame = () => {
   const [shuffledCards, setShuffledCards] = useState<ICardElement[]>([]);
+  const [round1, setRound1] = useState<ICardElement[]>([]);
+  const [round2, setRound2] = useState<ICardElement[]>([]);
+  const [round3, setRound3] = useState<ICardElement[]>([]);
   const [cardCount, setCardCount] = useState(0);
   const [flippedGameCards, setFlippedGameCards] = useState<ICard[]>([]);
   const [flippedResultCards, setFlippedResultCards] = useState<
     HTMLDivElement[]
   >([]);
   const [wins, setWins] = useState(0);
-  const svgMapToArray = Object.entries(svgMap).map((entry) => ({
-    name: entry[0],
-    jsx: entry[1],
-  }));
-  const svgMapToArray2 = Object.entries(svgMap2).map((entry) => ({
-    name: entry[0],
-    jsx: entry[1],
-  }));
-  const svgMapToArray3 = Object.entries(svgMap3).map((entry) => ({
-    name: entry[0],
-    jsx: entry[1],
-  }));
   const integrationArray = Object.entries(integration).map((entry) => ({
     name: entry[0],
     jsx: entry[1],
@@ -83,11 +71,29 @@ const useCardGame = () => {
       .sort((a, b) => a.sort - b.sort)
       .map((el) => el.el);
   };
+  const cards = [
+    ...integrationArray,
+    ...frontArray,
+    ...backendArray,
+    ...dbArray,
+    ...toolsArray,
+  ];
 
   useEffect(() => {
-    const svgArray = duplicateArray(svgMapToArray, 2);
-    setShuffledCards(() => shuffleArray(svgArray));
+    // const allCards = duplicateArray(cards, 2);
+    setShuffledCards(() => shuffleArray(cards));
   }, []);
+
+  useEffect(() => {
+    if (shuffledCards.length > 0) {
+      const firstThird = shuffledCards.splice(0, 6);
+      const secondThird = shuffledCards.splice(6, 12);
+      const lastThird = shuffledCards.splice(12, -1);
+      setRound1(() => shuffleArray(duplicateArray(firstThird, 2)));
+      setRound2(() => shuffleArray(duplicateArray(secondThird, 2)));
+      setRound3(() => shuffleArray(duplicateArray(lastThird, 2)));
+    }
+  }, [shuffledCards]);
 
   useEffect(() => {
     // console.log(cardCount);
@@ -153,10 +159,9 @@ const useCardGame = () => {
   }, [flippedGameCards, winRound, loseRound, resetCardCount]);
 
   return {
-    svgMapToArray,
-    svgMapToArray2,
-    svgMapToArray3,
-    shuffledCards,
+    round1,
+    round2,
+    round3,
     flipCard,
     compare,
     wins,

@@ -4,6 +4,7 @@ export { default as Badge } from "./Badge/Badge";
 export { default as DiscSvg } from "./DiscSvg/DiscSvg";
 export { default as GameCard } from "./GameCard/GameCard";
 export { default as Results } from "./GameCard/Results";
+export { default as GameCardContainer } from "./GameCardContainer/GameCardContainer";
 export { default as Layout } from "./Layout/Layout";
 export { default as Loader } from "./Loader/Loader";
 export { default as Logo } from "./Logo/Logo";

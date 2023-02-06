@@ -134,12 +134,21 @@ const Results = ({
         <button
           style={{
             position: "absolute",
-            top: "10px",
+            top: "calc(var(--navbar-height) + 10px)",
             right: "2vw",
           }}
           onClick={() => backToGameScreen()}
         >
-          <span style={{ color: "white", pointerEvents: "none" }}>x</span>
+          <span
+            style={{
+              color: "white",
+              pointerEvents: "none",
+              fontSize: "1rem",
+              fontWeight: "100",
+            }}
+          >
+            [ x ]
+          </span>
         </button>
       ) : null}
       {isGamePlayed ? (
@@ -188,11 +197,26 @@ const Results = ({
           </div>
         </div>
       ) : (
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <h1
             style={{
-              marginBottom: "4px",
+              marginBottom: "0",
               textAlign: "center",
+              fontSize: "4rem",
+              fontWeight: "700",
+              fontStyle: "italic",
+              textTransform: "uppercase",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundImage: "var(--gradient-orange)",
+              filter: "drop-shadow(-2px 1px 2px rgba(255,255,255,.5))", // drop-shadow divisé par 2 par rapport à "wins"
               // border: "1px solid white",
             }}
           >
@@ -202,6 +226,8 @@ const Results = ({
             style={{
               fontSize: "1rem",
               fontStyle: "italic",
+              width: "max-content",
+              marginTop: "0",
               // border: "1px solid white",
             }}
           >

@@ -198,31 +198,6 @@ const mui = (
   </svg>
 );
 
-const svgMap = {
-  javascript,
-  typescript,
-  react,
-  redux,
-};
-
-const svgMap2 = {
-  sass,
-  tailwind,
-  "styled-components": styled,
-  sql,
-  webpack,
-  "next.js": nextjs,
-};
-
-const svgMap3 = {
-  mongo,
-  aws,
-  html,
-  firebase,
-  git,
-};
-// stripeSvg,
-
 const integration = {
   html,
   css,
@@ -256,4 +231,4 @@ const tools = {
   aws,
 };
 
-export { svgMap, svgMap2, svgMap3, integration, front, backend, db, tools };
+export { integration, front, backend, db, tools };

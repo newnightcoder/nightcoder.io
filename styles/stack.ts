@@ -24,14 +24,15 @@ const GameContainer = styled.div`
 
 const CardContainer = styled.div`
   min-height: calc(100vh - var(--navbar-height));
-  width: max-content;
+  width: 100%;
   padding: 4vh 1vw;
   display: grid;
   grid-template-columns: var(--stack-columns);
   grid-template-rows: var(--stack-rows);
   grid-gap: 10px;
   align-content: center;
-  border: 2px solid red;
+  justify-content: center;
+  // border: 2px solid red;
 `;
 
 interface Props {

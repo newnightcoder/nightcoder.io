@@ -11,6 +11,7 @@ interface Props extends PropsWithChildren {
   onMouseOver?: () => void;
   cardName?: string;
   className?: string;
+  round?: number;
 }
 
 const GameCard = forwardRef<HTMLDivElement, Props>((props: Props, ref) => {
@@ -26,9 +27,10 @@ const GameCard = forwardRef<HTMLDivElement, Props>((props: Props, ref) => {
       onClick={props.onClick}
       onMouseOver={props.onMouseOver}
       className={props.className}
+      round={props.round}
     >
       <CardInner isResult={props.isResult} isGamePlayed={props.isGamePlayed}>
-        <CardFront isResult={props.isResult} />
+        <CardFront isResult={props.isResult} round={props.round} />
         <CardBack isGamePlayed={props.isGamePlayed} isResult={props.isResult}>
           {props.children}
         </CardBack>
