@@ -1,18 +1,24 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
-import { GameCardContainer, Results } from "../components";
+import { GameCard, Results } from "../components";
 import { TransitionContext } from "../context/TransitionContext";
 import {
   useCardGame,
   useIsoMorphicLayoutEffect,
   useTransitionBackground,
 } from "../hooks";
-import { BtnContainer, ChoiceBtn, GameTitleContainer } from "../styles/stack";
+import { ICardElement } from "../hooks/useCardGame";
+import {
+  BtnContainer,
+  CardContainer,
+  ChoiceBtn,
+  GameTitleContainer,
+} from "../styles/stack";
 import { PageContainer } from "../styles/_globals";
 
 const Stack = () => {
   const pageRef = useRef<HTMLDivElement>(null);
   const welcomeRef = useRef<HTMLDivElement>(null);
-  // const cardRefs = useRef<HTMLDivElement[]>([]);
+  const cardRefs = useRef<HTMLDivElement[]>([]);
   const handleBackground = useTransitionBackground();
   const {
     displayMemoryGameResult,
@@ -28,6 +34,7 @@ const Stack = () => {
     compare,
     wins,
     flippedGameCards,
+    setFlippedGameCards,
     flippedResultCards,
     updateResultCardsArray,
   } = useCardGame();
@@ -46,39 +53,51 @@ const Stack = () => {
   const handleRound = useCallback(() => {
     switch (wins) {
       case 6:
-        setRound(2);
-        setCurrentRound(round2);
+        setTimeout(() => {
+          setRound(2);
+          setCurrentRound(round2);
+          setFlippedGameCards([]);
+          cardRefs?.current.forEach((ref) => {
+            ref?.classList.remove("flip-card-y");
+          });
+        }, 1500);
         break;
       case 12:
-        setRound(3);
-        setCurrentRound(round3);
+        setTimeout(() => {
+          setRound(3);
+          setCurrentRound(round3);
+          setFlippedGameCards([]);
+          cardRefs?.current.forEach((ref) => {
+            ref?.classList.remove("flip-card-y");
+          });
+        }, 1500);
         break;
       // case 18:
       default:
-        return setCurrentRound(round1);
+        return;
     }
-  }, [wins]);
+  }, [wins, cardRefs]);
 
   useEffect(() => {
     if (wins === 0) return;
     setTimeout(() => {
       setDisplayMemoryGameResult(true);
     }, 1000);
-    // if (wins !== 18) {
-    //   setTimeout(() => {
-    //     setDisplayMemoryGameResult(false);
-    //   }, 3200);
-    // }
+    if (wins !== 18) {
+      setTimeout(() => {
+        setDisplayMemoryGameResult(false);
+      }, 3200);
+    }
   }, [wins]);
 
   useEffect(() => {
     setCurrentRound(() => round1);
     setRound(1);
-  }, []);
+  }, [round1]);
 
-  // useEffect(() => {
-  //   handleRound();
-  // }, [wins]);
+  useEffect(() => {
+    handleRound();
+  }, [wins]);
 
   // useEffect(() => {
   //   console.log("round", currentRound);
@@ -105,7 +124,30 @@ const Stack = () => {
           </ChoiceBtn>
         </BtnContainer>
       </GameTitleContainer>
-      <GameCardContainer currentRound={currentRound} round={round} />
+      {/* <GameCardContainer currentRound={currentRound} round={round} /> */}
+      <>Round {round}</>
+      <CardContainer>
+        {currentRound.map((card: ICardElement, i) => {
+          return (
+            <GameCard
+              key={i + 1}
+              ref={(el) => (cardRefs.current = [...cardRefs.current, el])}
+              height="var(--memory-card-size)"
+              width="var(--memory-card-size)"
+              cardName={card.name}
+              round={round}
+              isGamePlayed={isMemoryGamePlayed}
+              onClick={() => {
+                // console.log(cardRefs.current[i].dataset.card);
+                flipCard(cardRefs, i);
+                compare();
+              }}
+            >
+              <div style={{ height: "100%", width: "100%" }}>{card.jsx}</div>
+            </GameCard>
+          );
+        })}
+      </CardContainer>
       {displayMemoryGameResult ? (
         <Results
           displayResult={displayMemoryGameResult}

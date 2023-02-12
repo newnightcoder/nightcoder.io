@@ -99,7 +99,7 @@ const Results = ({
   const findCorrespondingResult = useCallback(
     (card: ICard) => {
       const wonCard = allPossibleResults.find(
-        (resultCard) => resultCard.name === card.name
+        (resultCard) => resultCard.name === card?.name
       );
       if (wonCard !== undefined) {
         console.log("allrefs", allRefs);

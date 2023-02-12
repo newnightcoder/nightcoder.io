@@ -71,6 +71,7 @@ const useCardGame = () => {
       .sort((a, b) => a.sort - b.sort)
       .map((el) => el.el);
   };
+
   const cards = [
     ...integrationArray,
     ...frontArray,
@@ -80,20 +81,35 @@ const useCardGame = () => {
   ];
 
   useEffect(() => {
-    // const allCards = duplicateArray(cards, 2);
     setShuffledCards(() => shuffleArray(cards));
   }, []);
 
   useEffect(() => {
     if (shuffledCards.length > 0) {
       const firstThird = shuffledCards.splice(0, 6);
-      const secondThird = shuffledCards.splice(6, 12);
-      const lastThird = shuffledCards.splice(12, -1);
+      const secondThird = shuffledCards.splice(0, 6);
+      const lastThird = shuffledCards.splice(0, 6);
       setRound1(() => shuffleArray(duplicateArray(firstThird, 2)));
       setRound2(() => shuffleArray(duplicateArray(secondThird, 2)));
       setRound3(() => shuffleArray(duplicateArray(lastThird, 2)));
     }
   }, [shuffledCards]);
+
+  useEffect(() => {
+    console.log("cards", cards);
+    console.log("shuffle cards function", shuffleArray(cards));
+    console.log("shuffledCards", shuffledCards);
+    // const firstThird = shuffledCards.splice(0, 6);
+    // const secondThird = shuffledCards.splice(0, 6);
+    // const lastThird = shuffledCards.splice(0, 6);
+    // console.log("firstThird", firstThird);
+    // console.log("secondThird", secondThird);
+    // console.log("lastThird", lastThird);
+
+    // console.log("round1", round1);
+    // console.log("round2", round2);
+    // console.log("round3", round3);
+  }, [cards]);
 
   useEffect(() => {
     // console.log(cardCount);
@@ -107,6 +123,8 @@ const useCardGame = () => {
         domEl: el.current[index],
         index,
       };
+      console.log("flippedGameCards", flippedGameCards);
+
       const isAlreadyFlipped = flippedGameCards.some(
         (card) => card.index == currentCard.index
       );
@@ -166,6 +184,7 @@ const useCardGame = () => {
     compare,
     wins,
     flippedGameCards,
+    setFlippedGameCards,
     flippedResultCards,
     integrationArray,
     frontArray,
