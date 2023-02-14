@@ -1,8 +1,9 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { TransitionContext } from "../../context/TransitionContext";
 import useCardGame, { ICard, ICardElement } from "../../hooks/useCardGame";
-import { ResultContainer } from "../../styles/stack";
+import { CirclePgBar, ResultContainer } from "../../styles/stack";
 import GameCard from "./GameCard";
+import { GameHeading } from "./GameCardStyled";
 
 interface ResultCardInnerProps {
   jsx: JSX.Element;
@@ -134,7 +135,7 @@ const Results = ({
         <button
           style={{
             position: "absolute",
-            top: "calc(var(--navbar-height) + 10px)",
+            top: "20px",
             right: "2vw",
           }}
           onClick={() => backToGameScreen()}
@@ -162,39 +163,10 @@ const Results = ({
             // border: "1px solid white",
           }}
         >
-          <span
-            style={{
-              fontSize: "5rem",
-              fontWeight: "700",
-              fontStyle: "italic",
-              textTransform: "uppercase",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundImage: "var(--gradient-orange)",
-              filter: "drop-shadow(-4px 2px 4px rgba(255,255,255,.5))",
-            }}
-          >
+          <GameHeading fontSize={5} color={"orange"} shadow={true}>
             Wins
-          </span>
-          <div
-            style={{
-              height: "75px",
-              width: "75px",
-              position: "relative",
-              borderRadius: "50%",
-              border: "4px solid yellow",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "2rem",
-              fontWeight: "500",
-              // APLLY FILTER TO PSEUDO ELEMENT SO IT DOESNT APPLY TO CHILD ELEMENT WINS
-              filter: "drop-shadow(-4px 2px 4px rgba(255,255,255,.95))",
-            }}
-          >
-            <span>{wins}</span>
-          </div>
+          </GameHeading>
+          <CirclePgBar wins={wins} />
         </div>
       ) : (
         <div
@@ -204,24 +176,9 @@ const Results = ({
             alignItems: "center",
           }}
         >
-          <h1
-            style={{
-              marginBottom: "0",
-              textAlign: "center",
-              fontSize: "4rem",
-              fontWeight: "700",
-              fontStyle: "italic",
-              textTransform: "uppercase",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundImage: "var(--gradient-orange)",
-              filter: "drop-shadow(-2px 1px 2px rgba(255,255,255,.5))", // drop-shadow divisé par 2 par rapport à "wins"
-              // border: "1px solid white",
-            }}
-          >
+          <GameHeading fontSize={4} color={"orange"} shadow={true}>
             Languages & tools i'm using
-          </h1>
+          </GameHeading>
           <p
             style={{
               fontSize: "1rem",

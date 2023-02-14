@@ -9,6 +9,12 @@ interface CardProps {
   round?: number;
 }
 
+interface HeadingProps {
+  fontSize?: number;
+  color?: string;
+  shadow?: boolean;
+}
+
 const Card = styled.div<CardProps>`
   height: ${(props) => props.height};
   width: ${(props) => props.width};
@@ -84,4 +90,19 @@ const CardBack = styled.div<CardProps>`
 //     ? "1px solid rgba(255, 255, 255, 0.2)"
 //     : "none"};
 
-export { Card, CardInner, CardFront, CardBack };
+const GameHeading = styled.h1<HeadingProps>`
+  font-weight: 700;
+  font-style: italic;
+  font-size: ${(props) => props.fontSize}rem;
+  font-family: var(--poppins);
+  text-transform: uppercase;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: ${(props) => `var(--gradient-${props.color})`};
+  filter: ${(props) =>
+    props.shadow ? "drop-shadow(-4px 2px 4px rgba(255, 255, 255, 0.5))" : ""};
+  margin: 0;
+`;
+
+export { Card, CardInner, CardFront, CardBack, GameHeading };

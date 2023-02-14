@@ -96,23 +96,6 @@ const useCardGame = () => {
   }, [shuffledCards]);
 
   useEffect(() => {
-    console.log("cards", cards);
-    console.log("shuffle cards function", shuffleArray(cards));
-    console.log("shuffledCards", shuffledCards);
-    // const firstThird = shuffledCards.splice(0, 6);
-    // const secondThird = shuffledCards.splice(0, 6);
-    // const lastThird = shuffledCards.splice(0, 6);
-    // console.log("firstThird", firstThird);
-    // console.log("secondThird", secondThird);
-    // console.log("lastThird", lastThird);
-
-    // console.log("round1", round1);
-    // console.log("round2", round2);
-    // console.log("round3", round3);
-  }, [cards]);
-
-  useEffect(() => {
-    // console.log(cardCount);
     compare();
   }, [cardCount]);
 

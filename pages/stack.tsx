@@ -1,5 +1,6 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { GameCard, Results } from "../components";
+import { GameHeading } from "../components/GameCard/GameCardStyled";
 import { TransitionContext } from "../context/TransitionContext";
 import {
   useCardGame,
@@ -125,7 +126,9 @@ const Stack = () => {
         </BtnContainer>
       </GameTitleContainer>
       {/* <GameCardContainer currentRound={currentRound} round={round} /> */}
-      <>Round {round}</>
+      <GameHeading fontSize={3} color={"blue"}>
+        Round {round}
+      </GameHeading>
       <CardContainer>
         {currentRound.map((card: ICardElement, i) => {
           return (
@@ -148,16 +151,16 @@ const Stack = () => {
           );
         })}
       </CardContainer>
-      {displayMemoryGameResult ? (
-        <Results
-          displayResult={displayMemoryGameResult}
-          isGamePlayed={isMemoryGamePlayed}
-          wins={wins}
-          flipped={flippedGameCards}
-          flippedResults={flippedResultCards}
-          update={updateResultCardsArray}
-        />
-      ) : null}
+      {/* {displayMemoryGameResult ? ( */}
+      <Results
+        displayResult={displayMemoryGameResult}
+        isGamePlayed={isMemoryGamePlayed}
+        wins={wins}
+        flipped={flippedGameCards}
+        flippedResults={flippedResultCards}
+        update={updateResultCardsArray}
+      />
+      {/* ) : null} */}
     </PageContainer>
   );
 };

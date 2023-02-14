@@ -23,7 +23,8 @@ const GameContainer = styled.div`
 `;
 
 const CardContainer = styled.div`
-  min-height: calc(100vh - var(--navbar-height));
+  // min-height: calc(100vh - var(--navbar-height));
+  min-height: max-content;
   width: 100%;
   padding: 4vh 1vw;
   display: grid;
@@ -39,27 +40,34 @@ interface Props {
   displayResult?: boolean;
   isWon?: boolean;
   isGamePlayed?: boolean;
+  wins?: number;
 }
 
 const ResultContainer = styled.div<Props>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
-  top: 0;
-  padding-top: var(--navbar-height);
+  top: var(--navbar-height);
+  padding-top: ${(props) => (props.isGamePlayed ? "2rem" : "3rem")};
+  padding-bottom: var(--navbar-height);
   z-index: ${(props) => (props.displayResult || !props.isGamePlayed ? 50 : -1)};
   opacity: ${(props) => (props.displayResult || !props.isGamePlayed ? 1 : 0)};
   visibility: ${(props) =>
     props.displayResult || !props.isGamePlayed ? "visible" : "hidden"};
+  z-index: 1000;
+  opacity: 1;
+  visibility: visible;
   transition: opacity 500ms;
   background: ${(props) =>
     props.isGamePlayed ? "rgba(10, 10, 10, 0.9)" : "#222"};
   font-family: var(--poppins);
+  border: 2px solid red;
+  overflow: scroll;
 `;
 
 const Result = styled.div<Props>`
@@ -105,6 +113,32 @@ const ChoiceBtn = styled.button`
   justify-content: center;
 `;
 
+const CirclePgBar = styled.div<Props>`
+  height: 6rem;
+  width: 6rem;
+  background: conic-gradient(yellow calc(80 * 1%), dimgray 0%);
+  transition: background 300ms linear;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+  &::before {
+    content: "";
+    height: 5.5rem;
+    width: 5.5rem;
+    border-radius: 50%;
+    background: rgba(10, 10, 10, 1);
+    // display: none;
+  }
+  &::after {
+    content: "${(props) => props.wins}";
+    font-size: 2rem;
+    font-weight: 500;
+    color: white;
+    position: absolute;
+  }
+`;
+
 export {
   CardContainer,
   GameTitleContainer,
@@ -113,4 +147,5 @@ export {
   GameContainer,
   ResultContainer,
   Result,
+  CirclePgBar,
 };
