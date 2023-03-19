@@ -1,9 +1,22 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { TransitionContext } from "../../context/TransitionContext";
 import useCardGame, { ICard, ICardElement } from "../../hooks/useCardGame";
-import { CirclePgBar, ResultContainer } from "../../styles/stack";
 import GameCard from "./GameCard";
 import { GameHeading } from "./GameCardStyled";
+import {
+  CirclePgBar,
+  CloseBtn,
+  CloseBtnSpan,
+  GameResultsHeader,
+  LogoWrapper,
+  ResultCardContainer,
+  ResultContainer,
+  StackPageHeader,
+  SubHeader,
+  TableColumn,
+  TableContainer,
+  TechNameWrapper,
+} from "./ResultsStyled";
 
 interface ResultCardInnerProps {
   jsx: JSX.Element;
@@ -24,32 +37,10 @@ const ResultCardInner = ({ jsx, str }: ResultCardInnerProps) => {
     return str[0].toUpperCase() + str.slice(1);
   };
   return (
-    <div
-      style={{
-        display: "flex",
-        width: "100%",
-      }}
-    >
-      <div
-        style={{
-          height: "30px",
-          width: "30px",
-          marginRight: "10px",
-        }}
-      >
-        {jsx}
-      </div>
-      <div
-        style={{
-          overflow: "hidden",
-          whiteSpace: "nowrap",
-          textOverflow: "ellipsis",
-          fontSize: "1.1rem",
-        }}
-      >
-        {capitalizeFirstLetter(str)}
-      </div>
-    </div>
+    <ResultCardContainer>
+      <LogoWrapper>{jsx}</LogoWrapper>
+      <TechNameWrapper>{capitalizeFirstLetter(str)}</TechNameWrapper>
+    </ResultCardContainer>
   );
 };
 
@@ -61,16 +52,11 @@ const Results = ({
   update,
   flippedResults,
 }: ResultsProps) => {
-  const { integrationArray, frontArray, backendArray, dbArray, toolsArray } =
-    useCardGame();
   const { setDisplayMemoryGameResult, setIsMemoryGamePlayed } =
     useContext(TransitionContext);
 
-  const cardRefs = useRef<HTMLDivElement[]>([]);
-  const cardRefs2 = useRef<HTMLDivElement[]>([]);
-  const cardRefs3 = useRef<HTMLDivElement[]>([]);
-  const cardRefs4 = useRef<HTMLDivElement[]>([]);
-  const cardRefs5 = useRef<HTMLDivElement[]>([]);
+  const { integrationArray, frontArray, backendArray, dbArray, toolsArray } =
+    useCardGame();
   const allPossibleResults = [
     ...integrationArray,
     ...frontArray,
@@ -78,7 +64,15 @@ const Results = ({
     ...dbArray,
     ...toolsArray,
   ];
+
+  const integrationRefs = useRef<HTMLDivElement[]>([]);
+  const frontRefs = useRef<HTMLDivElement[]>([]);
+  const backendRefs = useRef<HTMLDivElement[]>([]);
+  const dbRefs = useRef<HTMLDivElement[]>([]);
+  const toolsRefs = useRef<HTMLDivElement[]>([]);
   const [allRefs, setAllRefs] = useState<HTMLDivElement[]>([]);
+
+  const [progress, setProgress] = useState(0);
 
   const backToGameScreen = () => {
     setDisplayMemoryGameResult(!displayResult);
@@ -88,35 +82,31 @@ const Results = ({
   useEffect(() => {
     if (isGamePlayed && displayResult) {
       setAllRefs([
-        ...cardRefs.current,
-        ...cardRefs2.current,
-        ...cardRefs3.current,
-        ...cardRefs4.current,
-        ...cardRefs5.current,
+        ...integrationRefs.current,
+        ...frontRefs.current,
+        ...backendRefs.current,
+        ...dbRefs.current,
+        ...toolsRefs.current,
       ]);
     }
-  }, [displayResult, isGamePlayed]);
+  }, [isGamePlayed, displayResult]);
 
-  const findCorrespondingResult = useCallback(
-    (card: ICard) => {
-      const wonCard = allPossibleResults.find(
-        (resultCard) => resultCard.name === card?.name
-      );
-      if (wonCard !== undefined) {
-        console.log("allrefs", allRefs);
+  const findCorrespondingResult = (card: ICard) => {
+    const wonCard = allPossibleResults.find(
+      (resultCard) => resultCard.name === card?.name
+    );
+    if (wonCard !== undefined) {
+      console.log("allrefs", allRefs);
 
-        const resultCard = allRefs.find(
-          (ref) => ref?.dataset.card === card.name
-        );
-        console.log("updated flippedResults array", flippedResults);
-        update(resultCard);
-        setTimeout(() => {
-          resultCard?.classList.add("flip-card-x");
-        }, 1000);
-      }
-    },
-    [allPossibleResults, allRefs, flippedResults]
-  );
+      const resultCard = allRefs.find((ref) => ref?.dataset.card === card.name);
+      console.log("updated flippedResults array", flippedResults);
+      update(resultCard);
+      setTimeout(() => {
+        resultCard?.classList.add("flip-card-x");
+        updateCirclePgBar();
+      }, 1000);
+    }
+  };
 
   const handleClassName = (el: ICardElement): string => {
     if (flippedResults.some((card) => card.dataset.card === el.name)) {
@@ -124,100 +114,60 @@ const Results = ({
     } else return "";
   };
 
+  const updateCirclePgBar = useCallback(() => {
+    // const duration = 200;
+    // const update = () => setProgress(() => progress + 1);
+    // const pg = setInterval(update, duration);
+    // setInterval(() => setProgress(() => progress + (wins * 100) / 18), 4);
+  }, [wins, progress]);
+
   useEffect(() => {
     if (!isGamePlayed) return;
     findCorrespondingResult(flipped[flipped.length - 1]);
   }, [flipped, allRefs]);
 
+  useEffect(() => {
+    updateCirclePgBar();
+  }, [wins]);
+
   return (
     <ResultContainer displayResult={displayResult} isGamePlayed={isGamePlayed}>
       {!isGamePlayed ? (
-        <button
-          style={{
-            position: "absolute",
-            top: "20px",
-            right: "2vw",
-          }}
-          onClick={() => backToGameScreen()}
-        >
-          <span
-            style={{
-              color: "white",
-              pointerEvents: "none",
-              fontSize: "1rem",
-              fontWeight: "100",
-            }}
-          >
-            [ x ]
-          </span>
-        </button>
-      ) : null}
-      {isGamePlayed ? (
-        <div
-          style={{
-            width: "100%",
-            padding: "0 5vw",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-evenly",
-            // border: "1px solid white",
-          }}
-        >
+        <>
+          <StackPageHeader>
+            <GameHeading fontSize={4} color={"orange"} shadow={true}>
+              Languages & tools i'm using
+            </GameHeading>
+            <SubHeader>
+              A overview of the technologies i’m familiar with or using
+              regularly.
+              <br />
+              Ecosystems keep evolving non stop so i keep myself updated as much
+              as possible.
+            </SubHeader>
+          </StackPageHeader>
+          <CloseBtn onClick={() => backToGameScreen()}>
+            <CloseBtnSpan>[ x ]</CloseBtnSpan>
+          </CloseBtn>
+        </>
+      ) : (
+        <GameResultsHeader>
           <GameHeading fontSize={5} color={"orange"} shadow={true}>
             Wins
           </GameHeading>
-          <CirclePgBar wins={wins} />
-        </div>
-      ) : (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <GameHeading fontSize={4} color={"orange"} shadow={true}>
-            Languages & tools i'm using
-          </GameHeading>
-          <p
-            style={{
-              fontSize: "1rem",
-              fontStyle: "italic",
-              width: "max-content",
-              marginTop: "0",
-              // border: "1px solid white",
-            }}
-          >
-            A overview of the technologies i’m familiar with or using regularly.
-            <br />
-            Ecosystems keep evolving non stop so i keep myself updated as much
-            as possible.
-          </p>
-        </div>
+          <CirclePgBar wins={wins} progress={progress} />
+        </GameResultsHeader>
       )}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          width: "100%",
-          maxWidth: "1100px",
-          padding: "0 5vw",
-          // border: "1px solid lightgray",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
+      <TableContainer>
+        <TableColumn>
           <h2 style={{ whiteSpace: "nowrap" }}>Web integration</h2>
           {integrationArray.map((el, i) => {
             return (
               <GameCard
                 key={el.name}
-                ref={(el) => (cardRefs.current = [...cardRefs.current, el])}
+                ref={(el) =>
+                  (integrationRefs.current = [...integrationRefs.current, el])
+                }
                 height="var(--result-card-height)"
                 width="var(--result-card-width)"
                 cardName={el.name}
@@ -229,19 +179,14 @@ const Results = ({
               </GameCard>
             );
           })}
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
+        </TableColumn>
+        <TableColumn>
           <h2>Front</h2>
           {frontArray.map((el, i) => {
             return (
               <GameCard
                 key={el.name}
-                ref={(el) => (cardRefs2.current = [...cardRefs2.current, el])}
+                ref={(el) => (frontRefs.current = [...frontRefs.current, el])}
                 height="var(--result-card-height)"
                 width="var(--result-card-width)"
                 cardName={el.name}
@@ -253,19 +198,16 @@ const Results = ({
               </GameCard>
             );
           })}
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
+        </TableColumn>
+        <TableColumn>
           <h2>Backend</h2>
           {backendArray.map((el, i) => {
             return (
               <GameCard
                 key={el.name}
-                ref={(el) => (cardRefs3.current = [...cardRefs3.current, el])}
+                ref={(el) =>
+                  (backendRefs.current = [...backendRefs.current, el])
+                }
                 height="var(--result-card-height)"
                 width="var(--result-card-width)"
                 cardName={el.name}
@@ -282,7 +224,7 @@ const Results = ({
             return (
               <GameCard
                 key={el.name}
-                ref={(el) => (cardRefs4.current = [...cardRefs4.current, el])}
+                ref={(el) => (dbRefs.current = [...dbRefs.current, el])}
                 height="var(--result-card-height)"
                 width="var(--result-card-width)"
                 cardName={el.name}
@@ -294,19 +236,14 @@ const Results = ({
               </GameCard>
             );
           })}
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
+        </TableColumn>
+        <TableColumn>
           <h2>Tools</h2>
           {toolsArray.map((el, i) => {
             return (
               <GameCard
                 key={el.name}
-                ref={(el) => (cardRefs5.current = [...cardRefs5.current, el])}
+                ref={(el) => (toolsRefs.current = [...toolsRefs.current, el])}
                 height="var(--result-card-height)"
                 width="var(--result-card-width)"
                 cardName={el.name}
@@ -318,8 +255,8 @@ const Results = ({
               </GameCard>
             );
           })}
-        </div>
-      </div>
+        </TableColumn>
+      </TableContainer>
     </ResultContainer>
   );
 };

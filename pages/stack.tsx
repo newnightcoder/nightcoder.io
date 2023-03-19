@@ -19,7 +19,7 @@ import { PageContainer } from "../styles/_globals";
 const Stack = () => {
   const pageRef = useRef<HTMLDivElement>(null);
   const welcomeRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<HTMLDivElement[]>([]);
+  const gameCardRefs = useRef<HTMLDivElement[]>([]);
   const handleBackground = useTransitionBackground();
   const {
     displayMemoryGameResult,
@@ -40,7 +40,7 @@ const Stack = () => {
     updateResultCardsArray,
   } = useCardGame();
   const [currentRound, setCurrentRound] = useState(round1);
-  const [round, setRound] = useState<number>(1);
+  const [round, setRound] = useState(1);
 
   const skipGame = () => {
     setDisplayMemoryGameResult(true);
@@ -58,7 +58,7 @@ const Stack = () => {
           setRound(2);
           setCurrentRound(round2);
           setFlippedGameCards([]);
-          cardRefs?.current.forEach((ref) => {
+          gameCardRefs?.current.forEach((ref) => {
             ref?.classList.remove("flip-card-y");
           });
         }, 1500);
@@ -68,7 +68,7 @@ const Stack = () => {
           setRound(3);
           setCurrentRound(round3);
           setFlippedGameCards([]);
-          cardRefs?.current.forEach((ref) => {
+          gameCardRefs?.current.forEach((ref) => {
             ref?.classList.remove("flip-card-y");
           });
         }, 1500);
@@ -77,18 +77,18 @@ const Stack = () => {
       default:
         return;
     }
-  }, [wins, cardRefs]);
+  }, [wins, gameCardRefs]);
 
   useEffect(() => {
     if (wins === 0) return;
     setTimeout(() => {
       setDisplayMemoryGameResult(true);
     }, 1000);
-    if (wins !== 18) {
-      setTimeout(() => {
-        setDisplayMemoryGameResult(false);
-      }, 3200);
-    }
+    // if (wins !== 18) {
+    //   setTimeout(() => {
+    //     setDisplayMemoryGameResult(false);
+    //   }, 3200);
+    // }
   }, [wins]);
 
   useEffect(() => {
@@ -134,15 +134,16 @@ const Stack = () => {
           return (
             <GameCard
               key={i + 1}
-              ref={(el) => (cardRefs.current = [...cardRefs.current, el])}
+              ref={(el) =>
+                (gameCardRefs.current = [...gameCardRefs.current, el])
+              }
               height="var(--memory-card-size)"
               width="var(--memory-card-size)"
               cardName={card.name}
               round={round}
               isGamePlayed={isMemoryGamePlayed}
               onClick={() => {
-                // console.log(cardRefs.current[i].dataset.card);
-                flipCard(cardRefs, i);
+                flipCard(gameCardRefs, i);
                 compare();
               }}
             >
@@ -151,16 +152,16 @@ const Stack = () => {
           );
         })}
       </CardContainer>
-      {/* {displayMemoryGameResult ? ( */}
-      <Results
-        displayResult={displayMemoryGameResult}
-        isGamePlayed={isMemoryGamePlayed}
-        wins={wins}
-        flipped={flippedGameCards}
-        flippedResults={flippedResultCards}
-        update={updateResultCardsArray}
-      />
-      {/* ) : null} */}
+      {displayMemoryGameResult ? (
+        <Results
+          displayResult={displayMemoryGameResult}
+          isGamePlayed={isMemoryGamePlayed}
+          wins={wins}
+          flipped={flippedGameCards}
+          flippedResults={flippedResultCards}
+          update={updateResultCardsArray}
+        />
+      ) : null}
     </PageContainer>
   );
 };

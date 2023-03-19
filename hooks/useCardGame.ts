@@ -29,7 +29,7 @@ const useCardGame = () => {
   const [flippedResultCards, setFlippedResultCards] = useState<
     HTMLDivElement[]
   >([]);
-  const [wins, setWins] = useState(0);
+  const [wins, setWins] = useState(10);
   const integrationArray = Object.entries(integration).map((entry) => ({
     name: entry[0],
     jsx: entry[1],
@@ -51,6 +51,14 @@ const useCardGame = () => {
     jsx: entry[1],
   }));
 
+  const cards = [
+    ...integrationArray,
+    ...frontArray,
+    ...backendArray,
+    ...dbArray,
+    ...toolsArray,
+  ];
+
   const duplicateArray = (arr: unknown[], duplicator: number) => {
     const length = arr.length;
     const newArray = [];
@@ -71,14 +79,6 @@ const useCardGame = () => {
       .sort((a, b) => a.sort - b.sort)
       .map((el) => el.el);
   };
-
-  const cards = [
-    ...integrationArray,
-    ...frontArray,
-    ...backendArray,
-    ...dbArray,
-    ...toolsArray,
-  ];
 
   useEffect(() => {
     setShuffledCards(() => shuffleArray(cards));
@@ -120,12 +120,15 @@ const useCardGame = () => {
     [cardCount, flippedGameCards, setFlippedGameCards, setCardCount]
   );
 
-  const updateResultCardsArray = (resultCard: HTMLDivElement) => {
-    const update = [...flippedResultCards, resultCard].filter(
-      (x) => x !== undefined
-    );
-    setFlippedResultCards(() => update);
-  };
+  const updateResultCardsArray = useCallback(
+    (resultCard: HTMLDivElement) => {
+      const update = [...flippedResultCards, resultCard].filter(
+        (x) => x !== undefined
+      );
+      setFlippedResultCards(() => update);
+    },
+    [flippedResultCards, setFlippedResultCards]
+  );
 
   const winRound = () => {
     setWins(() => wins + 1);
@@ -157,7 +160,7 @@ const useCardGame = () => {
     if (card1 === card2) {
       winRound();
     } else loseRound();
-  }, [flippedGameCards, winRound, loseRound, resetCardCount]);
+  }, [flippedGameCards, winRound, loseRound]);
 
   return {
     round1,
