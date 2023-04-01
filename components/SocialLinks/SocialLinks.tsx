@@ -17,17 +17,23 @@ const SocialLinks = () => {
     {
       name: "github",
       url: "https://github.com/newnightcoder",
-      logo: <GrGithub color="white" size={18} />,
+      logo: <GrGithub color="white" size={25} />,
     },
     {
       name: "linkedIn",
       url: "http://www.linkedin.com/in/nightcoder-dan/",
-      logo: <GrLinkedinOption color="white" />,
+      logo: (
+        <GrLinkedinOption
+          color="white"
+          size={22}
+          style={{ transform: "translateY(-2px)" }}
+        />
+      ),
     },
     {
       name: "twitter",
       url: "https://twitter.com/Nightcoder2",
-      logo: <GrTwitter color="white" />,
+      logo: <GrTwitter color="white" size={22} />,
     },
   ];
 
@@ -67,7 +73,7 @@ const SocialLinks = () => {
   }, [isMenuOpen, isMenuClosing, anim]);
 
   return (
-    <Container ref={ref}>
+    <Container ref={ref} isMenuOpen={isMenuOpen}>
       {links.map((link) => {
         return (
           <a

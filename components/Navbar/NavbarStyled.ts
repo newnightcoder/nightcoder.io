@@ -73,11 +73,10 @@ const NavLinksContainer = styled.ul`
   display: var(--navbar-links-visibility);
   align-items: center;
   justify-content: flex-end;
-
-  // border: 1px solid green;
   & > * + * {
     margin-left: 1rem;
   }
+  // border: 1px solid green;
 `;
 
 const NavLink = styled.li`

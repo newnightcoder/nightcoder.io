@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+interface Props {
+  isMenuOpen: boolean;
+}
+
+const Container = styled.div<Props>`
   width: max-content;
   height: max-content;
-  display: flex;
+  display: ${(props) => (props.isMenuOpen ? "flex" : "none")};
   align-items: center;
   justify-content: center;
   color: white;
@@ -21,8 +25,8 @@ const Container = styled.div`
 `;
 
 const Logo = styled.div`
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;

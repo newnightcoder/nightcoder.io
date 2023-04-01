@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const HomeSection = styled.div`
+  min-height: 400px;
   height: 100vh;
   width: inherit;
   padding: 0 4vw;
@@ -16,6 +17,7 @@ const HomeSection = styled.div`
 `;
 
 const Section = styled.div`
+  min-height: 400px;
   height: 100vh;
   width: inherit;
   position: relative;
@@ -26,7 +28,7 @@ const Section = styled.div`
   justify-content: center;
   color: var(--text-dark);
   font-family: var(--poppins);
-  // border: 2px solid yellow;
+  border: 2px solid yellow;
 `;
 
 interface Props {

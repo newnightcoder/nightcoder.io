@@ -286,7 +286,7 @@ body {
   }
   body {
     color: white;
-    background: var(--dark-mode-bg);
+    // background: var(--dark-mode-bg);
   }
 }
 `;
