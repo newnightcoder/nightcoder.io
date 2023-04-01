@@ -8,13 +8,16 @@ const Container = styled.div`
   justify-content: center;
   color: white;
   position: fixed;
-  bottom: 0;
-  transform: translateY(100%);
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 3000;
-  margin-left: calc(2rem - 10px);
   & > * + * {
     margin-left: 2rem;
   }
+  // border: 1px solid white;
+  // bottom: 0;
+  // margin-left: calc(2rem - 10px);
 `;
 
 const Logo = styled.div`
@@ -24,7 +27,9 @@ const Logo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: black;
+  background: transparent;
+  border-radius: 50%;
+  border: 1px outset white;
 `;
 
 export { Container, Logo };

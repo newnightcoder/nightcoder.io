@@ -39,16 +39,18 @@ const SocialLinks = () => {
     if (ref.current && tl) {
       const duration = 0.7;
       setAnim(
-        tl.to(ref.current.children, {
-          yPercent: -110,
-          stagger: duration / 3,
-          duration: duration,
-          ease: CustomEase.create(
-            "custom",
-            "M0,0 C0.2,0 0.515,0.137 0.52,0.388 0.538,1.386 0.822,1 1,1 "
-          ),
-          delay: 0.15,
-        })
+        tl
+          .set(ref.current.children, { yPercent: -200 })
+          .to(ref.current.children, {
+            yPercent: 0,
+            stagger: duration / 3,
+            duration: duration,
+            ease: CustomEase.create(
+              "custom",
+              "M0,0 C0.2,0 0.515,0.137 0.52,0.388 0.538,1.386 0.822,1 1,1 "
+            ),
+            delay: 0.15,
+          })
       );
     }
   }, [tl]);
