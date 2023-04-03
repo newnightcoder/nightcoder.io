@@ -1,4 +1,3 @@
-import gsap from "gsap";
 import {
   PropsWithChildren,
   useCallback,
@@ -6,9 +5,11 @@ import {
   useRef,
   useState,
 } from "react";
+import { ThemeProvider } from "styled-components";
+import { gsap } from "../animations/gsap";
 import { Background, Layout, Loader } from "../components";
 import { useIsoMorphicLayoutEffect } from "../hooks";
-import { GlobalStyles } from "../styles/_globals";
+import { darkTheme, GlobalStyles, lightTheme } from "../styles/_globals";
 import { TransitionContext } from "./TransitionContext";
 
 // if (typeof window !== "undefined") {
@@ -20,6 +21,8 @@ interface Props extends PropsWithChildren {}
 const TransitionLayout = ({ children }: Props) => {
   const [isLoading, setisLoading] = useState(true);
   const [nextChildren, setNextChildren] = useState(children);
+  const { isLightTheme } = useContext(TransitionContext);
+
   const {
     timelinePages,
     timelineMenu,
@@ -106,8 +109,28 @@ const TransitionLayout = ({ children }: Props) => {
     transitionBackground();
   }, [backgroundColor, backgroundWord, backgroundImg, isMenuOpen]);
 
+  useIsoMorphicLayoutEffect(() => {
+    if (bgRef.current) {
+      // if (bgRef.current.firstElementChild) {
+      //   const text = bgRef.current.firstElementChild.textContent.split("");
+      //   console.log(text);
+      //   const textDivs = [];
+      //   text.forEach((letter) => {
+      //     textDivs.push(<div>{letter}</div>);
+      //   });
+      //   console.log(textDivs);
+      // gsap.to(textDivs, {
+      //   y: -150,
+      //   duration: 1,
+      //   stagger: 1,
+      //   delay: 2,
+      // });
+      // }
+    }
+  }, []);
+
   return (
-    <>
+    <ThemeProvider theme={isLightTheme ? lightTheme : darkTheme}>
       <GlobalStyles />
       {isLoading ? (
         <Loader set={setisLoading} />
@@ -117,7 +140,7 @@ const TransitionLayout = ({ children }: Props) => {
           {nextChildren}
         </Layout>
       )}
-    </>
+    </ThemeProvider>
   );
 };
 

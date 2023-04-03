@@ -1,24 +1,33 @@
 import { useRouter } from "next/router";
-import { useCallback, useContext } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import portrait from "../assets/moi.jpg";
 import { TransitionContext } from "../context/TransitionContext";
+import { darkTheme, lightTheme } from "../styles/_globals";
 
 const useTransitionBackground = () => {
-  const { setBackgroundColor, setBackgroundWord, setBackgroundImg } =
-    useContext(TransitionContext);
+  const {
+    setBackgroundColor,
+    setBackgroundWord,
+    setBackgroundImg,
+    isLightTheme,
+  } = useContext(TransitionContext);
 
   const { pathname } = useRouter();
   const isAboutPage = pathname === "/about";
 
-  const colors = {
-    home: "#000000",
-    about: "#252525",
-    // projects: "#333333",
-    projects: "#111111",
-    // stack: "#4d4d4d",
-    stack: "#000",
-    contact: "#666666",
-  };
+  const [colors, setColors] = useState(null);
+
+  useEffect(() => {
+    setColors({
+      home: isLightTheme ? lightTheme.bg : darkTheme.bg,
+      about: "#252525",
+      // projects: "#333333",
+      projects: "#111111",
+      // stack: "#4d4d4d",
+      stack: "#000",
+      contact: "#666666",
+    });
+  }, [isLightTheme]);
 
   const handleBackground = useCallback(
     (id: string) => {

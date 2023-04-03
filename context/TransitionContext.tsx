@@ -33,6 +33,9 @@ type TransitionContext = {
   setDisplayMemoryGameResult?: Dispatch<SetStateAction<boolean>>;
   isMemoryGamePlayed?: boolean;
   setIsMemoryGamePlayed?: Dispatch<SetStateAction<boolean>>;
+  theme: string;
+  setTheme: Dispatch<SetStateAction<string>>;
+  isLightTheme: boolean;
 };
 interface Props extends PropsWithChildren {}
 
@@ -51,6 +54,8 @@ const TransitionProvider = ({ children }: Props) => {
   const [lang, setLang] = useState("en");
   const [displayMemoryGameResult, setDisplayMemoryGameResult] = useState(false);
   const [isMemoryGamePlayed, setIsMemoryGamePlayed] = useState(true);
+  const [theme, setTheme] = useState("light");
+  const isLightTheme = theme === "light";
 
   const [timelineMenu, setTimelineMenu] = useState(() =>
     gsap.timeline({
@@ -99,6 +104,9 @@ const TransitionProvider = ({ children }: Props) => {
           setIsMemoryGamePlayed,
           displayMemoryGameResult,
           setDisplayMemoryGameResult,
+          theme,
+          setTheme,
+          isLightTheme,
         }}
       >
         {children}

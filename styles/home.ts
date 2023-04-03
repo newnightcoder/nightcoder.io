@@ -8,11 +8,14 @@ const HomeSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-dark);
+  // color: var(--text-dark);
+  color: ${({ theme }) => theme.color};
+  background-color: ${({ theme }) => theme.homeSectionBg};
   font-family: var(--poppins);
   z-index: 10;
   pointer-events: none;
   position: relative;
+  transition: color 300ms, background-color 300ms;
   // border: 5px solid green;
 `;
 

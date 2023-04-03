@@ -39,6 +39,18 @@ export const breakpoints = {
   xxlNumber: 1536,
 };
 
+export const lightTheme = {
+  homeSectionBg: "transparent",
+  color: "#000",
+  bg: "yellow",
+};
+
+export const darkTheme = {
+  homeSectionBg: "transparent",
+  color: "#fff",
+  bg: "red",
+};
+
 export const GlobalStyles = createGlobalStyle`
 
 // @font-face {
@@ -104,6 +116,7 @@ html {
   
   /* BG COLORS */
   
+
   --light-mode-bg: white;
   --dark-mode-bg: black;
   // --navbar-bg: linear-gradient(to right, #fcb900, #ff6900, #cf2e2e); 

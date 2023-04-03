@@ -1,5 +1,4 @@
 import { useContext, useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "../animations/gsap";
 import { TransitionContext } from "../context/TransitionContext";
 import {
   useHandleRoute,
@@ -23,7 +22,7 @@ const HomePage = () => {
   const ref = useRef<HTMLDivElement>(null);
   const handleBackground = useTransitionBackground();
   const handleRoute = useHandleRoute();
-  const { isMenuOpen, setBackgroundColor, backgroundColor } =
+  const { isMenuOpen, setBackgroundColor, backgroundColor, theme } =
     useContext(TransitionContext);
 
   const dataColor = {
@@ -37,36 +36,33 @@ const HomePage = () => {
   // const [ctx, setCtx] = useState<gsap.Context>(null);
 
   useIsoMorphicLayoutEffect(() => {
-    // if (ref.current) {
     handleBackground(ref?.current?.id);
-    // setSections(() => gsap.utils.toArray(".section"));
-    // setCtx(
-    const ctx = gsap.context(() =>
-      gsap.utils
-        .toArray(ref?.current?.children)
-        .forEach((section: HTMLDivElement) => {
-          const bgColor = section.getAttribute("data-color");
-          ScrollTrigger.create({
-            trigger: section,
-            markers: false,
-            start: "top 30%",
-            end: "bottom 30%",
-            onEnter: () =>
-              gsap.to(ref.current, {
-                duration: 1,
-                background: bgColor,
-              }),
-            onEnterBack: () =>
-              gsap.to(ref.current, {
-                duration: 1,
-                background: bgColor,
-              }),
-          });
-        })
-    );
+
+    // const ctx = gsap.context(() =>
+    //   gsap.utils
+    //     .toArray(ref?.current?.children)
+    //     .forEach((section: HTMLDivElement) => {
+    //       const bgColor = section.getAttribute("data-color");
+    //       ScrollTrigger.create({
+    //         trigger: section,
+    //         markers: false,
+    //         start: "top 30%",
+    //         end: "bottom 30%",
+    //         onEnter: () =>
+    //           gsap.to(ref.current, {
+    //             duration: 1,
+    //             background: bgColor,
+    //           }),
+    //         onEnterBack: () =>
+    //           gsap.to(ref.current, {
+    //             duration: 1,
+    //             background: bgColor,
+    //           }),
+    //       });
+    //     })
     // );
-    // }
-    return () => ctx.revert();
+
+    // return () => ctx.revert();
   }, []);
 
   useEffect(() => {
@@ -78,7 +74,7 @@ const HomePage = () => {
   return (
     <PageContainer ref={ref} id="home" justify="center">
       {/* <HomeAnimation> */}
-      <HomeSection className="section" data-color={dataColor.sectionHome}>
+      <HomeSection className="section" data-color={"#000"}>
         <Header>
           <Span>
             Hey! 👋🏾 I&apos;m <GradientYellow> Daniel</GradientYellow>

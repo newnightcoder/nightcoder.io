@@ -18,6 +18,7 @@ const Container = styled.div<Props>`
   align-items: center;
   justify-content: center;
   z-index: -1;
+  transition: background-color 300ms, color 300ms;
 `;
 
 const WordContainer = styled.div<Props>`
@@ -33,8 +34,9 @@ const WordContainer = styled.div<Props>`
   line-height: 100vh;
   transform: scale(1, 3);
   text-transform: uppercase;
-  color: #222;
-  color: rgba(30, 30, 30, 0.9);
+  // color: #222;
+  // color: rgba(30, 30, 30, 0.9);
+  color: rgba(230, 230, 230, 0.9);
   opacity: 0;
   // border: 1px solid yellow;
 `;

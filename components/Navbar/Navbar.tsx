@@ -16,8 +16,8 @@ const Navbar = () => {
   const handleRoute = useHandleRoute();
   const router = useRouter();
   const { pathname, locale, query, asPath } = useRouter();
-  const { lang, setLang } = useContext(TransitionContext);
-
+  const { lang, setLang, setTheme, isLightTheme } =
+    useContext(TransitionContext);
   const isBgDark = useBgColor();
   const { navLinks, active } = useNavLinks();
 
@@ -84,6 +84,24 @@ const Navbar = () => {
                 </NavLink>
               );
             })}
+            <button
+              style={{
+                // position: "absolute",
+                // left: "50%",
+                // transform: "translateX(-50%)",
+                height: "40px",
+                width: "40px",
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                border: "1px solid black",
+                padding: "0 10px",
+              }}
+              onClick={() => setTheme(isLightTheme ? "dark" : "light")}
+            >
+              {isLightTheme ? "dark" : "light"}
+            </button>
           </NavLinksContainer>
         </NavLinksAnimation>
         <button
