@@ -1,26 +1,17 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
-import { GameCard, Results } from "../components";
-import { GameHeading } from "../components/GameCard/GameCardStyled";
 import { TransitionContext } from "../context/TransitionContext";
 import {
   useCardGame,
   useIsoMorphicLayoutEffect,
   useTransitionBackground,
 } from "../hooks";
-import { ICardElement } from "../hooks/useCardGame";
-import {
-  BtnContainer,
-  CardContainer,
-  ChoiceBtn,
-  GameTitleContainer,
-} from "../styles/stack";
 import { PageContainer } from "../styles/_globals";
 
 const Stack = () => {
   const pageRef = useRef<HTMLDivElement>(null);
   const welcomeRef = useRef<HTMLDivElement>(null);
   const gameCardRefs = useRef<HTMLDivElement[]>([]);
-  const handleBackground = useTransitionBackground();
+  const handleBackground = useTransitionBackground(pageRef?.current?.id);
   const {
     displayMemoryGameResult,
     setDisplayMemoryGameResult,
@@ -91,14 +82,14 @@ const Stack = () => {
     // }
   }, [wins]);
 
-  useEffect(() => {
-    setCurrentRound(() => round1);
-    setRound(1);
-  }, [round1]);
+  // useEffect(() => {
+  //   setCurrentRound(() => round1);
+  //   setRound(1);
+  // }, [round1]);
 
-  useEffect(() => {
-    handleRound();
-  }, [wins]);
+  // useEffect(() => {
+  //   handleRound();
+  // }, [wins]);
 
   // useEffect(() => {
   //   console.log("round", currentRound);
@@ -106,7 +97,7 @@ const Stack = () => {
 
   return (
     <PageContainer ref={pageRef} id="stack" justify="center">
-      <GameTitleContainer ref={welcomeRef}>
+      {/* <GameTitleContainer ref={welcomeRef}>
         welcome to <br />
         memory game
         <br /> stack edition
@@ -125,7 +116,6 @@ const Stack = () => {
           </ChoiceBtn>
         </BtnContainer>
       </GameTitleContainer>
-      {/* <GameCardContainer currentRound={currentRound} round={round} /> */}
       <GameHeading fontSize={3} color={"blue"}>
         Round {round}
       </GameHeading>
@@ -161,7 +151,7 @@ const Stack = () => {
           flippedResults={flippedResultCards}
           update={updateResultCardsArray}
         />
-      ) : null}
+      ) : null} */}
     </PageContainer>
   );
 };

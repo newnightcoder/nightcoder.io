@@ -1,23 +1,15 @@
 import { useContext, useEffect, useRef } from "react";
-import { AboutItem } from "../components";
 import { TransitionContext } from "../context/TransitionContext";
 import {
   useHandleRoute,
   useIsoMorphicLayoutEffect,
   useTransitionBackground,
 } from "../hooks";
-import {
-  AboutItemsContainer,
-  Container,
-  ContentContainer,
-  Title,
-} from "../styles/about";
 import { PageContainer } from "../styles/_globals";
-import text from "./api/text.json";
 
 const About = () => {
   const pageRef = useRef<HTMLDivElement>(null);
-  const handleBackground = useTransitionBackground();
+  const handleBackground = useTransitionBackground(pageRef?.current?.id);
   const handleRoute = useHandleRoute();
   const { setBackgroundImg, lang } = useContext(TransitionContext);
 
@@ -32,7 +24,7 @@ const About = () => {
   return (
     <PageContainer ref={pageRef} id="about" justify="center">
       {/* <HomeAnimation> */}
-      <Container>
+      {/* <Container>
         <Title>
           <h1>In a few words, i am...</h1>
         </Title>
@@ -59,15 +51,8 @@ const About = () => {
               itemText={text[lang].item.text6}
             />
           </AboutItemsContainer>
-          {/* <ImgContainer>
-            <Image
-              src={moi}
-              layout="intrinsic"
-              style={{ borderRadius: "50%" }}
-            />
-          </ImgContainer> */}
         </ContentContainer>
-      </Container>
+      </Container> */}
       {/* </HomeAnimation> */}
     </PageContainer>
   );

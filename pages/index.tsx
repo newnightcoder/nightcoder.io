@@ -20,7 +20,7 @@ import { PageContainer } from "../styles/_globals";
 
 const HomePage = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const handleBackground = useTransitionBackground();
+  const handleBackground = useTransitionBackground(ref?.current?.id);
   const handleRoute = useHandleRoute();
   const { isMenuOpen, setBackgroundColor, backgroundColor, theme } =
     useContext(TransitionContext);
@@ -37,7 +37,6 @@ const HomePage = () => {
 
   useIsoMorphicLayoutEffect(() => {
     handleBackground(ref?.current?.id);
-
     // const ctx = gsap.context(() =>
     //   gsap.utils
     //     .toArray(ref?.current?.children)
@@ -61,7 +60,6 @@ const HomePage = () => {
     //       });
     //     })
     // );
-
     // return () => ctx.revert();
   }, []);
 

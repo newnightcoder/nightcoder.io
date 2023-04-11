@@ -42,13 +42,25 @@ export const breakpoints = {
 export const lightTheme = {
   homeSectionBg: "transparent",
   color: "#000",
-  bg: "yellow",
+  bg: {
+    home: "#F5F5F5",
+    about: "#E8E8E8",
+    project: "#D9D9D9",
+    stack: "#CCCCCC",
+    contact: "#B3B3B3",
+  },
 };
 
 export const darkTheme = {
   homeSectionBg: "transparent",
   color: "#fff",
-  bg: "red",
+  bg: {
+    home: "#1A1A1A",
+    about: "#303030",
+    project: "#474747",
+    stack: "#5F5F5F",
+    contact: "#777777",
+  },
 };
 
 export const GlobalStyles = createGlobalStyle`

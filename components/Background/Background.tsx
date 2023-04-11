@@ -31,7 +31,8 @@ const Background = forwardRef<HTMLDivElement>((children, ref) => {
           />
         </ImgContainer>
       ) : (
-        <WordContainer>{backgroundWord}</WordContainer>
+        // <WordContainer>{backgroundWord}</WordContainer>
+        <WordContainer></WordContainer>
       )}
     </Container>
   );

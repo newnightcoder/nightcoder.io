@@ -3,7 +3,7 @@ import CustomEase from "gsap/dist/CustomEase";
 import { useContext, useRef, useState } from "react";
 import { GrGithub, GrLinkedinOption, GrTwitter } from "react-icons/gr";
 import { TransitionContext } from "../../context/TransitionContext";
-import { useIsoMorphicLayoutEffect } from "../../hooks";
+import { useIsoMorphicLayoutEffect, useWindowSize } from "../../hooks";
 import { Container, Logo } from "./SocialLinksStyled";
 gsap.registerPlugin(CustomEase);
 
@@ -12,6 +12,7 @@ const SocialLinks = () => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [tl, setTl] = useState<gsap.core.Timeline | null>(null);
   const [anim, setAnim] = useState<gsap.core.Timeline | null>(null);
+  const { width } = useWindowSize();
 
   const links = [
     {
