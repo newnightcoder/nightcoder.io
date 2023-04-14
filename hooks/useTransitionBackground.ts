@@ -24,7 +24,8 @@ const useTransitionBackground = (id: string) => {
 
   useLayoutEffect(() => {
     setColors({
-      home: isLightTheme ? lightTheme.bg.home : darkTheme.bg.home,
+      // home: isLightTheme ? lightTheme.bg.home : darkTheme.bg.home,
+      home: "transparent",
       about: isLightTheme ? lightTheme.bg.about : darkTheme.bg.about,
       projects: isLightTheme ? lightTheme.bg.project : darkTheme.bg.project,
       stack: isLightTheme ? lightTheme.bg.stack : darkTheme.bg.stack,
@@ -38,18 +39,27 @@ const useTransitionBackground = (id: string) => {
       // if (isAboutPage) {
       //   setBackgroundImg(portrait);
       // } else
-      // setBackgroundWord(id);
       switch (id) {
         case "home":
-          return setBackgroundColor(colors.home);
+          setBackgroundWord(id);
+          setBackgroundColor(colors.home);
+          break;
         case "about":
-          return setBackgroundColor(colors.about);
+          setBackgroundWord(id);
+          setBackgroundColor(colors.about);
+          break;
         case "projects":
-          return setBackgroundColor(colors.projects);
+          setBackgroundWord(id);
+          setBackgroundColor(colors.projects);
+          break;
         case "stack":
-          return setBackgroundColor(colors.stack);
+          setBackgroundWord(id);
+          setBackgroundColor(colors.stack);
+          break;
         case "contact":
-          return setBackgroundColor(colors.contact);
+          setBackgroundWord(id);
+          setBackgroundColor(colors.contact);
+          break;
         default:
           return;
       }

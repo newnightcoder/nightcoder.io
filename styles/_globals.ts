@@ -48,6 +48,11 @@ export const lightTheme = {
     project: "#D9D9D9",
     stack: "#CCCCCC",
     contact: "#B3B3B3",
+    // home: "#F8F8F8",
+    // about: "#F0F0F0",
+    // project: "#E4E4E4",
+    // stack: "#D1D1D1",
+    // contact: "#B4B4B4",
   },
 };
 
