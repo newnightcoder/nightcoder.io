@@ -1,7 +1,10 @@
 import styled from "styled-components";
+import { darkTheme, lightTheme } from "../../styles/_globals";
 
 interface Props {
   isBgDark?: boolean;
+  isLightTheme?: boolean;
+  active?: boolean;
 }
 
 const Wrapper = styled.nav`
@@ -73,14 +76,13 @@ const NavLinksContainer = styled.ul`
   display: var(--navbar-links-visibility);
   align-items: center;
   justify-content: flex-end;
-
-  // border: 1px solid green;
   & > * + * {
     margin-left: 1rem;
   }
+  // border: 1px solid green;
 `;
 
-const NavLink = styled.li`
+const NavBtnContainer = styled.li`
   height: max-content;
   transform: translateY(20px);
   opacity: 0;
@@ -90,17 +92,55 @@ const NavLink = styled.li`
 const NavBtn = styled.button<Props>`
   font-family: var(--poppins);
   font-size: 0.75rem;
-  transition: 1000ms color 1000ms;
+  transition: color 300ms;
   color: ${(props) =>
-    props.isBgDark ? "var(--text-dark)" : "var(--text-light)"};
+    props.isLightTheme ? lightTheme.color : darkTheme.color};
+`;
+
+const BtnContent = styled.span<Props>`
+  font-family: Courier, sans-serif;
+  font-size: 0.85rem;
+  text-decoration: ${(props) => (props.active ? "underline" : "none")};
+  text-decoration-color: ${(props) =>
+    props.active && props.isLightTheme
+      ? lightTheme.color
+      : props.active && !props.isLightTheme
+      ? darkTheme.color
+      : "none"};
+  transition: text-decoration-color 300ms;
+`;
+
+const DarkModeBtn = styled.button<Props>`
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid
+    ${(props) => (props.isLightTheme ? lightTheme.color : darkTheme.color)};
+  padding: 0 10px;
+  color: ${(props) =>
+    props.isLightTheme ? lightTheme.color : darkTheme.color};
+  transition: color 300ms, border-color 300ms;
+`;
+
+const LocaleBtn = styled.button`
+  font-size: 2rem;
+  position: absolute;
+  right: var(--lang-emoji-right);
+  left: var(--lang-emoji-left);
 `;
 
 export {
   Wrapper,
   NavbarContainer,
   NavLinksContainer,
-  NavLink,
+  NavBtnContainer,
   NavBtn,
+  BtnContent,
+  DarkModeBtn,
+  LocaleBtn,
   HamburgerBtn,
   BackgroundShapes,
 };

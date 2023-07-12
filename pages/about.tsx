@@ -1,38 +1,35 @@
-import { useContext, useEffect, useRef } from "react";
-import { AboutItem } from "../components";
+import { useContext, useRef } from "react";
+import { HomeAnimation } from "../animations";
+import { Background } from "../components";
+import { WordContainer } from "../components/Background/BackgroundStyled";
 import { TransitionContext } from "../context/TransitionContext";
-import {
-  useHandleRoute,
-  useIsoMorphicLayoutEffect,
-  useTransitionBackground,
-} from "../hooks";
-import {
-  AboutItemsContainer,
-  Container,
-  ContentContainer,
-  Title,
-} from "../styles/about";
+import { useHandleRoute } from "../hooks";
 import { PageContainer } from "../styles/_globals";
-import text from "./api/text.json";
 
 const About = () => {
   const pageRef = useRef<HTMLDivElement>(null);
-  const handleBackground = useTransitionBackground();
+  // const handleBackground = useTransitionBackground(pageRef?.current?.id);
   const handleRoute = useHandleRoute();
   const { setBackgroundImg, lang } = useContext(TransitionContext);
 
-  useIsoMorphicLayoutEffect(() => {
-    if (pageRef.current) return handleBackground(pageRef.current.id);
-  }, []);
+  // useIsoMorphicLayoutEffect(() => {
+  //   if (pageRef.current) return handleBackground(pageRef.current.id);
+  // }, []);
 
-  useEffect(() => {
-    return () => setBackgroundImg(null);
-  }, []);
+  // useEffect(() => {
+  //   return () => setBackgroundImg(null);
+  // }, []);
 
   return (
-    <PageContainer ref={pageRef} id="about" justify="center">
-      {/* <HomeAnimation> */}
-      <Container>
+    <PageContainer ref={pageRef} id="about" justify="start">
+      <HomeAnimation>
+        <Background>
+          <WordContainer backgroundTextColor={"rgba(230, 230, 230, 0.9)"}>
+            {/* <WordComponent word={"home"}></WordComponent> */}ABOUT
+          </WordContainer>
+        </Background>
+      </HomeAnimation>
+      {/* <Container>
         <Title>
           <h1>In a few words, i am...</h1>
         </Title>
@@ -59,15 +56,8 @@ const About = () => {
               itemText={text[lang].item.text6}
             />
           </AboutItemsContainer>
-          {/* <ImgContainer>
-            <Image
-              src={moi}
-              layout="intrinsic"
-              style={{ borderRadius: "50%" }}
-            />
-          </ImgContainer> */}
         </ContentContainer>
-      </Container>
+      </Container> */}
       {/* </HomeAnimation> */}
     </PageContainer>
   );

@@ -1,19 +1,10 @@
-import Image from "next/image";
-import Link from "next/link";
 import { MutableRefObject, useContext, useRef } from "react";
 import { TransitionContext } from "../../context/TransitionContext";
 import {
   useIsoMorphicLayoutEffect,
   useTransitionBackground,
 } from "../../hooks";
-import { createUrl, sanityClient } from "../../sanity";
-import {
-  ImgContainer,
-  ImgWrapper,
-  ProjectList,
-  ProjectsContainer,
-  ProjectTitle,
-} from "../../styles/projects";
+import { sanityClient } from "../../sanity";
 import { PageContainer } from "../../styles/_globals";
 import { IProject } from "../../types";
 
@@ -22,20 +13,20 @@ interface Props {
 }
 
 const Projects = ({ projects }: Props) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const testRef = useRef<HTMLDivElement>(null);
+  const pageRef = useRef<HTMLDivElement>(null);
+  const imgContainerRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLDivElement[]>([]);
-  const handleBackground = useTransitionBackground();
+  const handleBackground = useTransitionBackground(pageRef?.current?.id);
   const { timelinePages } = useContext(TransitionContext);
 
   useIsoMorphicLayoutEffect(() => {
-    if (ref.current) return handleBackground(ref.current.id);
+    if (pageRef.current) return handleBackground(pageRef.current.id);
   }, []);
 
   // useIsoMorphicLayoutEffect(() => {
-  //   if (testRef.current) {
+  //   if (imgContainerRef.current) {
   //     timelinePages.add(
-  //       gsap.to(testRef.current, {
+  //       gsap.to(imgContainerRef.current, {
   //         x: -1000,
   //         duration: 2,
   //       }),
@@ -65,12 +56,12 @@ const Projects = ({ projects }: Props) => {
   };
 
   return (
-    <PageContainer ref={ref} id="projects" justify="">
+    <PageContainer ref={pageRef} id="projects" justify="">
       {/* <HomeAnimation>
       </HomeAnimation> */}
-
+      {/* 
       <ProjectsContainer>
-        <ImgContainer ref={testRef}>
+        <ImgContainer ref={imgContainerRef}>
           {projects.map((p, i) => {
             return (
               <ImgWrapper
@@ -109,7 +100,7 @@ const Projects = ({ projects }: Props) => {
             );
           })}
         </ProjectList>
-      </ProjectsContainer>
+      </ProjectsContainer> */}
     </PageContainer>
   );
 };

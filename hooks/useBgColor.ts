@@ -1,14 +1,20 @@
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { TransitionContext } from "../context/TransitionContext";
 
 const useBgColor = () => {
   const [isBgDark, setIsBgDark] = useState(true);
   const { pathname } = useRouter();
   const isProjectPage = pathname === "/projects/[slug]";
+  const { isLightTheme } = useContext(TransitionContext);
 
   const handleLinkColor = useCallback(() => {
-    isProjectPage ? setIsBgDark(false) : setIsBgDark(true);
-  }, [pathname, setIsBgDark]);
+    isLightTheme
+      ? setIsBgDark(false)
+      : isProjectPage
+      ? setIsBgDark(false)
+      : setIsBgDark(true);
+  }, [pathname, setIsBgDark, isLightTheme]);
 
   useEffect(() => {
     handleLinkColor();

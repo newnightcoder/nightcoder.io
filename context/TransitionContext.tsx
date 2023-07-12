@@ -16,6 +16,8 @@ type TransitionContext = {
   setTimelineMenu?: Dispatch<SetStateAction<gsap.core.Timeline>>;
   backgroundColor: string;
   setBackgroundColor: Dispatch<SetStateAction<string>>;
+  backgroundTextColor: string;
+  setBackgroundTextColor: Dispatch<SetStateAction<string>>;
   backgroundWord: string;
   setBackgroundWord: Dispatch<SetStateAction<string>>;
   backgroundImg: StaticImageData;
@@ -33,6 +35,9 @@ type TransitionContext = {
   setDisplayMemoryGameResult?: Dispatch<SetStateAction<boolean>>;
   isMemoryGamePlayed?: boolean;
   setIsMemoryGamePlayed?: Dispatch<SetStateAction<boolean>>;
+  theme: string;
+  setTheme: Dispatch<SetStateAction<string>>;
+  isLightTheme: boolean;
 };
 interface Props extends PropsWithChildren {}
 
@@ -43,6 +48,7 @@ const TransitionProvider = ({ children }: Props) => {
     gsap.timeline({ paused: true })
   );
   const [backgroundColor, setBackgroundColor] = useState("#34d399");
+  const [backgroundTextColor, setBackgroundTextColor] = useState("");
   const [backgroundWord, setBackgroundWord] = useState("");
   const [backgroundImg, setBackgroundImg] = useState<StaticImageData>();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,6 +57,8 @@ const TransitionProvider = ({ children }: Props) => {
   const [lang, setLang] = useState("en");
   const [displayMemoryGameResult, setDisplayMemoryGameResult] = useState(false);
   const [isMemoryGamePlayed, setIsMemoryGamePlayed] = useState(true);
+  const [theme, setTheme] = useState("light");
+  const isLightTheme = theme === "light";
 
   const [timelineMenu, setTimelineMenu] = useState(() =>
     gsap.timeline({
@@ -83,6 +91,8 @@ const TransitionProvider = ({ children }: Props) => {
           timelineMenu,
           backgroundColor,
           setBackgroundColor,
+          backgroundTextColor,
+          setBackgroundTextColor,
           backgroundWord,
           setBackgroundWord,
           backgroundImg,
@@ -99,6 +109,9 @@ const TransitionProvider = ({ children }: Props) => {
           setIsMemoryGamePlayed,
           displayMemoryGameResult,
           setDisplayMemoryGameResult,
+          theme,
+          setTheme,
+          isLightTheme,
         }}
       >
         {children}

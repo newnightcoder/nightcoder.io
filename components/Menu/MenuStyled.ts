@@ -52,13 +52,12 @@ const OverflowWrapper = styled.div`
   width: 100%;
   padding-top: calc(var(--navbar-height) + 2rem);
   overflow-y: auto;
-  border: 2px solid red;
   display: grid;
   align-items: place-items-center;
+  border: 2px solid red;
 `;
 
 const BtnContainer = styled.div<Props>`
-  border: 2px solid yellow;
   height: 100%;
   width: 100%;
   position: relative;
@@ -71,6 +70,7 @@ const BtnContainer = styled.div<Props>`
   & > * + * {
     margin-top: 2rem;
   }
+  border: 2px solid yellow;
 `;
 
 const Btn = styled.button<Props>`

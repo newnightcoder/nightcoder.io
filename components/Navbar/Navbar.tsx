@@ -5,9 +5,12 @@ import { TransitionContext } from "../../context/TransitionContext";
 import { useBgColor, useHandleRoute, useNavLinks } from "../../hooks";
 import {
   BackgroundShapes,
+  BtnContent,
+  DarkModeBtn,
+  LocaleBtn,
   NavbarContainer,
   NavBtn,
-  NavLink,
+  NavBtnContainer,
   NavLinksContainer,
   Wrapper,
 } from "./NavbarStyled";
@@ -16,8 +19,8 @@ const Navbar = () => {
   const handleRoute = useHandleRoute();
   const router = useRouter();
   const { pathname, locale, query, asPath } = useRouter();
-  const { lang, setLang } = useContext(TransitionContext);
-
+  const { lang, setLang, setTheme, isLightTheme } =
+    useContext(TransitionContext);
   const isBgDark = useBgColor();
   const { navLinks, active } = useNavLinks();
 
@@ -43,63 +46,42 @@ const Navbar = () => {
           <NavLinksContainer id="ul">
             {navLinks.map((link, i) => {
               return (
-                <NavLink key={i + 1}>
+                <NavBtnContainer key={i + 1}>
                   <NavBtn
                     id={link}
                     isBgDark={isBgDark}
+                    isLightTheme={isLightTheme}
                     onClick={() => handleRoute(`/${link}`)}
                   >
                     <div>
-                      <span
-                        style={{
-                          fontFamily: "courier, sans-serif",
-                          textDecoration:
-                            active === link ? "underline" : "none",
-                          textDecorationColor:
-                            active === link && isBgDark
-                              ? "white"
-                              : active === link && !isBgDark
-                              ? "black"
-                              : "none",
-                        }}
+                      <BtnContent
+                        active={active === link}
+                        isLightTheme={isLightTheme}
                       >
                         [{i}]
-                      </span>
-                      <span
-                        style={{
-                          textDecoration:
-                            active === link ? "underline" : "none",
-                          textDecorationColor:
-                            active === link && isBgDark
-                              ? "white"
-                              : active === link && !isBgDark
-                              ? "black"
-                              : "none",
-                        }}
+                      </BtnContent>
+                      <BtnContent
+                        active={active === link}
+                        isLightTheme={isLightTheme}
                       >
                         {link}
-                      </span>
+                      </BtnContent>
                     </div>
                   </NavBtn>
-                </NavLink>
+                </NavBtnContainer>
               );
             })}
+            <DarkModeBtn
+              isLightTheme={isLightTheme}
+              onClick={() => setTheme(isLightTheme ? "dark" : "light")}
+            >
+              {isLightTheme ? "dark" : "light"}
+            </DarkModeBtn>
           </NavLinksContainer>
         </NavLinksAnimation>
-        <button
-          onClick={() => {
-            // handleLang();
-            handleLocale(locale);
-          }}
-          style={{
-            fontSize: "2rem",
-            position: "absolute",
-            right: "var(--lang-emoji-right)",
-            left: "var(--lang-emoji-left)",
-          }}
-        >
-          {locale === "en" ? <div>🥐</div> : <div>🍔</div>}
-        </button>
+        <LocaleBtn onClick={() => handleLocale(locale)}>
+          {locale === "en" ? <div>🥐</div> : <div>🍩</div>}
+        </LocaleBtn>
       </NavbarContainer>
       <BackgroundShapes />
     </Wrapper>

@@ -3,15 +3,15 @@ import { useIsoMorphicLayoutEffect, useTransitionBackground } from "../hooks";
 import { PageContainer } from "../styles/_globals";
 
 const Contact = () => {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const handleBackground = useTransitionBackground();
+  const pageRef = useRef<HTMLDivElement | null>(null);
+  const handleBackground = useTransitionBackground(pageRef?.current?.id);
 
   useIsoMorphicLayoutEffect(() => {
-    if (ref.current) return handleBackground(ref.current.id);
+    if (pageRef.current) return handleBackground(pageRef.current.id);
   }, []);
 
   return (
-    <PageContainer ref={ref} id="contact">
+    <PageContainer ref={pageRef} id="contact">
       {/* <HomeAnimation>
         <h1>CONTACT</h1>
       </HomeAnimation> */}
