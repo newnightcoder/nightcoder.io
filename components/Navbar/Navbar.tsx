@@ -80,7 +80,7 @@ const Navbar = () => {
           </NavLinksContainer>
         </NavLinksAnimation>
         <LocaleBtn onClick={() => handleLocale(locale)}>
-          {locale === "en" ? <div>🥐</div> : <div>🍔</div>}
+          {locale === "en" ? <div>🥐</div> : <div>🍩</div>}
         </LocaleBtn>
       </NavbarContainer>
       <BackgroundShapes />

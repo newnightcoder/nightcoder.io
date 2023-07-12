@@ -1,65 +1,105 @@
-import Image from "next/image";
-import { useRouter } from "next/router";
 import { forwardRef, PropsWithChildren, useContext } from "react";
-import { gsap } from "../../animations/gsap";
 import { TransitionContext } from "../../context/TransitionContext";
-import { useIsoMorphicLayoutEffect } from "../../hooks";
-import { Container, ImgContainer, WordContainer } from "./BackgroundStyled";
+import { Container } from "./BackgroundStyled";
 
-interface Props extends PropsWithChildren {}
+// const Background = forwardRef<HTMLDivElement, Props>((props, ref) => {
+//   const {
+//     backgroundColor,
+//     backgroundTextColor,
+//     backgroundWord,
+//     backgroundImg,
+//     timelinePages,
+//   } = useContext(TransitionContext);
+//   const { pathname, asPath } = useRouter();
+//   const isAboutPage = pathname === "/about";
+//   // const letterRefs = useRef<HTMLDivElement[]>([]);
+//   const [isAnimDone, setIsAnimDone] = useState(true);
 
-const Background = forwardRef<HTMLDivElement>((children, ref) => {
-  const { backgroundColor, backgroundWord, backgroundImg } =
-    useContext(TransitionContext);
-  const { pathname } = useRouter();
-  const isAboutPage = pathname === "/about";
+//   const WordComponent = ({ word }: { word: string }) => {
+//     return (
+//       <Span>
+//         {word.split("").map((char, i) => (
+//           <div key={i + 1} className={"letter"}>
+//             {char}
+//           </div>
+//         ))}
+//       </Span>
+//     );
+//   };
 
-  const nodeArray = (word: string) => {
-    const arr = word.split("").map((char, i) => <div key={i + 1}>{char}</div>);
-    console.log(arr);
-    console.log("gsap array", gsap.utils.toArray(arr));
-    return arr;
-  };
+//   // if (letterRefs.current.length !== 0) {
+//   // const targets = gsap.utils.toArray(letterRefs.current);
+//   // const animText = (target) =>
+//   //   gsap.fromTo(
+//   //     target,
+//   //     {
+//   //       yPercent: -100,
+//   //     },
+//   //     { yPercent: 0, duration: 0.3, stagger: 0.1, delay: 0.15 }
+//   //   );
 
-  console.log(typeof nodeArray("test"));
+//   // useIsoMorphicLayoutEffect(() => {
+//   //   if (letterRefs.current.length !== 0) {
+//   //     const targets = gsap.utils.toArray(letterRefs?.current);
+//   //     animText(targets);
 
-  const animText = (word: string) => {
-    const targets = gsap.utils.toArray(nodeArray(word));
-    return gsap.fromTo(
-      targets,
-      {
-        y: -100,
-      },
-      { y: 0, duration: 1, stagger: 1 }
-    );
-  };
+//   //       timelinePages.add(
+//   //         // gsap.to(letterRefs.current, {
+//   //         //   x: -1000,
+//   //         //   autoAlpha: 0,
+//   //         //   duration: 1,
+//   //         //   onStart: () => setIsAnimDone(false),
+//   //         //   onComplete: () => setIsAnimDone(true),
+//   //         // }),
+//   //         // 0
+//   //         animText(targets).reverse()
+//   //       );
+//   //   }
+//   // }, [backgroundWord, pathname, asPath]);
 
-  useIsoMorphicLayoutEffect(() => {
-    animText(backgroundWord);
-  }, [backgroundWord]);
+//   return (
+//     <Container
+//       ref={ref}
+//       backgroundColor={backgroundColor}
+//       backgroundWord={backgroundWord}
+//       // backgroundTextColor={backgroundTextColor}
+//       // backgroundImg={backgroundImg}
+//     >
+//       {props.children}
+//       {/* <HomeAnimation></HomeAnimation> */}
+//       {/* {backgroundImg ? (
+//         <ImgContainer>
+//           <Image
+//             src={backgroundImg}
+//             layout="fixed"
+//             style={{ borderRadius: "50%" }}
+//             priority={false}
+//             loading="lazy"
+//           />
+//         </ImgContainer>
+//       ) : ( */}
+//       <WordContainer>
+//         <WordComponent word={backgroundWord} />
+//       </WordContainer>
+//       {/* )} */}
+//     </Container>
+//   );
+// });
+
+interface Props extends PropsWithChildren {
+  // word: string;
+  // color: string;
+}
+
+const Background = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const { children } = props;
 
   return (
-    <Container
-      ref={ref}
-      backgroundColor={backgroundColor}
-      backgroundWord={backgroundWord}
-      backgroundImg={backgroundImg}
-    >
-      {/* <HomeAnimation></HomeAnimation> */}
-      {backgroundImg ? (
-        <ImgContainer>
-          <Image
-            src={backgroundImg}
-            layout="fixed"
-            style={{ borderRadius: "50%" }}
-            priority={false}
-            loading="lazy"
-          />
-        </ImgContainer>
-      ) : (
-        <WordContainer>{backgroundWord}</WordContainer>
-        // <WordContainer></WordContainer>
-      )}
+    <Container ref={ref}>
+      {children}
+      {/* <WordContainer backgroundTextColor={color}>
+        <WordComponent word={word}></WordComponent>
+      </WordContainer> */}
     </Container>
   );
 });

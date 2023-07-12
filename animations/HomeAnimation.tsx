@@ -1,9 +1,9 @@
-import gsap from "gsap";
 import { useRouter } from "next/router";
 import { useContext, useRef, useState } from "react";
 import { TransitionContext } from "../context/TransitionContext";
 import { useIsoMorphicLayoutEffect } from "../hooks";
 import { AnimationContainer } from "../styles/home";
+import { gsap } from "./gsap";
 
 const HomeAnimation = ({ children }) => {
   const { timelinePages, isMenuOpen } = useContext(TransitionContext);
@@ -22,13 +22,14 @@ const HomeAnimation = ({ children }) => {
       gsap.set(spanref.current, {
         autoAlpha: 0,
         y: 100,
-        x: 0,
+        // x: 1000,
       });
 
       // enter animation
       gsap.to(spanref.current, {
         autoAlpha: 1,
         y: 0,
+        // x: 0,
         duration: 1,
         delay: 0.5,
       });

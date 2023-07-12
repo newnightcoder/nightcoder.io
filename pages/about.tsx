@@ -1,29 +1,34 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useRef } from "react";
+import { HomeAnimation } from "../animations";
+import { Background } from "../components";
+import { WordContainer } from "../components/Background/BackgroundStyled";
 import { TransitionContext } from "../context/TransitionContext";
-import {
-  useHandleRoute,
-  useIsoMorphicLayoutEffect,
-  useTransitionBackground,
-} from "../hooks";
+import { useHandleRoute } from "../hooks";
 import { PageContainer } from "../styles/_globals";
 
 const About = () => {
   const pageRef = useRef<HTMLDivElement>(null);
-  const handleBackground = useTransitionBackground(pageRef?.current?.id);
+  // const handleBackground = useTransitionBackground(pageRef?.current?.id);
   const handleRoute = useHandleRoute();
   const { setBackgroundImg, lang } = useContext(TransitionContext);
 
-  useIsoMorphicLayoutEffect(() => {
-    if (pageRef.current) return handleBackground(pageRef.current.id);
-  }, []);
+  // useIsoMorphicLayoutEffect(() => {
+  //   if (pageRef.current) return handleBackground(pageRef.current.id);
+  // }, []);
 
-  useEffect(() => {
-    return () => setBackgroundImg(null);
-  }, []);
+  // useEffect(() => {
+  //   return () => setBackgroundImg(null);
+  // }, []);
 
   return (
-    <PageContainer ref={pageRef} id="about" justify="center">
-      {/* <HomeAnimation> */}
+    <PageContainer ref={pageRef} id="about" justify="start">
+      <HomeAnimation>
+        <Background>
+          <WordContainer backgroundTextColor={"rgba(230, 230, 230, 0.9)"}>
+            {/* <WordComponent word={"home"}></WordComponent> */}ABOUT
+          </WordContainer>
+        </Background>
+      </HomeAnimation>
       {/* <Container>
         <Title>
           <h1>In a few words, i am...</h1>

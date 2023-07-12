@@ -3,27 +3,34 @@ import styled from "styled-components";
 
 interface Props {
   backgroundColor?: string;
+  backgroundTextColor?: string;
   backgroundWord?: string;
   backgroundImg?: StaticImageData;
 }
 
 const Container = styled.div<Props>`
-  min-height: 100vh;
+  // min-height: 100vh;
+  height: calc(100vh - var(--navbar-height));
   width: 100%;
-  position: fixed;
-  inset: 0;
-  padding-top: var(--navbar-height);
-  background: ${(props) => props.backgroundColor};
+  position: absolute;
+  top: 0;
+  // inset: 0;
+  // padding-top: var(--navbar-height);
+  // background: ${(props) => props.backgroundColor};
+  // background: red;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: -1;
-  transition: background-color 300ms, color 300ms;
+  transition: background-color 300ms;
+  border: 2px solid black;
 `;
 
 const WordContainer = styled.div<Props>`
-  height: calc(100% - var(--navbar-height));
+  height: calc(100vh - var(--navbar-height));
+  height: 100%;
   width: 100%;
+  width: max-content;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,14 +38,13 @@ const WordContainer = styled.div<Props>`
   font-size: 40vmin;
   font-weight: 700;
   letter-spacing: -5px;
-  line-height: 100vh;
-  transform: scale(1, 3);
+  // line-height: 100vh;
+  // transform: scale(1, 3);
   text-transform: uppercase;
-  // color: #222;
-  // color: rgba(30, 30, 30, 0.9);
-  color: rgba(230, 230, 230, 0.9);
-  opacity: 0;
-  // border: 1px solid yellow;
+  color: ${(props) => props.backgroundTextColor};
+  transition: color 300ms;
+  // opacity: 0;
+  border: 5px solid blue;
 `;
 
 const ImgContainer = styled.div`

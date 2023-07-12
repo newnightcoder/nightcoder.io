@@ -7,8 +7,9 @@ import {
 } from "react";
 import { ThemeProvider } from "styled-components";
 import { gsap } from "../animations/gsap";
-import { Background, Layout, Loader } from "../components";
+import { Layout, Loader } from "../components";
 import { useIsoMorphicLayoutEffect } from "../hooks";
+import { Span } from "../styles/home";
 import { darkTheme, GlobalStyles, lightTheme } from "../styles/_globals";
 import { TransitionContext } from "./TransitionContext";
 
@@ -17,27 +18,61 @@ import { TransitionContext } from "./TransitionContext";
 // }
 
 interface Props extends PropsWithChildren {}
+interface WordProps {
+  word: string;
+}
 
 const TransitionLayout = ({ children }: Props) => {
   const [isLoading, setisLoading] = useState(true);
   const [nextChildren, setNextChildren] = useState(children);
   const { isLightTheme } = useContext(TransitionContext);
+  const [isAnimDone, setIsAnimDone] = useState(true);
 
   const {
     timelinePages,
     timelineMenu,
     backgroundColor,
+    backgroundTextColor,
     backgroundWord,
     backgroundImg,
     isMenuOpen,
   } = useContext(TransitionContext);
   const layoutRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
-  const sections = ["/", "/about", "/projects", "/stack", "/contact"];
-  // const handleRoute = useHandleRoute();
-  // const wrap = gsap.utils.wrap(0, sections.length);
-  // const [currentIndex, setCurrentIndex] = useState(0);
-  // const [isAnimating, setIsAnimating] = useState(false);
+  const wordRef = useRef<HTMLDivElement>(null);
+  const letterRefs = useRef<HTMLDivElement[]>([]);
+
+  const WordComponent = ({ word }: { word: string }) => {
+    const charRefs = useRef<HTMLDivElement[]>([]);
+
+    return (
+      <Span ref={wordRef}>
+        {word.split("").map((char, i) => (
+          <div key={i + 1} className={"letter"}>
+            {char}
+          </div>
+        ))}
+      </Span>
+    );
+  };
+
+  // const WordComponent = forwardRef<HTMLDivElement[], WordProps>(
+  //   (props, ref) => {
+  //     const charRefs = useRef<HTMLDivElement[]>([]);
+
+  //     useImperativeHandle(ref, () => charRefs.current);
+
+  //     return (
+  //       <>
+  //         {props.word.split("").map((char, i) => (
+  //           <div key={i + 1} ref={(el) => (charRefs.current[i] = el)}>
+  //             {char}
+  //           </div>
+  //         ))}
+  //       </>
+  //     );
+  //   }
+  // );
 
   const transitionPages = useCallback(() => {
     if (children === nextChildren) return;
@@ -77,29 +112,19 @@ const TransitionLayout = ({ children }: Props) => {
     }
   }, [layoutRef, bgRef, isMenuOpen, backgroundColor, gsap]);
 
-  // const goToNextSection = (index: number, direction: number) => {
-  //   index = wrap(index);
-  //   // setIsAnimating(true);
-  //   if (direction === 1) {
-  //     handleRoute(sections[index + 1]);
-  //     setCurrentIndex(index + 1);
-  //   } else if (direction === -1) {
-  //     handleRoute(sections[index - 1]);
-  //     setCurrentIndex(index - 1);
-  //   }
-  //   // setIsAnimating(false);
-  // };
-
-  // useIsoMorphicLayoutEffect(() => {
-  //   Observer.create({
-  //     type: "wheel, touch",
-  //     wheelSpeed: 0.5,
-  //     // scrollSpeed:0.5,
-  //     onDown: () => goToNextSection(currentIndex, 1),
-  //     onUp: () => goToNextSection(currentIndex, -1),
-  //     tolerance: 200,
-  //   });
-  // }, [currentIndex]);
+  const transitionBgWord = useCallback(() => {
+    if (bgRef && letterRefs.current.length !== 0 && backgroundWord) {
+      const targets: HTMLDivElement[] = gsap.utils.toArray(letterRefs.current);
+      // animText(targets);
+      gsap.fromTo(
+        targets,
+        {
+          yPercent: -100,
+        },
+        { yPercent: 0, duration: 0.3, stagger: 0.1 }
+      );
+    }
+  }, [bgRef, letterRefs, backgroundWord]);
 
   useIsoMorphicLayoutEffect(() => {
     transitionPages();
@@ -107,27 +132,62 @@ const TransitionLayout = ({ children }: Props) => {
 
   useIsoMorphicLayoutEffect(() => {
     transitionBackground();
-  }, [backgroundColor, backgroundWord, backgroundImg, isMenuOpen]);
+    // transitionBgWord();
+  }, [backgroundColor, isMenuOpen]);
 
-  useIsoMorphicLayoutEffect(() => {
-    if (bgRef.current) {
-      // if (bgRef.current.firstElementChild) {
-      //   const text = bgRef.current.firstElementChild.textContent.split("");
-      //   console.log(text);
-      //   const textDivs = [];
-      //   text.forEach((letter) => {
-      //     textDivs.push(<div>{letter}</div>);
-      //   });
-      //   console.log(textDivs);
-      // gsap.to(textDivs, {
-      //   y: -150,
-      //   duration: 1,
-      //   stagger: 1,
-      //   delay: 2,
-      // });
-      // }
-    }
-  }, []);
+  // useIsoMorphicLayoutEffect(() => {
+  //   // if (letterRefs.current.length !== 0 && isAnimDone) {
+  //   if (wordRef.current && isAnimDone) {
+  //     const target = wordRef.current;
+  //     const targets: HTMLDivElement[] = gsap.utils.toArray(wordRef.current);
+  //     // animText(targets);
+  //     const tl = gsap.timeline();
+  //     tl.set(target, {
+  //       yPercent: -200,
+  //     }).to(target, {
+  //       yPercent: 0,
+  //       duration: 0.3,
+  //       // stagger: 0.1,
+  //     });
+
+  //     if (!isMenuOpen) {
+  //       timelinePages.add(
+  //         gsap.to(target, {
+  //           yPercent: -200,
+  //           duration: 0.3,
+  //           // stagger: 0.1,
+  //           onStart: () => {
+  //             // console.log("starting anim on word:", backgroundWord);
+  //             setIsAnimDone(false);
+  //           },
+  //           onComplete: () => {
+  //             // console.log("anim completed on word:", backgroundWord);
+  //             setIsAnimDone(true);
+  //           },
+  //         })
+  //       );
+  //     }
+  //   }
+  // }, [wordRef, isAnimDone, isMenuOpen]);
+
+  // useIsoMorphicLayoutEffect(() => {
+  //   if (wordRef.current) {
+  //     gsap.from(".letter", {
+  //       yPercent: -200,
+  //       stagger: 0.2,
+  //       duration: 0.5,
+  //     });
+  //     if (children === nextChildren) {
+  //       timelinePages.add(
+  //         gsap.to(".letter", {
+  //           yPercent: 200,
+  //           stagger: 0.1,
+  //           duration: 0.5,
+  //         })
+  //       );
+  //     }
+  //   }
+  // }, [children, nextChildren]);
 
   return (
     <ThemeProvider theme={isLightTheme ? lightTheme : darkTheme}>
@@ -136,7 +196,14 @@ const TransitionLayout = ({ children }: Props) => {
         <Loader set={setisLoading} />
       ) : (
         <Layout ref={layoutRef}>
-          <Background ref={bgRef} />
+          {/* <Background ref={bgRef}>
+            <WordContainer
+              ref={wordRef}
+              backgroundTextColor={backgroundTextColor}
+            >
+              <WordComponent word={backgroundWord} />
+            </WordContainer>
+          </Background> */}
           {nextChildren}
         </Layout>
       )}

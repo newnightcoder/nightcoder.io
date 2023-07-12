@@ -1,22 +1,35 @@
 import styled from "styled-components";
 
 const HomeSection = styled.div`
-  min-height: 400px;
+  min-height: 500px;
   height: 100vh;
   width: inherit;
-  padding: 0 4vw;
+  padding: 2vh 4vw;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  // color: var(--text-dark);
+  align-items: center;
   color: ${({ theme }) => theme.color};
-  background-color: ${({ theme }) => theme.homeSectionBg};
+  // background-color: ${({ theme }) => theme.homeSectionBg};
   font-family: var(--poppins);
   z-index: 10;
-  pointer-events: none;
   position: relative;
   transition: color 300ms, background-color 300ms;
   // border: 5px solid green;
+`;
+
+const Header = styled.header`
+  width: var(--header-width);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 2vh;
+  font-weight: 800;
+  font-size: var(--fontsize-header);
+  line-height: var(--line-height-header);
+  // z-index: 36;
+  // border: 1px solid red;
 `;
 
 const Section = styled.div`
@@ -29,7 +42,8 @@ const Section = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: var(--text-dark);
+  color: ${({ theme }) => theme.color};
+  transition: color 300ms, background-color 300ms;
   font-family: var(--poppins);
   border: 2px solid yellow;
 `;
@@ -52,9 +66,10 @@ const MoreBtn = styled.button<Props>`
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  color: ${({ theme }) => theme.color};
+  transition: color 300ms, background-color 300ms;
   /* background: ${(props) =>
     `linear-gradient(${props.bg}, ${props.bg}) padding-box, var(--gradient-blue) border-box`};  */
-  // border: 1px solid transparent;
   border-image: ${(props) =>
     props.color === "blue"
       ? "var(--gradient-blue) 1"
@@ -92,20 +107,6 @@ const BtnText = styled.span`
   white-space: nowrap;
 `;
 
-const Header = styled.header`
-  width: var(--header-width);
-  display: flex;
-  flex-direction: column;
-  // align-items: var(--align-header);
-  align-items: flex-start;
-  justify-content: center;
-  font-weight: 800;
-  font-size: var(--fontsize-header);
-  line-height: var(--line-height-header);
-  z-index: 6;
-  // border: 1px solid red;
-`;
-
 const Hero = styled.div`
   height: 100%;
   width: 100%;
@@ -124,8 +125,13 @@ const Hero = styled.div`
   pointer-events: auto;
 `;
 
-const Span = styled.span`
+const Span = styled.div`
   white-space: nowrap;
+  display: flex;
+  gap: 10px;
+  overflow: hidden;
+  z-index: 1000;
+  // border: 1px solid red;
 `;
 
 const GradientBlue = styled.span`
@@ -146,7 +152,7 @@ const AnimationContainer = styled.div`
   visibility: hidden;
   opacity: 0;
   transform: translateY(4rem);
-  // border: 10px solid yellow;
+  border: 10px solid yellow;
 `;
 
 export {

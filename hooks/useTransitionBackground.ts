@@ -12,6 +12,7 @@ import { darkTheme, lightTheme } from "../styles/_globals";
 const useTransitionBackground = (id: string) => {
   const {
     setBackgroundColor,
+    setBackgroundTextColor,
     setBackgroundWord,
     setBackgroundImg,
     isLightTheme,
@@ -20,45 +21,63 @@ const useTransitionBackground = (id: string) => {
   const { pathname } = useRouter();
   const isAboutPage = pathname === "/about";
 
-  const [colors, setColors] = useState(null);
+  const [bgColors, setBgColors] = useState(null);
+  const [bgTextColors, setBgTextColors] = useState(null);
 
   useLayoutEffect(() => {
-    setColors({
+    setBgColors({
       // home: isLightTheme ? lightTheme.bg.home : darkTheme.bg.home,
-      home: "transparent",
+      home: isLightTheme ? lightTheme.bg.home : darkTheme.bg.home,
       about: isLightTheme ? lightTheme.bg.about : darkTheme.bg.about,
       projects: isLightTheme ? lightTheme.bg.project : darkTheme.bg.project,
       stack: isLightTheme ? lightTheme.bg.stack : darkTheme.bg.stack,
       contact: isLightTheme ? lightTheme.bg.contact : darkTheme.bg.contact,
     });
+    setBgTextColors({
+      // home: isLightTheme ? lightTheme.bg.home : darkTheme.bg.home,
+      home: isLightTheme ? lightTheme.bgText.home : darkTheme.bgText.home,
+      about: isLightTheme ? lightTheme.bgText.about : darkTheme.bgText.about,
+      projects: isLightTheme
+        ? lightTheme.bgText.project
+        : darkTheme.bgText.project,
+      stack: isLightTheme ? lightTheme.bgText.stack : darkTheme.bgText.stack,
+      contact: isLightTheme
+        ? lightTheme.bgText.contact
+        : darkTheme.bgText.contact,
+    });
   }, [isLightTheme]);
 
   const handleBackground = useCallback(
     (id: string) => {
-      if (colors === null) return;
+      if (bgColors === null || bgTextColors === null) return;
       // if (isAboutPage) {
       //   setBackgroundImg(portrait);
       // } else
       switch (id) {
         case "home":
           setBackgroundWord(id);
-          setBackgroundColor(colors.home);
+          setBackgroundColor(bgColors.home);
+          setBackgroundTextColor(bgTextColors.home);
           break;
         case "about":
           setBackgroundWord(id);
-          setBackgroundColor(colors.about);
+          setBackgroundColor(bgColors.home);
+          setBackgroundTextColor(bgTextColors.home);
           break;
         case "projects":
           setBackgroundWord(id);
-          setBackgroundColor(colors.projects);
+          setBackgroundColor(bgColors.projects);
+          setBackgroundTextColor(bgTextColors.home);
           break;
         case "stack":
           setBackgroundWord(id);
-          setBackgroundColor(colors.stack);
+          setBackgroundColor(bgColors.stack);
+          setBackgroundTextColor(bgTextColors.home);
           break;
         case "contact":
           setBackgroundWord(id);
-          setBackgroundColor(colors.contact);
+          setBackgroundColor(bgColors.contact);
+          setBackgroundTextColor(bgTextColors.home);
           break;
         default:
           return;
@@ -66,18 +85,20 @@ const useTransitionBackground = (id: string) => {
     },
     [
       setBackgroundColor,
+      setBackgroundTextColor,
       setBackgroundWord,
       setBackgroundImg,
       id,
-      colors,
+      bgColors,
+      bgTextColors,
       isAboutPage,
     ]
   );
 
   useEffect(() => {
     // appeler handleBackground seulement si colors est initialisé
-    if (colors !== null) return handleBackground(id);
-  }, [id, colors, handleBackground]);
+    if (bgColors !== null) return handleBackground(id);
+  }, [id, bgColors, handleBackground]);
 
   return handleBackground;
 };
