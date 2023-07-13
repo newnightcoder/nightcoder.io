@@ -22,6 +22,7 @@ const HomeAnimation = ({ children }) => {
       gsap.set(spanref.current, {
         autoAlpha: 0,
         y: 100,
+        x: 0,
         // x: 1000,
       });
 

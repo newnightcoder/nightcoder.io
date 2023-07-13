@@ -3,9 +3,11 @@ import { GetStaticProps, GetStaticPropsContext } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext, useState } from "react";
+import { HandleProjectTitle } from ".";
 import { HomeAnimation } from "../../animations";
 import { Badge } from "../../components";
 import { TransitionContext } from "../../context/TransitionContext";
+import { useWindowSize } from "../../hooks";
 import { createUrl, sanityClient } from "../../sanity";
 import {
   AboutContainer,
@@ -28,8 +30,10 @@ import { IProject } from "../../types";
 import text from "../api/text.json";
 
 const Project = ({ project }: { project: IProject }) => {
-  const { lang } = useContext(TransitionContext);
+  const { lang, isLightTheme } = useContext(TransitionContext);
+  const { width } = useWindowSize();
   const [showNextImg, setShowNextImg] = useState(false);
+  const imgStyle = { border: "5px solid #f5f5f5" };
 
   return (
     <ProjectPage
@@ -47,17 +51,21 @@ const Project = ({ project }: { project: IProject }) => {
         <Image
           src={createUrl(project.image).url()}
           layout="fill"
+          // objectFit={width > breakpoints.mdNumber ? "cover" : "contain"}
           objectFit="contain"
           quality={100}
           alt="project thumbnail"
+          style={imgStyle}
         />
       </ImgContainer>
       <TitleContainer>
         <HomeAnimation>
-          <Title>{project.title}</Title>
+          <Title>
+            <HandleProjectTitle projectTitle={project.title} fontSize="2rem" />
+          </Title>
         </HomeAnimation>
         <UnderTitle>{project.undertitle}</UnderTitle>
-        <BadgeContainer>
+        <BadgeContainer isLightTheme={isLightTheme}>
           {project.stack.map((name, i) => (
             <Badge key={i + 1} name={name} size={20} style={"flat-square"} />
           ))}
@@ -65,7 +73,7 @@ const Project = ({ project }: { project: IProject }) => {
       </TitleContainer>
 
       <AboutContainer>
-        <AboutTitle>
+        <AboutTitle isLightTheme={isLightTheme}>
           <AboutSpan>{text[lang].projectAbout.about}</AboutSpan>
           <AboutSpan translateY={30}>{text[lang].projectAbout.this}</AboutSpan>
           <AboutSpan translateY={60}>
@@ -88,11 +96,16 @@ const Project = ({ project }: { project: IProject }) => {
       <div style={{ border: "1px solid black", gridArea: "ok" }}>ok ok</div>
       {project.next ? (
         <NextContainer>
-          <AnimatedSpanNext animation={"slide1"}>next project</AnimatedSpanNext>
-          <AnimatedSpanNext animation={"slide2"}>next project</AnimatedSpanNext>
+          <AnimatedSpanNext isLightTheme={isLightTheme} animation={"slide1"}>
+            next project
+          </AnimatedSpanNext>
+          <AnimatedSpanNext isLightTheme={isLightTheme} animation={"slide2"}>
+            next project
+          </AnimatedSpanNext>
           <Link href={`${project.next?.slug.current}`} passHref legacyBehavior>
             <NextTitle
               showNextImg={showNextImg}
+              isLightTheme={isLightTheme}
               onMouseOver={() => setShowNextImg(true)}
               onMouseOut={() => setShowNextImg(false)}
             >

@@ -1,16 +1,42 @@
+import Image from "next/image";
+import Link from "next/link";
 import { MutableRefObject, useContext, useRef } from "react";
 import { TransitionContext } from "../../context/TransitionContext";
 import {
   useIsoMorphicLayoutEffect,
   useTransitionBackground,
 } from "../../hooks";
-import { sanityClient } from "../../sanity";
+import { createUrl, sanityClient } from "../../sanity";
+import {
+  ImgContainer,
+  ImgWrapper,
+  ProjectList,
+  ProjectsContainer,
+  ProjectTitle,
+} from "../../styles/projects";
 import { PageContainer } from "../../styles/_globals";
 import { IProject } from "../../types";
 
 interface Props {
   projects: IProject[];
 }
+
+export const HandleProjectTitle = ({ projectTitle, fontSize }) => {
+  return (
+    <>
+      {projectTitle.toLowerCase() === "arkanoid mini" ? (
+        <>
+          Arkanoid
+          <sup>
+            <span style={{ fontSize }}>mini</span>
+          </sup>
+        </>
+      ) : (
+        projectTitle
+      )}
+    </>
+  );
+};
 
 const Projects = ({ projects }: Props) => {
   const pageRef = useRef<HTMLDivElement>(null);
@@ -57,9 +83,6 @@ const Projects = ({ projects }: Props) => {
 
   return (
     <PageContainer ref={pageRef} id="projects" justify="">
-      {/* <HomeAnimation>
-      </HomeAnimation> */}
-      {/* 
       <ProjectsContainer>
         <ImgContainer ref={imgContainerRef}>
           {projects.map((p, i) => {
@@ -94,13 +117,18 @@ const Projects = ({ projects }: Props) => {
                   onMouseOver={() => handleProjectAnimation(imgRef, i, p, true)}
                   onMouseOut={() => handleProjectAnimation(imgRef, i, p, false)}
                 >
-                  <div>{p.title}</div>
+                  <div>
+                    <HandleProjectTitle
+                      projectTitle={p.title}
+                      fontSize={"1.5rem"}
+                    />
+                  </div>
                 </ProjectTitle>
               </Link>
             );
           })}
         </ProjectList>
-      </ProjectsContainer> */}
+      </ProjectsContainer>
     </PageContainer>
   );
 };

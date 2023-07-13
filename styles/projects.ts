@@ -69,11 +69,11 @@ const ProjectTitle = styled.a<Props>`
   font-weight: 600;
   cursor: pointer;
   color: transparent;
-  text-stroke: 0.01em white;
-  -webkit-text-stroke: 0.01em white;
+  text-stroke: 0.02em ${({ theme }) => theme.color};
+  -webkit-text-stroke: 0.02em ${({ theme }) => theme.color};
   transition: all 300ms;
   &:hover {
-    color: white;
+    color: ${({ theme }) => theme.color};
   }
 `;
 

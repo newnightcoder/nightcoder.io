@@ -6,7 +6,7 @@
       "projects": "projects",
       "stack": "stack",
       "contact": "contact",
-      "back": "back"
+      "back": "back to projects"
     },
 
     "item": {
@@ -36,7 +36,7 @@
       "projects": "projets",
       "stack": "stack",
       "contact": "contact",
-      "back": "retour"
+      "back": "retour aux projets"
     },
     "item": {
       "title1": " 🌱  Fier d’être autodidacte",

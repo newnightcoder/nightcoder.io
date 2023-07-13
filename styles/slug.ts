@@ -5,11 +5,12 @@ interface Props {
   translateY?: number;
   animation?: string;
   showNextImg?: boolean;
+  isLightTheme?: boolean;
 }
 
 const ProjectPage = styled.div<Props>`
   padding-top: calc(var(--navbar-height) + 60px);
-  // background: ${(props) => props.bgColor};
+  background: ${({ theme }) => theme.bg.home};
   position: relative;
   font-family: var(--poppins);
   display: grid;
@@ -20,8 +21,7 @@ const ProjectPage = styled.div<Props>`
   grid-row-gap: 10px;
   min-height: 100vh;
   width: 100%;
-  color: black;
-  background: rgb(245, 245, 245);
+  color: ${({ theme }) => theme.color};
   contain: content;
 `;
 
@@ -31,10 +31,10 @@ const ImgContainer = styled.div`
   height: 33vmax;
   width: 100%;
   position: relative;
-  border: 1px solid red;
+  // border: 1px solid red;
 `;
 
-const BadgeContainer = styled.div`
+const BadgeContainer = styled.div<Props>`
   grid-area: shields;
   display: flex;
   flex-wrap: wrap;
@@ -42,7 +42,9 @@ const BadgeContainer = styled.div`
   height: max-content;
   justify-content: flex-start;
   padding: 10px 5px;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid
+    ${(props) =>
+      props.isLightTheme ? "rgba(0, 0, 0, 0.15)" : "rgba(255,255,255,0.2)"};
 `;
 
 const TitleContainer = styled.div`
@@ -52,6 +54,7 @@ const TitleContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  // border: 1px solid red;
 `;
 
 const Title = styled.h1`
@@ -74,7 +77,7 @@ const AboutContainer = styled.div`
   flex-direction: var(--flex-direction-about-container);
 `;
 
-const AboutTitle = styled.div`
+const AboutTitle = styled.div<Props>`
   position: var(--position-about-title);
   top: var(--navbar-height);
   width: var(--width-about-title);
@@ -87,7 +90,8 @@ const AboutTitle = styled.div`
   font-size: 3.75rem;
   font-weight: 800;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.125);
+  color: ${(props) =>
+    props.isLightTheme ? "rgba(0, 0, 0, 0.125)" : "rgba(250, 250, 250, 0.125)"};
 `;
 
 const AboutSpan = styled.span<Props>`
@@ -104,7 +108,7 @@ const DescriptionContainer = styled.div`
 const BackLink = styled.a`
   position: fixed;
   top: calc(var(--navbar-height) + 15px);
-  right: 15px;
+  left: 0;
   height: 30px;
   padding: 0 20px;
   font-size: 0.75rem;
@@ -113,7 +117,7 @@ const BackLink = styled.a`
   justify-content: center;
   color: black;
   z-index: 10;
-  // color: rgb(245, 245, 245);
+  color: ${({ theme }) => theme.color};
   // background: black;
   // border: 1px solid rgba(0, 0, 0, 0.15);
 `;
@@ -131,16 +135,14 @@ const NextContainer = styled.div`
 `;
 
 const AnimatedSpanNext = styled.span<Props>`
-  // display: block;
   position: absolute;
-  // font-size: 7vw;
   font-size: 70vmin;
   height: 100%;
-  // width: 55vmax;
   width: max-content;
   font-weight: 200;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.1);
+  color: ${(props) =>
+    props.isLightTheme ? "rgba(0, 0, 0, 0.1)" : "rgba(255, 255, 255, 0.1)"};
   white-space: nowrap;
   line-height: 100vh;
   // transform: scale(1, 3);
@@ -173,7 +175,11 @@ const NextTitle = styled.a<Props>`
   z-index: 50;
   transition: background 300ms;
   background: ${(props) =>
-    props.showNextImg ? "rgb(245, 245, 245)" : "transparent"};
+    props.showNextImg && props.isLightTheme
+      ? "#f5f5f5"
+      : props.showNextImg && !props.isLightTheme
+      ? "#1a1a1a"
+      : "transparent"};
   // border: 2px solid green;
 `;
 

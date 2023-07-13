@@ -45,7 +45,7 @@ const Section = styled.div`
   color: ${({ theme }) => theme.color};
   transition: color 300ms, background-color 300ms;
   font-family: var(--poppins);
-  border: 2px solid yellow;
+  // border: 2px solid yellow;
 `;
 
 interface Props {
@@ -152,7 +152,7 @@ const AnimationContainer = styled.div`
   visibility: hidden;
   opacity: 0;
   transform: translateY(4rem);
-  border: 10px solid yellow;
+  // border: 10px solid yellow;
 `;
 
 export {

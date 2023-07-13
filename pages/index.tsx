@@ -237,7 +237,7 @@ const HomePage = () => {
 
       <Section className="section" data-color={dataColor.sectionAbout}>
         <span style={{ fontWeight: "200", fontSize: "1rem" }}>01</span>
-        <h2 style={{ fontWeight: "400", fontSize: "2rem" }}>about me</h2>
+        <h2 style={{ fontWeight: "800", fontSize: "2rem" }}>about me</h2>
         <div
           style={{
             fontWeight: "200",
@@ -256,7 +256,7 @@ const HomePage = () => {
           bg={dataColor.sectionAbout}
           onClick={() => handleRoute("/about")}
         >
-          <BtnText>more info</BtnText>
+          <BtnText>more...</BtnText>
         </MoreBtn>
       </Section>
       <Section className="section" data-color={dataColor.sectionProjects}>
@@ -270,7 +270,7 @@ const HomePage = () => {
           bg={dataColor.sectionProjects}
           onClick={() => handleRoute("/projects")}
         >
-          <BtnText>more info</BtnText>
+          <BtnText>more...</BtnText>
         </MoreBtn>
       </Section>
       <Section className="section" data-color={dataColor.sectionContact}>
@@ -282,7 +282,7 @@ const HomePage = () => {
           bg={dataColor.sectionContact}
           onClick={() => handleRoute("/contact")}
         >
-          <BtnText>more info</BtnText>
+          <BtnText>more...</BtnText>
         </MoreBtn>
       </Section>
     </PageContainer>

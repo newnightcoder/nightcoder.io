@@ -21,7 +21,7 @@ export const PageContainer = styled.div<Props>`
   align-items: center;
   z-index: 0;
   justify-content: ${(props) => props.justify};
-  // background-color: ${(props) => props.background};
+  background-color: ${({ theme }) => theme.bg.home};
   // border: 5px solid red;
 `;
 
@@ -41,20 +41,14 @@ export const breakpoints = {
 };
 
 export const lightTheme = {
-  homeSectionBg: "red",
-  color: "#000",
+  homeSectionBg: "transparent",
+  color: "#1A1A1A",
   bg: {
-    // home: "#F5F5F5",
-    home: "green",
+    home: "#F5F5F5",
     about: "#E8E8E8",
     project: "#D9D9D9",
     stack: "#CCCCCC",
     contact: "#B3B3B3",
-    // home: "#F8F8F8",
-    // about: "#F0F0F0",
-    // project: "#E4E4E4",
-    // stack: "#D1D1D1",
-    // contact: "#B4B4B4",
   },
   bgText: {
     home: "rgba(230, 230, 230, 0.9)",
@@ -67,14 +61,9 @@ export const lightTheme = {
 
 export const darkTheme = {
   homeSectionBg: "transparent",
-  color: "#fff",
+  color: "#F5F5F5",
   bg: {
-    // home: "#1A1A1A",
-    // about: "#303030",
-    // project: "#474747",
-    // stack: "#5F5F5F",
-    // contact: "#777777",
-    home: "#282828",
+    home: "#1A1A1A",
     about: "#4E4E4E",
     project: "#5A5A5A",
     stack: "#6A6A6A",
@@ -132,6 +121,7 @@ html {
   --project-columns: 1fr;
   --project-areas: "title"
                    "img"
+                   "shields"
                    "about" 
                    "som"
                    "ok"

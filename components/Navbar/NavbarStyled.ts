@@ -38,7 +38,7 @@ const NavbarContainer = styled.div<Props>`
 `;
 
 const BackgroundShapes = styled.span`
-  height: 7%;
+  height: 3%;
   width: 100%;
   position: absolute;
   bottom: 0;
