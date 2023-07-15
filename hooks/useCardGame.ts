@@ -29,7 +29,7 @@ const useCardGame = () => {
   const [flippedResultCards, setFlippedResultCards] = useState<
     HTMLDivElement[]
   >([]);
-  const [wins, setWins] = useState(10);
+  const [wins, setWins] = useState(0);
   const integrationArray = Object.entries(integration).map((entry) => ({
     name: entry[0],
     jsx: entry[1],

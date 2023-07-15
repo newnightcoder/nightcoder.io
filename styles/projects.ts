@@ -6,6 +6,7 @@ const ProjectsContainer = styled.div`
   width: 100%;
   padding: 0 5vw;
   display: flex;
+  flex-direction: var(--projects-container-direction);
   justify-content: var(--projects-container-justify);
   // border: 10px solid yellow;
 `;
@@ -55,9 +56,6 @@ const ProjectList = styled.div`
   flex-direction: column;
   justify-content: center;
   z-index: 100;
-  // overflow-wrap: break-word;
-  // position: relative;
-  // right: 0;
   // border: 1px solid pink;
 `;
 

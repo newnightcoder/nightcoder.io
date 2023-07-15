@@ -1,10 +1,19 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { GameCard, Results } from "../components";
+import { GameHeading } from "../components/GameCard/GameCardStyled";
 import { TransitionContext } from "../context/TransitionContext";
 import {
   useCardGame,
   useIsoMorphicLayoutEffect,
   useTransitionBackground,
 } from "../hooks";
+import { ICardElement } from "../hooks/useCardGame";
+import {
+  BtnContainer,
+  CardContainer,
+  ChoiceBtn,
+  GameTitleContainer,
+} from "../styles/stack";
 import { PageContainer } from "../styles/_globals";
 
 const Stack = () => {
@@ -75,21 +84,21 @@ const Stack = () => {
     setTimeout(() => {
       setDisplayMemoryGameResult(true);
     }, 1000);
-    // if (wins !== 18) {
-    //   setTimeout(() => {
-    //     setDisplayMemoryGameResult(false);
-    //   }, 3200);
-    // }
+    if (wins !== 18) {
+      setTimeout(() => {
+        setDisplayMemoryGameResult(false);
+      }, 3200);
+    }
   }, [wins]);
 
-  // useEffect(() => {
-  //   setCurrentRound(() => round1);
-  //   setRound(1);
-  // }, [round1]);
+  useEffect(() => {
+    setCurrentRound(() => round1);
+    setRound(1);
+  }, [round1]);
 
-  // useEffect(() => {
-  //   handleRound();
-  // }, [wins]);
+  useEffect(() => {
+    handleRound();
+  }, [wins]);
 
   // useEffect(() => {
   //   console.log("round", currentRound);
@@ -97,7 +106,7 @@ const Stack = () => {
 
   return (
     <PageContainer ref={pageRef} id="stack" justify="center">
-      {/* <GameTitleContainer ref={welcomeRef}>
+      <GameTitleContainer ref={welcomeRef}>
         welcome to <br />
         memory game
         <br /> stack edition
@@ -151,7 +160,7 @@ const Stack = () => {
           flippedResults={flippedResultCards}
           update={updateResultCardsArray}
         />
-      ) : null} */}
+      ) : null}
     </PageContainer>
   );
 };

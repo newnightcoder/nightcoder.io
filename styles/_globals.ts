@@ -112,11 +112,13 @@ html {
   --mobile-menu-display: block;
   --about-items-container-width: 100%;
   --about-items-whitespace: wrap;
-  --projects-container-justify: flex-start;
+  --projects-container-direction: column;
+  --projects-container-justify: center;
   --project-img-height: 0;
   --project-img-width: 0;
-  --project-list-width: 45vmax;
-  --project-list-height: max-content;
+  // --project-list-width: 45vmax;
+  --project-list-width: 100%;
+  --project-list-height: 100%;
   --fontsize-project-list: 9vmax;
   --project-columns: 1fr;
   --project-areas: "title"
@@ -171,6 +173,8 @@ html {
   @media screen and (min-width: ${breakpoints.md}){
     --navbar-links-visibility: flex;
     --hamburger-visibility: none;
+    --darkmode-btn-right: 5vw;
+    --darkmode-btn-left: auto;
     --lang-emoji-right: 1vw;
     --lang-emoji-left: auto;
     --navbar-padding-right: 4rem;
@@ -182,6 +186,7 @@ html {
     --mobile-menu-display: none;
     --about-items-container-width: 60vmax;
     --about-items-whitespace: nowrap;
+    --projects-container-direction: row;
     --projects-container-justify: flex-end;
     --project-img-height: 90%;
     --project-img-width: 60vmax;

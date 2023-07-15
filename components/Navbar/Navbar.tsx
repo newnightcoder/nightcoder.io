@@ -4,7 +4,6 @@ import { NavLinksAnimation } from "../../animations";
 import { TransitionContext } from "../../context/TransitionContext";
 import { useBgColor, useHandleRoute, useNavLinks } from "../../hooks";
 import {
-  BackgroundShapes,
   BtnContent,
   DarkModeBtn,
   LocaleBtn,
@@ -12,7 +11,8 @@ import {
   NavBtn,
   NavBtnContainer,
   NavLinksContainer,
-  Wrapper,
+  OptionsContainer,
+  Wrapper
 } from "./NavbarStyled";
 
 const Navbar = () => {
@@ -71,19 +71,26 @@ const Navbar = () => {
                 </NavBtnContainer>
               );
             })}
-            <DarkModeBtn
-              isLightTheme={isLightTheme}
-              onClick={() => setTheme(isLightTheme ? "dark" : "light")}
-            >
-              {isLightTheme ? "dark" : "light"}
-            </DarkModeBtn>
           </NavLinksContainer>
         </NavLinksAnimation>
-        <LocaleBtn onClick={() => handleLocale(locale)}>
-          {locale === "en" ? <div>🥐</div> : <div>🍩</div>}
-        </LocaleBtn>
+        <OptionsContainer>
+          <DarkModeBtn
+            isLightTheme={isLightTheme}
+            onClick={() => setTheme(isLightTheme ? "dark" : "light")}
+          >
+            {isLightTheme ? "dark" : "light"}
+          </DarkModeBtn>
+          <LocaleBtn onClick={() => handleLocale(locale)}>
+            {locale === "en" ? (
+              <div style={{ transform: "translateY(3px)" }}>🥐</div>
+            ) : (
+              <div style={{ transform: "translateY(3px)" }}>🍩</div>
+            )}
+          </LocaleBtn>
+        </OptionsContainer>
       </NavbarContainer>
-      <BackgroundShapes />
+
+      {/* <BackgroundShapes /> */}
     </Wrapper>
   );
 };

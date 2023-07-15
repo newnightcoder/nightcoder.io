@@ -110,7 +110,22 @@ const BtnContent = styled.span<Props>`
   transition: text-decoration-color 300ms;
 `;
 
+const OptionsContainer = styled.div`
+  width: 95px;
+  // position: fixed;
+  // top: 10px;
+  // right: 1vw;
+  // z-index: 1500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // border: 1px solid white;
+`;
+
 const DarkModeBtn = styled.button<Props>`
+  // position: absolute;
+  // right: var(--darkmode-btn-right);
+  // left: var(--darkmode-btn-left);
   height: 40px;
   width: 40px;
   border-radius: 50%;
@@ -127,9 +142,13 @@ const DarkModeBtn = styled.button<Props>`
 
 const LocaleBtn = styled.button`
   font-size: 2rem;
-  position: absolute;
-  right: var(--lang-emoji-right);
-  left: var(--lang-emoji-left);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // border: 1px solid red;
+  // position: absolute;
+  // right: var(--lang-emoji-right);
+  // left: var(--lang-emoji-left);
 `;
 
 export {
@@ -143,4 +162,5 @@ export {
   LocaleBtn,
   HamburgerBtn,
   BackgroundShapes,
+  OptionsContainer,
 };
