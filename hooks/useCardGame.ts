@@ -159,7 +159,11 @@ const useCardGame = () => {
     console.log("compare", card1, card2);
     if (card1 === card2) {
       winRound();
-    } else loseRound();
+      console.log("it's a win!");
+    } else {
+      loseRound();
+      console.log("you lost");
+    }
   }, [flippedGameCards, winRound, loseRound]);
 
   return {

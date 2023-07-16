@@ -13,6 +13,7 @@ interface HeadingProps {
   fontSize?: number;
   color?: string;
   shadow?: boolean;
+  round?: number;
 }
 
 const Card = styled.div<CardProps>`
@@ -52,11 +53,11 @@ const CardFront = styled.div<CardProps>`
   &::after {
     content: "${(props) =>
       props.round === 1
-        ? "\\01F9E0"
+        ? "\\01F9E0" // 🧠
         : props.round === 2
-        ? "\\01F441"
+        ? "\\01F47E" // 👾
         : props.round === 3
-        ? "\\01F680"
+        ? "\\01F451" // 👑
         : ""}";
     display: ${(props) => (props.isResult ? "none" : "")};
     position: absolute;
@@ -96,6 +97,7 @@ const GameHeading = styled.h1<HeadingProps>`
   font-size: ${(props) => props.fontSize}rem;
   font-family: var(--poppins);
   text-transform: uppercase;
+  text-align: center;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

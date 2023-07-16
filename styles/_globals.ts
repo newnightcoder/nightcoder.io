@@ -158,6 +158,8 @@ html {
   --gradient-blue: linear-gradient(135deg, #007cf0, #00dfd8);
   --gradient-blue-2: linear-gradient(135deg, #38BDF8, #2563EB);
   --gradient-orange: linear-gradient(135deg, #ff4d4d, #e1b106);
+  --gradient-pink: linear-gradient(135deg, rgb(236 72 153), rgb(244 63 94));
+  --gradient-green: linear-gradient(135deg, rgb(74 222 128), rgb(6 182 212));
   
   /* HEIGHT & WIDTH */
   

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 interface Props {
   displayResult?: boolean;
@@ -6,6 +6,7 @@ interface Props {
   isGamePlayed?: boolean;
   wins?: number;
   progress?: number;
+  key?: number;
 }
 
 const ResultContainer = styled.div<Props>`
@@ -29,17 +30,28 @@ const ResultContainer = styled.div<Props>`
   // visibility: visible;
   transition: opacity 500ms;
   background: ${(props) =>
-    props.isGamePlayed ? "rgba(10, 10, 10, 0.9)" : "#222"};
+    props.isGamePlayed && props.wins < 18
+      ? "rgba(10, 10, 10, 0.9)"
+      : "rgba(10, 10, 10, 1)"}; // #222
   font-family: var(--poppins);
   border: 2px solid red;
   overflow: scroll;
+`;
+
+const animateProgress = keyframes`
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 100%;
+  }
 `;
 
 const CirclePgBar = styled.div<Props>`
   height: 6rem;
   width: 6rem;
   background: conic-gradient(
-    yellow calc(${(props) => props.progress} * 1%),
+    yellow calc(${(props) => props.progress}%),
     dimgray 0%
   );
   transition: background 300ms linear;
@@ -52,8 +64,10 @@ const CirclePgBar = styled.div<Props>`
     height: 5.5rem;
     width: 5.5rem;
     border-radius: 50%;
-    background: rgba(10, 10, 10, 1);
-    // display: none;
+    background: rgba(10, 10, 10, 0.9);
+
+    display: none;
+    animation: ${animateProgress} 300ms linear forwards ${(props) => props.key};
   }
   &::after {
     content: "${(props) => props.wins}";
@@ -62,11 +76,14 @@ const CirclePgBar = styled.div<Props>`
     color: white;
     position: absolute;
   }
+
+  // animation: ${animateProgress} 1000ms linear forwards;
 `;
 
 const ResultCardContainer = styled.div`
   display: flex;
   width: 100%;
+  border: 2px solid blue;
 `;
 
 const LogoWrapper = styled.div`
@@ -122,12 +139,15 @@ const TableContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   max-width: 1100px;
+  // height: max-content;
   padding: 0 5vw;
+  border: 1px solid white;
 `;
 
 const TableColumn = styled.div`
   display: flex;
   flex-direction: column;
+  border: 1px solid pink;
 `;
 
 export {

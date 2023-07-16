@@ -111,7 +111,7 @@ const BtnContent = styled.span<Props>`
 `;
 
 const OptionsContainer = styled.div`
-  width: 95px;
+  width: 110px;
   // position: fixed;
   // top: 10px;
   // right: 1vw;

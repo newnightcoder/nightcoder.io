@@ -1,19 +1,11 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
-import { GameCard, Results } from "../components";
-import { GameHeading } from "../components/GameCard/GameCardStyled";
+import { GameBoard, GameTitle, Results } from "../components";
 import { TransitionContext } from "../context/TransitionContext";
 import {
   useCardGame,
   useIsoMorphicLayoutEffect,
   useTransitionBackground,
 } from "../hooks";
-import { ICardElement } from "../hooks/useCardGame";
-import {
-  BtnContainer,
-  CardContainer,
-  ChoiceBtn,
-  GameTitleContainer,
-} from "../styles/stack";
 import { PageContainer } from "../styles/_globals";
 
 const Stack = () => {
@@ -79,17 +71,18 @@ const Stack = () => {
     }
   }, [wins, gameCardRefs]);
 
-  useEffect(() => {
-    if (wins === 0) return;
-    setTimeout(() => {
-      setDisplayMemoryGameResult(true);
-    }, 1000);
-    if (wins !== 18) {
-      setTimeout(() => {
-        setDisplayMemoryGameResult(false);
-      }, 3200);
-    }
-  }, [wins]);
+  // useEffect(() => {
+  //   if (wins === 0) return;
+  //   setTimeout(() => {
+  //     setDisplayMemoryGameResult(true);
+  //     console.log("logging a win!");
+  //   }, 1000);
+  //   if (wins !== 18) {
+  //     setTimeout(() => {
+  //       setDisplayMemoryGameResult(false);
+  //     }, 3200);
+  //   }
+  // }, [wins]);
 
   useEffect(() => {
     setCurrentRound(() => round1);
@@ -106,51 +99,16 @@ const Stack = () => {
 
   return (
     <PageContainer ref={pageRef} id="stack" justify="center">
-      <GameTitleContainer ref={welcomeRef}>
-        welcome to <br />
-        memory game
-        <br /> stack edition
-        <BtnContainer>
-          <ChoiceBtn
-            onClick={() => welcomeRef.current.classList.add("split-screen")}
-          >
-            <span style={{ fontSize: "2rem" }}>😁</span>
-            <span style={{ textTransform: "uppercase", fontWeight: "700" }}>
-              play
-            </span>
-          </ChoiceBtn>
-          <ChoiceBtn onClick={() => skipGame()}>
-            <span style={{ fontSize: "2rem" }}>🤬</span>i really don't have time
-            for this sh*t
-          </ChoiceBtn>
-        </BtnContainer>
-      </GameTitleContainer>
-      <GameHeading fontSize={3} color={"blue"}>
-        Round {round}
-      </GameHeading>
-      <CardContainer>
-        {currentRound.map((card: ICardElement, i) => {
-          return (
-            <GameCard
-              key={i + 1}
-              ref={(el) =>
-                (gameCardRefs.current = [...gameCardRefs.current, el])
-              }
-              height="var(--memory-card-size)"
-              width="var(--memory-card-size)"
-              cardName={card.name}
-              round={round}
-              isGamePlayed={isMemoryGamePlayed}
-              onClick={() => {
-                flipCard(gameCardRefs, i);
-                compare();
-              }}
-            >
-              <div style={{ height: "100%", width: "100%" }}>{card.jsx}</div>
-            </GameCard>
-          );
-        })}
-      </CardContainer>
+      <GameTitle welcomeRef={welcomeRef} skipGame={skipGame} />
+      <GameBoard
+        round={round}
+        currentRound={currentRound}
+        gameCardRefs={gameCardRefs}
+        isMemoryGamePlayed={isMemoryGamePlayed}
+        flipCard={flipCard}
+        compare={compare}
+        wins={wins}
+      />
       {displayMemoryGameResult ? (
         <Results
           displayResult={displayMemoryGameResult}

@@ -15,7 +15,7 @@ import {
   SubHeader,
   TableColumn,
   TableContainer,
-  TechNameWrapper,
+  TechNameWrapper
 } from "./ResultsStyled";
 
 interface ResultCardInnerProps {
@@ -115,10 +115,10 @@ const Results = ({
   };
 
   const updateCirclePgBar = useCallback(() => {
-    // const duration = 200;
-    // const update = () => setProgress(() => progress + 1);
-    // const pg = setInterval(update, duration);
-    // setInterval(() => setProgress(() => progress + (wins * 100) / 18), 4);
+    const duration = 200;
+    const update = () =>
+      setProgress((prevProgress) => (prevProgress + wins * 100) / 18);
+    setInterval(update, duration);
   }, [wins, progress]);
 
   useEffect(() => {
@@ -131,7 +131,11 @@ const Results = ({
   }, [wins]);
 
   return (
-    <ResultContainer displayResult={displayResult} isGamePlayed={isGamePlayed}>
+    <ResultContainer
+      displayResult={displayResult}
+      isGamePlayed={isGamePlayed}
+      wins={wins}
+    >
       {!isGamePlayed ? (
         <>
           <StackPageHeader>
@@ -155,7 +159,7 @@ const Results = ({
           <GameHeading fontSize={5} color={"orange"} shadow={true}>
             Wins
           </GameHeading>
-          <CirclePgBar wins={wins} progress={progress} />
+          <CirclePgBar wins={wins} progress={progress} key={wins}/>
         </GameResultsHeader>
       )}
       <TableContainer>
