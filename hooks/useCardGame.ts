@@ -172,6 +172,7 @@ const useCardGame = () => {
     round3,
     flipCard,
     compare,
+    setWins,
     wins,
     flippedGameCards,
     setFlippedGameCards,

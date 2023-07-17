@@ -1,10 +1,10 @@
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { TransitionContext } from "../../context/TransitionContext";
 import useCardGame, { ICard, ICardElement } from "../../hooks/useCardGame";
+import CircleProgressBar from "./CircleProgressBar";
 import GameCard from "./GameCard";
 import { GameHeading } from "./GameCardStyled";
 import {
-  CirclePgBar,
   CloseBtn,
   CloseBtnSpan,
   GameResultsHeader,
@@ -15,7 +15,7 @@ import {
   SubHeader,
   TableColumn,
   TableContainer,
-  TechNameWrapper
+  TechNameWrapper,
 } from "./ResultsStyled";
 
 interface ResultCardInnerProps {
@@ -27,6 +27,7 @@ interface ResultsProps {
   displayResult: boolean;
   isGamePlayed: boolean;
   wins: number;
+  // setWins: Dispatch<SetStateAction<number>>;
   flipped: ICard[];
   flippedResults: HTMLDivElement[];
   update: (resultCard: HTMLDivElement) => void;
@@ -48,6 +49,7 @@ const Results = ({
   displayResult,
   isGamePlayed,
   wins,
+  // setWins,
   flipped,
   update,
   flippedResults,
@@ -72,7 +74,7 @@ const Results = ({
   const toolsRefs = useRef<HTMLDivElement[]>([]);
   const [allRefs, setAllRefs] = useState<HTMLDivElement[]>([]);
 
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(false);
 
   const backToGameScreen = () => {
     setDisplayMemoryGameResult(!displayResult);
@@ -97,13 +99,13 @@ const Results = ({
     );
     if (wonCard !== undefined) {
       console.log("allrefs", allRefs);
-
       const resultCard = allRefs.find((ref) => ref?.dataset.card === card.name);
       console.log("updated flippedResults array", flippedResults);
       update(resultCard);
       setTimeout(() => {
         resultCard?.classList.add("flip-card-x");
-        updateCirclePgBar();
+        // setWins(() => wins + 1);
+        // updateCirclePgBar();
       }, 1000);
     }
   };
@@ -114,21 +116,21 @@ const Results = ({
     } else return "";
   };
 
-  const updateCirclePgBar = useCallback(() => {
-    const duration = 200;
-    const update = () =>
-      setProgress((prevProgress) => (prevProgress + wins * 100) / 18);
-    setInterval(update, duration);
-  }, [wins, progress]);
+  // const updateCirclePgBar = useCallback(() => {
+  //   const duration = 200;
+  //   const update = () =>
+  //     setProgress((prevProgress) => (prevProgress + wins * 100) / 18);
+  //   setInterval(update, duration);
+  // }, [wins, progress]);
 
   useEffect(() => {
     if (!isGamePlayed) return;
     findCorrespondingResult(flipped[flipped.length - 1]);
   }, [flipped, allRefs]);
 
-  useEffect(() => {
-    updateCirclePgBar();
-  }, [wins]);
+  // useEffect(() => {
+  //   updateCirclePgBar();
+  // }, [wins]);
 
   return (
     <ResultContainer
@@ -159,7 +161,7 @@ const Results = ({
           <GameHeading fontSize={5} color={"orange"} shadow={true}>
             Wins
           </GameHeading>
-          <CirclePgBar wins={wins} progress={progress} key={wins}/>
+          <CircleProgressBar progress={progress} wins={wins} />
         </GameResultsHeader>
       )}
       <TableContainer>

@@ -257,6 +257,8 @@ body {
   color: inherit;
 }
 
+
+
 .project-in {
   animation: clipIn 1000ms forwards; 
   @keyframes clipIn {

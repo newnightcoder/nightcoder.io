@@ -3,7 +3,6 @@ import { ICardElement } from "../../hooks/useCardGame";
 import { CardContainer } from "../../styles/stack";
 import GameCard from "./GameCard";
 import { GameHeading } from "./GameCardStyled";
-import { CirclePgBar } from "./ResultsStyled";
 
 const GameBoard = ({
   round,
@@ -34,7 +33,6 @@ const GameBoard = ({
       <GameHeading fontSize={3} color={headingColor}>
         Round {round}
       </GameHeading>
-      <CirclePgBar progress={progress} wins={wins} />
       <CardContainer>
         {currentRound.map((card: ICardElement, i: number) => {
           return (

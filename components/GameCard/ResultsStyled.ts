@@ -1,12 +1,11 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 interface Props {
   displayResult?: boolean;
   isWon?: boolean;
   isGamePlayed?: boolean;
   wins?: number;
-  progress?: number;
-  key?: number;
+  progress?: boolean;
 }
 
 const ResultContainer = styled.div<Props>`
@@ -34,50 +33,27 @@ const ResultContainer = styled.div<Props>`
       ? "rgba(10, 10, 10, 0.9)"
       : "rgba(10, 10, 10, 1)"}; // #222
   font-family: var(--poppins);
-  border: 2px solid red;
+  // border: 2px solid red;
   overflow: scroll;
 `;
 
-const animateProgress = keyframes`
-  from {
-    background-position: 0;
-  }
-  to {
-    background-position: 100%;
-  }
+const CircleSvg = styled.svg`
+  height: 150px;
+  width: 150px;
+  // border: 1px solid red;
 `;
 
-const CirclePgBar = styled.div<Props>`
-  height: 6rem;
-  width: 6rem;
-  background: conic-gradient(
-    yellow calc(${(props) => props.progress}%),
-    dimgray 0%
-  );
-  transition: background 300ms linear;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  position: relative;
-  &::before {
-    content: "";
-    height: 5.5rem;
-    width: 5.5rem;
-    border-radius: 50%;
-    background: rgba(10, 10, 10, 0.9);
-
-    display: none;
-    animation: ${animateProgress} 300ms linear forwards ${(props) => props.key};
-  }
-  &::after {
-    content: "${(props) => props.wins}";
-    font-size: 2rem;
-    font-weight: 500;
-    color: white;
-    position: absolute;
-  }
-
-  // animation: ${animateProgress} 1000ms linear forwards;
+const ProgressCircle = styled.circle<Props>`
+  stroke-width: 10;
+  stroke: yellow;
+  fill: none;
+  cx: 75;
+  cy: 75;
+  r: 60;
+  stroke-dasharray: 18;
+  stroke-dashoffset: ${(props) => 18 - props.wins};
+  transition: stroke-dashoffset 500ms;
+  transition-delay: 200ms;
 `;
 
 const ResultCardContainer = styled.div`
@@ -158,9 +134,10 @@ export {
   CloseBtn,
   CloseBtnSpan,
   GameResultsHeader,
-  CirclePgBar,
   StackPageHeader,
   SubHeader,
   TableContainer,
   TableColumn,
+  CircleSvg,
+  ProgressCircle,
 };

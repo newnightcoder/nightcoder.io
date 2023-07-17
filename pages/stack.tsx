@@ -26,6 +26,7 @@ const Stack = () => {
     flipCard,
     compare,
     wins,
+    setWins,
     flippedGameCards,
     setFlippedGameCards,
     flippedResultCards,
@@ -71,18 +72,17 @@ const Stack = () => {
     }
   }, [wins, gameCardRefs]);
 
-  // useEffect(() => {
-  //   if (wins === 0) return;
-  //   setTimeout(() => {
-  //     setDisplayMemoryGameResult(true);
-  //     console.log("logging a win!");
-  //   }, 1000);
-  //   if (wins !== 18) {
-  //     setTimeout(() => {
-  //       setDisplayMemoryGameResult(false);
-  //     }, 3200);
-  //   }
-  // }, [wins]);
+  useEffect(() => {
+    if (wins === 0) return;
+    setTimeout(() => {
+      setDisplayMemoryGameResult(true);
+    }, 1000);
+    if (wins !== 18) {
+      setTimeout(() => {
+        setDisplayMemoryGameResult(false);
+      }, 3200);
+    }
+  }, [wins]);
 
   useEffect(() => {
     setCurrentRound(() => round1);
@@ -114,6 +114,7 @@ const Stack = () => {
           displayResult={displayMemoryGameResult}
           isGamePlayed={isMemoryGamePlayed}
           wins={wins}
+          // setWins={setWins}
           flipped={flippedGameCards}
           flippedResults={flippedResultCards}
           update={updateResultCardsArray}

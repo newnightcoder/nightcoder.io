@@ -2,6 +2,7 @@ export { default as AboutItem } from "./AboutItem/AboutItem";
 export { default as Background } from "./Background/Background";
 export { default as Badge } from "./Badge/Badge";
 export { default as DiscSvg } from "./DiscSvg/DiscSvg";
+export { default as CircleProgressBar } from "./GameCard/CircleProgressBar";
 export { default as GameBoard } from "./GameCard/GameBoard";
 export { default as GameCard } from "./GameCard/GameCard";
 export { default as GameTitle } from "./GameCard/GameTitle";

@@ -14,7 +14,7 @@ const GameTitleContainer = styled.div`
   justify-content: center;
   font-size: 4rem;
   text-align: center;
-  border: 4px solid red;
+  // border: 4px solid red;
 `;
 
 const GameContainer = styled.div`
