@@ -49,7 +49,6 @@ const Results = ({
   displayResult,
   isGamePlayed,
   wins,
-  // setWins,
   flipped,
   update,
   flippedResults,
@@ -57,8 +56,14 @@ const Results = ({
   const { setDisplayMemoryGameResult, setIsMemoryGamePlayed } =
     useContext(TransitionContext);
 
-  const { integrationArray, frontArray, backendArray, dbArray, toolsArray } =
-    useCardGame();
+  const {
+    integrationArray,
+    frontArray,
+    backendArray,
+    dbArray,
+    toolsArray,
+    setWins,
+  } = useCardGame();
   const allPossibleResults = [
     ...integrationArray,
     ...frontArray,
@@ -104,7 +109,6 @@ const Results = ({
       update(resultCard);
       setTimeout(() => {
         resultCard?.classList.add("flip-card-x");
-        // setWins(() => wins + 1);
         // updateCirclePgBar();
       }, 1000);
     }

@@ -31,6 +31,7 @@ const Stack = () => {
     flippedGameCards,
     setFlippedGameCards,
     flippedResultCards,
+    setFlippedResultCards,
     updateResultCardsArray,
   } = useCardGame();
   const [currentRound, setCurrentRound] = useState(round1);
@@ -110,8 +111,13 @@ const Stack = () => {
         flipCard={flipCard}
         compare={compare}
         wins={wins}
+        setWins={setWins}
         isLightTheme={isLightTheme}
         welcomeRef={welcomeRef}
+        flippedCards={flippedGameCards}
+        flippedResults={flippedResultCards}
+        setFlippedCards={setFlippedGameCards}
+        setFlippedResults={setFlippedResultCards}
       />
       {displayMemoryGameResult ? (
         <Results

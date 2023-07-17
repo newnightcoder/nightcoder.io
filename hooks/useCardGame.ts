@@ -183,6 +183,7 @@ const useCardGame = () => {
     dbArray,
     toolsArray,
     updateResultCardsArray,
+    setFlippedResultCards,
   };
 };
 

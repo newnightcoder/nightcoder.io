@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { ICardElement } from "../../hooks/useCardGame";
+import { ICard, ICardElement } from "../../hooks/useCardGame";
 import { CardContainer } from "../../styles/stack";
 import GameCard from "./GameCard";
 import { GameHeading } from "./GameCardStyled";
@@ -13,12 +13,31 @@ const GameBoard = ({
   flipCard,
   compare,
   wins,
+  setWins,
   isLightTheme,
   welcomeRef,
+  flippedCards,
+  setFlippedCards,
+  flippedResults,
+  setFlippedResults,
 }) => {
+  const [progress, setProgress] = useState(0);
   const headingColor = round === 1 ? "blue" : round === 2 ? "pink" : "green";
 
-  const [progress, setProgress] = useState(0);
+  const resetGame = () => {
+    welcomeRef.current.classList.remove("split-screen");
+    setRound(1);
+    setWins(0);
+    flippedCards.forEach((card: ICard) =>
+      card.domEl.classList.remove("flip-card-y")
+    );
+    flippedResults.forEach((card: HTMLDivElement) =>
+      card.classList.remove("flip-card-x")
+    );
+    setFlippedCards(() => []);
+    setFlippedResults(() => []);
+    // shuffle cards again
+  };
 
   const updateCirclePgBar = useCallback(() => {
     const duration = 200;
@@ -61,12 +80,7 @@ const GameBoard = ({
         })}
       </CardContainer>
       <div>
-        <button
-          onClick={() => {
-            welcomeRef.current.classList.remove("split-screen");
-            setRound(1);
-          }}
-        >
+        <button onClick={resetGame}>
           <span
             style={{
               textTransform: "uppercase",
