@@ -12,6 +12,7 @@ interface Props extends PropsWithChildren {
   cardName?: string;
   className?: string;
   round?: number;
+  isLightTheme?: boolean;
 }
 
 const GameCard = forwardRef<HTMLDivElement, Props>((props: Props, ref) => {
@@ -31,7 +32,11 @@ const GameCard = forwardRef<HTMLDivElement, Props>((props: Props, ref) => {
     >
       <CardInner isResult={props.isResult} isGamePlayed={props.isGamePlayed}>
         <CardFront isResult={props.isResult} round={props.round} />
-        <CardBack isGamePlayed={props.isGamePlayed} isResult={props.isResult}>
+        <CardBack
+          isGamePlayed={props.isGamePlayed}
+          isResult={props.isResult}
+          isLightTheme={props.isLightTheme}
+        >
           {props.children}
         </CardBack>
       </CardInner>

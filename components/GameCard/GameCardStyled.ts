@@ -6,6 +6,7 @@ interface CardProps {
   isResult?: boolean;
   isWon?: boolean;
   isGamePlayed?: boolean;
+  isLightTheme?: boolean;
   round?: number;
 }
 
@@ -22,9 +23,10 @@ const Card = styled.div<CardProps>`
   cursor: ${(props) => (props.isGamePlayed ? "pointer" : "default")};
   background-color: transparent;
   perspective: 1000px;
-  // border-radius: ${(props) => (props.isResult ? "7px" : "none")};
+  border-radius: ${(props) => (props.isResult ? "7px" : "3px")};
   margin-bottom: ${(props) => (props.isResult ? "10px" : "none")};
   border: 1px solid transparent;
+  border-radius: ${(props) => (props.isResult ? "0px" : "7px")};
 `;
 
 const CardInner = styled.div<CardProps>`
@@ -34,11 +36,11 @@ const CardInner = styled.div<CardProps>`
   transition: transform 500ms;
   transform-style: preserve-3d;
   transform: ${(props) => (!props.isGamePlayed ? "rotateX(180deg)" : "none")};
+  border-radius: ${(props) => (props.isResult ? "0px" : "7px")};
   border-image: ${(props) =>
-    props.isResult ? "var(--gradient-blue) 1" : "var(--gradient-orange) 1"};
+    props.isResult ? "var(--gradient-blue) 1" : "none"};
   border-width: 1px;
   border-style: solid;
-  // border-radius: ${(props) => (props.isResult ? "7px" : "none")};
 `;
 
 const CardFront = styled.div<CardProps>`
@@ -49,7 +51,7 @@ const CardFront = styled.div<CardProps>`
     props.isResult ? "var(--gradient-blue)" : "var(--gradient-orange)"};
   backface-visibility: hidden;
   border: ${(props) => (props.isResult ? "1px solid transparent" : "none")};
-  // border-radius: ${(props) => (props.isResult ? "7px" : "none")};
+  border-radius: ${(props) => (props.isResult ? "0px" : "7px")};
   &::after {
     content: "${(props) =>
       props.round === 1
@@ -79,10 +81,15 @@ const CardBack = styled.div<CardProps>`
   display: flex;
   padding: ${(props) => (props.isResult ? "5px" : "0")};
   backface-visibility: hidden;
-  background: ${(props) => (props.isGamePlayed ? "black" : "transparent")};
+  background: ${(props) =>
+    (props.isGamePlayed && props.isLightTheme) || props.isResult
+      ? "black"
+      : props.isGamePlayed && !props.isLightTheme
+      ? "#f7f7f7"
+      : "transparent"};
   transform: ${(props) =>
     props.isResult ? "rotateX(180deg)" : "rotateY(180deg)"};
-  // border-radius: ${(props) => (props.isResult ? "7px" : "none")};
+  border-radius: ${(props) => (props.isResult ? "0px" : "7px")};
 `;
 // border: ${(props) =>
 //   props.isGamePlayed && props.isResult

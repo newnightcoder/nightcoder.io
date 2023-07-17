@@ -22,7 +22,8 @@ const CircleProgressBar = ({ progress, wins }) => {
           style={{
             height: "100%",
             width: "100%",
-            color: "#f5f5f5",
+            // color: "#f5f5f5",
+            color: "#000",
             display: "grid",
             placeItems: "center",
             fontSize: "2rem",

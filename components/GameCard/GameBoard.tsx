@@ -6,12 +6,15 @@ import { GameHeading } from "./GameCardStyled";
 
 const GameBoard = ({
   round,
+  setRound,
   currentRound,
   gameCardRefs,
   isMemoryGamePlayed,
   flipCard,
   compare,
   wins,
+  isLightTheme,
+  welcomeRef,
 }) => {
   const headingColor = round === 1 ? "blue" : round === 2 ? "pink" : "green";
 
@@ -46,6 +49,7 @@ const GameBoard = ({
               cardName={card.name}
               round={round}
               isGamePlayed={isMemoryGamePlayed}
+              isLightTheme={isLightTheme}
               onClick={() => {
                 flipCard(gameCardRefs, i);
                 compare();
@@ -56,6 +60,27 @@ const GameBoard = ({
           );
         })}
       </CardContainer>
+      <div>
+        <button
+          onClick={() => {
+            welcomeRef.current.classList.remove("split-screen");
+            setRound(1);
+          }}
+        >
+          <span
+            style={{
+              textTransform: "uppercase",
+              // fontWeight: "bold",
+              border: `1px solid ${isLightTheme ? "black" : "white"}`,
+              borderRadius: "50px",
+              color: `${isLightTheme ? "black" : "white"}`,
+              padding: "1px 10px",
+            }}
+          >
+            exit game
+          </span>
+        </button>
+      </div>
     </div>
   );
 };

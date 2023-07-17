@@ -18,6 +18,7 @@ const Stack = () => {
     setDisplayMemoryGameResult,
     isMemoryGamePlayed,
     setIsMemoryGamePlayed,
+    isLightTheme,
   } = useContext(TransitionContext);
   const {
     round1,
@@ -102,12 +103,15 @@ const Stack = () => {
       <GameTitle welcomeRef={welcomeRef} skipGame={skipGame} />
       <GameBoard
         round={round}
+        setRound={setRound}
         currentRound={currentRound}
         gameCardRefs={gameCardRefs}
         isMemoryGamePlayed={isMemoryGamePlayed}
         flipCard={flipCard}
         compare={compare}
         wins={wins}
+        isLightTheme={isLightTheme}
+        welcomeRef={welcomeRef}
       />
       {displayMemoryGameResult ? (
         <Results

@@ -59,7 +59,7 @@ const ProgressCircle = styled.circle<Props>`
 const ResultCardContainer = styled.div`
   display: flex;
   width: 100%;
-  border: 2px solid blue;
+  // border: 2px solid blue;
 `;
 
 const LogoWrapper = styled.div`
