@@ -76,8 +76,8 @@ const TechNameWrapper = styled.div`
 `;
 
 const CloseBtn = styled.button`
-  position: absolute;
-  top: 20px;
+  position: fixed;
+  top: calc(var(--navbar-height) + 20px);
   right: 2vw;
 `;
 

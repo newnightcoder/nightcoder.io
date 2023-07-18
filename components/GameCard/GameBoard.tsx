@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
+import { useWindowSize } from "../../hooks";
 import { ICard, ICardElement } from "../../hooks/useCardGame";
 import { CardContainer } from "../../styles/stack";
+import { breakpoints } from "../../styles/_globals";
 import GameCard from "./GameCard";
 import { GameHeading } from "./GameCardStyled";
 
@@ -23,6 +25,7 @@ const GameBoard = ({
 }) => {
   const [progress, setProgress] = useState(0);
   const headingColor = round === 1 ? "blue" : round === 2 ? "pink" : "green";
+  const { width } = useWindowSize();
 
   const resetGame = () => {
     welcomeRef.current.classList.remove("split-screen");
@@ -51,7 +54,7 @@ const GameBoard = ({
   }, [wins]);
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <GameHeading fontSize={3} color={headingColor}>
         Round {round}
       </GameHeading>
@@ -79,19 +82,27 @@ const GameBoard = ({
           );
         })}
       </CardContainer>
-      <div>
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          transform:
+            width > breakpoints.mdNumber
+              ? "translate(-100%, 20px)"
+              : "translate(0%, 20px)",
+        }}
+      >
         <button onClick={resetGame}>
           <span
             style={{
               textTransform: "uppercase",
-              // fontWeight: "bold",
-              border: `1px solid ${isLightTheme ? "black" : "white"}`,
-              borderRadius: "50px",
+              fontWeight: "bold",
+              // border: `1px solid ${isLightTheme ? "black" : "white"}`,
               color: `${isLightTheme ? "black" : "white"}`,
-              padding: "1px 10px",
             }}
           >
-            exit game
+            [ x ] exit game
           </span>
         </button>
       </div>
