@@ -5,7 +5,7 @@ interface Props {
   isWon?: boolean;
   isGamePlayed?: boolean;
   wins?: number;
-  progress?: boolean;
+  progress?: number;
 }
 
 const ResultContainer = styled.div<Props>`
@@ -51,7 +51,7 @@ const ProgressCircle = styled.circle<Props>`
   cy: 75;
   r: 60;
   stroke-dasharray: 18;
-  stroke-dashoffset: ${(props) => 18 - props.wins};
+  stroke-dashoffset: ${(props) => 18 - props.progress};
   transition: stroke-dashoffset 500ms;
   transition-delay: 200ms;
 `;

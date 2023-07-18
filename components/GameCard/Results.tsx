@@ -15,7 +15,7 @@ import {
   SubHeader,
   TableColumn,
   TableContainer,
-  TechNameWrapper,
+  TechNameWrapper
 } from "./ResultsStyled";
 
 interface ResultCardInnerProps {
@@ -79,7 +79,7 @@ const Results = ({
   const toolsRefs = useRef<HTMLDivElement[]>([]);
   const [allRefs, setAllRefs] = useState<HTMLDivElement[]>([]);
 
-  const [progress, setProgress] = useState(false);
+  const [progress, setProgress] = useState(wins - 1);
 
   const backToGameScreen = () => {
     setDisplayMemoryGameResult(!displayResult);
@@ -107,9 +107,9 @@ const Results = ({
       const resultCard = allRefs.find((ref) => ref?.dataset.card === card.name);
       console.log("updated flippedResults array", flippedResults);
       update(resultCard);
+      setProgress(() => wins);
       setTimeout(() => {
         resultCard?.classList.add("flip-card-x");
-        // updateCirclePgBar();
       }, 1000);
     }
   };
@@ -120,21 +120,10 @@ const Results = ({
     } else return "";
   };
 
-  // const updateCirclePgBar = useCallback(() => {
-  //   const duration = 200;
-  //   const update = () =>
-  //     setProgress((prevProgress) => (prevProgress + wins * 100) / 18);
-  //   setInterval(update, duration);
-  // }, [wins, progress]);
-
   useEffect(() => {
     if (!isGamePlayed) return;
     findCorrespondingResult(flipped[flipped.length - 1]);
   }, [flipped, allRefs]);
-
-  // useEffect(() => {
-  //   updateCirclePgBar();
-  // }, [wins]);
 
   return (
     <ResultContainer
