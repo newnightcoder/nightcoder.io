@@ -1,5 +1,8 @@
+import dynamic from "next/dynamic";
 import { useContext, useEffect, useRef, useState } from "react";
+// import Confetti from "react-confetti";
 import { TransitionContext } from "../../context/TransitionContext";
+import { useWindowSize } from "../../hooks";
 import useCardGame, { ICard, ICardElement } from "../../hooks/useCardGame";
 import CircleProgressBar from "./CircleProgressBar";
 import GameCard from "./GameCard";
@@ -15,7 +18,7 @@ import {
   SubHeader,
   TableColumn,
   TableContainer,
-  TechNameWrapper
+  TechNameWrapper,
 } from "./ResultsStyled";
 
 interface ResultCardInnerProps {
@@ -78,8 +81,13 @@ const Results = ({
   const dbRefs = useRef<HTMLDivElement[]>([]);
   const toolsRefs = useRef<HTMLDivElement[]>([]);
   const [allRefs, setAllRefs] = useState<HTMLDivElement[]>([]);
-
   const [progress, setProgress] = useState(wins - 1);
+  const { height, width } = useWindowSize();
+  // 😎 nextjs dynamic import to import Confetti component (so that component resizes with window size)
+  // Solution from https://github.com/alampros/react-confetti/issues/130#issuecomment-1297020799
+  const Confetti = dynamic(() => import("react-confetti"), {
+    ssr: false,
+  });
 
   const backToGameScreen = () => {
     setDisplayMemoryGameResult(!displayResult);
@@ -131,6 +139,7 @@ const Results = ({
       isGamePlayed={isGamePlayed}
       wins={wins}
     >
+      {progress === 18 && <Confetti width={width} height={height} />}
       {!isGamePlayed ? (
         <>
           <StackPageHeader>
