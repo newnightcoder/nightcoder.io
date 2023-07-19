@@ -106,7 +106,7 @@ const Results = ({
       (resultCard) => resultCard.name === card?.name
     );
     if (wonCard !== undefined) {
-      console.log("allrefs", allRefs);
+      // console.log("allrefs", allRefs);
       const resultCard = allRefs.find((ref) => ref?.dataset.card === card.name);
       console.log("updated flippedResults array", flippedResults);
       update(resultCard);

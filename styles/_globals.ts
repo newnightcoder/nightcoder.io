@@ -137,7 +137,7 @@ html {
   --stack-rows: repeat(6, max-content);
   --memory-card-size: calc((98vw - 30px) / 3);
   --result-card-width: 200px;
-  --result-card-height: auto;
+  --result-card-height: 40px;
   
   /* TEXT COLORS */
   

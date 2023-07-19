@@ -24,9 +24,7 @@ const ResultContainer = styled.div<Props>`
   opacity: ${(props) => (props.displayResult || !props.isGamePlayed ? 1 : 0)};
   visibility: ${(props) =>
     props.displayResult || !props.isGamePlayed ? "visible" : "hidden"};
-  // z-index: 1000;
-  // opacity: 1;
-  // visibility: visible;
+  z-index: 1000;
   transition: opacity 500ms;
   background: ${(props) =>
     props.isGamePlayed && props.wins < 18
@@ -112,10 +110,9 @@ const SubHeader = styled.p`
 const TableContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
-  max-width: 1100px;
-  // height: max-content;
+  // max-width: 1100px;
   padding: 0 5vw;
   border: 1px solid white;
 `;

@@ -25,6 +25,7 @@ const useCardGame = () => {
   const [round2, setRound2] = useState<ICardElement[]>([]);
   const [round3, setRound3] = useState<ICardElement[]>([]);
   const [cardCount, setCardCount] = useState(0);
+  const [flipping, setFlipping] = useState(false);
   const [flippedGameCards, setFlippedGameCards] = useState<ICard[]>([]);
   const [flippedResultCards, setFlippedResultCards] = useState<
     HTMLDivElement[]
@@ -97,6 +98,7 @@ const useCardGame = () => {
 
   useEffect(() => {
     compare();
+    console.log(cardCount);
   }, [cardCount]);
 
   const flipCard = useCallback(
@@ -106,14 +108,13 @@ const useCardGame = () => {
         domEl: el.current[index],
         index,
       };
-      console.log("flippedGameCards", flippedGameCards);
-
       const isAlreadyFlipped = flippedGameCards.some(
         (card) => card.index == currentCard.index
       );
-      if (cardCount === 2) return;
-      if (isAlreadyFlipped) return;
-      setCardCount(() => cardCount + 1);
+      if (cardCount >= 2 || isAlreadyFlipped) return;
+      const newCount = cardCount + 1;
+      // setCardCount((prevCount) => prevCount + 1);
+      setCardCount(newCount);
       currentCard.domEl.classList.toggle("flip-card-y");
       setFlippedGameCards(() => [...flippedGameCards, currentCard]);
     },
@@ -133,17 +134,20 @@ const useCardGame = () => {
   const winRound = () => {
     setWins(() => wins + 1);
     setTimeout(() => {
-      resetCardCount();
+      setCardCount(0);
     }, 2000);
   };
 
   const loseRound = () => {
     const length = flippedGameCards.length;
     setTimeout(() => {
-      const wrongCards = flippedGameCards.splice(length - 2, 2);
+      const wrongCards = [...flippedGameCards.splice(length - 2, 2)];
+      console.log("flippedGameCards", flippedGameCards);
       wrongCards.forEach((card) => card.domEl.classList.remove("flip-card-y"));
-      setFlippedGameCards(() => flippedGameCards);
-      resetCardCount();
+      setFlippedGameCards(() =>
+        flippedGameCards.filter((card) => !wrongCards.includes(card))
+      );
+      setCardCount(0);
     }, 2000);
   };
 
@@ -164,7 +168,7 @@ const useCardGame = () => {
       loseRound();
       console.log("you lost");
     }
-  }, [flippedGameCards, winRound, loseRound]);
+  }, [cardCount, flippedGameCards, winRound, loseRound]);
 
   return {
     round1,

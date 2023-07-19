@@ -25,8 +25,8 @@ const Card = styled.div<CardProps>`
   perspective: 1000px;
   border-radius: ${(props) => (props.isResult ? "7px" : "3px")};
   margin-bottom: ${(props) => (props.isResult ? "10px" : "none")};
-  border: 1px solid transparent;
   border-radius: ${(props) => (props.isResult ? "0px" : "7px")};
+  border: 1px solid transparent;
 `;
 
 const CardInner = styled.div<CardProps>`
@@ -38,8 +38,11 @@ const CardInner = styled.div<CardProps>`
   transform: ${(props) => (!props.isGamePlayed ? "rotateX(180deg)" : "none")};
   border-radius: ${(props) => (props.isResult ? "0px" : "7px")};
   border-image: ${(props) =>
-    props.isResult ? "var(--gradient-blue) 1" : "none"};
+    props.isResult
+      ? "var(--gradient-blue) 1"
+      : "linear-gradient(to right, transparent, transparent)"};
   border-width: 1px;
+  // border-style: ${(props) => (props.isResult ? "solid" : "none")};
   border-style: solid;
 `;
 
@@ -82,14 +85,14 @@ const CardBack = styled.div<CardProps>`
   padding: ${(props) => (props.isResult ? "5px" : "0")};
   backface-visibility: hidden;
   background: ${(props) =>
-    (props.isGamePlayed && props.isLightTheme) || props.isResult
-      ? "black"
-      : props.isGamePlayed && !props.isLightTheme
-      ? "#f7f7f7"
-      : "transparent"};
+    props.isGamePlayed || props.isResult ? "black" : "transparent"};
   transform: ${(props) =>
     props.isResult ? "rotateX(180deg)" : "rotateY(180deg)"};
   border-radius: ${(props) => (props.isResult ? "0px" : "7px")};
+  border: ${(props) =>
+    props.isGamePlayed && !props.isLightTheme && !props.isResult
+      ? "1px solid white"
+      : "none"};
 `;
 // border: ${(props) =>
 //   props.isGamePlayed && props.isResult

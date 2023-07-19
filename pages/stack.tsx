@@ -56,7 +56,7 @@ const Stack = () => {
           gameCardRefs?.current.forEach((ref) => {
             ref?.classList.remove("flip-card-y");
           });
-        }, 1500);
+        }, 500);
         break;
       case 12:
         setTimeout(() => {
@@ -66,7 +66,7 @@ const Stack = () => {
           gameCardRefs?.current.forEach((ref) => {
             ref?.classList.remove("flip-card-y");
           });
-        }, 1500);
+        }, 500);
         break;
       // case 18:
       default:
@@ -82,6 +82,7 @@ const Stack = () => {
     if (wins !== 18) {
       setTimeout(() => {
         setDisplayMemoryGameResult(false);
+        handleRound();
       }, 3200);
     }
   }, [wins]);
@@ -90,14 +91,6 @@ const Stack = () => {
     setCurrentRound(() => round1);
     setRound(1);
   }, [round1]);
-
-  useEffect(() => {
-    handleRound();
-  }, [wins]);
-
-  // useEffect(() => {
-  //   console.log("round", currentRound);
-  // }, [round1, round2, round3]);
 
   return (
     <PageContainer ref={pageRef} id="stack" justify="center">
@@ -124,7 +117,6 @@ const Stack = () => {
           displayResult={displayMemoryGameResult}
           isGamePlayed={isMemoryGamePlayed}
           wins={wins}
-          // setWins={setWins}
           flipped={flippedGameCards}
           flippedResults={flippedResultCards}
           update={updateResultCardsArray}
