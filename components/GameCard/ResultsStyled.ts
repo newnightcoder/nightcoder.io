@@ -32,8 +32,9 @@ const ResultContainer = styled.div<Props>`
       ? "rgba(10, 10, 10, 0.95)"
       : "rgba(10, 10, 10, 1)"}; // #222
   font-family: var(--poppins);
-  // border: 2px solid red;
   overflow: scroll;
+  scroll-behaviour: smooth;
+  // border: 2px solid red;
 `;
 
 const CircleSvg = styled.svg`

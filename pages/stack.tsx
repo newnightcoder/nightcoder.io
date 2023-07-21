@@ -75,6 +75,7 @@ const Stack = () => {
   }, [wins, gameCardRefs]);
 
   useEffect(() => {
+    // setDisplayMemoryGameResult(true);
     if (wins === 0) return;
     setTimeout(() => {
       setDisplayMemoryGameResult(true);

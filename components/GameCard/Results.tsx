@@ -1,5 +1,12 @@
 import dynamic from "next/dynamic";
-import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import {
+  MutableRefObject,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { TransitionContext } from "../../context/TransitionContext";
 import { useWindowSize } from "../../hooks";
 import useCardGame, { ICard, ICardElement } from "../../hooks/useCardGame";
@@ -50,6 +57,7 @@ const Results = ({
   const dbRefs = useRef<HTMLDivElement[]>([]);
   const toolsRefs = useRef<HTMLDivElement[]>([]);
   const [allRefs, setAllRefs] = useState<HTMLDivElement[]>([]);
+  const resultsContainerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(wins - 1);
   const { height, width } = useWindowSize();
   // 😎 nextjs dynamic import to import Confetti component (so that component resizes with window size)
@@ -101,6 +109,16 @@ const Results = ({
     }
   }, [isGamePlayed, displayResult]);
 
+  const scrollToResultCard = (
+    containerRef: MutableRefObject<HTMLDivElement>,
+    resultRef: HTMLDivElement
+  ) => {
+    containerRef.current.scroll(
+      0,
+      height + (resultRef?.getBoundingClientRect().top - height)
+    );
+  };
+
   const findCorrespondingResult = (card: ICard) => {
     const wonCard = allPossibleResults.find(
       (resultCard) => resultCard.name === card?.name
@@ -111,6 +129,10 @@ const Results = ({
       console.log("updated flippedResults array", flippedResults);
       update(resultCard);
       setProgress(() => wins);
+      // check if resultCard is in the viewPort:
+      if (resultCard?.getBoundingClientRect().top > height) {
+        scrollToResultCard(resultsContainerRef, resultCard);
+      }
       setTimeout(() => {
         resultCard?.classList.add("flip-card-x");
       }, 1000);
@@ -133,8 +155,14 @@ const Results = ({
       displayResult={displayResult}
       isGamePlayed={isGamePlayed}
       wins={wins}
+      ref={resultsContainerRef}
     >
-      {progress === 18 && <Confetti width={width} height={height} />}
+      {progress === 18 && (
+        <Confetti
+          width={width}
+          height={resultsContainerRef?.current?.getBoundingClientRect().height}
+        />
+      )}
       {!isGamePlayed ? (
         <StackPageHeading backToGame={backToGameScreen} />
       ) : (
