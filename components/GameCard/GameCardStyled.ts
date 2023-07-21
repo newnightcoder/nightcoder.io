@@ -20,6 +20,7 @@ interface HeadingProps {
 const Card = styled.div<CardProps>`
   height: ${(props) => props.height};
   width: ${(props) => props.width};
+  max-width: 350px;
   cursor: ${(props) => (props.isGamePlayed ? "pointer" : "default")};
   background-color: transparent;
   perspective: 1000px;
@@ -104,7 +105,7 @@ const CardBack = styled.div<CardProps>`
 const GameHeading = styled.h1<HeadingProps>`
   font-weight: 700;
   font-style: italic;
-  font-size: ${(props) => props.fontSize}rem;
+  font-size: ${(props) => props.fontSize}vw;
   font-family: var(--poppins);
   text-transform: uppercase;
   text-align: center;

@@ -24,16 +24,18 @@ const GameContainer = styled.div`
 
 const CardContainer = styled.div`
   // min-height: calc(100vh - var(--navbar-height));
-  min-height: max-content;
+  // min-height: max-content;
+  // max-height: 50vh;
   width: 100%;
+  // height: calc(100vh - 20rem);
   padding: 4vh 1vw;
   display: grid;
-  grid-template-columns: var(--stack-columns);
-  grid-template-rows: var(--stack-rows);
+  grid-template-columns: var(--memory-cards-columns);
+  grid-template-rows: var(--memory-cards-rows);
   grid-gap: 10px;
   align-content: center;
   justify-content: center;
-  // border: 2px solid red;
+  border: 2px solid red;
 `;
 
 interface Props {

@@ -28,10 +28,16 @@ const ResultCardInner = ({ jsx, str }: ResultCardInnerProps) => {
   const capitalizeFirstLetter = (str: string) => {
     return str[0].toUpperCase() + str.slice(1);
   };
+  const upperCaseTechs = ["css", "sql", "aws"];
+
   return (
     <ResultCardContainer>
       <LogoWrapper>{jsx}</LogoWrapper>
-      <TechNameWrapper>{capitalizeFirstLetter(str)}</TechNameWrapper>
+      <TechNameWrapper>
+        {upperCaseTechs.includes(str)
+          ? str.toUpperCase()
+          : capitalizeFirstLetter(str)}
+      </TechNameWrapper>
     </ResultCardContainer>
   );
 };
@@ -45,7 +51,9 @@ const StackColumn = ({
 }: Props) => {
   return (
     <TableColumn>
-      <h2 style={{ whiteSpace: "nowrap" }}>{columnName}</h2>
+      <h2 style={{ whiteSpace: "nowrap", textAlign: "center" }}>
+        {columnName}
+      </h2>
       {array.map((el, i: number) => {
         return (
           <GameCard

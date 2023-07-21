@@ -133,10 +133,14 @@ html {
   --width-about-title: 100%;
   --width-about-desc: 100%;
   --position-about-title: relative;
-  --stack-columns: repeat(3, max-content);
-  --stack-rows: repeat(6, max-content);
+  --memory-cards-columns: repeat(3, max-content);
+  --memory-cards-rows: repeat(6, max-content);
+  --stack-table-flex-direction: column;
+  --stack-table-align-items: center;
+  --stack-column-width: 85%;
   --memory-card-size: calc((98vw - 30px) / 3);
-  --result-card-width: 200px;
+  // --memory-card-size: calc((60vh - 30px) / 3);
+  --result-card-width: 100%;
   --result-card-height: 40px;
   
   /* TEXT COLORS */
@@ -205,9 +209,12 @@ html {
     --width-about-title: 40%;
     --width-about-desc: 60%;
     --position-about-title: sticky;
-    --stack-columns: repeat(4, max-content);
-    --stack-rows: repeat(4, max-content);
+    --memory-cards-columns: repeat(4, max-content);
+    --memory-cards-rows: repeat(4, max-content);
     --memory-card-size: calc((98vw - 40px) / 8);
+    --stack-table-flex-direction: row;
+    --stack-table-align-items: flex-start;
+    --stack-column-width: auto;
     --result-card-width: 200px;
     --result-card-height: 40px;
   }

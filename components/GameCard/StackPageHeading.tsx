@@ -9,7 +9,7 @@ import {
 const StackPageHeading = ({ backToGame }) => {
   return (
     <StackPageHeader>
-      <GameHeading fontSize={4} color={"orange"} shadow={true}>
+      <GameHeading fontSize={6} color={"orange"} shadow={true}>
         Languages & tools i'm using
       </GameHeading>
       <SubHeader>

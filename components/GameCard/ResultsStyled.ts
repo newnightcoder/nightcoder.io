@@ -13,6 +13,7 @@ const ResultContainer = styled.div<Props>`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  // justify-content: center;
   position: fixed;
   inset: 0;
   width: 100%;
@@ -28,7 +29,7 @@ const ResultContainer = styled.div<Props>`
   transition: opacity 500ms;
   background: ${(props) =>
     props.isGamePlayed && props.wins < 18
-      ? "rgba(10, 10, 10, 0.9)"
+      ? "rgba(10, 10, 10, 0.95)"
       : "rgba(10, 10, 10, 1)"}; // #222
   font-family: var(--poppins);
   // border: 2px solid red;
@@ -43,7 +44,7 @@ const CircleSvg = styled.svg`
 
 const ProgressCircle = styled.circle<Props>`
   stroke-width: 10;
-  stroke: yellow;
+  // stroke: yellow;
   fill: none;
   cx: 75;
   cy: 75;
@@ -103,14 +104,19 @@ const StackPageHeader = styled.div`
 const SubHeader = styled.p`
   font-size: 1rem;
   font-style: italic;
-  width: max-content;
+  width: 100%;
   margin-top: 0;
+  padding: 4px;
+  // border: 1px solid white;
 `;
 
 const TableContainer = styled.div`
   display: flex;
+  flex-direction: var(--stack-table-flex-direction);
   flex-wrap: wrap;
   justify-content: center;
+  align-items: var(--stack-table-align-items);
+  gap: 20px;
   width: 100%;
   // max-width: 1100px;
   padding: 0 5vw;
@@ -118,8 +124,10 @@ const TableContainer = styled.div`
 `;
 
 const TableColumn = styled.div`
+  width: var(--stack-column-width);
   display: flex;
   flex-direction: column;
+  align-items: center;
   border: 1px solid pink;
 `;
 
