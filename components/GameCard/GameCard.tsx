@@ -2,8 +2,10 @@ import { forwardRef, PropsWithChildren } from "react";
 import { Card, CardBack, CardFront, CardInner } from "./GameCardStyled";
 
 interface Props extends PropsWithChildren {
-  height: string;
-  width: string;
+  // height: string;
+  // width: string;
+  height: number | string;
+  width: number | string;
   isGamePlayed?: boolean;
   isResult?: boolean;
   isWon?: boolean;

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useWindowSize } from "../../hooks";
 import { ICard, ICardElement } from "../../hooks/useCardGame";
 import { CardContainer } from "../../styles/stack";
@@ -24,8 +24,12 @@ const GameBoard = ({
   setFlippedResults,
 }) => {
   const [progress, setProgress] = useState(0);
-  const headingColor = round === 1 ? "blue" : round === 2 ? "pink" : "green";
   const { width } = useWindowSize();
+  const cardContainerRef = useRef<HTMLDivElement>();
+  const cardContainerHeight =
+    cardContainerRef?.current?.getBoundingClientRect().height;
+  const [cardSize, setCardSize] = useState(0);
+  const headingColor = round === 1 ? "blue" : round === 2 ? "pink" : "green";
 
   const resetGame = () => {
     welcomeRef.current.classList.remove("split-screen");
@@ -42,23 +46,22 @@ const GameBoard = ({
     // shuffle cards again
   };
 
-  const updateCirclePgBar = useCallback(() => {
-    const duration = 200;
-    // const update = () => setProgress(() => progress + 1);
-    // const pg = setInterval(update, duration);
-    setProgress((prevProgress) => (prevProgress + wins * 100) / 18);
-  }, [wins, progress]);
-
   useEffect(() => {
-    updateCirclePgBar();
-  }, [wins]);
+    if (cardContainerRef.current) {
+      setCardSize(() =>
+        width > breakpoints.mdNumber
+          ? (cardContainerHeight - 30) / 3
+          : (cardContainerHeight - 40) / 4
+      );
+    }
+  }, [width, cardContainerRef.current]);
 
   return (
     <div style={{ position: "relative" }}>
       <GameHeading fontSize={3} color={headingColor}>
         Round {round}
       </GameHeading>
-      <CardContainer>
+      <CardContainer ref={cardContainerRef}>
         {currentRound.map((card: ICardElement, i: number) => {
           return (
             <GameCard
@@ -66,8 +69,10 @@ const GameBoard = ({
               ref={(el) =>
                 (gameCardRefs.current = [...gameCardRefs.current, el])
               }
-              height="var(--memory-card-size)"
-              width="var(--memory-card-size)"
+              // height="var(--memory-card-size)"
+              // width="var(--memory-card-size)"
+              height={cardSize}
+              width={cardSize}
               cardName={card.name}
               round={round}
               isGamePlayed={isMemoryGamePlayed}
@@ -81,31 +86,27 @@ const GameBoard = ({
             </GameCard>
           );
         })}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            transform: "translate(10%, 100%)",
+          }}
+        >
+          <button onClick={resetGame}>
+            <span
+              style={{
+                textTransform: "uppercase",
+                fontWeight: "bold",
+                color: `${isLightTheme ? "black" : "white"}`,
+              }}
+            >
+              [ x ] exit game
+            </span>
+          </button>
+        </div>
       </CardContainer>
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          transform:
-            width > breakpoints.mdNumber
-              ? "translate(-100%, 20px)"
-              : "translate(0%, 20px)",
-        }}
-      >
-        <button onClick={resetGame}>
-          <span
-            style={{
-              textTransform: "uppercase",
-              fontWeight: "bold",
-              // border: `1px solid ${isLightTheme ? "black" : "white"}`,
-              color: `${isLightTheme ? "black" : "white"}`,
-            }}
-          >
-            [ x ] exit game
-          </span>
-        </button>
-      </div>
     </div>
   );
 };

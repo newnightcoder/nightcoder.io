@@ -134,7 +134,7 @@ html {
   --width-about-desc: 100%;
   --position-about-title: relative;
   --memory-cards-columns: repeat(3, max-content);
-  --memory-cards-rows: repeat(6, max-content);
+  --memory-cards-rows: repeat(4, max-content);
   --stack-table-flex-direction: column;
   --stack-table-align-items: center;
   --stack-column-width: 85%;
@@ -210,8 +210,8 @@ html {
     --width-about-desc: 60%;
     --position-about-title: sticky;
     --memory-cards-columns: repeat(4, max-content);
-    --memory-cards-rows: repeat(4, max-content);
-    --memory-card-size: calc((98vw - 40px) / 8);
+    --memory-cards-rows: repeat(3, max-content);
+    // --memory-card-size: calc((98vw - 40px) / 8);
     --stack-table-flex-direction: row;
     --stack-table-align-items: flex-start;
     --stack-column-width: auto;

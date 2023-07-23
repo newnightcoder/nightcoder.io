@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 interface CardProps {
-  height?: string;
-  width?: string;
+  height?: string | number;
+  width?: string | number;
   isResult?: boolean;
   isWon?: boolean;
   isGamePlayed?: boolean;
@@ -18,8 +18,8 @@ interface HeadingProps {
 }
 
 const Card = styled.div<CardProps>`
-  height: ${(props) => props.height};
-  width: ${(props) => props.width};
+  height: ${(props) => props.height}${(props) => (props.isResult ? "" : "px")};
+  width: ${(props) => props.width}${(props) => (props.isResult ? "" : "px")};
   max-width: 350px;
   cursor: ${(props) => (props.isGamePlayed ? "pointer" : "default")};
   background-color: transparent;

@@ -59,6 +59,7 @@ const Results = ({
   const [allRefs, setAllRefs] = useState<HTMLDivElement[]>([]);
   const resultsContainerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(wins - 1);
+  // const [progress, setProgress] = useState(18);
   const { height, width } = useWindowSize();
   // 😎 nextjs dynamic import to import Confetti component (so that component resizes with window size)
   // Solution from https://github.com/alampros/react-confetti/issues/130#issuecomment-1297020799
@@ -160,7 +161,8 @@ const Results = ({
       {progress === 18 && (
         <Confetti
           width={width}
-          height={resultsContainerRef?.current?.getBoundingClientRect().height}
+          // height={resultsContainerRef?.current?.getBoundingClientRect().height}
+          height={document.body.scrollHeight}
         />
       )}
       {!isGamePlayed ? (

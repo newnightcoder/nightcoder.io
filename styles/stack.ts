@@ -23,12 +23,10 @@ const GameContainer = styled.div`
 `;
 
 const CardContainer = styled.div`
-  // min-height: calc(100vh - var(--navbar-height));
-  // min-height: max-content;
-  // max-height: 50vh;
-  width: 100%;
-  // height: calc(100vh - 20rem);
-  padding: 4vh 1vw;
+  height: calc(100vh - 9rem);
+  width: 100vw;
+  position: relative;
+  padding: 10px 1vw;
   display: grid;
   grid-template-columns: var(--memory-cards-columns);
   grid-template-rows: var(--memory-cards-rows);

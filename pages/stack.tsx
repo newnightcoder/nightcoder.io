@@ -76,16 +76,16 @@ const Stack = () => {
 
   useEffect(() => {
     // setDisplayMemoryGameResult(true);
-    if (wins === 0) return;
-    setTimeout(() => {
-      setDisplayMemoryGameResult(true);
-    }, 1000);
-    if (wins !== 18) {
-      setTimeout(() => {
-        setDisplayMemoryGameResult(false);
-        handleRound();
-      }, 3200);
-    }
+    // if (wins === 0) return;
+    // setTimeout(() => {
+    //   setDisplayMemoryGameResult(true);
+    // }, 1000);
+    // if (wins !== 18) {
+    //   setTimeout(() => {
+    //     setDisplayMemoryGameResult(false);
+    //     handleRound();
+    //   }, 3200);
+    // }
   }, [wins]);
 
   useEffect(() => {
