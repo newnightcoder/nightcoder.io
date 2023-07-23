@@ -1,4 +1,5 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { round1Bg, round2Bg, round3Bg } from "../assets";
 import { GameBoard, GameTitle, Results } from "../components";
 import { TransitionContext } from "../context/TransitionContext";
 import {
@@ -36,6 +37,8 @@ const Stack = () => {
   } = useCardGame();
   const [currentRound, setCurrentRound] = useState(round1);
   const [round, setRound] = useState(1);
+  const [gameBg, setGameBg] = useState<string>(null);
+  const images = [round1Bg, round2Bg, round3Bg];
 
   const skipGame = () => {
     setDisplayMemoryGameResult(true);
@@ -52,6 +55,7 @@ const Stack = () => {
         setTimeout(() => {
           setRound(2);
           setCurrentRound(round2);
+          setGameBg(images[1].src);
           setFlippedGameCards([]);
           gameCardRefs?.current.forEach((ref) => {
             ref?.classList.remove("flip-card-y");
@@ -62,6 +66,7 @@ const Stack = () => {
         setTimeout(() => {
           setRound(3);
           setCurrentRound(round3);
+          setGameBg(images[2].src);
           setFlippedGameCards([]);
           gameCardRefs?.current.forEach((ref) => {
             ref?.classList.remove("flip-card-y");
@@ -76,21 +81,22 @@ const Stack = () => {
 
   useEffect(() => {
     // setDisplayMemoryGameResult(true);
-    // if (wins === 0) return;
-    // setTimeout(() => {
-    //   setDisplayMemoryGameResult(true);
-    // }, 1000);
-    // if (wins !== 18) {
-    //   setTimeout(() => {
-    //     setDisplayMemoryGameResult(false);
-    //     handleRound();
-    //   }, 3200);
-    // }
+    if (wins === 0) return;
+    setTimeout(() => {
+      setDisplayMemoryGameResult(true);
+    }, 1000);
+    if (wins !== 18) {
+      setTimeout(() => {
+        setDisplayMemoryGameResult(false);
+        handleRound();
+      }, 3200);
+    }
   }, [wins]);
 
   useEffect(() => {
     setCurrentRound(() => round1);
     setRound(1);
+    setGameBg(images[0].src);
   }, [round1]);
 
   return (
@@ -99,12 +105,12 @@ const Stack = () => {
       <GameBoard
         round={round}
         setRound={setRound}
+        gameBg={gameBg}
         currentRound={currentRound}
         gameCardRefs={gameCardRefs}
         isMemoryGamePlayed={isMemoryGamePlayed}
         flipCard={flipCard}
         compare={compare}
-        wins={wins}
         setWins={setWins}
         isLightTheme={isLightTheme}
         welcomeRef={welcomeRef}

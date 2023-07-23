@@ -95,8 +95,9 @@ html {
 
   /*  FONTS */
 
-  --poppins : Poppins, sans-serif;
+  --poppins : "Poppins", sans-serif;
   --lucky : "Luckiest Guy", cursive;
+  --banger: "Bangers", cursive;
   --fontsize-header : 2.2rem;
   --line-height-header: 3rem;
 

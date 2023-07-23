@@ -15,6 +15,8 @@ interface HeadingProps {
   color?: string;
   shadow?: boolean;
   round?: number;
+  isResult?: boolean;
+  isWelcomeTitle?: boolean;
 }
 
 const Card = styled.div<CardProps>`
@@ -103,11 +105,16 @@ const CardBack = styled.div<CardProps>`
 //     : "none"};
 
 const GameHeading = styled.h1<HeadingProps>`
-  font-weight: 700;
-  font-style: italic;
+  position: relative;
+  font-weight: ${(props) => (props.isWelcomeTitle ? "" : "700")};
+  font-style: ${(props) => (props.isWelcomeTitle ? "" : "italic")};
   font-size: ${(props) => props.fontSize}vw;
-  font-family: var(--poppins);
+  font-family: ${(props) =>
+    props.isWelcomeTitle ? "var(--banger)" : "var(--poppins)"};
   text-transform: uppercase;
+  width: ${(props) =>
+    props.isWelcomeTitle || props.isResult ? "max-content" : "100%"};
+  padding: 0 20px;
   text-align: center;
   background-clip: text;
   -webkit-background-clip: text;
@@ -116,6 +123,39 @@ const GameHeading = styled.h1<HeadingProps>`
   filter: ${(props) =>
     props.shadow ? "drop-shadow(-4px 2px 4px rgba(255, 255, 255, 0.5))" : ""};
   margin: 0;
+  &::before {
+    content: "${(props) => (props.isWelcomeTitle ? "welcome to" : "")}";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    font-family: var(--poppins);
+    font-size: 5vw;
+    white-space: nowrap;
+    background-clip: none;
+    -webkit-background-clip: none;
+    -webkit-text-fill-color: #f5f5f5;
+    text-transform: none;
+    font-weight: 400;
+    transform: translate(-40%, -100%);
+    // border: 1px solid red;
+  }
+  &::after {
+    content: "${(props) => (props.isWelcomeTitle ? "tech edition" : "")}";
+    position: absolute;
+    bottom: 0;
+    //left: 0;
+    right: 0;
+    font-family: "courier", sans;
+    font-size: 3.5vw;
+    white-space: nowrap;
+    background-clip: none;
+    -webkit-background-clip: none;
+    -webkit-text-fill-color: #f5f5f5;
+    text-transform: none;
+    font-weight: 400;
+    transform: translate(-10px, 60%);
+    // border: 1px solid red;
+  }
 `;
 
 export { Card, CardInner, CardFront, CardBack, GameHeading };

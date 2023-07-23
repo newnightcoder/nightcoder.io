@@ -1,17 +1,27 @@
 import styled from "styled-components";
 
-const GameTitleContainer = styled.div`
+interface Props {
+  displayResult?: boolean;
+  isWon?: boolean;
+  isGamePlayed?: boolean;
+  wins?: number;
+  progress?: number;
+  bg?: string;
+  bgTitle?: string;
+}
+
+const GameTitleContainer = styled.div<Props>`
   position: fixed;
   inset-x: 0;
   top: var(--navbar-height);
   z-index: 50;
-  background: var(--gradient-blue);
+  background: url("${(props) => props.bgTitle}") no-repeat center/cover;
   min-height: calc(100vh - var(--navbar-height));
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   font-size: 4rem;
   text-align: center;
   // border: 4px solid red;
@@ -22,9 +32,10 @@ const GameContainer = styled.div`
   justify-content: space-evenly;
 `;
 
-const CardContainer = styled.div`
+const CardContainer = styled.div<Props>`
   height: calc(100vh - 9rem);
   width: 100vw;
+  background: url(${(props) => props.bg}) no-repeat center/cover;
   position: relative;
   padding: 10px 1vw;
   display: grid;
@@ -35,14 +46,6 @@ const CardContainer = styled.div`
   justify-content: center;
   border: 2px solid red;
 `;
-
-interface Props {
-  displayResult?: boolean;
-  isWon?: boolean;
-  isGamePlayed?: boolean;
-  wins?: number;
-  progress?: number;
-}
 
 const Result = styled.div<Props>`
   opacity: ${(props) => (props.isWon || !props.isGamePlayed ? 1 : 0)};
@@ -78,13 +81,17 @@ const ChoiceBtn = styled.button`
   padding: 5px 15px;
   font-size: 1rem;
   color: white;
-  background-color: black;
   margin-right: 10px;
-  // border: 1px solid white;
+  border: 1px solid white;
   border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 300ms;
+  &:hover {
+    color: white;
+    background-color: black;
+  }
 `;
 
 export {

@@ -9,12 +9,12 @@ import { GameHeading } from "./GameCardStyled";
 const GameBoard = ({
   round,
   setRound,
+  gameBg,
   currentRound,
   gameCardRefs,
   isMemoryGamePlayed,
   flipCard,
   compare,
-  wins,
   setWins,
   isLightTheme,
   welcomeRef,
@@ -61,7 +61,7 @@ const GameBoard = ({
       <GameHeading fontSize={3} color={headingColor}>
         Round {round}
       </GameHeading>
-      <CardContainer ref={cardContainerRef}>
+      <CardContainer ref={cardContainerRef} bg={gameBg}>
         {currentRound.map((card: ICardElement, i: number) => {
           return (
             <GameCard

@@ -168,7 +168,7 @@ const Results = ({
       {!isGamePlayed ? (
         <StackPageHeading backToGame={backToGameScreen} />
       ) : (
-        <GameResultsHeading progress={progress} wins={wins} />
+        <GameResultsHeading progress={progress} wins={wins} isResult={true} />
       )}
       <TableContainer>
         {stackTables.map((table, i) => {

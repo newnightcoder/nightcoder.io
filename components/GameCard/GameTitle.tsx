@@ -1,15 +1,24 @@
+import { intro } from "../../assets";
 import {
   BtnContainer,
   ChoiceBtn,
-  GameTitleContainer,
+  GameTitleContainer
 } from "../../styles/stack";
+import { GameHeading } from "./GameCardStyled";
 
 const GameTitle = ({ welcomeRef, skipGame }) => {
+  const bg = intro;
+
   return (
-    <GameTitleContainer ref={welcomeRef}>
-      welcome to <br />
-      memory game
-      <br /> stack edition
+    <GameTitleContainer ref={welcomeRef} bgTitle={bg.src}>
+      <GameHeading
+        isWelcomeTitle={true}
+        color={"orange"}
+        shadow={true}
+        fontSize={10}
+      >
+        memory game
+      </GameHeading>
       <BtnContainer>
         <ChoiceBtn
           onClick={() => welcomeRef.current.classList.add("split-screen")}
