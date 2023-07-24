@@ -9,7 +9,7 @@ const AnimationContainer = styled.div<Props>`
   width: 100%;
   will-change: transform;
   overflow-y: scroll;
-  border: 2px solid blue;
+  // border: 2px solid blue;
 
   //////////////////////////////////////////////////////////////////////////
   // Octagon + variables to manage the clip-path animation                //
@@ -43,7 +43,8 @@ const MenuContainer = styled.div<Props>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--menu-bg);
+  // background: var(--menu-bg);
+  background: var(--gradient-blue-2);
   color: var(--text-dark);
 `;
 
@@ -54,7 +55,7 @@ const OverflowWrapper = styled.div`
   overflow-y: auto;
   display: grid;
   align-items: place-items-center;
-  border: 2px solid red;
+  // border: 2px solid red;
 `;
 
 const BtnContainer = styled.div<Props>`
@@ -70,13 +71,14 @@ const BtnContainer = styled.div<Props>`
   & > * + * {
     margin-top: 2rem;
   }
-  border: 2px solid yellow;
+  // border: 2px solid yellow;
 `;
 
 const Btn = styled.button<Props>`
   position: relative;
   height: max-content;
-  width: 100%;
+  // width: 100%;
+  width: 200px;
   text-align: left;
   color: var(--text-dark);
   font-size: 2.5rem;
@@ -96,8 +98,10 @@ const Btn = styled.button<Props>`
     display: inline;
     position: absolute;
     top: 50%;
-    right: -0rem;
-    transform: translate(-50%, -50%);
+    // right: -0rem;
+    right: -2rem;
+    // transform: translate(-50%, -50%);
+    transform: translate(0, -50%);
     font-size: 1.5rem;
   }
 `;

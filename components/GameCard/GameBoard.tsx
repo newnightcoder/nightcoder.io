@@ -29,6 +29,11 @@ const GameBoard = ({
   const cardContainerHeight =
     cardContainerRef?.current?.getBoundingClientRect().height;
   const [cardSize, setCardSize] = useState(0);
+  const [minHeight, setMinHeight] = useState(
+    width > breakpoints.mdNumber
+      ? cardContainerHeight + 30
+      : cardContainerHeight + 40
+  );
   const headingColor = round === 1 ? "blue" : round === 2 ? "pink" : "green";
 
   const resetGame = () => {
@@ -48,20 +53,40 @@ const GameBoard = ({
 
   useEffect(() => {
     if (cardContainerRef.current) {
+      setMinHeight(() =>
+        width > breakpoints.mdNumber
+          ? cardContainerHeight + 30
+          : cardContainerHeight + 40
+      );
+    }
+  }, [width, cardContainerRef.current]);
+
+  useEffect(() => {
+    if (cardContainerRef.current) {
       setCardSize(() =>
         width > breakpoints.mdNumber
           ? (cardContainerHeight - 30) / 3
           : (cardContainerHeight - 40) / 4
       );
+      // setMinHeight(() =>
+      //   width > breakpoints.mdNumber
+      //     ? cardContainerHeight + 30
+      //     : cardContainerHeight + 40
+      // );
+      if (flippedCards.length > 0) {
+        flippedCards.forEach((card) => {
+          card.domEl.classList.add("flip-card-y");
+        });
+      }
     }
-  }, [width, cardContainerRef.current]);
+  }, [width, cardContainerRef.current, flippedCards]);
 
   return (
     <div style={{ position: "relative" }}>
       <GameHeading fontSize={3} color={headingColor}>
         Round {round}
       </GameHeading>
-      <CardContainer ref={cardContainerRef} bg={gameBg}>
+      <CardContainer ref={cardContainerRef} bg={gameBg} minHeight={minHeight}>
         {currentRound.map((card: ICardElement, i: number) => {
           return (
             <GameCard

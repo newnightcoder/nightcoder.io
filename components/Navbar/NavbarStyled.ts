@@ -62,12 +62,12 @@ const HamburgerBtn = styled.button<Props>`
   z-index: 2500;
   height: var(--navbar-height);
   width: max-content;
-  display: var(--hamburger-visibility);
+  // display: var(--hamburger-visibility);
+  display: flex;
   align-items: center;
   justify-content: center;
-  transition: 1000ms color 1000ms;
-  color: ${(props) =>
-    props.isBgDark ? "var(--text-dark)" : "var(--text-light)"};
+  transition: color;
+  color: ${({ theme }) => theme.color};
 `;
 
 const NavLinksContainer = styled.ul`
@@ -112,9 +112,10 @@ const BtnContent = styled.span<Props>`
 
 const OptionsContainer = styled.div`
   width: 110px;
-  // position: fixed;
+  position: fixed;
   // top: 10px;
-  // right: 1vw;
+  left: 50%;
+  transform: translate(-50%, 0);
   // z-index: 1500;
   display: flex;
   align-items: center;

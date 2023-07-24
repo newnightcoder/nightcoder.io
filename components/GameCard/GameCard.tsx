@@ -1,4 +1,4 @@
-import { forwardRef, PropsWithChildren } from "react";
+import { forwardRef, MouseEventHandler, PropsWithChildren } from "react";
 import { Card, CardBack, CardFront, CardInner } from "./GameCardStyled";
 
 interface Props extends PropsWithChildren {
@@ -9,8 +9,8 @@ interface Props extends PropsWithChildren {
   isGamePlayed?: boolean;
   isResult?: boolean;
   isWon?: boolean;
-  onClick?: () => void;
-  onMouseOver?: () => void;
+  onClick?: MouseEventHandler<HTMLDivElement>;
+  onMouseOver?: MouseEventHandler<HTMLDivElement>;
   cardName?: string;
   className?: string;
   round?: number;

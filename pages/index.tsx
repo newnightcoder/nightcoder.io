@@ -278,7 +278,7 @@ const HomePage = () => {
         <h2>contact</h2>
         <div style={{ fontSize: "2rem" }}>let&apos;s get in touch!</div>
         <MoreBtn
-          color={"blue"}
+          color={"pink"}
           bg={dataColor.sectionContact}
           onClick={() => handleRoute("/contact")}
         >

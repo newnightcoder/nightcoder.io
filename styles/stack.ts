@@ -8,6 +8,8 @@ interface Props {
   progress?: number;
   bg?: string;
   bgTitle?: string;
+  minHeight?: number;
+  cardSize?: number;
 }
 
 const GameTitleContainer = styled.div<Props>`
@@ -33,7 +35,9 @@ const GameContainer = styled.div`
 `;
 
 const CardContainer = styled.div<Props>`
-  height: calc(100vh - 9rem);
+  height: 75vh;
+  // min-height: calc((${(props) => props.cardSize}px + 30px) * 3);
+  min-height: ${(props) => props.minHeight}px;
   width: 100vw;
   background: url(${(props) => props.bg}) no-repeat center/cover;
   position: relative;

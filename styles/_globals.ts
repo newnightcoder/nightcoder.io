@@ -159,7 +159,8 @@ html {
   // --navbar-bg: linear-gradient(to left, #FFB906, #FB098C, #06A5FF); 
   --navbar-bg: #000; 
   --home-bg:linear-gradient(90deg, dimgray, black);
-  --menu-bg:#06A5FF;
+  // --menu-bg:#06A5FF;
+  --menu-bg: dimgray;
   --gradient-blue: linear-gradient(135deg, #007cf0, #00dfd8);
   --gradient-blue-2: linear-gradient(135deg, #38BDF8, #2563EB);
   --gradient-orange: linear-gradient(135deg, #ff4d4d, #e1b106);

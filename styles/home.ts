@@ -70,10 +70,7 @@ const MoreBtn = styled.button<Props>`
   transition: color 300ms, background-color 300ms;
   /* background: ${(props) =>
     `linear-gradient(${props.bg}, ${props.bg}) padding-box, var(--gradient-blue) border-box`};  */
-  border-image: ${(props) =>
-    props.color === "blue"
-      ? "var(--gradient-blue) 1"
-      : "var(--gradient-orange) 1"};
+  border-image: var(--gradient-${(props) => props.color}) 1;
   border-width: 1px;
   border-style: solid;
   &::after {
@@ -81,10 +78,7 @@ const MoreBtn = styled.button<Props>`
     position: absolute;
     height: 100%;
     width: 100%;
-    background: ${(props) =>
-      props.color === "blue"
-        ? "var(--gradient-blue)"
-        : "var(--gradient-orange)"};
+    background: var(--gradient-${(props) => props.color});
     z-index: 3;
     transform: scale(0, 1);
     transform-origin: left;

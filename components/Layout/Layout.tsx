@@ -9,13 +9,14 @@ import { LayoutContainer, Main } from "./LayoutStyled";
 interface Props extends PropsWithChildren {}
 
 const Layout = forwardRef<HTMLDivElement, Props>(({ children }, ref) => {
-  const { toggleMenu, isMenuOpen } = useContext(TransitionContext);
+  const { toggleMenu, isMenuOpen, isLightTheme } =
+    useContext(TransitionContext);
   const isBgDark = useBgColor();
   return (
     <LayoutContainer ref={ref}>
       <Navbar />
       <Logo />
-      <HamburgerBtn isBgDark={isBgDark}>
+      <HamburgerBtn isLightTheme={isLightTheme}>
         <Hamburger
           label="Show menu"
           toggled={isMenuOpen}

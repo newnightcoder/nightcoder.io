@@ -1,18 +1,13 @@
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import { NavLinksAnimation } from "../../animations";
 import { TransitionContext } from "../../context/TransitionContext";
 import { useBgColor, useHandleRoute, useNavLinks } from "../../hooks";
 import {
-  BtnContent,
   DarkModeBtn,
   LocaleBtn,
   NavbarContainer,
-  NavBtn,
-  NavBtnContainer,
-  NavLinksContainer,
   OptionsContainer,
-  Wrapper
+  Wrapper,
 } from "./NavbarStyled";
 
 const Navbar = () => {
@@ -42,7 +37,7 @@ const Navbar = () => {
   return (
     <Wrapper>
       <NavbarContainer>
-        <NavLinksAnimation>
+        {/* <NavLinksAnimation>
           <NavLinksContainer id="ul">
             {navLinks.map((link, i) => {
               return (
@@ -72,7 +67,7 @@ const Navbar = () => {
               );
             })}
           </NavLinksContainer>
-        </NavLinksAnimation>
+        </NavLinksAnimation> */}
         <OptionsContainer>
           <DarkModeBtn
             isLightTheme={isLightTheme}

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MutableRefObject, useContext, useRef } from "react";
+import { GameHeading } from "../../components/GameCard/GameCardStyled";
 import { TransitionContext } from "../../context/TransitionContext";
 import {
   useIsoMorphicLayoutEffect,
@@ -83,6 +84,9 @@ const Projects = ({ projects }: Props) => {
 
   return (
     <PageContainer ref={pageRef} id="projects" justify="">
+      <GameHeading color="blue" fontSize={3} isWelcomeTitle={false}>
+        My Projects
+      </GameHeading>
       <ProjectsContainer>
         <ImgContainer ref={imgContainerRef}>
           {projects.map((p, i) => {

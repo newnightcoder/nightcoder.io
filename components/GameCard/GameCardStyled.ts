@@ -114,8 +114,9 @@ const GameHeading = styled.h1<HeadingProps>`
   text-transform: uppercase;
   width: ${(props) =>
     props.isWelcomeTitle || props.isResult ? "max-content" : "100%"};
-  padding: 0 20px;
+  // padding: 0 20px;
   text-align: center;
+  white-space: nowrap;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -123,19 +124,20 @@ const GameHeading = styled.h1<HeadingProps>`
   filter: ${(props) =>
     props.shadow ? "drop-shadow(-4px 2px 4px rgba(255, 255, 255, 0.5))" : ""};
   margin: 0;
+  // border: 1px solid red;
   &::before {
-    content: "${(props) => (props.isWelcomeTitle ? "welcome to" : "")}";
+    content: "${(props) => (props.isWelcomeTitle ? "Welcome to" : "")}";
     position: absolute;
     top: 0;
     left: 50%;
     font-family: var(--poppins);
-    font-size: 5vw;
+    font-weight: 800;
+    font-size: 4.5vw;
     white-space: nowrap;
     background-clip: none;
     -webkit-background-clip: none;
     -webkit-text-fill-color: #f5f5f5;
     text-transform: none;
-    font-weight: 400;
     transform: translate(-40%, -100%);
     // border: 1px solid red;
   }
