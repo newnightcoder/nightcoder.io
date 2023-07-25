@@ -25,7 +25,7 @@ const Header = styled.header`
   align-items: flex-start;
   justify-content: center;
   padding-top: 2vh;
-  font-weight: 800;
+  font-weight: 900;
   font-size: var(--fontsize-header);
   line-height: var(--line-height-header);
   // z-index: 36;

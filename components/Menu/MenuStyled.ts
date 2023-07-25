@@ -101,7 +101,7 @@ const Btn = styled.button<Props>`
     // right: -0rem;
     right: -2rem;
     // transform: translate(-50%, -50%);
-    transform: translate(0, -50%);
+    transform: translate(0, -40%);
     font-size: 1.5rem;
   }
 `;

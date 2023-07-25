@@ -109,7 +109,10 @@ const Project = ({ project }: { project: IProject }) => {
               onMouseOver={() => setShowNextImg(true)}
               onMouseOut={() => setShowNextImg(false)}
             >
-              {project.next?.title}
+              <HandleProjectTitle
+                projectTitle={project.next?.title}
+                fontSize={"1.5rem"}
+              ></HandleProjectTitle>
             </NextTitle>
           </Link>
           <NextImgContainer showNextImg={showNextImg}>

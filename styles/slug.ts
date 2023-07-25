@@ -139,10 +139,13 @@ const AnimatedSpanNext = styled.span<Props>`
   font-size: 70vmin;
   height: 100%;
   width: max-content;
-  font-weight: 200;
+  font-family: var(--poppins);
+  font-weight: 900;
   text-transform: uppercase;
   color: ${(props) =>
-    props.isLightTheme ? "rgba(0, 0, 0, 0.1)" : "rgba(255, 255, 255, 0.1)"};
+    props.isLightTheme
+      ? "rgba(100, 100, 100, 0.1)"
+      : "rgba(255, 255, 255, 0.1)"};
   white-space: nowrap;
   line-height: 100vh;
   // transform: scale(1, 3);

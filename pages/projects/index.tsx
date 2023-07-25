@@ -84,10 +84,18 @@ const Projects = ({ projects }: Props) => {
 
   return (
     <PageContainer ref={pageRef} id="projects" justify="">
-      <GameHeading color="blue" fontSize={3} isWelcomeTitle={false}>
-        My Projects
-      </GameHeading>
       <ProjectsContainer>
+        <div
+          style={{
+            gridArea: "title",
+            // border: "1px solid red",
+            // transform: "translateY(10%)",
+          }}
+        >
+          <GameHeading color="blue" fontSize={5} isWelcomeTitle={false}>
+            Projects
+          </GameHeading>
+        </div>
         <ImgContainer ref={imgContainerRef}>
           {projects.map((p, i) => {
             return (

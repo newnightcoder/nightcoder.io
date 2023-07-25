@@ -6,18 +6,25 @@ import { AnimationContainer } from "../styles/home";
 import { gsap } from "./gsap";
 
 const HomeAnimation = ({ children }) => {
-  const { timelinePages, isMenuOpen } = useContext(TransitionContext);
+  const { timelinePages, isMenuOpen, timelineMenu } =
+    useContext(TransitionContext);
   const spanref = useRef<HTMLDivElement>(null);
-  const { pathname, query } = useRouter();
+  const { pathname, query, locale } = useRouter();
 
   const [isAnimDone, setIsAnimDone] = useState(true);
+  let hasPlayed = useRef(false);
 
   useIsoMorphicLayoutEffect(() => {
     // Prevent animation from playing when just changing locale
-    // console.log("query", query.slug);
-    // if (pathname.includes(query.slug as string)) return;
+    // console.log("locale:", locale);
+    // if (pathname.includes(locale)) return;
 
-    if (spanref.current && isAnimDone && !isMenuOpen) {
+    if (
+      spanref.current &&
+      isAnimDone &&
+      !timelineMenu.isActive() &&
+      !hasPlayed.current
+    ) {
       // re-set element's position at each remount
       gsap.set(spanref.current, {
         autoAlpha: 0,
@@ -35,6 +42,8 @@ const HomeAnimation = ({ children }) => {
         delay: 0.5,
       });
 
+      hasPlayed.current = true;
+
       // exit animation
       timelinePages.add(
         gsap.to(spanref.current, {
@@ -47,7 +56,7 @@ const HomeAnimation = ({ children }) => {
         0
       );
     }
-  }, [isMenuOpen, isAnimDone]);
+  }, [hasPlayed, timelineMenu.isActive(), isAnimDone, locale]);
 
   return <AnimationContainer ref={spanref}>{children}</AnimationContainer>;
 };

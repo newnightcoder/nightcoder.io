@@ -99,7 +99,7 @@ html {
   --lucky : "Luckiest Guy", cursive;
   --banger: "Bangers", cursive;
   --fontsize-header : 2.2rem;
-  --line-height-header: 3rem;
+  --line-height-header: 2.75rem;
 
   /* MOBILE FIRST VARIABLES / RESPONSIVE */
 
@@ -110,13 +110,17 @@ html {
   --navbar-padding-right: 0;
   --header-width: max-content;
   --align-header: center;
-  --mobile-menu-display: block;
+  // --mobile-menu-display: block;
   --about-items-container-width: 100%;
   --about-items-whitespace: wrap;
-  --projects-container-direction: column;
-  --projects-container-justify: center;
-  --project-img-height: 0;
-  --project-img-width: 0;
+  // --projects-container-direction: column;
+  // --projects-container-justify: center;
+  --projects-container-columns: 1fr;
+  --projects-container-rows: max-content 1fr;
+  --projects-container-areas:  "title"
+                                "list";
+  --project-img-display: none;
+  // --project-img-width: 0;
   // --project-list-width: 45vmax;
   --project-list-width: 100%;
   --project-list-height: 100%;
@@ -190,14 +194,19 @@ html {
     --align-header: flex-start;
     // --fontsize-header: clamp(46px, 4.75vw, 70px);
     --fontsize-header: 4rem;
-    --line-height-header: 5.4rem;
-    --mobile-menu-display: none;
+    --line-height-header: 5rem;
+    // --mobile-menu-display: none;
     --about-items-container-width: 60vmax;
     --about-items-whitespace: nowrap;
-    --projects-container-direction: row;
-    --projects-container-justify: flex-end;
-    --project-img-height: 90%;
-    --project-img-width: 60vmax;
+    // --projects-container-direction: row;
+    // --projects-container-justify: flex-end;
+    --projects-container-columns: repeat(3, 1fr);
+    --projects-container-rows: max-content 1fr;
+    --projects-container-areas:  "title title title"
+                                 "img img list";
+    --project-img-display: flex;
+    // --project-img-height: 90%;
+    // --project-img-width: 60vmax;
     --project-list-width: 30vmax;
     --project-list-height: calc(100vh - var(--navbar-height));
     --fontsize-project-list: 5vmax;
