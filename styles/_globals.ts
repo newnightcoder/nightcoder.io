@@ -116,15 +116,16 @@ html {
   // --projects-container-direction: column;
   // --projects-container-justify: center;
   --projects-container-columns: 1fr;
-  --projects-container-rows: max-content 1fr;
-  --projects-container-areas:  "title"
+  --projects-container-rows: 4rem max-content 1fr;
+  --projects-container-areas:   "."
+                                "title"
                                 "list";
   --project-img-display: none;
   // --project-img-width: 0;
   // --project-list-width: 45vmax;
-  --project-list-width: 100%;
-  --project-list-height: 100%;
-  --fontsize-project-list: 9vmax;
+  // --project-list-height: 100%;
+  --project-list-width: max-content;
+  --fontsize-project-list: 6vmax;
   --project-columns: 1fr;
   --project-areas: "title"
                    "img"
@@ -201,14 +202,15 @@ html {
     // --projects-container-direction: row;
     // --projects-container-justify: flex-end;
     --projects-container-columns: repeat(3, 1fr);
-    --projects-container-rows: max-content 1fr;
-    --projects-container-areas:  "title title title"
+    --projects-container-rows: 2vh max-content 1fr;
+    --projects-container-areas:  ". . ."
+                                 "title title title"
                                  "img img list";
     --project-img-display: flex;
     // --project-img-height: 90%;
     // --project-img-width: 60vmax;
-    --project-list-width: 30vmax;
-    --project-list-height: calc(100vh - var(--navbar-height));
+    // --project-list-height: calc(100vh - var(--navbar-height));
+    --project-list-width: 100%;
     --fontsize-project-list: 5vmax;
     --project-columns:repeat(5, 1fr);
     --project-areas:  "img img img title title"

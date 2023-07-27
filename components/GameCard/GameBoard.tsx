@@ -34,7 +34,7 @@ const GameBoard = ({
       ? cardContainerHeight + 30
       : cardContainerHeight + 40
   );
-  const headingColor = round === 1 ? "blue" : round === 2 ? "pink" : "green";
+  const headingColor = round === 1 ? "blue-2" : round === 2 ? "pink" : "green";
 
   const resetGame = () => {
     welcomeRef.current.classList.remove("split-screen");
@@ -83,7 +83,7 @@ const GameBoard = ({
 
   return (
     <div style={{ position: "relative" }}>
-      <GameHeading fontSize={3} color={headingColor}>
+      <GameHeading fontSize={3} fontWeight={700} color={headingColor}>
         Round {round}
       </GameHeading>
       <CardContainer ref={cardContainerRef} bg={gameBg} minHeight={minHeight}>

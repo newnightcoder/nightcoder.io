@@ -19,12 +19,12 @@ interface Props {
 }
 
 const ImgContainer = styled.div`
+  grid-area: img;
   height: 100%;
   position: relative;
   display: var(--project-img-display);
   align-items: center;
   justify-content: center;
-  grid-area: img;
   overflow: hidden;
   z-index: 1;
   // border: 4px solid red;
@@ -45,13 +45,15 @@ const ImgWrapper = styled.div<Props>`
   // border: 2px solid green;
 `;
 
+const ProjectHeader = styled.div`
+  grid-area: title;
+  // border: 1px solid red;
+`;
+
 const ProjectList = styled.div`
-  // height: var(--project-list-height);
-  height: 100%;
-  width: 100%;
   grid-area: list;
-  // word-break: break-word;
-  // padding: 0 20px;
+  height: 100%;
+  width: var(--project-list-width);
   font-family: var(--poppins);
   font-size: 9vmax;
   font-weight: 600;
@@ -71,8 +73,8 @@ const ProjectTitle = styled.a<Props>`
   font-weight: 700;
   cursor: pointer;
   color: transparent;
-  text-stroke: 0.02em ${({ theme }) => theme.color};
-  -webkit-text-stroke: 0.02em ${({ theme }) => theme.color};
+  text-stroke: 0.03em ${({ theme }) => theme.color};
+  -webkit-text-stroke: 0.03em ${({ theme }) => theme.color};
   transition: all 300ms;
   &:hover {
     color: ${({ theme }) => theme.color};
@@ -83,6 +85,7 @@ export {
   ImgContainer,
   ImgWrapper,
   ProjectsContainer,
+  ProjectHeader,
   ProjectList,
   ProjectTitle,
 };

@@ -12,6 +12,7 @@ interface CardProps {
 
 interface HeadingProps {
   fontSize?: number;
+  fontWeight?: number;
   color?: string;
   shadow?: boolean;
   round?: number;
@@ -106,7 +107,7 @@ const CardBack = styled.div<CardProps>`
 
 const GameHeading = styled.h1<HeadingProps>`
   position: relative;
-  font-weight: ${(props) => (props.isWelcomeTitle ? "" : "700")};
+  font-weight: ${(props) => (props.isWelcomeTitle ? "" : props.fontWeight)};
   font-style: ${(props) => (props.isWelcomeTitle ? "" : "italic")};
   font-size: ${(props) => props.fontSize}vw;
   font-family: ${(props) =>
@@ -160,4 +161,27 @@ const GameHeading = styled.h1<HeadingProps>`
   }
 `;
 
-export { Card, CardInner, CardFront, CardBack, GameHeading };
+const ExitBtn = styled.button`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translate(10%, 100%);
+`;
+
+const ExitBtnContent = styled.span`
+  // padding: 10px 0;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 800;
+  color: ${({ theme }) => theme.color};
+`;
+
+export {
+  Card,
+  CardInner,
+  CardFront,
+  CardBack,
+  GameHeading,
+  ExitBtn,
+  ExitBtnContent,
+};

@@ -1,10 +1,17 @@
 import { useContext, useRef } from "react";
 import { HomeAnimation } from "../animations";
-import { Background } from "../components";
-import { WordContainer } from "../components/Background/BackgroundStyled";
+import { AboutItem } from "../components";
+import { GameHeading } from "../components/GameCard/GameCardStyled";
 import { TransitionContext } from "../context/TransitionContext";
 import { useHandleRoute } from "../hooks";
+import {
+  AboutItemsContainer,
+  Container,
+  ContentContainer,
+  Title,
+} from "../styles/about";
 import { PageContainer } from "../styles/_globals";
+import text from "./api/text.json";
 
 const About = () => {
   const pageRef = useRef<HTMLDivElement>(null);
@@ -23,41 +30,47 @@ const About = () => {
   return (
     <PageContainer ref={pageRef} id="about" justify="start">
       <HomeAnimation>
-        <Background>
+        {/* <Background>
           <WordContainer backgroundTextColor={"rgba(230, 230, 230, 0.9)"}>
-            {/* <WordComponent word={"home"}></WordComponent> */}ABOUT
           </WordContainer>
-        </Background>
+        </Background> */}
       </HomeAnimation>
-      {/* <Container>
+      <Container>
         <Title>
-          <h1>In a few words, i am...</h1>
+          <GameHeading fontSize={5} color={"blue"} fontWeight={100}>
+            In a few words, i am...
+          </GameHeading>
         </Title>
         <ContentContainer>
           <AboutItemsContainer>
             <AboutItem
               itemTitle={text[lang].item.title1}
               itemText={text[lang].item.text1}
+              itemEmoji={text[lang].item.emoji1}
             />
             <AboutItem
               itemTitle={text[lang].item.title2}
               itemText={text[lang].item.text2}
+              itemEmoji={text[lang].item.emoji2}
             />
             <AboutItem
               itemTitle={text[lang].item.title3}
               itemText={text[lang].item.text3}
+              itemEmoji={text[lang].item.emoji3}
             />
             <AboutItem
               itemTitle={text[lang].item.title4}
               itemText={text[lang].item.text4}
+              itemEmoji={text[lang].item.emoji4}
             />
             <AboutItem
               itemTitle={text[lang].item.title6}
               itemText={text[lang].item.text6}
+              itemEmoji={text[lang].item.emoji6}
             />
           </AboutItemsContainer>
         </ContentContainer>
-      </Container> */}
+      </Container>
       {/* </HomeAnimation> */}
     </PageContainer>
   );

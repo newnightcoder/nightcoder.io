@@ -11,6 +11,7 @@ import { createUrl, sanityClient } from "../../sanity";
 import {
   ImgContainer,
   ImgWrapper,
+  ProjectHeader,
   ProjectList,
   ProjectsContainer,
   ProjectTitle,
@@ -85,17 +86,16 @@ const Projects = ({ projects }: Props) => {
   return (
     <PageContainer ref={pageRef} id="projects" justify="">
       <ProjectsContainer>
-        <div
-          style={{
-            gridArea: "title",
-            // border: "1px solid red",
-            // transform: "translateY(10%)",
-          }}
-        >
-          <GameHeading color="blue" fontSize={5} isWelcomeTitle={false}>
+        <ProjectHeader>
+          <GameHeading
+            color="blue"
+            fontSize={5}
+            fontWeight={800}
+            isWelcomeTitle={false}
+          >
             Projects
           </GameHeading>
-        </div>
+        </ProjectHeader>
         <ImgContainer ref={imgContainerRef}>
           {projects.map((p, i) => {
             return (
