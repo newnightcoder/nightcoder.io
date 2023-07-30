@@ -10,10 +10,11 @@ const ItemContainer = styled.div`
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background-color: #333;
+  // background-color: #333;
+  background: ${({ theme }) => theme.bg.home};
   position: relative;
   padding: 0 30px 0 10px;
-  transition: all 500ms;
+  transition: all 300ms;
 
   &::before {
     content: "";
@@ -27,6 +28,7 @@ const ItemContainer = styled.div`
     z-index: -1;
     opacity: 1;
     transition: all 500ms;
+    pointer-events: none;
   }
   &::after {
     content: "";
@@ -40,6 +42,7 @@ const ItemContainer = styled.div`
     border-radius: 50%;
     z-index: -2;
     transition: all 500ms;
+    pointer-events: none;
   }
 
   &:hover {
@@ -60,26 +63,28 @@ const ItemTitle = styled.p`
   width: 100%;
   // max-width: 900px;
   white-space: var(--about-items-whitespace);
+  color: ${({ theme }) => theme.color};
 `;
 
 const ItemBtn = styled.button<Props>`
   height: 25px;
   width: 25px;
   border-radius: 5px;
-  color: white;
+  color: ${({ theme }) => theme.color};
   transition: all 300ms;
   transform: ${(props) => (props.rotated ? "rotate(90deg)" : "rotate(0deg)")};
   &:hover {
-    background: #555;
+    background: ${({ theme }) => theme.bg.contact};
   }
 `;
 
 const Item = styled.div<Props>`
-  padding: 0 15px 20px;
-  width: 100%;
   height: 100%;
-  word-break: break-all;
+  width: 100%;
   display: ${(props) => props.display};
+  padding: 0 15px 20px;
+  word-break: break-all;
+  color: ${({ theme }) => theme.color};
 `;
 
 export { ItemContainer, ItemTitle, ItemBtn, Item };

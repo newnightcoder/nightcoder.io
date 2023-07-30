@@ -90,7 +90,7 @@ const Projects = ({ projects }: Props) => {
           <GameHeading
             color="blue"
             fontSize={5}
-            fontWeight={800}
+            fontWeight={900}
             isWelcomeTitle={false}
           >
             Projects

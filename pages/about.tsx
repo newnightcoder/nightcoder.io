@@ -37,7 +37,7 @@ const About = () => {
       </HomeAnimation>
       <Container>
         <Title>
-          <GameHeading fontSize={5} color={"blue"} fontWeight={100}>
+          <GameHeading fontSize={5} color={"blue"} fontWeight={900}>
             In a few words, i am...
           </GameHeading>
         </Title>

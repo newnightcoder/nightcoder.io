@@ -114,8 +114,8 @@ const GameHeading = styled.h1<HeadingProps>`
     props.isWelcomeTitle ? "var(--banger)" : "var(--poppins)"};
   text-transform: uppercase;
   width: ${(props) =>
-    props.isWelcomeTitle || props.isResult ? "max-content" : "100%"};
-  // padding: 0 20px;
+    props.isWelcomeTitle || props.isResult ? "auto" : "100%"};
+  padding: 0 20px;
   text-align: center;
   white-space: nowrap;
   background-clip: text;
@@ -126,13 +126,14 @@ const GameHeading = styled.h1<HeadingProps>`
     props.shadow ? "drop-shadow(-4px 2px 4px rgba(255, 255, 255, 0.5))" : ""};
   margin: 0;
   // border: 1px solid red;
+
   &::before {
     content: "${(props) => (props.isWelcomeTitle ? "Welcome to" : "")}";
     position: absolute;
     top: 0;
     left: 50%;
     font-family: var(--poppins);
-    font-weight: 800;
+    font-weight: 100;
     font-size: 4.5vw;
     white-space: nowrap;
     background-clip: none;
@@ -146,16 +147,17 @@ const GameHeading = styled.h1<HeadingProps>`
     content: "${(props) => (props.isWelcomeTitle ? "tech edition" : "")}";
     position: absolute;
     bottom: 0;
-    //left: 0;
     right: 0;
-    font-family: "courier", sans;
-    font-size: 3.5vw;
+    font-family: "Menlo", sans;
+    font-size: 1.75vw;
+    font-weight: normal;
     white-space: nowrap;
     background-clip: none;
     -webkit-background-clip: none;
     -webkit-text-fill-color: #f5f5f5;
+    background: ${(props) => (props.isWelcomeTitle ? "#555" : "none")};
+    padding: 2px 10px;
     text-transform: none;
-    font-weight: 400;
     transform: translate(-10px, 60%);
     // border: 1px solid red;
   }

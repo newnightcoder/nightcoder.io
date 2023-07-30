@@ -81,8 +81,11 @@ const Btn = styled.button<Props>`
   width: 200px;
   text-align: left;
   color: var(--text-dark);
+  font-family: var(--poppins);
   font-size: 2.5rem;
+  font-weight: 100;
   padding-left: 30px;
+  transition: font-weight 300ms;
   // border: 1px solid white;
   &::before {
     content: "0${(props) => props.index}";
@@ -103,6 +106,9 @@ const Btn = styled.button<Props>`
     // transform: translate(-50%, -50%);
     transform: translate(0, -40%);
     font-size: 1.5rem;
+  }
+  &:hover {
+    font-weight: 900;
   }
 `;
 
