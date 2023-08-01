@@ -101,14 +101,19 @@ const Stack = () => {
 
   return (
     <PageContainer ref={pageRef} id="stack" justify="center">
-      <GameTitle welcomeRef={welcomeRef} skipGame={skipGame} />
+      <GameTitle
+        welcomeRef={welcomeRef}
+        skipGame={skipGame}
+        setIsMemoryGamePlayed={setIsMemoryGamePlayed}
+      />
       <GameBoard
         round={round}
         setRound={setRound}
-        gameBg={gameBg}
+        gameBg={null}
         currentRound={currentRound}
         gameCardRefs={gameCardRefs}
         isMemoryGamePlayed={isMemoryGamePlayed}
+        setIsMemoryGamePlayed={setIsMemoryGamePlayed}
         flipCard={flipCard}
         compare={compare}
         setWins={setWins}

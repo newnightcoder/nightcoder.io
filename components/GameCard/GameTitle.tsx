@@ -1,27 +1,28 @@
-import { intro } from "../../assets";
 import {
   BtnContainer,
   ChoiceBtn,
-  GameTitleContainer
+  GameTitleContainer,
 } from "../../styles/stack";
 import { GameHeading } from "./GameCardStyled";
 
-const GameTitle = ({ welcomeRef, skipGame }) => {
-  const bg = intro;
-
+const GameTitle = ({ welcomeRef, skipGame, setIsMemoryGamePlayed }) => {
   return (
-    <GameTitleContainer ref={welcomeRef} bgTitle={bg.src}>
+    <GameTitleContainer ref={welcomeRef}>
+      {/* bgTitle={bg.src} */}
       <GameHeading
         isWelcomeTitle={true}
         color={"orange"}
-        shadow={true}
+        shadow={false}
         fontSize={10}
       >
         memory game
       </GameHeading>
       <BtnContainer>
         <ChoiceBtn
-          onClick={() => welcomeRef.current.classList.add("split-screen")}
+          onClick={() => {
+            welcomeRef.current.classList.add("split-screen");
+            setIsMemoryGamePlayed(() => true);
+          }}
         >
           <span style={{ fontSize: "2rem" }}>😁</span>
           <span style={{ textTransform: "uppercase", fontWeight: "700" }}>

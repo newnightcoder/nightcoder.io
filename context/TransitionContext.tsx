@@ -56,7 +56,7 @@ const TransitionProvider = ({ children }: Props) => {
   const [isMenuClosing, setIsMenuClosing] = useState(false);
   const [lang, setLang] = useState("en");
   const [displayMemoryGameResult, setDisplayMemoryGameResult] = useState(false);
-  const [isMemoryGamePlayed, setIsMemoryGamePlayed] = useState(true);
+  const [isMemoryGamePlayed, setIsMemoryGamePlayed] = useState(false);
   const [theme, setTheme] = useState("light");
   const isLightTheme = theme === "light";
 

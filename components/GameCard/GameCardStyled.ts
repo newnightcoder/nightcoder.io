@@ -98,12 +98,6 @@ const CardBack = styled.div<CardProps>`
       ? "1px solid white"
       : "none"};
 `;
-// border: ${(props) =>
-//   props.isGamePlayed && props.isResult
-//     ? "1px solid rgba(255, 255, 255, 0.7)"
-//     : props.isResult
-//     ? "1px solid rgba(255, 255, 255, 0.2)"
-//     : "none"};
 
 const GameHeading = styled.h1<HeadingProps>`
   position: relative;
@@ -138,17 +132,17 @@ const GameHeading = styled.h1<HeadingProps>`
     white-space: nowrap;
     background-clip: none;
     -webkit-background-clip: none;
-    -webkit-text-fill-color: #f5f5f5;
+    -webkit-text-fill-color: ${({ theme }) => theme.color};
     text-transform: none;
     transform: translate(-40%, -100%);
     // border: 1px solid red;
   }
   &::after {
-    content: "${(props) => (props.isWelcomeTitle ? "tech edition" : "")}";
+    content: "${(props) => (props.isWelcomeTitle ? "code edition" : "")}";
     position: absolute;
     bottom: 0;
     right: 0;
-    font-family: "Menlo", sans;
+    font-family: "Courier", sans;
     font-size: 1.75vw;
     font-weight: normal;
     white-space: nowrap;
@@ -156,9 +150,13 @@ const GameHeading = styled.h1<HeadingProps>`
     -webkit-background-clip: none;
     -webkit-text-fill-color: #f5f5f5;
     background: ${(props) => (props.isWelcomeTitle ? "#555" : "none")};
+    border: ${(props) =>
+      props.isWelcomeTitle ? `1px dashed ${props.theme.color}` : "none"};
+
     padding: 2px 10px;
     text-transform: none;
     transform: translate(-10px, 60%);
+    border-radius: 5px;
     // border: 1px solid red;
   }
 `;

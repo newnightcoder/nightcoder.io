@@ -103,12 +103,17 @@ const StackPageHeader = styled.div`
   align-items: center;
 `;
 
-const SubHeader = styled.p`
+const SubHeader = styled.div`
   font-size: 1rem;
   font-style: italic;
   width: 100%;
   margin-top: 0;
-  padding: 4px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // text-align: center;
   // border: 1px solid white;
 `;
 

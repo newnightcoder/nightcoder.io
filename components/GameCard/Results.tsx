@@ -5,7 +5,7 @@ import {
   useEffect,
   useMemo,
   useRef,
-  useState,
+  useState
 } from "react";
 import { TransitionContext } from "../../context/TransitionContext";
 import { useWindowSize } from "../../hooks";
@@ -95,7 +95,7 @@ const Results = ({
 
   const backToGameScreen = () => {
     setDisplayMemoryGameResult(!displayResult);
-    setIsMemoryGamePlayed(!isGamePlayed);
+    // setIsMemoryGamePlayed(!isGamePlayed);
   };
 
   useEffect(() => {

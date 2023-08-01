@@ -10,6 +10,7 @@ interface Props {
   bgTitle?: string;
   minHeight?: number;
   cardSize?: number;
+  isLightTheme?: boolean;
 }
 
 const GameTitleContainer = styled.div<Props>`
@@ -17,7 +18,7 @@ const GameTitleContainer = styled.div<Props>`
   inset-x: 0;
   top: var(--navbar-height);
   z-index: 50;
-  background: url("${(props) => props.bgTitle}") no-repeat center/cover;
+  background: ${({ theme }) => theme.bg.home};
   min-height: calc(100vh - var(--navbar-height));
   width: 100%;
   display: flex;
@@ -39,7 +40,7 @@ const CardContainer = styled.div<Props>`
   // min-height: calc((${(props) => props.cardSize}px + 30px) * 3);
   min-height: ${(props) => props.minHeight}px;
   width: 100vw;
-  background: url(${(props) => props.bg}) no-repeat center/cover;
+  // background: url(${(props) => props.bg}) no-repeat center/cover;
   position: relative;
   padding: 10px 1vw;
   display: grid;
@@ -79,22 +80,23 @@ const BtnContainer = styled.div`
   height: max-content;
 `;
 
-const ChoiceBtn = styled.button`
+const ChoiceBtn = styled.button<Props>`
   height: 70px;
   width: 200px;
   padding: 5px 15px;
   font-size: 1rem;
-  color: white;
+  color: ${({ theme }) => theme.color};
+  background-color: ${({ theme }) => theme.bg.home};
   margin-right: 10px;
-  border: 1px solid white;
+  border: 1px solid ${({ theme }) => theme.color};
   border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 300ms;
   &:hover {
-    color: white;
-    background-color: black;
+    color: ${({ theme }) => theme.bg.home};
+    background-color: ${({ theme }) => theme.color};
   }
 `;
 
