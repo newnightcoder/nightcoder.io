@@ -1,4 +1,10 @@
-import { forwardRef, MouseEventHandler, PropsWithChildren } from "react";
+import {
+  forwardRef,
+  MouseEventHandler,
+  PropsWithChildren,
+  useContext,
+} from "react";
+import { TransitionContext } from "../../context/TransitionContext";
 import { Card, CardBack, CardFront, CardInner } from "./GameCardStyled";
 
 interface Props extends PropsWithChildren {
@@ -6,7 +12,7 @@ interface Props extends PropsWithChildren {
   // width: string;
   height: number | string;
   width: number | string;
-  isGamePlayed?: boolean;
+  // isGamePlayed?: boolean;
   isResult?: boolean;
   isWon?: boolean;
   onClick?: MouseEventHandler<HTMLDivElement>;
@@ -14,17 +20,19 @@ interface Props extends PropsWithChildren {
   cardName?: string;
   className?: string;
   round?: number;
-  isLightTheme?: boolean;
+  // isLightTheme?: boolean;
 }
 
 const GameCard = forwardRef<HTMLDivElement, Props>((props: Props, ref) => {
+  const { isLightTheme, isMemoryGamePlayed } = useContext(TransitionContext);
+
   return (
     <Card
       ref={ref}
       height={props.height}
       width={props.width}
       data-card={props.cardName}
-      isGamePlayed={props.isGamePlayed}
+      isGamePlayed={isMemoryGamePlayed}
       isResult={props.isResult}
       isWon={props.isWon}
       onClick={props.onClick}
@@ -32,12 +40,12 @@ const GameCard = forwardRef<HTMLDivElement, Props>((props: Props, ref) => {
       className={props.className}
       round={props.round}
     >
-      <CardInner isResult={props.isResult} isGamePlayed={props.isGamePlayed}>
+      <CardInner isResult={props.isResult} isGamePlayed={isMemoryGamePlayed}>
         <CardFront isResult={props.isResult} round={props.round} />
         <CardBack
-          isGamePlayed={props.isGamePlayed}
+          isGamePlayed={isMemoryGamePlayed}
           isResult={props.isResult}
-          isLightTheme={props.isLightTheme}
+          isLightTheme={isLightTheme}
         >
           {props.children}
         </CardBack>

@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { TransitionContext } from "../../context/TransitionContext";
 import { useWindowSize } from "../../hooks";
 import { ICard, ICardElement } from "../../hooks/useCardGame";
 import { CardContainer } from "../../styles/stack";
-import { breakpoints } from "../../styles/_globals";
 import GameCard from "./GameCard";
 import { GameHeading } from "./GameCardStyled";
 
@@ -12,12 +12,12 @@ const GameBoard = ({
   gameBg,
   currentRound,
   gameCardRefs,
-  isMemoryGamePlayed,
-  setIsMemoryGamePlayed,
+  // isMemoryGamePlayed,
+  // setIsMemoryGamePlayed,
+  // isLightTheme,
   flipCard,
   compare,
   setWins,
-  isLightTheme,
   welcomeRef,
   flippedCards,
   setFlippedCards,
@@ -26,15 +26,19 @@ const GameBoard = ({
 }) => {
   const [progress, setProgress] = useState(0);
   const { width } = useWindowSize();
-  const cardContainerRef = useRef<HTMLDivElement>();
+  const cardContainerRef = useRef<HTMLDivElement>(null);
   const [cardContainerHeight, setCardContainerHeight] = useState(
     cardContainerRef?.current?.getBoundingClientRect().height
   );
   const [cardSize, setCardSize] = useState(0);
   const [minHeight, setMinHeight] = useState(0);
+  const { isMemoryGamePlayed, setIsMemoryGamePlayed, isLightTheme } =
+    useContext(TransitionContext);
+
   const headingColor = round === 1 ? "blue-2" : round === 2 ? "pink" : "green";
 
   const resetGame = () => {
+    setIsMemoryGamePlayed(false);
     welcomeRef.current.classList.remove("split-screen");
     setRound(1);
     setWins(0);
@@ -46,17 +50,16 @@ const GameBoard = ({
     );
     setFlippedCards(() => []);
     setFlippedResults(() => []);
-    setIsMemoryGamePlayed(false);
     // shuffle cards again
   };
 
-  useEffect(() => {
-    if (cardContainerRef.current) {
-      setCardContainerHeight(
-        () => cardContainerRef?.current?.getBoundingClientRect().height
-      );
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (cardContainerRef.current) {
+  //     setCardContainerHeight(
+  //       () => cardContainerRef.current.getBoundingClientRect().height
+  //     );
+  //   }
+  // }, [cardContainerRef.current]);
 
   // useEffect(() => {
   //   if (cardContainerHeight && cardContainerRef.current) {
@@ -68,31 +71,31 @@ const GameBoard = ({
   //   }
   // }, [cardContainerHeight, cardContainerRef.current]);
 
-  useEffect(() => {
-    if (cardContainerRef.current) {
-      setMinHeight(() =>
-        width > breakpoints.mdNumber
-          ? cardContainerHeight + 30
-          : cardContainerHeight + 40
-      );
-    }
-  }, [width, cardContainerRef.current]);
+  // useEffect(() => {
+  //   if (cardContainerRef.current) {
+  //     setMinHeight(() =>
+  //       width > breakpoints.mdNumber
+  //         ? cardContainerHeight + 30
+  //         : cardContainerHeight + 40
+  //     );
+  //   }
+  // }, [width, cardContainerRef.current]);
 
   useEffect(() => {
-    if (isMemoryGamePlayed && cardContainerRef.current) {
-      setCardSize(() =>
-        width > breakpoints.mdNumber
-          ? (cardContainerHeight - 30) / 3
-          : (cardContainerHeight - 40) / 4
-      );
+    // if (isMemoryGamePlayed && cardContainerHeight) {
+    //   setCardSize(() =>
+    //     width > breakpoints.mdNumber
+    //       ? (cardContainerHeight - 30) / 3
+    //       : (cardContainerHeight - 40) / 4
+    //   );
 
-      if (flippedCards.length > 0) {
-        flippedCards.forEach((card) => {
-          card.domEl.classList.add("flip-card-y");
-        });
-      }
+    if (flippedCards.length > 0) {
+      flippedCards.forEach((card) => {
+        card.domEl.classList.add("flip-card-y");
+      });
     }
-  }, [width, isMemoryGamePlayed, cardContainerRef.current, flippedCards]);
+    // }
+  }, [flippedCards]); // cardContainerHeight, isMemoryGamePlayed,
 
   return (
     <>
@@ -110,14 +113,14 @@ const GameBoard = ({
                   ref={(el) =>
                     (gameCardRefs.current = [...gameCardRefs.current, el])
                   }
-                  // height="var(--memory-card-size)"
-                  // width="var(--memory-card-size)"
-                  height={cardSize}
-                  width={cardSize}
+                  height="var(--memory-card-size)"
+                  width="var(--memory-card-size)"
+                  // height={cardSize}
+                  // width={cardSize}
                   cardName={card.name}
                   round={round}
-                  isGamePlayed={isMemoryGamePlayed}
-                  isLightTheme={isLightTheme}
+                  // isGamePlayed={isMemoryGamePlayed}
+                  // isLightTheme={isLightTheme}
                   onClick={() => {
                     flipCard(gameCardRefs, i);
                     compare();

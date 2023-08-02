@@ -5,7 +5,7 @@ import {
   useEffect,
   useMemo,
   useRef,
-  useState
+  useState,
 } from "react";
 import { TransitionContext } from "../../context/TransitionContext";
 import { useWindowSize } from "../../hooks";
@@ -21,8 +21,8 @@ interface ResultCardInnerProps {
 }
 
 interface ResultsProps {
-  displayResult: boolean;
-  isGamePlayed: boolean;
+  // displayResult: boolean;
+  // isGamePlayed: boolean;
   wins: number;
   flipped: ICard[];
   flippedResults: HTMLDivElement[];
@@ -30,15 +30,18 @@ interface ResultsProps {
 }
 
 const Results = ({
-  displayResult,
-  isGamePlayed,
+  // displayResult,
+  // isGamePlayed,
   wins,
   flipped,
   update,
   flippedResults,
 }: ResultsProps) => {
-  const { setDisplayMemoryGameResult, setIsMemoryGamePlayed } =
-    useContext(TransitionContext);
+  const {
+    displayMemoryGameResult,
+    setDisplayMemoryGameResult,
+    isMemoryGamePlayed,
+  } = useContext(TransitionContext);
 
   const { integrationArray, frontArray, backendArray, dbArray, toolsArray } =
     useCardGame();
@@ -94,12 +97,12 @@ const Results = ({
   );
 
   const backToGameScreen = () => {
-    setDisplayMemoryGameResult(!displayResult);
+    setDisplayMemoryGameResult(!displayMemoryGameResult);
     // setIsMemoryGamePlayed(!isGamePlayed);
   };
 
   useEffect(() => {
-    if (isGamePlayed && displayResult) {
+    if (isMemoryGamePlayed && displayMemoryGameResult) {
       setAllRefs([
         ...integrationRefs.current,
         ...frontRefs.current,
@@ -108,7 +111,7 @@ const Results = ({
         ...toolsRefs.current,
       ]);
     }
-  }, [isGamePlayed, displayResult]);
+  }, [isMemoryGamePlayed, displayMemoryGameResult]);
 
   const scrollToResultCard = (
     containerRef: MutableRefObject<HTMLDivElement>,
@@ -147,14 +150,14 @@ const Results = ({
   };
 
   useEffect(() => {
-    if (!isGamePlayed) return;
+    if (!isMemoryGamePlayed) return;
     findCorrespondingResult(flipped[flipped.length - 1]);
   }, [flipped, allRefs]);
 
   return (
     <ResultContainer
-      displayResult={displayResult}
-      isGamePlayed={isGamePlayed}
+      displayResult={displayMemoryGameResult}
+      isGamePlayed={isMemoryGamePlayed}
       wins={wins}
       ref={resultsContainerRef}
     >
@@ -165,7 +168,7 @@ const Results = ({
           height={document.body.scrollHeight}
         />
       )}
-      {!isGamePlayed ? (
+      {!isMemoryGamePlayed ? (
         <StackPageHeading backToGame={backToGameScreen} />
       ) : (
         <GameResultsHeading progress={progress} wins={wins} isResult={true} />
@@ -175,7 +178,7 @@ const Results = ({
           return (
             <StackColumn
               key={i}
-              isGamePlayed={isGamePlayed}
+              // isGamePlayed={isMemoryGamePlayed}
               handleClassName={handleClassName}
               columnName={table.name}
               array={table.array}

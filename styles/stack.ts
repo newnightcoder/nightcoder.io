@@ -10,7 +10,6 @@ interface Props {
   bgTitle?: string;
   minHeight?: number;
   cardSize?: number;
-  isLightTheme?: boolean;
 }
 
 const GameTitleContainer = styled.div<Props>`
@@ -38,7 +37,7 @@ const GameContainer = styled.div`
 const CardContainer = styled.div<Props>`
   height: 75vh;
   // min-height: calc((${(props) => props.cardSize}px + 30px) * 3);
-  min-height: ${(props) => props.minHeight}px;
+  // min-height: ${(props) => props.minHeight}px;
   width: 100vw;
   // background: url(${(props) => props.bg}) no-repeat center/cover;
   position: relative;
@@ -52,26 +51,26 @@ const CardContainer = styled.div<Props>`
   border: 2px solid red;
 `;
 
-const Result = styled.div<Props>`
-  opacity: ${(props) => (props.isWon || !props.isGamePlayed ? 1 : 0)};
-  width: 200px;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  color: white;
-  font-size: 1.1rem;
-  font-weight: 200;
-  // margin-bottom: 10px;
-  // text-transform: capitalize;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 5px 15px;
-  // background: ${(props) => (props.isGamePlayed ? "black" : "transparent")};
-  // border-radius: 7px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-`;
+// const Result = styled.div<Props>`
+//   opacity: ${(props) => (props.isWon || !props.isGamePlayed ? 1 : 0)};
+//   width: 200px;
+//   height: auto;
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-start;
+//   color: white;
+//   font-size: 1.1rem;
+//   font-weight: 200;
+//   // margin-bottom: 10px;
+//   // text-transform: capitalize;
+//   border: 1px solid rgba(255, 255, 255, 0.2);
+//   padding: 5px 15px;
+//   // background: ${(props) => (props.isGamePlayed ? "black" : "transparent")};
+//   // border-radius: 7px;
+//   overflow: hidden;
+//   white-space: nowrap;
+//   text-overflow: ellipsis;
+// `;
 
 const BtnContainer = styled.div`
   display: flex;
@@ -106,5 +105,5 @@ export {
   BtnContainer,
   ChoiceBtn,
   GameContainer,
-  Result,
+  // Result,
 };

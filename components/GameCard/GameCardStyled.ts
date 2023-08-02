@@ -21,8 +21,11 @@ interface HeadingProps {
 }
 
 const Card = styled.div<CardProps>`
-  height: ${(props) => props.height}${(props) => (props.isResult ? "" : "px")};
-  width: ${(props) => props.width}${(props) => (props.isResult ? "" : "px")};
+  // height: ${(props) => props.height}${(props) =>
+    props.isResult ? "" : "px"};
+  // width: ${(props) => props.width}${(props) => (props.isResult ? "" : "px")};
+  height: ${(props) => props.height};
+  width: ${(props) => props.width};
   max-width: 350px;
   cursor: ${(props) => (props.isGamePlayed ? "pointer" : "default")};
   background-color: transparent;
@@ -142,7 +145,7 @@ const GameHeading = styled.h1<HeadingProps>`
     position: absolute;
     bottom: 0;
     right: 0;
-    font-family: "Courier", sans;
+    font-family: "Courier New", "Courier6", "monospace", sans-serif;
     font-size: 1.75vw;
     font-weight: normal;
     white-space: nowrap;

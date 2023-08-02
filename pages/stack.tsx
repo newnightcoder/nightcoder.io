@@ -42,7 +42,7 @@ const Stack = () => {
 
   const skipGame = () => {
     setDisplayMemoryGameResult(true);
-    setIsMemoryGamePlayed(false);
+    // setIsMemoryGamePlayed(false);
   };
 
   useIsoMorphicLayoutEffect(() => {
@@ -104,7 +104,7 @@ const Stack = () => {
       <GameTitle
         welcomeRef={welcomeRef}
         skipGame={skipGame}
-        setIsMemoryGamePlayed={setIsMemoryGamePlayed}
+        // setIsMemoryGamePlayed={setIsMemoryGamePlayed}
       />
       <GameBoard
         round={round}
@@ -112,12 +112,12 @@ const Stack = () => {
         gameBg={null}
         currentRound={currentRound}
         gameCardRefs={gameCardRefs}
-        isMemoryGamePlayed={isMemoryGamePlayed}
-        setIsMemoryGamePlayed={setIsMemoryGamePlayed}
+        // isMemoryGamePlayed={isMemoryGamePlayed}
+        // setIsMemoryGamePlayed={setIsMemoryGamePlayed}
+        // isLightTheme={isLightTheme}
         flipCard={flipCard}
         compare={compare}
         setWins={setWins}
-        isLightTheme={isLightTheme}
         welcomeRef={welcomeRef}
         flippedCards={flippedGameCards}
         flippedResults={flippedResultCards}
@@ -126,8 +126,8 @@ const Stack = () => {
       />
       {displayMemoryGameResult ? (
         <Results
-          displayResult={displayMemoryGameResult}
-          isGamePlayed={isMemoryGamePlayed}
+          // displayResult={displayMemoryGameResult}
+          // isGamePlayed={isMemoryGamePlayed}
           wins={wins}
           flipped={flippedGameCards}
           flippedResults={flippedResultCards}

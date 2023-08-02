@@ -224,7 +224,7 @@ html {
     --position-about-title: sticky;
     --memory-cards-columns: repeat(4, max-content);
     --memory-cards-rows: repeat(3, max-content);
-    // --memory-card-size: calc((98vw - 40px) / 8);
+    --memory-card-size: calc((98vw - 40px) / 8);
     --stack-table-flex-direction: row;
     --stack-table-align-items: flex-start;
     --stack-column-width: auto;
