@@ -1,8 +1,7 @@
 /img
 /fonts
 .htaccess
-transition.md
-next-with-styledcomponents.md
+*.md
 TODO
 # assets
 
