@@ -70,7 +70,6 @@ const Navbar = () => {
         </NavLinksAnimation> */}
         <OptionsContainer>
           <DarkModeBtn
-            isLightTheme={isLightTheme}
             onClick={() => setTheme(isLightTheme ? "dark" : "light")}
           >
             {isLightTheme ? "dark" : "light"}

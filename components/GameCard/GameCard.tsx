@@ -12,7 +12,7 @@ interface Props extends PropsWithChildren {
   // width: string;
   height: number | string;
   width: number | string;
-  // isGamePlayed?: boolean;
+  isGamePlayed?: boolean;
   isResult?: boolean;
   isWon?: boolean;
   onClick?: MouseEventHandler<HTMLDivElement>;

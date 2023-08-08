@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { forwardRef, useContext } from "react";
 import { TransitionContext } from "../../context/TransitionContext";
 import {
   BtnContainer,
@@ -7,20 +7,33 @@ import {
 } from "../../styles/stack";
 import { GameHeading } from "./GameCardStyled";
 
-const GameTitle = ({ welcomeRef, skipGame }) => {
-  const { isMemoryGamePlayed, setIsMemoryGamePlayed } =
-    useContext(TransitionContext);
+interface Props {
+  handlePlay: () => void;
+  skipGame: () => void;
+}
 
-  // useEffect(() => {
-  //   if (isMemoryGamePlayed) {
-  //     welcomeRef.current.classList.add("split-screen");
-  //   }
-  // }, [isMemoryGamePlayed]);
+const GameTitle = forwardRef<HTMLDivElement, Props>(
+  ({ handlePlay, skipGame }, ref) => {
+    const { isMemoryGamePlayed, setIsMemoryGamePlayed } =
+      useContext(TransitionContext);
 
-  return (
-    <>
-      {/* {!isMemoryGamePlayed ? ( */}
-      <GameTitleContainer ref={welcomeRef}>
+    // useEffect(() => {
+    //   if (isMemoryGamePlayed) {
+    //     welcomeRef.current.classList.add("split-screen");
+    //   }
+    // }, [isMemoryGamePlayed]);
+
+    // useEffect(() => {
+    //   // Add the "split-screen" class when the game starts
+    //   if (isMemoryGamePlayed) {
+    //     welcomeRef.current.classList.add("split-screen");
+    //   } else {
+    //     welcomeRef.current.classList.remove("split-screen");
+    //   }
+    // }, [isMemoryGamePlayed]);
+
+    return (
+      <GameTitleContainer ref={ref}>
         <GameHeading
           isWelcomeTitle={true}
           color={"orange"}
@@ -30,26 +43,20 @@ const GameTitle = ({ welcomeRef, skipGame }) => {
           memory game
         </GameHeading>
         <BtnContainer>
-          <ChoiceBtn
-            onClick={() => {
-              welcomeRef.current.classList.add("split-screen");
-              setIsMemoryGamePlayed((prev) => !prev);
-            }}
-          >
+          <ChoiceBtn onClick={handlePlay}>
             <span style={{ fontSize: "2rem" }}>😁</span>
             <span style={{ textTransform: "uppercase", fontWeight: "700" }}>
               play
             </span>
           </ChoiceBtn>
-          <ChoiceBtn onClick={() => skipGame()}>
+          <ChoiceBtn onClick={skipGame}>
             <span style={{ fontSize: "2rem" }}>🤬</span>i really don't have time
             for this sh*t
           </ChoiceBtn>
         </BtnContainer>
       </GameTitleContainer>
-      {/* ) : null} */}
-    </>
-  );
-};
+    );
+  }
+);
 
 export default GameTitle;

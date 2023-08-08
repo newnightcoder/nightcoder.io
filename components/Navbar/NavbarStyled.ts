@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { darkTheme, lightTheme } from "../../styles/_globals";
 
 interface Props {
   isBgDark?: boolean;
-  isLightTheme?: boolean;
+  // isLightTheme?: boolean;
   active?: boolean;
 }
 
@@ -62,7 +61,6 @@ const HamburgerBtn = styled.button<Props>`
   z-index: 2500;
   height: var(--navbar-height);
   width: max-content;
-  // display: var(--hamburger-visibility);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,8 +91,7 @@ const NavBtn = styled.button<Props>`
   font-family: var(--poppins);
   font-size: 0.75rem;
   transition: color 300ms;
-  color: ${(props) =>
-    props.isLightTheme ? lightTheme.color : darkTheme.color};
+  color: ${({ theme }) => theme.color};
 `;
 
 const BtnContent = styled.span<Props>`
@@ -102,21 +99,15 @@ const BtnContent = styled.span<Props>`
   font-size: 0.85rem;
   text-decoration: ${(props) => (props.active ? "underline" : "none")};
   text-decoration-color: ${(props) =>
-    props.active && props.isLightTheme
-      ? lightTheme.color
-      : props.active && !props.isLightTheme
-      ? darkTheme.color
-      : "none"};
+    props.active ? props.theme.color : "none"};
   transition: text-decoration-color 300ms;
 `;
 
 const OptionsContainer = styled.div`
   width: 110px;
   position: fixed;
-  // top: 10px;
   left: 50%;
   transform: translate(-50%, 0);
-  // z-index: 1500;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -124,20 +115,15 @@ const OptionsContainer = styled.div`
 `;
 
 const DarkModeBtn = styled.button<Props>`
-  // position: absolute;
-  // right: var(--darkmode-btn-right);
-  // left: var(--darkmode-btn-left);
   height: 40px;
   width: 40px;
-  border-radius: 50%;
+  padding: 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid
-    ${(props) => (props.isLightTheme ? lightTheme.color : darkTheme.color)};
-  padding: 0 10px;
-  color: ${(props) =>
-    props.isLightTheme ? lightTheme.color : darkTheme.color};
+  color: ${({ theme }) => theme.color};
+  border: 1px solid ${({ theme }) => theme.color};
+  border-radius: 50%;
   transition: color 300ms, border-color 300ms;
 `;
 
@@ -147,9 +133,6 @@ const LocaleBtn = styled.button`
   align-items: center;
   justify-content: center;
   // border: 1px solid red;
-  // position: absolute;
-  // right: var(--lang-emoji-right);
-  // left: var(--lang-emoji-left);
 `;
 
 export {

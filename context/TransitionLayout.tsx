@@ -2,14 +2,12 @@ import {
   PropsWithChildren,
   useCallback,
   useContext,
+  useEffect,
   useRef,
   useState,
 } from "react";
 import { ThemeProvider } from "styled-components";
-import { gsap } from "../animations/gsap";
 import { Layout, Loader } from "../components";
-import { useIsoMorphicLayoutEffect } from "../hooks";
-import { Span } from "../styles/home";
 import { darkTheme, GlobalStyles, lightTheme } from "../styles/_globals";
 import { TransitionContext } from "./TransitionContext";
 
@@ -31,8 +29,8 @@ const TransitionLayout = ({ children }: Props) => {
   const {
     timelinePages,
     timelineMenu,
-    backgroundColor,
-    backgroundTextColor,
+    // backgroundColor,
+    // backgroundTextColor,
     backgroundWord,
     backgroundImg,
     isMenuOpen,
@@ -42,19 +40,19 @@ const TransitionLayout = ({ children }: Props) => {
   const wordRef = useRef<HTMLDivElement>(null);
   const letterRefs = useRef<HTMLDivElement[]>([]);
 
-  const WordComponent = ({ word }: { word: string }) => {
-    const charRefs = useRef<HTMLDivElement[]>([]);
+  // const WordComponent = ({ word }: { word: string }) => {
+  //   const charRefs = useRef<HTMLDivElement[]>([]);
 
-    return (
-      <Span ref={wordRef}>
-        {word.split("").map((char, i) => (
-          <div key={i + 1} className={"letter"}>
-            {char}
-          </div>
-        ))}
-      </Span>
-    );
-  };
+  //   return (
+  //     <Span ref={wordRef}>
+  //       {word.split("").map((char, i) => (
+  //         <div key={i + 1} className={"letter"}>
+  //           {char}
+  //         </div>
+  //       ))}
+  //     </Span>
+  //   );
+  // };
 
   // const WordComponent = forwardRef<HTMLDivElement[], WordProps>(
   //   (props, ref) => {
@@ -81,59 +79,59 @@ const TransitionLayout = ({ children }: Props) => {
       timelinePages.pause().clear();
       setNextChildren(children);
     });
-  }, [children, nextChildren, setNextChildren, timelinePages, timelineMenu]);
+  }, [children, nextChildren, setNextChildren, timelinePages]);
 
-  const transitionBackground = useCallback(() => {
-    if (
-      layoutRef.current &&
-      layoutRef.current.firstElementChild.id !== "home" &&
-      bgRef.current &&
-      !isMenuOpen
-    ) {
-      gsap
-        .timeline({
-          default: {
-            duration: 2,
-          },
-        })
-        .to(bgRef.current, {
-          background: backgroundColor,
-          // duration: 2,
-        })
-        .to(
-          bgRef.current.firstChild,
-          {
-            opacity: 1,
-            // duration: 2,
-          },
-          ">"
-        );
-      // console.log("children of BG", bgRef.current.firstChild);
-    }
-  }, [layoutRef, bgRef, isMenuOpen, backgroundColor, gsap]);
+  // const transitionBackground = useCallback(() => {
+  //   if (
+  //     layoutRef.current &&
+  //     layoutRef.current.firstElementChild.id !== "home" &&
+  //     bgRef.current &&
+  //     !isMenuOpen
+  //   ) {
+  //     gsap
+  //       .timeline({
+  //         default: {
+  //           duration: 2,
+  //         },
+  //       })
+  //       .to(bgRef.current, {
+  //         background: backgroundColor,
+  //         // duration: 2,
+  //       })
+  //       .to(
+  //         bgRef.current.firstChild,
+  //         {
+  //           opacity: 1,
+  //           // duration: 2,
+  //         },
+  //         ">"
+  //       );
+  //     // console.log("children of BG", bgRef.current.firstChild);
+  //   }
+  // }, [layoutRef, bgRef, isMenuOpen, backgroundColor, gsap]);
 
-  const transitionBgWord = useCallback(() => {
-    if (bgRef && letterRefs.current.length !== 0 && backgroundWord) {
-      const targets: HTMLDivElement[] = gsap.utils.toArray(letterRefs.current);
-      // animText(targets);
-      gsap.fromTo(
-        targets,
-        {
-          yPercent: -100,
-        },
-        { yPercent: 0, duration: 0.3, stagger: 0.1 }
-      );
-    }
-  }, [bgRef, letterRefs, backgroundWord]);
+  // const transitionBgWord = useCallback(() => {
+  //   if (bgRef && letterRefs.current.length !== 0 && backgroundWord) {
+  //     const targets: HTMLDivElement[] = gsap.utils.toArray(letterRefs.current);
+  //     // animText(targets);
+  //     gsap.fromTo(
+  //       targets,
+  //       {
+  //         yPercent: -100,
+  //       },
+  //       { yPercent: 0, duration: 0.3, stagger: 0.1 }
+  //     );
+  //   }
+  // }, [bgRef, letterRefs, backgroundWord]);
 
-  useIsoMorphicLayoutEffect(() => {
+  useEffect(() => {
     transitionPages();
   }, [children]);
 
-  useIsoMorphicLayoutEffect(() => {
-    transitionBackground();
-    // transitionBgWord();
-  }, [backgroundColor, isMenuOpen]);
+  // useIsoMorphicLayoutEffect(() => {
+  //   transitionBackground();
+  //   // transitionBgWord();
+  // }, [backgroundColor, isMenuOpen]);
 
   // useIsoMorphicLayoutEffect(() => {
   //   // if (letterRefs.current.length !== 0 && isAnimDone) {

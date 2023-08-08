@@ -41,6 +41,7 @@ const Results = ({
     displayMemoryGameResult,
     setDisplayMemoryGameResult,
     isMemoryGamePlayed,
+    setIsMemoryGamePlayed,
   } = useContext(TransitionContext);
 
   const { integrationArray, frontArray, backendArray, dbArray, toolsArray } =
@@ -98,7 +99,7 @@ const Results = ({
 
   const backToGameScreen = () => {
     setDisplayMemoryGameResult(!displayMemoryGameResult);
-    // setIsMemoryGamePlayed(!isGamePlayed);
+    setIsMemoryGamePlayed(!isMemoryGamePlayed);
   };
 
   useEffect(() => {

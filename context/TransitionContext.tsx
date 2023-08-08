@@ -6,6 +6,7 @@ import {
   PropsWithChildren,
   SetStateAction,
   useCallback,
+  useMemo,
   useState,
 } from "react";
 
@@ -14,10 +15,10 @@ type TransitionContext = {
   setTimelinePages?: Dispatch<SetStateAction<gsap.core.Timeline>>;
   timelineMenu: GSAPTimeline;
   setTimelineMenu?: Dispatch<SetStateAction<gsap.core.Timeline>>;
-  backgroundColor: string;
-  setBackgroundColor: Dispatch<SetStateAction<string>>;
-  backgroundTextColor: string;
-  setBackgroundTextColor: Dispatch<SetStateAction<string>>;
+  // backgroundColor: string;
+  // setBackgroundColor: Dispatch<SetStateAction<string>>;
+  // backgroundTextColor: string;
+  // setBackgroundTextColor: Dispatch<SetStateAction<string>>;
   backgroundWord: string;
   setBackgroundWord: Dispatch<SetStateAction<string>>;
   backgroundImg: StaticImageData;
@@ -44,11 +45,19 @@ interface Props extends PropsWithChildren {}
 const TransitionContext = createContext({} as TransitionContext);
 
 const TransitionProvider = ({ children }: Props) => {
-  const [timelinePages, setTimelinePages] = useState(() =>
-    gsap.timeline({ paused: true })
+  const timelinePages = useMemo(() => gsap.timeline({ paused: true }), []);
+  const timelineMenu = useMemo(
+    () =>
+      gsap.timeline({
+        paused: true,
+        onStart: () => setIsMenuClosing(true),
+        onComplete: () => setIsMenuClosing(false),
+      }),
+    []
   );
-  const [backgroundColor, setBackgroundColor] = useState("#34d399");
-  const [backgroundTextColor, setBackgroundTextColor] = useState("");
+
+  // const [backgroundColor, setBackgroundColor] = useState("#34d399");
+  // const [backgroundTextColor, setBackgroundTextColor] = useState("");
   const [backgroundWord, setBackgroundWord] = useState("");
   const [backgroundImg, setBackgroundImg] = useState<StaticImageData>();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -59,14 +68,6 @@ const TransitionProvider = ({ children }: Props) => {
   const [isMemoryGamePlayed, setIsMemoryGamePlayed] = useState(false);
   const [theme, setTheme] = useState("light");
   const isLightTheme = theme === "light";
-
-  const [timelineMenu, setTimelineMenu] = useState(() =>
-    gsap.timeline({
-      paused: true,
-      onStart: () => setIsMenuClosing(true),
-      onComplete: () => setIsMenuClosing(false),
-    })
-  );
 
   const toggleMenu = useCallback(
     (bool: boolean) => {
@@ -83,16 +84,18 @@ const TransitionProvider = ({ children }: Props) => {
     [isMenuAnim, setIsMenuOpen, timelineMenu]
   );
 
+  console.log("context rerendering");
+
   return (
     <div>
       <TransitionContext.Provider
         value={{
           timelinePages,
           timelineMenu,
-          backgroundColor,
-          setBackgroundColor,
-          backgroundTextColor,
-          setBackgroundTextColor,
+          // backgroundColor,
+          // setBackgroundColor,
+          // backgroundTextColor,
+          // setBackgroundTextColor,
           backgroundWord,
           setBackgroundWord,
           backgroundImg,

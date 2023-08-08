@@ -20,10 +20,12 @@ export interface ICard {
 }
 
 const useCardGame = () => {
-  const [shuffledCards, setShuffledCards] = useState<ICardElement[]>([]);
-  const [round1, setRound1] = useState<ICardElement[]>([]);
-  const [round2, setRound2] = useState<ICardElement[]>([]);
-  const [round3, setRound3] = useState<ICardElement[]>([]);
+  const [shuffledCards, setShuffledCards] = useState<ICardElement[] | null>(
+    null
+  );
+  const [cardsPacks, setCardsPacks] = useState(() => [
+    new Array<ICardElement>(),
+  ]);
   const [cardCount, setCardCount] = useState(0);
   const [flipping, setFlipping] = useState(false);
   const [flippedGameCards, setFlippedGameCards] = useState<ICard[]>([]);
@@ -31,6 +33,21 @@ const useCardGame = () => {
     HTMLDivElement[]
   >([]);
   const [wins, setWins] = useState(0);
+  const allCategories = [integration, front, backend, db, tools];
+
+  const createCardsCategories = (array: []) => {
+    const cards = [];
+    array.forEach((el) => {
+      cards.push(
+        Object.entries(el).map((entry) => ({
+          name: entry[0],
+          jsx: entry[1],
+        }))
+      );
+    });
+    console.log("cards from createCardsCategory function", cards);
+  };
+
   const integrationArray = Object.entries(integration).map((entry) => ({
     name: entry[0],
     jsx: entry[1],
@@ -82,18 +99,23 @@ const useCardGame = () => {
   };
 
   useEffect(() => {
+    // createCardsCategories(allCategories);
     setShuffledCards(() => shuffleArray(cards));
   }, []);
 
-  useEffect(() => {
-    if (shuffledCards.length > 0) {
-      const firstThird = shuffledCards.splice(0, 6);
-      const secondThird = shuffledCards.splice(0, 6);
-      const lastThird = shuffledCards.splice(0, 6);
-      setRound1(() => shuffleArray(duplicateArray(firstThird, 2)));
-      setRound2(() => shuffleArray(duplicateArray(secondThird, 2)));
-      setRound3(() => shuffleArray(duplicateArray(lastThird, 2)));
+  const createCardPacks = (cards: ICardElement[]) => {
+    if (!cards) return;
+    const packs = [];
+    for (let i = 6; i <= cards.length; i += 6) {
+      // iteration 6 by 6 😉
+      const newPack = cards.slice(i - 6, i);
+      packs.push(duplicateArray(newPack, 2));
     }
+    setCardsPacks(() => packs);
+  };
+
+  useEffect(() => {
+    createCardPacks(shuffledCards);
   }, [shuffledCards]);
 
   useEffect(() => {
@@ -171,9 +193,7 @@ const useCardGame = () => {
   }, [cardCount, flippedGameCards, winRound, loseRound]);
 
   return {
-    round1,
-    round2,
-    round3,
+    cardsPacks,
     flipCard,
     compare,
     setWins,

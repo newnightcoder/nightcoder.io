@@ -16,7 +16,7 @@ const Layout = forwardRef<HTMLDivElement, Props>(({ children }, ref) => {
     <LayoutContainer ref={ref}>
       <Navbar />
       <Logo />
-      <HamburgerBtn isLightTheme={isLightTheme}>
+      <HamburgerBtn>
         <Hamburger
           label="Show menu"
           toggled={isMenuOpen}

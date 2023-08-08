@@ -11,8 +11,8 @@ import { darkTheme, lightTheme } from "../styles/_globals";
 
 const useTransitionBackground = (id: string) => {
   const {
-    setBackgroundColor,
-    setBackgroundTextColor,
+    // setBackgroundColor,
+    // setBackgroundTextColor,
     setBackgroundWord,
     setBackgroundImg,
     isLightTheme,
@@ -56,36 +56,36 @@ const useTransitionBackground = (id: string) => {
       switch (id) {
         case "home":
           setBackgroundWord(id);
-          setBackgroundColor(bgColors.home);
-          setBackgroundTextColor(bgTextColors.home);
+          // setBackgroundColor(bgColors.home);
+          // setBackgroundTextColor(bgTextColors.home);
           break;
         case "about":
           setBackgroundWord(id);
-          setBackgroundColor(bgColors.home);
-          setBackgroundTextColor(bgTextColors.home);
+          // setBackgroundColor(bgColors.home);
+          // setBackgroundTextColor(bgTextColors.home);
           break;
         case "projects":
           setBackgroundWord(id);
-          setBackgroundColor(bgColors.projects);
-          setBackgroundTextColor(bgTextColors.home);
+          // setBackgroundColor(bgColors.projects);
+          // setBackgroundTextColor(bgTextColors.home);
           break;
         case "stack":
           setBackgroundWord(id);
-          setBackgroundColor(bgColors.stack);
-          setBackgroundTextColor(bgTextColors.home);
+          // setBackgroundColor(bgColors.stack);
+          // setBackgroundTextColor(bgTextColors.home);
           break;
         case "contact":
           setBackgroundWord(id);
-          setBackgroundColor(bgColors.contact);
-          setBackgroundTextColor(bgTextColors.home);
+          // setBackgroundColor(bgColors.contact);
+          // setBackgroundTextColor(bgTextColors.home);
           break;
         default:
           return;
       }
     },
     [
-      setBackgroundColor,
-      setBackgroundTextColor,
+      // setBackgroundColor,
+      // setBackgroundTextColor,
       setBackgroundWord,
       setBackgroundImg,
       id,

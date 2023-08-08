@@ -6,7 +6,7 @@ import styled, { createGlobalStyle } from "styled-components";
 // };
 
 interface Props {
-  background?: string;
+  // background?: string;
   justify?: string;
 }
 
@@ -329,6 +329,7 @@ body {
 
 .split-screen {
   animation: split 2000ms ease-in forwards;
+  animation-fill-mode: both;
   @keyframes split{
     0%{
       clip-path:polygon(0% 100%, 50% 100%, 100% 100%, 100% 0, 0% 0, 0% 50%, 100% 50%, 100% 50%, 50% 50%, 0% 50%);
