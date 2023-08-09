@@ -99,7 +99,6 @@ const Results = ({
 
   const backToGameScreen = () => {
     setDisplayMemoryGameResult(!displayMemoryGameResult);
-    setIsMemoryGamePlayed(!isMemoryGamePlayed);
   };
 
   useEffect(() => {
@@ -165,21 +164,20 @@ const Results = ({
       {progress === 18 && (
         <Confetti
           width={width}
-          // height={resultsContainerRef?.current?.getBoundingClientRect().height}
           height={document.body.scrollHeight}
+          // height={resultsContainerRef?.current?.getBoundingClientRect().height}
         />
       )}
       {!isMemoryGamePlayed ? (
         <StackPageHeading backToGame={backToGameScreen} />
       ) : (
-        <GameResultsHeading progress={progress} wins={wins} isResult={true} />
+        <GameResultsHeading progress={progress} wins={wins} />
       )}
       <TableContainer>
         {stackTables.map((table, i) => {
           return (
             <StackColumn
               key={i}
-              // isGamePlayed={isMemoryGamePlayed}
               handleClassName={handleClassName}
               columnName={table.name}
               array={table.array}

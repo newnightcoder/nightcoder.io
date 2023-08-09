@@ -1,12 +1,11 @@
-import { MutableRefObject, useContext } from "react";
-import { TransitionContext } from "../../context/TransitionContext";
+import { MutableRefObject } from "react";
 import { ICardElement } from "../../hooks/useCardGame";
 import GameCard from "./GameCard";
 import {
   LogoWrapper,
   ResultCardContainer,
   TableColumn,
-  TechNameWrapper,
+  TechNameWrapper
 } from "./ResultsStyled";
 
 interface ResultCardInnerProps {
@@ -15,7 +14,6 @@ interface ResultCardInnerProps {
 }
 
 interface Props {
-  // isGamePlayed: boolean;
   handleClassName: (el: ICardElement) => string;
   columnName: string;
   array: {
@@ -43,15 +41,7 @@ const ResultCardInner = ({ jsx, str }: ResultCardInnerProps) => {
   );
 };
 
-const StackColumn = ({
-  // isGamePlayed,
-  handleClassName,
-  columnName,
-  array,
-  refs,
-}: Props) => {
-  const { isMemoryGamePlayed } = useContext(TransitionContext);
-
+const StackColumn = ({ handleClassName, columnName, array, refs }: Props) => {
   return (
     <TableColumn>
       <h2 style={{ whiteSpace: "nowrap", textAlign: "center" }}>
@@ -61,12 +51,11 @@ const StackColumn = ({
         return (
           <GameCard
             key={el.name}
-            ref={(el) => (refs.current = [...refs.current, el])}
+            ref={(el) => (refs.current[i] = el)}
             height="var(--result-card-height)"
             width="var(--result-card-width)"
             cardName={el.name}
             isResult={true}
-            // isGamePlayed={isMemoryGamePlayed}
             className={handleClassName(el)}
           >
             <ResultCardInner jsx={el.jsx} str={el.name} />

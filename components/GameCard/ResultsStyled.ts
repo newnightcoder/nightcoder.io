@@ -51,7 +51,8 @@ const ProgressCircle = styled.circle<Props>`
   cy: 75;
   r: 60;
   stroke-dasharray: 18;
-  stroke-dashoffset: ${(props) => 18 - props.progress};
+  stroke-dashoffset: ${(props) =>
+    props.progress === -1 ? 18 : 18 - props.progress};
   transition: stroke-dashoffset 500ms;
   transition-delay: 200ms;
 `;

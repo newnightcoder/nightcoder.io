@@ -4,14 +4,18 @@ import { useWindowSize } from "../../hooks";
 import useCardGame, { ICard, ICardElement } from "../../hooks/useCardGame";
 import { CardContainer } from "../../styles/stack";
 import GameCard from "./GameCard";
-import { GameHeading } from "./GameCardStyled";
+import {
+  ExitBtnContainer,
+  ExitBtnContent,
+  GameBoardContainer,
+  GameHeading,
+} from "./GameCardStyled";
 
 const GameBoard = ({
   wins,
   flipCard,
   compare,
   setWins,
-  welcomeRef,
   flippedCards,
   setFlippedCards,
   flippedResults,
@@ -22,24 +26,19 @@ const GameBoard = ({
   const { width } = useWindowSize();
   const cardContainerRef = useRef<HTMLDivElement>(null);
   const gameCardRefs = useRef<HTMLDivElement[]>([]);
-  // const [progress, setProgress] = useState(0);
 
   const [cardContainerHeight, setCardContainerHeight] = useState(
     cardContainerRef?.current?.getBoundingClientRect().height
   );
   const [cardSize, setCardSize] = useState(0);
   const [minHeight, setMinHeight] = useState(0);
-  const {
-    isMemoryGamePlayed,
-    setIsMemoryGamePlayed,
-    isLightTheme,
-    setDisplayMemoryGameResult,
-  } = useContext(TransitionContext);
+  const { setIsMemoryGamePlayed, isLightTheme, setDisplayMemoryGameResult } =
+    useContext(TransitionContext);
 
   const headingColor = round === 1 ? "blue-2" : round === 2 ? "pink" : "green";
 
   const resetGame = () => {
-    welcomeRef.current.classList.remove("split-screen");
+    setIsMemoryGamePlayed(false);
     setRound(1);
     setWins(0);
     flippedCards.forEach((card: ICard) =>
@@ -52,34 +51,6 @@ const GameBoard = ({
     setFlippedResults(() => []);
     // shuffle cards again
   };
-
-  // useEffect(() => {
-  //   if (cardContainerRef.current) {
-  //     setCardContainerHeight(
-  //       () => cardContainerRef.current.getBoundingClientRect().height
-  //     );
-  //   }
-  // }, [cardContainerRef.current]);
-
-  // useEffect(() => {
-  //   if (cardContainerHeight && cardContainerRef.current) {
-  //     setMinHeight(
-  //       width > breakpoints.mdNumber
-  //         ? cardContainerHeight + 30
-  //         : cardContainerHeight + 40
-  //     );
-  //   }
-  // }, [cardContainerHeight, cardContainerRef.current]);
-
-  // useEffect(() => {
-  //   if (cardContainerRef.current) {
-  //     setMinHeight(() =>
-  //       width > breakpoints.mdNumber
-  //         ? cardContainerHeight + 30
-  //         : cardContainerHeight + 40
-  //     );
-  //   }
-  // }, [width, cardContainerRef.current]);
 
   useEffect(() => {
     console.log("cardsPack", cardsPacks);
@@ -121,12 +92,12 @@ const GameBoard = ({
   }, [wins]);
 
   return (
-    <div style={{ position: "relative" }}>
+    <GameBoardContainer>
       <GameHeading fontSize={3} fontWeight={700} color={headingColor}>
         Round {round}
       </GameHeading>
       <CardContainer ref={cardContainerRef} minHeight={minHeight}>
-        {cardsPacks[round]?.map((card: ICardElement, i: number) => {
+        {cardsPacks[round - 1]?.map((card: ICardElement, i: number) => {
           return (
             <GameCard
               key={i + 1}
@@ -146,28 +117,13 @@ const GameBoard = ({
             </GameCard>
           );
         })}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            transform: "translate(10%, 100%)",
-          }}
-        >
+        <ExitBtnContainer>
           <button onClick={resetGame}>
-            <span
-              style={{
-                textTransform: "uppercase",
-                fontWeight: "bold",
-                color: `${isLightTheme ? "black" : "white"}`,
-              }}
-            >
-              [ x ] exit game
-            </span>
+            <ExitBtnContent>[ x ] exit game</ExitBtnContent>
           </button>
-        </div>
+        </ExitBtnContainer>
       </CardContainer>
-    </div>
+    </GameBoardContainer>
   );
 };
 

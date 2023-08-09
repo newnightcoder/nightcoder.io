@@ -20,7 +20,6 @@ interface Props extends PropsWithChildren {
   cardName?: string;
   className?: string;
   round?: number;
-  // isLightTheme?: boolean;
 }
 
 const GameCard = forwardRef<HTMLDivElement, Props>((props: Props, ref) => {

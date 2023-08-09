@@ -2,7 +2,7 @@ import CircleProgressBar from "./CircleProgressBar";
 import { GameHeading } from "./GameCardStyled";
 import { GameResultsHeader } from "./ResultsStyled";
 
-const GameResultsHeading = ({ progress, wins, isResult }) => {
+const GameResultsHeading = ({ progress, wins }) => {
   return (
     <GameResultsHeader>
       <GameHeading

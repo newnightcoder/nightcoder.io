@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { breakpoints } from "./_globals";
 
 interface Props {
   displayResult?: boolean;
@@ -16,7 +17,6 @@ const GameTitleContainer = styled.div<Props>`
   position: fixed;
   inset-x: 0;
   top: var(--navbar-height);
-  z-index: 50;
   background: ${({ theme }) => theme.bg.home};
   min-height: calc(100vh - var(--navbar-height));
   width: 100%;
@@ -26,6 +26,72 @@ const GameTitleContainer = styled.div<Props>`
   justify-content: space-evenly;
   font-size: 4rem;
   text-align: center;
+  transition: visibility 0s 2000ms;
+  z-index: 50;
+  animation: ${(props) =>
+    props.isGamePlayed ? "split 2000ms ease-in forwards" : "none"};
+  @keyframes split {
+    0% {
+      clip-path: polygon(
+        0% 100%,
+        50% 100%,
+        100% 100%,
+        100% 0,
+        0% 0,
+        0% 50%,
+        100% 50%,
+        100% 50%,
+        50% 50%,
+        0% 50%
+      );
+    }
+    100% {
+      clip-path: polygon(
+        0% 100%,
+        50% 100%,
+        100% 100%,
+        100% 0,
+        0% 0,
+        0% 0%,
+        100% 0%,
+        100% 100%,
+        50% 100%,
+        0% 100%
+      );
+    }
+  }
+  @media screen and (min-width: ${breakpoints.md}) {
+    @keyframes split {
+      0% {
+        clip-path: polygon(
+          0% 0%,
+          0% 100%,
+          50% 100%,
+          50% 0,
+          50% 0,
+          50% 50%,
+          50% 50%,
+          50% 100%,
+          100% 100%,
+          100% 0%
+        );
+      }
+      100% {
+        clip-path: polygon(
+          0% 0%,
+          0% 100%,
+          0% 100%,
+          0% 0,
+          100% 0,
+          100% 50%,
+          100% 50%,
+          100% 100%,
+          100% 100%,
+          100% 0%
+        );
+      }
+    }
+  }
   // border: 4px solid red;
 `;
 

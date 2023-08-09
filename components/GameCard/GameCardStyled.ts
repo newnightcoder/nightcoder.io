@@ -20,6 +20,10 @@ interface HeadingProps {
   isWelcomeTitle?: boolean;
 }
 
+const GameBoardContainer = styled.div`
+  background: ${({ theme }) => theme.bg.home};
+`;
+
 const Card = styled.div<CardProps>`
   // height: ${(props) => props.height}${(props) =>
     props.isResult ? "" : "px"};
@@ -42,14 +46,14 @@ const CardInner = styled.div<CardProps>`
   position: relative;
   transition: transform 500ms;
   transform-style: preserve-3d;
-  transform: ${(props) => (!props.isGamePlayed ? "rotateX(180deg)" : "none")};
+  transform: ${(props) =>
+    props.isResult && !props.isGamePlayed ? "rotateX(180deg)" : "none"};
   border-radius: ${(props) => (props.isResult ? "0px" : "7px")};
   border-image: ${(props) =>
     props.isResult
       ? "var(--gradient-blue) 1"
       : "linear-gradient(to right, transparent, transparent)"};
   border-width: 1px;
-  // border-style: ${(props) => (props.isResult ? "solid" : "none")};
   border-style: solid;
 `;
 
@@ -77,10 +81,6 @@ const CardFront = styled.div<CardProps>`
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 5rem;
-    // font-family: var(--poppins);
-    // font-weight: 500;
-    // color: #222;
-    // text-align: center;
   }
 `;
 
@@ -145,6 +145,8 @@ const GameHeading = styled.h1<HeadingProps>`
     position: absolute;
     bottom: 0;
     right: 0;
+    transform: translate(-10px, 60%);
+    padding: 2px 10px;
     font-family: "Courier New", "Courier6", "monospace", sans-serif;
     font-size: 1.75vw;
     font-weight: normal;
@@ -155,16 +157,13 @@ const GameHeading = styled.h1<HeadingProps>`
     background: ${(props) => (props.isWelcomeTitle ? "#555" : "none")};
     border: ${(props) =>
       props.isWelcomeTitle ? `1px dashed ${props.theme.color}` : "none"};
-
-    padding: 2px 10px;
     text-transform: none;
-    transform: translate(-10px, 60%);
     border-radius: 5px;
     // border: 1px solid red;
   }
 `;
 
-const ExitBtn = styled.button`
+const ExitBtnContainer = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
@@ -172,19 +171,19 @@ const ExitBtn = styled.button`
 `;
 
 const ExitBtnContent = styled.span`
-  // padding: 10px 0;
   text-transform: uppercase;
   font-size: 1rem;
-  font-weight: 800;
+  font-weight: bold;
   color: ${({ theme }) => theme.color};
 `;
 
 export {
+  GameBoardContainer,
   Card,
   CardInner,
   CardFront,
   CardBack,
   GameHeading,
-  ExitBtn,
+  ExitBtnContainer,
   ExitBtnContent,
 };

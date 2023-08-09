@@ -109,7 +109,7 @@ const useCardGame = () => {
     for (let i = 6; i <= cards.length; i += 6) {
       // iteration 6 by 6 😉
       const newPack = cards.slice(i - 6, i);
-      packs.push(duplicateArray(newPack, 2));
+      packs.push(shuffleArray(duplicateArray(newPack, 2)));
     }
     setCardsPacks(() => packs);
   };
