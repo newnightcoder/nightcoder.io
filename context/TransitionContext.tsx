@@ -84,7 +84,7 @@ const TransitionProvider = ({ children }: Props) => {
     [isMenuAnim, setIsMenuOpen, timelineMenu]
   );
 
-  console.log("context rerendering");
+  // console.log("context rerendering");
 
   return (
     <div>

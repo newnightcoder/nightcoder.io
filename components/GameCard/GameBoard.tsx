@@ -1,7 +1,7 @@
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { TransitionContext } from "../../context/TransitionContext";
 import { useWindowSize } from "../../hooks";
-import useCardGame, { ICard, ICardElement } from "../../hooks/useCardGame";
+import useCardGame, { ICardElement } from "../../hooks/useCardGame";
 import { CardContainer } from "../../styles/stack";
 import GameCard from "./GameCard";
 import {
@@ -15,14 +15,13 @@ const GameBoard = ({
   wins,
   flipCard,
   compare,
-  setWins,
   flippedCards,
-  setFlippedCards,
-  flippedResults,
-  setFlippedResults,
+  handleResultScreen,
+  resetGame,
+  round,
 }) => {
   const { cardsPacks } = useCardGame();
-  const [round, setRound] = useState(1);
+  // const [round, setRound] = useState(1);
   const { width } = useWindowSize();
   const cardContainerRef = useRef<HTMLDivElement>(null);
   const gameCardRefs = useRef<HTMLDivElement[]>([]);
@@ -37,21 +36,6 @@ const GameBoard = ({
 
   const headingColor = round === 1 ? "blue-2" : round === 2 ? "pink" : "green";
 
-  const resetGame = () => {
-    setIsMemoryGamePlayed(false);
-    setRound(1);
-    setWins(0);
-    flippedCards.forEach((card: ICard) =>
-      card.domEl.classList.remove("flip-card-y")
-    );
-    flippedResults.forEach((card: HTMLDivElement) =>
-      card.classList.remove("flip-card-x")
-    );
-    setFlippedCards(() => []);
-    setFlippedResults(() => []);
-    // shuffle cards again
-  };
-
   useEffect(() => {
     console.log("cardsPack", cardsPacks);
   }, [cardsPacks]);
@@ -64,31 +48,8 @@ const GameBoard = ({
     }
   }, [flippedCards]);
 
-  const handleRounds = useCallback(() => {
-    if (wins === 18) return;
-    if (wins % 6 === 0) {
-      setTimeout(() => {
-        setRound((prevRound) => prevRound + 1);
-        setFlippedCards([]);
-        gameCardRefs?.current.forEach((ref) => {
-          ref?.classList.remove("flip-card-y");
-        });
-      }, 500);
-    }
-  }, [wins]);
-
   useEffect(() => {
-    // setDisplayMemoryGameResult(true);
-    if (wins === 0) return;
-    setTimeout(() => {
-      setDisplayMemoryGameResult(true);
-    }, 1000);
-    if (wins !== 18) {
-      setTimeout(() => {
-        setDisplayMemoryGameResult(false);
-        handleRounds();
-      }, 3200);
-    }
+    handleResultScreen(gameCardRefs);
   }, [wins]);
 
   return (

@@ -5,7 +5,7 @@ import {
   LogoWrapper,
   ResultCardContainer,
   TableColumn,
-  TechNameWrapper
+  TechNameWrapper,
 } from "./ResultsStyled";
 
 interface ResultCardInnerProps {
@@ -44,7 +44,13 @@ const ResultCardInner = ({ jsx, str }: ResultCardInnerProps) => {
 const StackColumn = ({ handleClassName, columnName, array, refs }: Props) => {
   return (
     <TableColumn>
-      <h2 style={{ whiteSpace: "nowrap", textAlign: "center" }}>
+      <h2
+        style={{
+          whiteSpace: "nowrap",
+          textAlign: "center",
+          textTransform: "uppercase",
+        }}
+      >
         {columnName}
       </h2>
       {array.map((el, i: number) => {

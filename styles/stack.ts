@@ -117,27 +117,6 @@ const CardContainer = styled.div<Props>`
   border: 2px solid red;
 `;
 
-// const Result = styled.div<Props>`
-//   opacity: ${(props) => (props.isWon || !props.isGamePlayed ? 1 : 0)};
-//   width: 200px;
-//   height: auto;
-//   display: flex;
-//   align-items: center;
-//   justify-content: flex-start;
-//   color: white;
-//   font-size: 1.1rem;
-//   font-weight: 200;
-//   // margin-bottom: 10px;
-//   // text-transform: capitalize;
-//   border: 1px solid rgba(255, 255, 255, 0.2);
-//   padding: 5px 15px;
-//   // background: ${(props) => (props.isGamePlayed ? "black" : "transparent")};
-//   // border-radius: 7px;
-//   overflow: hidden;
-//   white-space: nowrap;
-//   text-overflow: ellipsis;
-// `;
-
 const BtnContainer = styled.div`
   display: flex;
   // justify-content: space-between;
@@ -171,5 +150,4 @@ export {
   BtnContainer,
   ChoiceBtn,
   GameContainer,
-  // Result,
 };

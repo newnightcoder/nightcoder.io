@@ -1,26 +1,25 @@
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { GameBoard, GameTitle, Results } from "../components";
-import { TransitionContext } from "../context/TransitionContext";
 import { useCardGame } from "../hooks";
 import { PageContainer } from "../styles/_globals";
 
 const Stack = () => {
   const pageRef = useRef<HTMLDivElement>(null);
   const welcomeRef = useRef<HTMLDivElement>(null);
-  const { displayMemoryGameResult } = useContext(TransitionContext);
   const {
     flipCard,
     compare,
     wins,
-    setWins,
     flippedGameCards,
-    setFlippedGameCards,
     flippedResultCards,
-    setFlippedResultCards,
     updateResultCardsArray,
+    handleResultScreen,
+    resetGame,
+    round,
+    setRound,
   } = useCardGame();
 
-  console.log("stack page re-rendering");
+  // console.log("stack page re-rendering");
 
   return (
     <PageContainer ref={pageRef} id="stack" justify="center">
@@ -29,20 +28,19 @@ const Stack = () => {
         wins={wins}
         flipCard={flipCard}
         compare={compare}
-        setWins={setWins}
         flippedCards={flippedGameCards}
-        flippedResults={flippedResultCards}
-        setFlippedCards={setFlippedGameCards}
-        setFlippedResults={setFlippedResultCards}
+        handleResultScreen={handleResultScreen}
+        resetGame={resetGame}
+        round={round}
       />
-      {displayMemoryGameResult ? (
-        <Results
-          wins={wins}
-          flipped={flippedGameCards}
-          flippedResults={flippedResultCards}
-          update={updateResultCardsArray}
-        />
-      ) : null}
+      <Results
+        wins={wins}
+        setRound={setRound}
+        flipped={flippedGameCards}
+        flippedResults={flippedResultCards}
+        update={updateResultCardsArray}
+        resetGame={resetGame}
+      />
     </PageContainer>
   );
 };

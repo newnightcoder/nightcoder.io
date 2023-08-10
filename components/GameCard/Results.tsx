@@ -1,6 +1,8 @@
 import dynamic from "next/dynamic";
 import {
+  Dispatch,
   MutableRefObject,
+  SetStateAction,
   useContext,
   useEffect,
   useMemo,
@@ -11,37 +13,35 @@ import { TransitionContext } from "../../context/TransitionContext";
 import { useWindowSize } from "../../hooks";
 import useCardGame, { ICard, ICardElement } from "../../hooks/useCardGame";
 import GameResultsHeading from "./GameResultsHeading";
-import { ResultContainer, TableContainer } from "./ResultsStyled";
+import {
+  CloseBtn,
+  CloseBtnSpan,
+  ResultContainer,
+  TableContainer,
+} from "./ResultsStyled";
 import StackColumn from "./StackColumn";
 import StackPageHeading from "./StackPageHeading";
 
-interface ResultCardInnerProps {
-  jsx: JSX.Element;
-  str: string;
-}
-
 interface ResultsProps {
-  // displayResult: boolean;
-  // isGamePlayed: boolean;
   wins: number;
+  setRound: Dispatch<SetStateAction<number>>;
   flipped: ICard[];
   flippedResults: HTMLDivElement[];
   update: (resultCard: HTMLDivElement) => void;
+  resetGame: () => void;
 }
 
 const Results = ({
-  // displayResult,
-  // isGamePlayed,
   wins,
   flipped,
   update,
   flippedResults,
+  resetGame,
 }: ResultsProps) => {
   const {
     displayMemoryGameResult,
     setDisplayMemoryGameResult,
     isMemoryGamePlayed,
-    setIsMemoryGamePlayed,
   } = useContext(TransitionContext);
 
   const { integrationArray, frontArray, backendArray, dbArray, toolsArray } =
@@ -98,7 +98,14 @@ const Results = ({
   );
 
   const backToGameScreen = () => {
-    setDisplayMemoryGameResult(!displayMemoryGameResult);
+    if (!isMemoryGamePlayed || (isMemoryGamePlayed && progress !== 18)) {
+      return setDisplayMemoryGameResult((prev) => !prev);
+    }
+    if (progress === 18) {
+      setDisplayMemoryGameResult(false);
+      setProgress(() => wins - 1);
+      resetGame();
+    }
   };
 
   useEffect(() => {
@@ -124,11 +131,12 @@ const Results = ({
   };
 
   const findCorrespondingResult = (card: ICard) => {
+    console.log("function findCCorrespondingResult is running");
     const wonCard = allPossibleResults.find(
       (resultCard) => resultCard.name === card?.name
     );
     if (wonCard !== undefined) {
-      // console.log("allrefs", allRefs);
+      console.log("allrefs", allRefs);
       const resultCard = allRefs.find((ref) => ref?.dataset.card === card.name);
       console.log("updated flippedResults array", flippedResults);
       update(resultCard);
@@ -150,9 +158,10 @@ const Results = ({
   };
 
   useEffect(() => {
-    if (!isMemoryGamePlayed) return;
+    if (!isMemoryGamePlayed || (isMemoryGamePlayed && !displayMemoryGameResult))
+      return;
     findCorrespondingResult(flipped[flipped.length - 1]);
-  }, [flipped, allRefs]);
+  }, [isMemoryGamePlayed, displayMemoryGameResult, flipped, allRefs]);
 
   return (
     <ResultContainer
@@ -161,6 +170,9 @@ const Results = ({
       wins={wins}
       ref={resultsContainerRef}
     >
+      <CloseBtn onClick={backToGameScreen}>
+        <CloseBtnSpan>[ x ]</CloseBtnSpan>
+      </CloseBtn>
       {progress === 18 && (
         <Confetti
           width={width}

@@ -21,12 +21,11 @@ const ResultContainer = styled.div<Props>`
   top: var(--navbar-height);
   padding-top: ${(props) => (props.isGamePlayed ? "2rem" : "3rem")};
   padding-bottom: var(--navbar-height);
-  z-index: ${(props) => (props.displayResult || !props.isGamePlayed ? 50 : -1)};
-  opacity: ${(props) => (props.displayResult || !props.isGamePlayed ? 1 : 0)};
-  visibility: ${(props) =>
-    props.displayResult || !props.isGamePlayed ? "visible" : "hidden"};
+  z-index: ${(props) => (props.displayResult ? 50 : -1)};
+  opacity: ${(props) => (props.displayResult ? 1 : 0)};
+  visibility: ${(props) => (props.displayResult ? "visible" : "hidden")};
   z-index: 1000;
-  transition: opacity 500ms;
+  transition: ${(props) => (props.isGamePlayed ? "none" : "opacity 500ms")};
   background: ${(props) =>
     props.isGamePlayed && props.wins < 18
       ? "rgba(10, 10, 10, 0.95)"
@@ -114,8 +113,11 @@ const SubHeader = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // text-align: center;
   // border: 1px solid white;
+`;
+
+const SubHeaderSpan = styled.span`
+  text-align: left;
 `;
 
 const TableContainer = styled.div`
@@ -128,7 +130,7 @@ const TableContainer = styled.div`
   width: 100%;
   // max-width: 1100px;
   padding: 0 5vw;
-  border: 1px solid white;
+  // border: 1px solid white;
 `;
 
 const TableColumn = styled.div`
@@ -136,7 +138,7 @@ const TableColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid pink;
+  // border: 1px solid pink;
 `;
 
 export {
@@ -149,6 +151,7 @@ export {
   GameResultsHeader,
   StackPageHeader,
   SubHeader,
+  SubHeaderSpan,
   TableContainer,
   TableColumn,
   CircleSvg,

@@ -1,10 +1,5 @@
 import { GameHeading } from "./GameCardStyled";
-import {
-  CloseBtn,
-  CloseBtnSpan,
-  StackPageHeader,
-  SubHeader,
-} from "./ResultsStyled";
+import { StackPageHeader, SubHeader, SubHeaderSpan } from "./ResultsStyled";
 
 const StackPageHeading = ({ backToGame }) => {
   return (
@@ -13,32 +8,14 @@ const StackPageHeading = ({ backToGame }) => {
         Languages & tools i'm using
       </GameHeading>
       <SubHeader>
-        <span
-          style={{
-            margin: 0,
-            display: "block",
-            textAlign: "left",
-            // border: "1px solid white",
-          }}
-        >
+        <SubHeaderSpan>
           A overview of the technologies i’m familiar with or using regularly.
-        </span>
-        {/* <br /> */}
-        <span
-          style={{
-            margin: 0,
-            display: "block",
-            textAlign: "left",
-            // border: "1px solid white",
-          }}
-        >
+        </SubHeaderSpan>
+        <SubHeaderSpan>
           Ecosystems keep evolving non stop so i keep myself updated as much as
           possible.
-        </span>
+        </SubHeaderSpan>
       </SubHeader>
-      <CloseBtn onClick={() => backToGame()}>
-        <CloseBtnSpan>[ x ]</CloseBtnSpan>
-      </CloseBtn>
     </StackPageHeader>
   );
 };

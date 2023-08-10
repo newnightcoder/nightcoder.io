@@ -1,4 +1,10 @@
-import { MutableRefObject, useCallback, useEffect, useState } from "react";
+import {
+  MutableRefObject,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import {
   backend,
   db,
@@ -6,6 +12,7 @@ import {
   integration,
   tools,
 } from "../components/GameCard/CardImgSvg";
+import { TransitionContext } from "../context/TransitionContext";
 
 export interface ICardElement {
   name: string;
@@ -20,12 +27,17 @@ export interface ICard {
 }
 
 const useCardGame = () => {
+  const { setIsMemoryGamePlayed, setDisplayMemoryGameResult } =
+    useContext(TransitionContext);
+
   const [shuffledCards, setShuffledCards] = useState<ICardElement[] | null>(
     null
   );
   const [cardsPacks, setCardsPacks] = useState(() => [
     new Array<ICardElement>(),
   ]);
+  const [round, setRound] = useState(1);
+
   const [cardCount, setCardCount] = useState(0);
   const [flipping, setFlipping] = useState(false);
   const [flippedGameCards, setFlippedGameCards] = useState<ICard[]>([]);
@@ -192,8 +204,55 @@ const useCardGame = () => {
     }
   }, [cardCount, flippedGameCards, winRound, loseRound]);
 
+  const resetGame = () => {
+    setIsMemoryGamePlayed(false);
+    setRound(1);
+    setWins(0);
+    flippedGameCards.forEach((card: ICard) =>
+      card.domEl.classList.remove("flip-card-y")
+    );
+    flippedResultCards.forEach((card: HTMLDivElement) =>
+      card.classList.remove("flip-card-x")
+    );
+    setFlippedGameCards(() => []);
+    setFlippedResultCards(() => []);
+    // shuffle cards again
+  };
+
+  const handleRounds = useCallback(
+    (refs: MutableRefObject<HTMLDivElement[]>) => {
+      if (wins === 18) return;
+      if (wins % 6 === 0) {
+        setTimeout(() => {
+          setRound((prevRound) => prevRound + 1);
+          setFlippedGameCards([]);
+          refs?.current.forEach((ref) => {
+            ref?.classList.remove("flip-card-y");
+          });
+        }, 500);
+      }
+    },
+    [wins]
+  );
+
+  const handleResultScreen = (refs: MutableRefObject<HTMLDivElement[]>) => {
+    if (wins === 0) return;
+    setTimeout(() => {
+      setDisplayMemoryGameResult(true);
+    }, 1000);
+    if (wins !== 18) {
+      setTimeout(() => {
+        setDisplayMemoryGameResult(false);
+        handleRounds(refs);
+      }, 3200);
+    }
+  };
+
   return {
     cardsPacks,
+    round,
+    setRound,
+    handleRounds,
     flipCard,
     compare,
     setWins,
@@ -208,6 +267,8 @@ const useCardGame = () => {
     toolsArray,
     updateResultCardsArray,
     setFlippedResultCards,
+    handleResultScreen,
+    resetGame,
   };
 };
 
