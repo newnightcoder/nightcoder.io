@@ -25,11 +25,10 @@ const GameBoardContainer = styled.div`
 `;
 
 const Card = styled.div<CardProps>`
-  // height: ${(props) => props.height}${(props) =>
-    props.isResult ? "" : "px"};
-  // width: ${(props) => props.width}${(props) => (props.isResult ? "" : "px")};
-  height: ${(props) => props.height};
-  width: ${(props) => props.width};
+  height: ${(props) => props.height}${(props) => (props.isResult ? "" : "px")};
+  width: ${(props) => props.width}${(props) => (props.isResult ? "" : "px")};
+  // height: ${(props) => props.height}px;
+  // width: ${(props) => props.width}px;
   max-width: 350px;
   cursor: ${(props) => (props.isGamePlayed ? "pointer" : "default")};
   background-color: transparent;
@@ -80,7 +79,8 @@ const CardFront = styled.div<CardProps>`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 5rem;
+    font-size: 12vh;
+    // font-size: 5rem;
   }
 `;
 

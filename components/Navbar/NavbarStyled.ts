@@ -7,9 +7,9 @@ interface Props {
 }
 
 const Wrapper = styled.nav`
-  width: 100%;
-  height: var(--navbar-height);
   position: fixed;
+  height: var(--navbar-height);
+  width: 100%;
   z-index: 1000;
   overflow: hidden;
   display: flex;

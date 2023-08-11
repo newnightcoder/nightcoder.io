@@ -9,23 +9,25 @@ interface Props {
 }
 
 const ResultContainer = styled.div<Props>`
+  position: fixed;
+  inset: 0;
+  // top: 0;
+  top: var(--navbar-height);
+  padding-top: ${(props) => (props.isGamePlayed ? "2rem" : "3rem")};
+  padding-bottom: var(--navbar-height);
+  z-index: 2000;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  // justify-content: center;
-  position: fixed;
-  inset: 0;
   width: 100%;
   height: 100%;
-  top: var(--navbar-height);
-  padding-top: ${(props) => (props.isGamePlayed ? "2rem" : "3rem")};
-  padding-bottom: var(--navbar-height);
-  z-index: ${(props) => (props.displayResult ? 50 : -1)};
-  opacity: ${(props) => (props.displayResult ? 1 : 0)};
+  clip-path: ${(props) =>
+    props.displayResult
+      ? "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
+      : "polygon(100% 0, 100% 0, 100% 100%, 100% 100%)"};
   visibility: ${(props) => (props.displayResult ? "visible" : "hidden")};
-  z-index: 1000;
-  transition: ${(props) => (props.isGamePlayed ? "none" : "opacity 500ms")};
+  transition: ${(props) => (props.isGamePlayed ? "none" : "all 500ms")};
   background: ${(props) =>
     props.isGamePlayed && props.wins < 18
       ? "rgba(10, 10, 10, 0.95)"
@@ -94,7 +96,7 @@ const GameResultsHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  border: 1px solid white;
+  // border: 1px solid white;
 `;
 
 const StackPageHeader = styled.div`

@@ -3,6 +3,7 @@ import { TransitionContext } from "../../context/TransitionContext";
 import { useWindowSize } from "../../hooks";
 import useCardGame, { ICardElement } from "../../hooks/useCardGame";
 import { CardContainer } from "../../styles/stack";
+import { breakpoints } from "../../styles/_globals";
 import GameCard from "./GameCard";
 import {
   ExitBtnContainer,
@@ -22,19 +23,39 @@ const GameBoard = ({
 }) => {
   const { cardsPacks } = useCardGame();
   // const [round, setRound] = useState(1);
-  const { width } = useWindowSize();
-  const cardContainerRef = useRef<HTMLDivElement>(null);
+  const { height, width } = useWindowSize();
+  const cardContainerRef = useRef<HTMLDivElement | null>(null);
   const gameCardRefs = useRef<HTMLDivElement[]>([]);
 
-  const [cardContainerHeight, setCardContainerHeight] = useState(
-    cardContainerRef?.current?.getBoundingClientRect().height
-  );
+  const [cardContainerHeight, setCardContainerHeight] = useState(0);
   const [cardSize, setCardSize] = useState(0);
   const [minHeight, setMinHeight] = useState(0);
   const { setIsMemoryGamePlayed, isLightTheme, setDisplayMemoryGameResult } =
     useContext(TransitionContext);
 
   const headingColor = round === 1 ? "blue-2" : round === 2 ? "pink" : "green";
+
+  // 1- get size of the cards container
+  useEffect(() => {
+    if (cardContainerRef.current) {
+      console.log(
+        "cardContainer height =",
+        cardContainerRef.current.getBoundingClientRect().height
+      );
+      setCardContainerHeight(
+        cardContainerRef.current.getBoundingClientRect().height
+      );
+    }
+  }, [height, width]);
+
+  // 2- setCardsize according to container size + responsive
+  useEffect(() => {
+    if (cardContainerHeight) {
+      if (width > breakpoints.mdNumber) {
+        setCardSize((cardContainerHeight - 30) / 3);
+      } else setCardSize((cardContainerHeight - 40) / 4);
+    }
+  }, [cardContainerHeight, width, breakpoints.mdNumber]);
 
   useEffect(() => {
     console.log("cardsPack", cardsPacks);
@@ -46,7 +67,7 @@ const GameBoard = ({
         card.domEl.classList.add("flip-card-y");
       });
     }
-  }, [flippedCards]);
+  }, [flippedCards, cardSize]);
 
   useEffect(() => {
     handleResultScreen(gameCardRefs);
@@ -60,22 +81,28 @@ const GameBoard = ({
       <CardContainer ref={cardContainerRef} minHeight={minHeight}>
         {cardsPacks[round - 1]?.map((card: ICardElement, i: number) => {
           return (
-            <GameCard
-              key={i + 1}
-              ref={(el) => (gameCardRefs.current[i] = el)}
-              height="var(--memory-card-size)"
-              width="var(--memory-card-size)"
-              // height={cardSize}
-              // width={cardSize}
-              cardName={card.name}
-              round={round}
-              onClick={() => {
-                flipCard(gameCardRefs, i);
-                compare();
-              }}
-            >
-              <div style={{ height: "100%", width: "100%" }}>{card.jsx}</div>
-            </GameCard>
+            <>
+              {cardSize && (
+                <GameCard
+                  key={i + 1}
+                  ref={(el) => (gameCardRefs.current[i] = el)}
+                  // height="var(--memory-card-size)"
+                  // width="var(--memory-card-size)"
+                  height={cardSize}
+                  width={cardSize}
+                  cardName={card.name}
+                  round={round}
+                  onClick={() => {
+                    flipCard(gameCardRefs, i);
+                    compare();
+                  }}
+                >
+                  <div style={{ height: "100%", width: "100%" }}>
+                    {card.jsx}
+                  </div>
+                </GameCard>
+              )}
+            </>
           );
         })}
         <ExitBtnContainer>
