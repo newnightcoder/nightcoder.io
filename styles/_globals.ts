@@ -141,11 +141,10 @@ html {
   --position-about-title: relative;
   --memory-cards-columns: repeat(3, max-content);
   --memory-cards-rows: repeat(4, max-content);
+  --memory-cards-gap: 5px;
   --stack-table-flex-direction: column;
   --stack-table-align-items: center;
   --stack-column-width: 85%;
-  --memory-card-size: calc((98vw - 30px) / 3);
-  // --memory-card-size: calc((60vh - 30px) / 3);
   --result-card-width: 100%;
   --result-card-height: 40px;
   
@@ -224,7 +223,7 @@ html {
     --position-about-title: sticky;
     --memory-cards-columns: repeat(4, max-content);
     --memory-cards-rows: repeat(3, max-content);
-    --memory-card-size: calc((98vw - 40px) / 8);
+    --memory-cards-gap: 10px;
     --stack-table-flex-direction: row;
     --stack-table-align-items: flex-start;
     --stack-column-width: auto;
@@ -327,28 +326,28 @@ body {
   transform: rotateY(180deg);
 }
 
-.split-screen {
-  animation: split 2000ms ease-in forwards;
-  animation-fill-mode: both;
-  @keyframes split{
-    0%{
-      clip-path:polygon(0% 100%, 50% 100%, 100% 100%, 100% 0, 0% 0, 0% 50%, 100% 50%, 100% 50%, 50% 50%, 0% 50%);
-    }
-    100%{
-      clip-path:polygon(0% 100%, 50% 100%, 100% 100%, 100% 0, 0% 0, 0% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
-    }
-  }
-  @media screen and (min-width:${breakpoints.md}){
-    @keyframes split{
-      0%{
-        clip-path:polygon(0% 0%, 0% 100%, 50% 100%, 50% 0, 50% 0, 50% 50%, 50% 50%, 50% 100%, 100% 100%, 100% 0%);
-      }
-      100%{
-        clip-path:polygon(0% 0%, 0% 100%, 0% 100%, 0% 0, 100% 0, 100% 50%, 100% 50%, 100% 100%, 100% 100%, 100% 0%);
-      }
-    }
-  }
-}
+// .split-screen {
+//   animation: split 2000ms ease-in forwards;
+//   animation-fill-mode: both;
+//   @keyframes split{
+//     0%{
+//       clip-path:polygon(0% 100%, 50% 100%, 100% 100%, 100% 0, 0% 0, 0% 50%, 100% 50%, 100% 50%, 50% 50%, 0% 50%);
+//     }
+//     100%{
+//       clip-path:polygon(0% 100%, 50% 100%, 100% 100%, 100% 0, 0% 0, 0% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+//     }
+//   }
+//   @media screen and (min-width:${breakpoints.md}){
+//     @keyframes split{
+//       0%{
+//         clip-path:polygon(0% 0%, 0% 100%, 50% 100%, 50% 0, 50% 0, 50% 50%, 50% 50%, 50% 100%, 100% 100%, 100% 0%);
+//       }
+//       100%{
+//         clip-path:polygon(0% 0%, 0% 100%, 0% 100%, 0% 0, 100% 0, 100% 50%, 100% 50%, 100% 100%, 100% 100%, 100% 0%);
+//       }
+//     }
+//   }
+// }
 
 // DARK MODE / prefers-color-scheme 
 

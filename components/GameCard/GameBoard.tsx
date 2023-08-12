@@ -9,7 +9,7 @@ import {
   ExitBtnContainer,
   ExitBtnContent,
   GameBoardContainer,
-  GameHeading,
+  GameHeading
 } from "./GameCardStyled";
 
 const GameBoard = ({
@@ -53,7 +53,7 @@ const GameBoard = ({
     if (cardContainerHeight) {
       if (width > breakpoints.mdNumber) {
         setCardSize((cardContainerHeight - 30) / 3);
-      } else setCardSize((cardContainerHeight - 40) / 4);
+      } else setCardSize((cardContainerHeight - 30) / 4);
     }
   }, [cardContainerHeight, width, breakpoints.mdNumber]);
 

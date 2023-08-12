@@ -3,6 +3,7 @@ import {
   Dispatch,
   MutableRefObject,
   SetStateAction,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -103,8 +104,8 @@ const Results = ({
     }
     if (progress === 18) {
       setDisplayMemoryGameResult(false);
-      setProgress(() => wins - 1);
       resetGame();
+      setProgress(() => wins - 1);
     }
   };
 
@@ -120,34 +121,52 @@ const Results = ({
     }
   }, [isMemoryGamePlayed, displayMemoryGameResult]);
 
-  const scrollToResultCard = (
-    containerRef: MutableRefObject<HTMLDivElement>,
-    resultRef: HTMLDivElement
-  ) => {
-    containerRef.current.scroll(
-      0,
-      height + (resultRef?.getBoundingClientRect().top - height)
-    );
+  ///////////////////////////////
+  // 📌 FIX THIS FUNCTION!!!
+  ///////////////////////////////
+
+  const scrollToResultCard = useCallback(
+    (
+      containerRef: MutableRefObject<HTMLDivElement>,
+      resultRef: HTMLDivElement
+    ) => {
+      // check if resultCard is in the viewPort:
+      const isNotInViewPort = resultRef?.getBoundingClientRect().top >= height;
+      if (isNotInViewPort) {
+        containerRef.current.scroll(
+          0,
+          height + (resultRef?.getBoundingClientRect().top - height)
+        );
+      }
+      // else {
+      //   containerRef.current.scroll(
+      //     0,
+      //     resultRef?.getBoundingClientRect().top - 30
+      //   );
+      // }
+    },
+    [height]
+  );
+
+  const flipResultCard = (resultCard: HTMLDivElement) => {
+    setTimeout(() => {
+      resultCard?.classList.add("flip-card-x");
+    }, 1000);
   };
 
   const findCorrespondingResult = (card: ICard) => {
-    console.log("function findCCorrespondingResult is running");
+    // console.log("function findCCorrespondingResult is running");
     const wonCard = allPossibleResults.find(
       (resultCard) => resultCard.name === card?.name
     );
     if (wonCard !== undefined) {
-      console.log("allrefs", allRefs);
+      // console.log("allrefs", allRefs);
       const resultCard = allRefs.find((ref) => ref?.dataset.card === card.name);
-      console.log("updated flippedResults array", flippedResults);
+      // console.log("updated flippedResults array", flippedResults);
       update(resultCard);
       setProgress(() => wins);
-      // check if resultCard is in the viewPort:
-      if (resultCard?.getBoundingClientRect().top > height) {
-        scrollToResultCard(resultsContainerRef, resultCard);
-      }
-      setTimeout(() => {
-        resultCard?.classList.add("flip-card-x");
-      }, 1000);
+      scrollToResultCard(resultsContainerRef, resultCard);
+      flipResultCard(resultCard);
     }
   };
 
@@ -163,6 +182,20 @@ const Results = ({
     findCorrespondingResult(flipped[flipped.length - 1]);
   }, [isMemoryGamePlayed, displayMemoryGameResult, flipped, allRefs]);
 
+  useEffect(() => {
+    if (resultsContainerRef.current) {
+      console.log("window height", height);
+      console.log("container height", resultsContainerRef.current.offsetHeight);
+      console.log("body", document.documentElement.scrollHeight);
+      console.log("window scroll", window.scrollY);
+    }
+  }, []);
+
+  useEffect(() => {
+    resultsContainerRef?.current?.scroll(0, 0);
+    console.log("mounting");
+  }, [wins]);
+
   return (
     <ResultContainer
       displayResult={displayMemoryGameResult}
@@ -173,10 +206,13 @@ const Results = ({
       <CloseBtn onClick={backToGameScreen}>
         <CloseBtnSpan>[ x ]</CloseBtnSpan>
       </CloseBtn>
-      {progress === 18 && (
+      {progress === 18 && resultsContainerRef.current && (
         <Confetti
           width={width}
-          height={document.body.scrollHeight}
+          height={
+            resultsContainerRef.current.getBoundingClientRect().bottom +
+            window.scrollY
+          }
           // height={resultsContainerRef?.current?.getBoundingClientRect().height}
         />
       )}

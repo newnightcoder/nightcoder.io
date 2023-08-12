@@ -111,7 +111,7 @@ const CardContainer = styled.div<Props>`
   display: grid;
   grid-template-columns: var(--memory-cards-columns);
   grid-template-rows: var(--memory-cards-rows);
-  grid-gap: 10px;
+  grid-gap: var(--memory-cards-gap);
   align-content: center;
   justify-content: center;
   border: 2px solid red;
