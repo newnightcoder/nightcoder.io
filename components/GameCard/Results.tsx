@@ -64,6 +64,7 @@ const Results = ({
   const resultsContainerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(wins - 1);
   const { height, width } = useWindowSize();
+  const [confettiCanvasHeight, setConfettiCanvasHeight] = useState(0);
 
   // 😎 nextjs dynamic import to import Confetti component (so that component resizes with window size)
   // Solution from https://github.com/alampros/react-confetti/issues/130#issuecomment-1297020799
@@ -179,6 +180,10 @@ const Results = ({
     findCorrespondingResult(flipped[flipped.length - 1]);
   }, [isMemoryGamePlayed, displayMemoryGameResult, flipped, allRefs]);
 
+  useEffect(() => {
+    setConfettiCanvasHeight(resultsContainerRef?.current?.scrollHeight);
+  }, [width]);
+
   return (
     <ResultContainer
       displayResult={displayMemoryGameResult}
@@ -189,14 +194,8 @@ const Results = ({
       <CloseBtn onClick={backToGameScreen}>
         <CloseBtnSpan>[ x ]</CloseBtnSpan>
       </CloseBtn>
-      {progress === 18 && (
-        <Confetti
-          width={width}
-          height={
-            resultsContainerRef.current.getBoundingClientRect().bottom +
-            window.scrollY
-          }
-        />
+      {progress === 18 && confettiCanvasHeight && (
+        <Confetti width={width} height={confettiCanvasHeight} />
       )}
       {!isMemoryGamePlayed ? (
         <StackPageHeading />

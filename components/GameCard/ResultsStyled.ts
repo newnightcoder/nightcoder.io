@@ -132,16 +132,12 @@ const SubHeaderSpan = styled.span`
 
 const TableContainer = styled.div`
   grid-row: 2;
-  position: relative;
-  // top: 8rem;
   display: flex;
   flex-direction: var(--stack-table-flex-direction);
   flex-wrap: wrap;
   justify-content: center;
   align-items: var(--stack-table-align-items);
   gap: 20px;
-  // width: 100%;
-  // max-width: 1100px;
   padding: 0 5vw;
   border: 2px solid red;
 `;
