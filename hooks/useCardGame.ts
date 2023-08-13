@@ -236,6 +236,7 @@ const useCardGame = () => {
   );
 
   const handleResultScreen = (refs: MutableRefObject<HTMLDivElement[]>) => {
+    // setDisplayMemoryGameResult(true);
     if (wins === 0) return;
     setTimeout(() => {
       setDisplayMemoryGameResult(true);

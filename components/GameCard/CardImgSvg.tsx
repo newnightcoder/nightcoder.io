@@ -208,6 +208,7 @@ const integration = {
 const front = {
   typescript,
   react,
+  nextjs,
   redux,
   tailwind,
   "styled-components": styled,
@@ -217,7 +218,6 @@ const front = {
 const backend = {
   "node.js": nodejs,
   express,
-  nextjs,
 };
 
 const db = {

@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import {
   Dispatch,
-  MutableRefObject,
   SetStateAction,
   useCallback,
   useContext,
@@ -64,8 +63,8 @@ const Results = ({
   const [allRefs, setAllRefs] = useState<HTMLDivElement[]>([]);
   const resultsContainerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(wins - 1);
-  // const [progress, setProgress] = useState(18);
   const { height, width } = useWindowSize();
+
   // 😎 nextjs dynamic import to import Confetti component (so that component resizes with window size)
   // Solution from https://github.com/alampros/react-confetti/issues/130#issuecomment-1297020799
   const Confetti = dynamic(() => import("react-confetti"), {
@@ -98,16 +97,16 @@ const Results = ({
     ]
   );
 
-  const backToGameScreen = () => {
-    if (!isMemoryGamePlayed || (isMemoryGamePlayed && progress !== 18)) {
+  const backToGameScreen = useCallback(() => {
+    if (!isMemoryGamePlayed || (isMemoryGamePlayed && wins !== 18)) {
       return setDisplayMemoryGameResult((prev) => !prev);
     }
-    if (progress === 18) {
+    if (wins === 18) {
       setDisplayMemoryGameResult(false);
       resetGame();
       setProgress(() => wins - 1);
     }
-  };
+  }, [isMemoryGamePlayed, wins]);
 
   useEffect(() => {
     if (isMemoryGamePlayed && displayMemoryGameResult) {
@@ -127,23 +126,21 @@ const Results = ({
 
   const scrollToResultCard = useCallback(
     (
-      containerRef: MutableRefObject<HTMLDivElement>,
-      resultRef: HTMLDivElement
+      // containerRef: MutableRefObject<HTMLDivElement>,
+      resultCard: HTMLDivElement
     ) => {
-      // check if resultCard is in the viewPort:
-      const isNotInViewPort = resultRef?.getBoundingClientRect().top >= height;
-      if (isNotInViewPort) {
-        containerRef.current.scroll(
-          0,
-          height + (resultRef?.getBoundingClientRect().top - height)
-        );
+      const resultCardTop = resultCard?.getBoundingClientRect().top;
+      const resultCardBtm = resultCard?.getBoundingClientRect().bottom;
+      const isInViewport = resultCardBtm < height && resultCardTop > 150;
+      // const viewportStart = 150;
+      // const viewportEnd = height;
+      // const isBelowViewPort = resultCardTop >= viewportEnd;
+      // const isAboveViewPort = resultCardBtm <= viewportStart;
+      // const container = containerRef.current;
+
+      if (!isInViewport) {
+        resultCard?.scrollIntoView({ block: "center" });
       }
-      // else {
-      //   containerRef.current.scroll(
-      //     0,
-      //     resultRef?.getBoundingClientRect().top - 30
-      //   );
-      // }
     },
     [height]
   );
@@ -165,7 +162,7 @@ const Results = ({
       // console.log("updated flippedResults array", flippedResults);
       update(resultCard);
       setProgress(() => wins);
-      scrollToResultCard(resultsContainerRef, resultCard);
+      scrollToResultCard(resultCard);
       flipResultCard(resultCard);
     }
   };
@@ -182,20 +179,6 @@ const Results = ({
     findCorrespondingResult(flipped[flipped.length - 1]);
   }, [isMemoryGamePlayed, displayMemoryGameResult, flipped, allRefs]);
 
-  useEffect(() => {
-    if (resultsContainerRef.current) {
-      console.log("window height", height);
-      console.log("container height", resultsContainerRef.current.offsetHeight);
-      console.log("body", document.documentElement.scrollHeight);
-      console.log("window scroll", window.scrollY);
-    }
-  }, []);
-
-  useEffect(() => {
-    resultsContainerRef?.current?.scroll(0, 0);
-    console.log("mounting");
-  }, [wins]);
-
   return (
     <ResultContainer
       displayResult={displayMemoryGameResult}
@@ -206,18 +189,17 @@ const Results = ({
       <CloseBtn onClick={backToGameScreen}>
         <CloseBtnSpan>[ x ]</CloseBtnSpan>
       </CloseBtn>
-      {progress === 18 && resultsContainerRef.current && (
+      {progress === 18 && (
         <Confetti
           width={width}
           height={
             resultsContainerRef.current.getBoundingClientRect().bottom +
             window.scrollY
           }
-          // height={resultsContainerRef?.current?.getBoundingClientRect().height}
         />
       )}
       {!isMemoryGamePlayed ? (
-        <StackPageHeading backToGame={backToGameScreen} />
+        <StackPageHeading />
       ) : (
         <GameResultsHeading progress={progress} wins={wins} />
       )}

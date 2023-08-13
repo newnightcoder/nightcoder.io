@@ -2,11 +2,16 @@ import CircleProgressBar from "./CircleProgressBar";
 import { GameHeading } from "./GameCardStyled";
 import { GameResultsHeader } from "./ResultsStyled";
 
-const GameResultsHeading = ({ progress, wins }) => {
+interface Props {
+  progress: number;
+  wins: number;
+}
+
+const GameResultsHeading = ({ progress, wins }: Props) => {
   return (
-    <GameResultsHeader>
+    <GameResultsHeader wins={wins}>
       <GameHeading
-        fontSize={5}
+        fontSize={6}
         fontWeight={700}
         color={"orange"}
         shadow={true}
@@ -18,5 +23,4 @@ const GameResultsHeading = ({ progress, wins }) => {
     </GameResultsHeader>
   );
 };
-
 export default GameResultsHeading;

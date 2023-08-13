@@ -1,7 +1,7 @@
 import { GameHeading } from "./GameCardStyled";
 import { StackPageHeader, SubHeader, SubHeaderSpan } from "./ResultsStyled";
 
-const StackPageHeading = ({ backToGame }) => {
+const StackPageHeading = () => {
   return (
     <StackPageHeader>
       <GameHeading fontSize={6} color={"blue"} shadow={true}>

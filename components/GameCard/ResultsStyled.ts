@@ -11,17 +11,15 @@ interface Props {
 const ResultContainer = styled.div<Props>`
   position: fixed;
   inset: 0;
-  // top: 0;
   top: var(--navbar-height);
-  padding-top: ${(props) => (props.isGamePlayed ? "2rem" : "3rem")};
-  padding-bottom: var(--navbar-height);
-  z-index: 2000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
   width: 100%;
   height: 100%;
+  padding-top: ${(props) => (props.isGamePlayed ? "" : "2rem")};
+  padding-bottom: var(--navbar-height);
+  z-index: 2000;
+  display: grid;
+  grid-template-rows: ${(props) =>
+      props.isGamePlayed ? "150px" : "max-content"} 1fr;
   clip-path: ${(props) =>
     props.displayResult
       ? "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
@@ -35,18 +33,16 @@ const ResultContainer = styled.div<Props>`
   font-family: var(--poppins);
   overflow: scroll;
   scroll-behaviour: smooth;
-  // border: 2px solid red;
+  border: 4px solid yellow;
 `;
 
 const CircleSvg = styled.svg`
   height: 150px;
   width: 150px;
-  // border: 1px solid red;
 `;
 
 const ProgressCircle = styled.circle<Props>`
   stroke-width: 10;
-  // stroke: yellow;
   fill: none;
   cx: 75;
   cy: 75;
@@ -81,6 +77,7 @@ const CloseBtn = styled.button`
   position: fixed;
   top: calc(var(--navbar-height) + 20px);
   right: 2vw;
+  z-index: 1500;
 `;
 
 const CloseBtnSpan = styled.span`
@@ -90,19 +87,30 @@ const CloseBtnSpan = styled.span`
   font-weight: 100;
 `;
 
-const GameResultsHeader = styled.div`
+const GameResultsHeader = styled.div<Props>`
+  grid-row: 1;
+  position: fixed;
+  inset: 0;
+  top: var(--navbar-height);
   width: 100%;
+  height: 150px;
+  z-index: 1000;
+  background: ${(props) =>
+    props.wins < 18 ? "rgba(10, 10, 10, 0.95)" : "rgba(10, 10, 10, 1)"};
   padding: 0 5vw;
   display: flex;
+  // display: none;
   align-items: center;
   justify-content: space-evenly;
-  // border: 1px solid white;
+  border: 1px solid white;
 `;
 
 const StackPageHeader = styled.div`
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 2px solid white;
 `;
 
 const SubHeader = styled.div`
@@ -123,16 +131,19 @@ const SubHeaderSpan = styled.span`
 `;
 
 const TableContainer = styled.div`
+  grid-row: 2;
+  position: relative;
+  // top: 8rem;
   display: flex;
   flex-direction: var(--stack-table-flex-direction);
   flex-wrap: wrap;
   justify-content: center;
   align-items: var(--stack-table-align-items);
   gap: 20px;
-  width: 100%;
+  // width: 100%;
   // max-width: 1100px;
   padding: 0 5vw;
-  // border: 1px solid white;
+  border: 2px solid red;
 `;
 
 const TableColumn = styled.div`

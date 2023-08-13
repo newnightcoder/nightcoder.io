@@ -1,5 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { TransitionContext } from "../../context/TransitionContext";
+import { useEffect, useRef, useState } from "react";
 import { useWindowSize } from "../../hooks";
 import useCardGame, { ICardElement } from "../../hooks/useCardGame";
 import { CardContainer } from "../../styles/stack";
@@ -9,7 +8,7 @@ import {
   ExitBtnContainer,
   ExitBtnContent,
   GameBoardContainer,
-  GameHeading
+  GameHeading,
 } from "./GameCardStyled";
 
 const GameBoard = ({
@@ -22,7 +21,6 @@ const GameBoard = ({
   round,
 }) => {
   const { cardsPacks } = useCardGame();
-  // const [round, setRound] = useState(1);
   const { height, width } = useWindowSize();
   const cardContainerRef = useRef<HTMLDivElement | null>(null);
   const gameCardRefs = useRef<HTMLDivElement[]>([]);
@@ -30,8 +28,6 @@ const GameBoard = ({
   const [cardContainerHeight, setCardContainerHeight] = useState(0);
   const [cardSize, setCardSize] = useState(0);
   const [minHeight, setMinHeight] = useState(0);
-  const { setIsMemoryGamePlayed, isLightTheme, setDisplayMemoryGameResult } =
-    useContext(TransitionContext);
 
   const headingColor = round === 1 ? "blue-2" : round === 2 ? "pink" : "green";
 
@@ -81,28 +77,22 @@ const GameBoard = ({
       <CardContainer ref={cardContainerRef} minHeight={minHeight}>
         {cardsPacks[round - 1]?.map((card: ICardElement, i: number) => {
           return (
-            <>
-              {cardSize && (
-                <GameCard
-                  key={i + 1}
-                  ref={(el) => (gameCardRefs.current[i] = el)}
-                  // height="var(--memory-card-size)"
-                  // width="var(--memory-card-size)"
-                  height={cardSize}
-                  width={cardSize}
-                  cardName={card.name}
-                  round={round}
-                  onClick={() => {
-                    flipCard(gameCardRefs, i);
-                    compare();
-                  }}
-                >
-                  <div style={{ height: "100%", width: "100%" }}>
-                    {card.jsx}
-                  </div>
-                </GameCard>
-              )}
-            </>
+            cardSize && (
+              <GameCard
+                key={i + 1}
+                ref={(el) => (gameCardRefs.current[i] = el)}
+                height={cardSize}
+                width={cardSize}
+                cardName={card.name}
+                round={round}
+                onClick={() => {
+                  flipCard(gameCardRefs, i);
+                  compare();
+                }}
+              >
+                <div style={{ height: "100%", width: "100%" }}>{card.jsx}</div>
+              </GameCard>
+            )
           );
         })}
         <ExitBtnContainer>
