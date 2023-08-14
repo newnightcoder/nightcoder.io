@@ -44,22 +44,15 @@ const Results = ({
     isMemoryGamePlayed,
   } = useContext(TransitionContext);
 
-  const { integrationArray, frontArray, backendArray, dbArray, toolsArray } =
-    useCardGame();
+  const { cardCategories, cards } = useCardGame();
 
-  const allPossibleResults = [
-    ...integrationArray,
-    ...frontArray,
-    ...backendArray,
-    ...dbArray,
-    ...toolsArray,
-  ];
-
+  const allPossibleResults = cards;
   const integrationRefs = useRef<HTMLDivElement[]>([]);
   const frontRefs = useRef<HTMLDivElement[]>([]);
   const backendRefs = useRef<HTMLDivElement[]>([]);
   const dbRefs = useRef<HTMLDivElement[]>([]);
   const toolsRefs = useRef<HTMLDivElement[]>([]);
+
   const [allRefs, setAllRefs] = useState<HTMLDivElement[]>([]);
   const resultsContainerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(wins - 1);
@@ -76,26 +69,15 @@ const Results = ({
     () => [
       {
         name: "web integration",
-        array: integrationArray,
+        array: cardCategories[0],
         refs: integrationRefs,
       },
-      { name: "front", array: frontArray, refs: frontRefs },
-      { name: "backend", array: backendArray, refs: backendRefs },
-      { name: "databases", array: dbArray, refs: dbRefs },
-      { name: "tools", array: toolsArray, refs: toolsRefs },
+      { name: "front", array: cardCategories[1], refs: frontRefs },
+      { name: "backend", array: cardCategories[2], refs: backendRefs },
+      { name: "databases", array: cardCategories[3], refs: dbRefs },
+      { name: "tools", array: cardCategories[4], refs: toolsRefs },
     ],
-    [
-      integrationArray,
-      integrationRefs,
-      frontArray,
-      frontRefs,
-      backendArray,
-      backendRefs,
-      dbArray,
-      dbRefs,
-      toolsArray,
-      toolsRefs,
-    ]
+    [cardCategories, integrationRefs, frontRefs, backendRefs, dbRefs, toolsRefs]
   );
 
   const backToGameScreen = useCallback(() => {

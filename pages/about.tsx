@@ -43,31 +43,14 @@ const About = () => {
         </Title>
         <ContentContainer>
           <AboutItemsContainer>
-            <AboutItem
-              itemTitle={text[lang].item.title1}
-              itemText={text[lang].item.text1}
-              itemEmoji={text[lang].item.emoji1}
-            />
-            <AboutItem
-              itemTitle={text[lang].item.title2}
-              itemText={text[lang].item.text2}
-              itemEmoji={text[lang].item.emoji2}
-            />
-            <AboutItem
-              itemTitle={text[lang].item.title3}
-              itemText={text[lang].item.text3}
-              itemEmoji={text[lang].item.emoji3}
-            />
-            <AboutItem
-              itemTitle={text[lang].item.title4}
-              itemText={text[lang].item.text4}
-              itemEmoji={text[lang].item.emoji4}
-            />
-            <AboutItem
-              itemTitle={text[lang].item.title6}
-              itemText={text[lang].item.text6}
-              itemEmoji={text[lang].item.emoji6}
-            />
+            {new Array(5).fill("").map((el, i) => (
+              <AboutItem
+                key={i + 1}
+                itemTitle={text[lang].item["title" + `${i + 1}`]}
+                itemText={text[lang].item["text" + `${i + 1}`]}
+                itemEmoji={text[lang].item["emoji" + `${i + 1}`]}
+              />
+            ))}
           </AboutItemsContainer>
         </ContentContainer>
       </Container>

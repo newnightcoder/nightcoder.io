@@ -3,6 +3,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import {
@@ -45,11 +46,14 @@ const useCardGame = () => {
     HTMLDivElement[]
   >([]);
   const [wins, setWins] = useState(0);
-  const allCategories = [integration, front, backend, db, tools];
+  const categories = useMemo(
+    () => [integration, front, backend, db, tools],
+    [integration, front, backend, db, tools]
+  );
 
-  const createCardsCategories = (array: []) => {
+  const createCardsCategories = useCallback((): [ICardElement][] => {
     const cards = [];
-    array.forEach((el) => {
+    categories.forEach((el) => {
       cards.push(
         Object.entries(el).map((entry) => ({
           name: entry[0],
@@ -57,37 +61,32 @@ const useCardGame = () => {
         }))
       );
     });
-    console.log("cards from createCardsCategory function", cards);
-  };
+    console.log("cards from createCardsCategory function");
+    return cards;
+  }, [categories]);
 
-  const integrationArray = Object.entries(integration).map((entry) => ({
-    name: entry[0],
-    jsx: entry[1],
-  }));
-  const frontArray = Object.entries(front).map((entry) => ({
-    name: entry[0],
-    jsx: entry[1],
-  }));
-  const backendArray = Object.entries(backend).map((entry) => ({
-    name: entry[0],
-    jsx: entry[1],
-  }));
-  const dbArray = Object.entries(db).map((entry) => ({
-    name: entry[0],
-    jsx: entry[1],
-  }));
-  const toolsArray = Object.entries(tools).map((entry) => ({
-    name: entry[0],
-    jsx: entry[1],
-  }));
+  const cardCategories = useMemo(() => createCardsCategories(), [categories]);
 
-  const cards = [
-    ...integrationArray,
-    ...frontArray,
-    ...backendArray,
-    ...dbArray,
-    ...toolsArray,
-  ];
+  const cards = useMemo(
+    () =>
+      cardCategories.reduce((acc, val) => {
+        return acc.concat(...val);
+      }, []),
+    [cardCategories]
+  );
+
+  useEffect(() => {
+    createCardsCategories();
+    setShuffledCards(() => shuffleArray(cards));
+  }, []);
+
+  useEffect(() => {
+    createCardPacks(shuffledCards);
+  }, [shuffledCards]);
+
+  useEffect(() => {
+    compare();
+  }, [cardCount]);
 
   const duplicateArray = (arr: unknown[], duplicator: number) => {
     const length = arr.length;
@@ -110,11 +109,6 @@ const useCardGame = () => {
       .map((el) => el.el);
   };
 
-  useEffect(() => {
-    // createCardsCategories(allCategories);
-    setShuffledCards(() => shuffleArray(cards));
-  }, []);
-
   const createCardPacks = (cards: ICardElement[]) => {
     if (!cards) return;
     const packs = [];
@@ -125,15 +119,6 @@ const useCardGame = () => {
     }
     setCardsPacks(() => packs);
   };
-
-  useEffect(() => {
-    createCardPacks(shuffledCards);
-  }, [shuffledCards]);
-
-  useEffect(() => {
-    compare();
-    console.log(cardCount);
-  }, [cardCount]);
 
   const flipCard = useCallback(
     (el: MutableRefObject<HTMLDivElement[]>, index: number) => {
@@ -261,11 +246,8 @@ const useCardGame = () => {
     flippedGameCards,
     setFlippedGameCards,
     flippedResultCards,
-    integrationArray,
-    frontArray,
-    backendArray,
-    dbArray,
-    toolsArray,
+    cardCategories,
+    cards,
     updateResultCardsArray,
     setFlippedResultCards,
     handleResultScreen,
